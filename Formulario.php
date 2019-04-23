@@ -149,4 +149,6 @@ class Formulario
  if ($conn->query($sql) === true) {
      echo "sus datos fueron guardados";
  }
+ ?>
+<a class="btn btn-default" href="tabla.php">ver Personas</a>
  
