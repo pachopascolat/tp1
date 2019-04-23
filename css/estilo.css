@@ -1,0 +1,14 @@
+.grid {
+    display: grid;
+    grid-template-columns: 100px auto 100px;
+    grid-template-rows: repeat(3, 100px);
+    grid-gap: 1em;
+  }
+
+  header, footer {
+    grid-column: 1 / 4;
+  }
+
+  *{
+    margin: 0 auto;
+  }
