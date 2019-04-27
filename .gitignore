@@ -38,3 +38,5 @@ phpunit.phar
 /backend/web/images
 
 /.htaccess
+/common/config/main-local.php
+
