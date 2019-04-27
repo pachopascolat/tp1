@@ -1,0 +1,92 @@
+<?php
+
+namespace common\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "cliente".
+ *
+ * @property int $id_cliente
+ * @property string $nombre_cliente
+ * @property string $telefono
+ * @property string $mail_cliente
+ *
+ * @property Carrito[] $carritos
+ */
+class Cliente extends \yii\db\ActiveRecord {
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName() {
+        return 'cliente';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules() {
+        return [
+            [['nombre_cliente'], 'required',
+                'message' =>"Por favor complete su Nombre"
+                ],
+            [['mail_cliente'], 'email'],
+            ['telefono', 'either', 'skipOnEmpty' => false, 'params' => ['other' => 'mail_cliente']],
+            [['nombre_cliente', 'telefono', 'mail_cliente'], 'string', 'max' => 128],
+        ];
+    }
+
+    public function either($attribute_name, $params) {
+        /**
+         * validate actula attribute
+         */
+        if (!empty($this->$attribute_name)) {
+            return;
+        }
+
+        if (!is_array($params['other'])) {
+            $params['other'] = [$params['other']];
+        }
+
+        /**
+         * validate other attributes
+         */
+        foreach ($params['other'] as $field) {
+            if (!empty($this->$field)) {
+                return;
+            }
+        }
+
+        /**
+         * get attributes labels
+         */
+        $fieldsLabels = [$this->getAttributeLabel($attribute_name)];
+        foreach ($params['other'] as $field) {
+            $fieldsLabels[] = $this->getAttributeLabel($field);
+        }
+
+        $this->addError($attribute_name, Yii::t('user', "Uno de los campos Telefono o Email debe ser completado."));
+        
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels() {
+        return [
+            'id_cliente' => Yii::t('app', 'Id Cliente'),
+            'nombre_cliente' => Yii::t('app', 'Nombre o Razón Social'),
+            'telefono' => Yii::t('app', 'Telefono'),
+            'mail_cliente' => Yii::t('app', 'Email'),
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCarritos() {
+        return $this->hasMany(Carrito::className(), ['cliente_id' => 'id_cliente']);
+    }
+
+}

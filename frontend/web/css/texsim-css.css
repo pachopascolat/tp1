@@ -1,0 +1,407 @@
+
+
+
+@charset "utf-8";   
+/* CSS Document */
+
+
+
+.codigo-centrado{
+    position: absolute;
+    top: 10%;
+    left: 90% ;
+    transform: translate(-90%, -10%);
+    background-color: #F2F2F2;
+    /*background-color: #272B2F;*/
+    /*color: white;*/
+    color: #272B2F;
+    padding: 3px;
+    /*opacity: 0.65;*/
+}
+
+.imagen-carrito{
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    background-image: url(../images/taxsim-slider-home-01b.jpg);
+
+    /* Full height */
+    height: 47%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.centro {
+
+    /* The image used */
+    background:#000000;
+
+    /* Full height */
+    height: 6%;
+    max-height:60px;
+    min-height:55px;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.logo-izq {
+    height:60px; 
+    background:url(../img/logotexsimdigital-home-franjanegra-01.svg)  left no-repeat;
+    width:50%;
+    float:left;
+    margin-left:10px;
+    margin-top:-5px;
+
+}
+.logo-header{
+    height:40px; 
+    background:url(../img/logotexsimdigital-home-franjanegra-01.svg)  left no-repeat;
+    width:50%;
+    float:left;
+}
+
+.logo-der {
+    height:60px; 
+    background: url(../img/logotexsimdigital-home-franjanegra-iso-02.svg) right no-repeat;
+    width:45%;
+    float:left;
+    margin-right:0px;
+    margin-top:-5px;
+
+}
+@media (min-width:768px){.logo-der {
+
+
+                             width:47%;
+                         }}
+@media (min-width: 1000px){.logo-der {
+
+
+                               width:49%;
+                           }}
+
+.bg2 {
+    /* The image used */
+    background-image: url(../images/texsim-hogar-slider.jpg);
+
+    /* Full height */
+    height: 48%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+@media (max-width: 520px){
+    .bg2 {background-image: url(../images/texsim-hogar-slider-a.jpg);
+    }
+    .bg {background-image: url(../images/taxsim-slider-home-01a.jpg);
+    }
+
+}
+
+.responsive{
+    width:100%;
+    height:50%;
+
+}
+
+
+.boton-hogar a:hover{ background:url(../img/hogar-70x70-hover-03.svg);
+
+
+}
+
+.barra-logo{
+
+    width:100%;
+    height:42px;
+    /*	position:relative;*/
+
+}
+.color-hogar{background:#F06386}
+.color-moda{background:#CFC92A;}	
+
+.logo{
+    background: url(../img/franja-texsim-digital-logo-transparente-02.svg)  no-repeat right 5px;
+    width:100%;
+    height:32px;
+    position:relative;
+
+}
+
+.container-lista{
+    padding-left:0px !important;
+    padding-right:0px !important;
+}
+
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    margin:0px 0 15px;
+
+    box-sizing: content-box !important;
+
+
+}
+
+.swiper-container1 {
+    width: 100%;
+    height:50%;
+    margin:0px 0 15px;
+
+
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}	
+
+.iconos-barra{ margin-left:auto}
+
+
+.barra-clasificacion{
+    width:100%;
+    height:30px;
+    color: #3B3B3B;
+    font-size:1.3rem;
+    text-align:left;
+    font-family: 'dinbold';
+    position:relative}
+
+
+.product-code{
+    font-family: 'dinbold';
+    position:absolute;
+    margin:35px auto;
+    float:right;
+    width:100%;
+
+    font-size:1.2rem;
+
+
+
+}	  
+
+
+.card-text{
+    font-family: 'dinregular';
+}
+.productos-fijos .product-code
+{
+    /*margin-top:5px; padding-right:10px; text-align:right;*/
+}
+
+.productos-fijos{
+    /*    background:#FFFBFB; 
+        bottom:-100px; 
+        position:fixed; 
+        z-index:1049;*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 520px){
+    .productos-fijos{ 
+        bottom:-40px !important;
+    }
+    .lisos-fixed{
+        position: sticky !important ;
+        -webkit-position: sticky;
+    }
+
+    .productos-fijos .product-hover-overlay-buttons{
+        margin-top:-50px !important; 
+        clear: both
+    }
+
+}
+@media (min-width: 521px){
+    .productos-fijos{ 
+        bottom:-40px!important
+    }
+    .lisos-fixed{
+        position: sticky !important ;
+        -webkit-position: sticky;    
+    }
+
+    .productos-fijos .product-hover-overlay-buttons{
+        margin-top:-30px !important;
+        clear: both
+    }
+}
+@media (min-width: 580px){
+    .productos-fijos{
+        bottom:-40px!important
+    }
+    .lisos-fixed{
+        position: sticky !important ;
+        -webkit-position: sticky;
+
+    }
+    .productos-fijos .product-hover-overlay-buttons{
+        margin-top:-40px !important; 
+        clear: both
+    }
+}
+@media (min-width: 768px){
+    .productos-fijos{
+        bottom:-60px!important
+    }
+    .lisos-fixed{
+        position: sticky !important ;
+        -webkit-position: sticky;lay: sticky !important;
+    }
+        .album{
+            margin-bottom: 190px
+        }
+
+    
+    .productos-fijos .product-hover-overlay-buttons{
+        margin-top:-50px !important;
+        clear: both
+    }
+}
+@media (max-width: 1000px){
+    .productos-fijos{
+        bottom:-60px!important
+    }
+
+    .album{
+        margin-bottom: 190px
+    }
+
+    .productos-fijos .product-hover-overlay-buttons{
+        margin-top:-50px !important;
+        clear: both
+    }
+}*/
+
+
+
+.lista-container{ margin:0px 0 20px;}
+
+
+.shadow-swiper-container{
+    margin-top:10px;
+    width:100%;
+    height:20px;
+    background:url(../img/sombra.png);
+
+
+}
+
+.form-group p{ float:right; height:2px;
+               margin-left:10px;
+               margin-top:1px;}
+
+.font-alt{font-family: 'dinregular';}
+.text-tiles{ text-transform:uppercase;}
+

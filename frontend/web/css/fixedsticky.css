@@ -1,0 +1,59 @@
+.fixedsticky {
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -ms-sticky;
+	position: -o-sticky;
+	position: sticky;
+}
+/* When position: sticky is supported but native behavior is ignored */
+.fixedsticky-withoutfixedfixed .fixedsticky-off,
+.fixed-supported .fixedsticky-off {
+	position: static;
+}
+.fixedsticky-withoutfixedfixed .fixedsticky-on,
+.fixed-supported .fixedsticky-on {
+	position: fixed;
+}
+.fixedsticky-dummy {
+	display: none;
+}
+.fixedsticky-on + .fixedsticky-dummy {
+	display: block;
+}
+
+.top,
+.bottom {
+text-align: center;
+	
+	width: 100%;
+	max-width: 1110px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+.top.fixedsticky-on,
+.bottom.fixedsticky-on {
+	width: 96%;
+}
+
+/* Fixed-Sticky CSS */
+.top {
+	top: 0; 
+}
+.bottom {
+	bottom: 0;
+}
+#top-a {
+	top: 32px;
+}
+#bottom-b {
+	bottom: 16px;
+}
+
+
+@media ( max-width: 25em ) {
+	#top-a {
+		height: 200px;
+	}
+}
