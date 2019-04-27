@@ -13,7 +13,6 @@ nbproject
 .buildpath
 .project
 .settings
-.htaccess
 
 # windows thumbnail cache
 Thumbs.db
@@ -37,3 +36,5 @@ phpunit.phar
 
 #imagenes de estampados
 /backend/web/images
+
+/.htaccess
