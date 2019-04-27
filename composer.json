@@ -21,7 +21,8 @@
         "dektrium/yii2-user": "^0.9.0@dev",
         "zxbodya/yii2-gallery-manager": "*@dev",
         "kartik-v/yii2-grid": "dev-master",
-        "kartik-v/yii2-editable": "@dev"
+        "kartik-v/yii2-editable": "@dev",
+        "kartik-v/yii2-mpdf": "dev-master"
 
 
     },
