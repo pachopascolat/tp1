@@ -22,7 +22,9 @@
         "zxbodya/yii2-gallery-manager": "*@dev",
         "kartik-v/yii2-grid": "dev-master",
         "kartik-v/yii2-editable": "@dev",
-        "kartik-v/yii2-mpdf": "dev-master"
+        "kartik-v/yii2-mpdf": "dev-master",
+        "yiisoft/yii2-jui": "^2.0@dev",
+        "mikehaertl/phpwkhtmltopdf": "^2.0@dev"
 
 
     },

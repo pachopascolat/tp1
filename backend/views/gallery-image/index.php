@@ -64,10 +64,19 @@ $this->title = 'Diseños';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            
             ['class' => 'yii\grid\SerialColumn'],
+//             [
+//        'class' => '\kartik\grid\CheckboxColumn'
+//    ],
             
 //            'id',
-            'nombreTela',
+            [
+                'attribute' => 'nombreTela',
+                'value' => function($model) {
+                    return $model->getTela()->nombre_tela   ;
+                }
+            ],
 //            'ownerId',
 //            [
 //                'attribute'=>'ownerId',

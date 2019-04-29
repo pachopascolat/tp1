@@ -127,7 +127,8 @@ class GalleryImage extends \yii\db\ActiveRecord {
     }
 
     public function getUrl($version = 'original') {
-        $url = Yii::getAlias('@web') . "/../../backend/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
+
+        $url = \yii\helpers\Url::home(true)."../backend/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
         return $url;
     }
 

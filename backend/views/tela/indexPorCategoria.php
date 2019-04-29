@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = 'Telas';
 //        'id_tela',
             'codigo_tela',
             'nombre_tela',
-            'descripcion_tela',
+//            'descripcion_tela',
             'orden_tela',
             [
                 'label' => 'Categoria',
@@ -77,6 +77,13 @@ $this->params['breadcrumbs'][] = 'Telas';
                 'format' => 'raw',
                 'value' => function ($model, $key, $index, $column) {
                     return Html::a('Stock', ['/gallery-image/index-by-tela', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
+                }
+            ],
+            [
+                'label' => 'Exportar',
+                'format' => 'raw',
+                'value' => function ($model, $key, $index, $column) {
+                    return Html::a('Exportar', ['/gallery-image/photo-grid', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
                 }
             ],
 //            [

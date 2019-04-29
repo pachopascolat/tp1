@@ -36,7 +36,9 @@ phpunit.phar
 
 #imagenes de estampados
 /backend/web/images
+/frontend/web/index.php
 
 /.htaccess
+
 /common/config/main-local.php
 
