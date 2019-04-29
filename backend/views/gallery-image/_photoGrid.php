@@ -10,30 +10,48 @@ $js = '
     });
 
 $(".toggle-seleccionar").click(function(){
+    $(this).hide();
+    $(".toggle-deseleccionar").show();
     $("input:checkbox").each(function() {
             this.checked= true;
             var img =  $(this).parent(".ui-widget-content");
             img.addClass("img-selected");
     });
+    $(".ui-widget-content").each(function(){
+        $(this).addClass("ui-selected");
+    });
+});
+
+$(".toggle-deseleccionar").click(function(){
+    $(this).hide();
+    $(".toggle-seleccionar").show();
+    $("input:checkbox").each(function() {
+            this.checked= false;
+            var img =  $(this).parent(".ui-widget-content");
+            img.removeClass("img-selected");
+    });
+    $(".ui-widget-content").each(function(){
+        $(this).removeClass("ui-selected");
+    });
 });
   
 $( "#selectable" ).on( "selectablestop", function( event, ui ) {
-    $(".ui-selected input", this).each(function() {
+    $(".ui-selected input:checkbox", this).each(function() {
             this.checked= true;
             var img =  $(this).parent(".ui-widget-content");
             img.addClass("img-selected");
     });
 } );
 $( "#selectable" ).on( "selectablestart", function( event, ui ) {
-    $(".ui-selected input", this).each(function() {
-            this.checked= false;
+    $("input:checked").each(function() {
+            $(this).checked= false;
             var img =  $(this).parent(".ui-widget-content");
             img.removeClass("img-selected");
     });
 } );
 $( "#selectable" ).on( "selectablecreate", function( event, ui ) {
-    $("input", this).each(function() {
-            this.checked= false;
+    $("input:checkbox").each(function() {
+            $(this).checked= false;
     });
 } );
 
@@ -111,7 +129,8 @@ $this->registerJs($js);
     <?php $form = ActiveForm::begin();
     ?>
     
-    <button class="btn btn-info toggle-seleccionar">Seleccionar Todo</button>
+    <button type="button" class="btn btn-info toggle-seleccionar">Seleccionar Todo</button>
+    <button style="display: none" type="button" class="btn btn-warning toggle-deseleccionar ">Deseleccionar Todo</button>
     <button id="pdf-button" type="button" class="btn btn-success" onclick="exportar('<?= yii\helpers\Url::to(['photo-grid','tela_id'=>$tela_id])?>')">PDF</button>
     <button id="zip-button" type="submit" class="btn btn-primary" >ZIP</button>
     <div id="selectable"  class="">
@@ -122,7 +141,7 @@ $this->registerJs($js);
                 <!--<div class="">-->
                 <img src="<?= $estampado->getUrl('preview') ?>" >
                 <!--</div>-->
-                <input value="<?= $estampado->id ?>" class="img-checkbox hide" type="checkbox" name="estampados[]"/>
+                <input value="<?= $estampado->id ?>" class="img-checkbox" type="checkbox" name="estampados[]"/>
                 <!--<i class="fa fa-check hidden"></i>-->
                 <span class="id-estampado"><?= $estampado->id ?></span>
 

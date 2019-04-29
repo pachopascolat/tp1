@@ -43,10 +43,10 @@ class GalleryImageController extends Controller {
     }
 
     public function actionPhotoGrid($tela_id) {
-        $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->pagination = FALSE;
-        $data = [];
+//        $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//        $dataProvider->pagination = FALSE;
+//        $data = [];
         if ($estampados = \Yii::$app->request->post("estampados")) {
             foreach ($estampados as $id) {
 
@@ -55,7 +55,7 @@ class GalleryImageController extends Controller {
             $this->redirect(['report', 'ids' => json_encode($data)]);
         }
 
-        return $this->render('_photoGrid', ['data' => $dataProvider->getModels(),'tela_id'=>$tela_id]);
+//        return $this->render('_photoGrid', ['data' => $dataProvider->getModels(),'tela_id'=>$tela_id]);
     }
 
     public function actionExportar($tela_id) {
@@ -76,7 +76,7 @@ class GalleryImageController extends Controller {
                 $zip->addFile($path, "{$estampado->getNombreTela()}-codigo:$estampado->name.jpg");
             }
             $zip->close();
-            \Yii::$app->response->sendFile($file);
+            return \Yii::$app->response->sendFile($file);
 //            return $file;
 //            $this->redirect(['report', 'ids' => json_encode($data)]);
         }
