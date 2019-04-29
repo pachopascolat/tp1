@@ -43,8 +43,8 @@ $( "#selectable" ).on( "selectablestop", function( event, ui ) {
     });
 } );
 $( "#selectable" ).on( "selectablestart", function( event, ui ) {
-    $("input:checked").each(function() {
-            $(this).checked= false;
+    $(".ui-selected input",this).each(function() {
+            this.checked= false;
             var img =  $(this).parent(".ui-widget-content");
             img.removeClass("img-selected");
     });
