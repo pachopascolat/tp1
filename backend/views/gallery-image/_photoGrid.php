@@ -37,15 +37,12 @@ $( "#selectable" ).on( "selectablecreate", function( event, ui ) {
     });
 } );
 
-//$("input:checkbox").change(function() {
-//    var img =  $(this).parent(".ui-widget-content");
-//    if(!this.checked) {
-//        img.removeClass("img-selected");
-//
-//    }else{
-//        img.addClass("img-selected");
-//    }
-//});
+exportar = function(url){
+$.post({
+    url:url,
+    data: $("form").serialize(),
+});
+}
 
 
 
@@ -115,7 +112,8 @@ $this->registerJs($js);
     ?>
     
     <button class="btn btn-info toggle-seleccionar">Seleccionar Todo</button>
-    <button type="submit" class="btn btn-success">Enviar</button>
+    <button id="pdf-button" type="button" class="btn btn-success" onclick="exportar('<?= yii\helpers\Url::to(['photo-grid','tela_id'=>$tela_id])?>')">PDF</button>
+    <button id="zip-button" type="submit" class="btn btn-primary" >ZIP</button>
     <div id="selectable"  class="">
         <?php
         foreach ($data as $estampado):

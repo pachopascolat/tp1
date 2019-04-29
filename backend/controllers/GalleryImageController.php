@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use kartik\mpdf\Pdf;
-
+use ZipArchive;
 
 /**
  * GalleryImageController implements the CRUD actions for GalleryImage model.
@@ -34,7 +34,7 @@ class GalleryImageController extends Controller {
                 'rules' => [
                     [
                         'allow' => \Yii::$app->user->getId() == 2,
-                        'actions' => ['photo-grid','report','index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -42,28 +42,54 @@ class GalleryImageController extends Controller {
         ];
     }
 
-    public function actionPhotoGrid($tela_id){
+    public function actionPhotoGrid($tela_id) {
         $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination = FALSE;
         $data = [];
-        if($estampados = \Yii::$app->request->post("estampados")){
-            foreach ($estampados as $id){
-                
+        if ($estampados = \Yii::$app->request->post("estampados")) {
+            foreach ($estampados as $id) {
+
                 $data[] = $id;
             }
-            $this->redirect(['report','ids'=> json_encode($data)]);
+            $this->redirect(['report', 'ids' => json_encode($data)]);
         }
 
-        return $this->render('_photoGrid',['data'=>$dataProvider->getModels()]);
+        return $this->render('_photoGrid', ['data' => $dataProvider->getModels(),'tela_id'=>$tela_id]);
+    }
+
+    public function actionExportar($tela_id) {
+        $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination = FALSE;
+        $data = [];
+
+        if ($estampados = \Yii::$app->request->post("estampados")) {
+            $zip = new ZipArchive();
+            $file = tempnam(sys_get_temp_dir(), 'Texsim').".zip";
+            if ($zip->open($file, ZipArchive::CREATE) !== TRUE) {
+                throw new \Exception('Cannot create a zip file');
+            }
+            foreach ($estampados as $id) {
+                $estampado = GalleryImage::findOne($id);
+                $path = $estampado->getPath("original");
+                $zip->addFile($path, "{$estampado->getNombreTela()}-codigo:$estampado->name.jpg");
+            }
+            $zip->close();
+            \Yii::$app->response->sendFile($file);
+//            return $file;
+//            $this->redirect(['report', 'ids' => json_encode($data)]);
+        }
+
+        return $this->render('_photoGrid', ['data' => $dataProvider->getModels(),'tela_id'=>$tela_id]);
     }
     
     
-    
+
     public function actionReport($ids) {
         $alldata = [];
         $ids = json_decode($ids);
-        foreach ($ids as $id){
+        foreach ($ids as $id) {
             $alldata[] = GalleryImage::findOne($id);
         }
 //        $searchModel = new GalleryImageSearch();
@@ -72,7 +98,7 @@ class GalleryImageController extends Controller {
 //        $dataProvider->pagination = FALSE;
         // get your HTML raw content without any layouts or scripts
 //        return $this->render('_report',['data'=>$alldata]);
-        $content = $this->renderPartial('_report',['data'=>$alldata]);
+        $content = $this->renderPartial('_report', ['data' => $alldata]);
 
         // setup kartik\mpdf\Pdf component
         $pdf = new Pdf([
@@ -83,7 +109,7 @@ class GalleryImageController extends Controller {
             // portrait orientation
             'orientation' => Pdf::ORIENT_PORTRAIT,
             // stream to browser inline
-            'destination' => Pdf::DEST_BROWSER,
+            'destination' => Pdf::DEST_DOWNLOAD,
             // your html content input
             'content' => $content,
             // format content from your own css file if needed or use the
@@ -103,6 +129,7 @@ class GalleryImageController extends Controller {
         // return the pdf output as per the destination setting
         return $pdf->render();
     }
+
     public function actionReportAll($tela_id) {
 //        $searchModel = new GalleryImageSearch();
         $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
@@ -110,7 +137,7 @@ class GalleryImageController extends Controller {
         $dataProvider->pagination = FALSE;
         // get your HTML raw content without any layouts or scripts
 //        return $this->renderPartial('_report',['data'=>$dataProvider->getModels()]);
-        $content = $this->renderPartial('_report',['data'=>$dataProvider->getModels()]);
+        $content = $this->renderPartial('_report', ['data' => $dataProvider->getModels()]);
 
         // setup kartik\mpdf\Pdf component
         $pdf = new Pdf([

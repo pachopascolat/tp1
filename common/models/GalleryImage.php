@@ -131,6 +131,11 @@ class GalleryImage extends \yii\db\ActiveRecord {
         $url = \yii\helpers\Url::home(true)."../backend/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
         return $url;
     }
+    public function getPath($version = 'original') {
+
+        $path = \Yii::getAlias("@backend")."/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
+        return $path;
+    }
 
     public function getNombreTela() {
         return $this->getTela()->nombre_tela;

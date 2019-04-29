@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][] = 'Telas';
                 'label' => 'Exportar',
                 'format' => 'raw',
                 'value' => function ($model, $key, $index, $column) {
-                    return Html::a('Exportar', ['/gallery-image/photo-grid', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
+                    return Html::a('Exportar', ['/gallery-image/exportar', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
                 }
             ],
 //            [
