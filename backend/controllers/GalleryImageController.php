@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use kartik\mpdf\Pdf;
 use ZipArchive;
+use mikehaertl\wkhtmlto\Pdf as Pdf2;
 
 /**
  * GalleryImageController implements the CRUD actions for GalleryImage model.
@@ -66,7 +67,7 @@ class GalleryImageController extends Controller {
 
         if ($estampados = \Yii::$app->request->post("estampados")) {
             $zip = new ZipArchive();
-            $file = tempnam(sys_get_temp_dir(), 'Texsim').".zip";
+            $file = tempnam(sys_get_temp_dir(), 'Texsim') . ".zip";
             if ($zip->open($file, ZipArchive::CREATE) !== TRUE) {
                 throw new \Exception('Cannot create a zip file');
             }
@@ -81,10 +82,8 @@ class GalleryImageController extends Controller {
 //            $this->redirect(['report', 'ids' => json_encode($data)]);
         }
 
-        return $this->render('_photoGrid', ['data' => $dataProvider->getModels(),'tela_id'=>$tela_id]);
+        return $this->render('_photoGrid', ['data' => $dataProvider->getModels(), 'tela_id' => $tela_id]);
     }
-    
-    
 
     public function actionReport($ids) {
         $alldata = [];
@@ -92,11 +91,38 @@ class GalleryImageController extends Controller {
         foreach ($ids as $id) {
             $alldata[] = GalleryImage::findOne($id);
         }
-//        $searchModel = new GalleryImageSearch();
-//        $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
-//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-//        $dataProvider->pagination = FALSE;
-        // get your HTML raw content without any layouts or scripts
+
+        $options = [
+            'page-size' => 'A4',
+//            'header-html' => $this->renderPartial('_pdfHeader'),
+//            'footer-html' => $this->renderPartial('_pdfFooter'),
+            'no-outline', // option without argument
+            'encoding' => 'UTF-8', // option with argument
+//            'user-style-sheet' => $cssPath,
+            'margin-top' => 0,
+            'margin-right' => 0,
+            'margin-bottom' => 0,
+            'margin-left' => 0,
+            'disable-smart-shrinking',
+            'user-style-sheet' => Yii::getAlias("@backend/web/css/pdfstyle.css"),
+//            'header-html' => "<h1>Texsim</h1>",
+        ];
+
+//        $pdf = new Pdf2(\Yii::getAlias("@backend/views/gallery-image/_report.php"));
+        $pdf = new Pdf2($options);
+        $pages = array_chunk($alldata, 30);
+
+        foreach ($pages as $nro=>$page) {
+            $pdf->addPage($this->renderPartial('_report', ['data' => $page,'nro'=>$nro]));
+        }
+//        return $this->renderPartial('_report', ['data' => $pages[0]]);
+
+        if (!$pdf->send('report.pdf')) {
+            throw new \Exception('Could not create PDF: ' . $pdf->getError());
+        }
+
+        return true;
+
 //        return $this->render('_report',['data'=>$alldata]);
         $content = $this->renderPartial('_report', ['data' => $alldata]);
 
