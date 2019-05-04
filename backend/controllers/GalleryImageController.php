@@ -93,6 +93,7 @@ class GalleryImageController extends Controller {
         }
 
         $options = [
+            'binary' => 
             'page-size' => 'A4',
 //            'header-html' => $this->renderPartial('_pdfHeader'),
 //            'footer-html' => $this->renderPartial('_pdfFooter'),
