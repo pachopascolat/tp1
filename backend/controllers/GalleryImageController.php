@@ -93,7 +93,7 @@ class GalleryImageController extends Controller {
         }
 
         $options = [
-//            'binary' => 
+            'binary' => Yii::getAlias("@vendor/wkhtmltopdf"),
             'page-size' => 'A4',
 //            'header-html' => $this->renderPartial('_pdfHeader'),
 //            'footer-html' => $this->renderPartial('_pdfFooter'),
