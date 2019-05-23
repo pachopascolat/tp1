@@ -23,7 +23,7 @@ class Modelo extends \yii\db\ActiveRecord
                 'type' => 'modelo',
                 'extension' => 'jpg',
                 'directory' => Yii::getAlias('@backend') . '/web/images/modelo/gallery',
-                'url' => \yii\helpers\Url::home(true).'/backend/web/images/estampado/gallery',
+                'url' => \yii\helpers\Url::home(true).'/backend/web/images/modelo/gallery',
                 'versions' => [
                     'small' => function ($img) {
                         /** @var \Imagine\Image\ImageInterface $img */
