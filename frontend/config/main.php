@@ -54,11 +54,14 @@ return [
                 'ir-whats-app' => 'texsim/ir-whats-app',
                 'finalizar-consulta' => 'texsim/finalizar-consulta',
                 'login' => 'security/login',
+//                '<module:user>/login' => 'security/login',
+                
                 'logout' => 'security/logout',
                 'nuevo-pedido' => 'texsim/nuevo-pedido',
 //                '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<module:user>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             ],
         ],
         'urlManagerBackEnd' => [
