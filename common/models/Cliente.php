@@ -32,6 +32,8 @@ class Cliente extends \yii\db\ActiveRecord {
                 'message' =>"Por favor complete su Nombre"
                 ],
             [['mail_cliente'], 'email'],
+            [['cuit','nro_cliente'], 'integer'],
+            [['direccion_envio','agendado'], 'safe'],
             ['telefono', 'either', 'skipOnEmpty' => false, 'params' => ['other' => 'mail_cliente']],
             [['nombre_cliente', 'telefono', 'mail_cliente'], 'string', 'max' => 128],
         ];

@@ -28,9 +28,10 @@ class Carrito extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['cliente_id'], 'integer'],
-            [['timestamp'], 'safe'],
+            [['cliente_id','vendedor_id'], 'integer'],
+            [['timestamp','direccion_envio','observaciones'], 'safe'],
             [['cliente_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['cliente_id' => 'id_cliente']],
+            [['vendedor_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['vendedor_id' => 'id']],
         ];
     }
 
@@ -50,6 +51,9 @@ class Carrito extends \yii\db\ActiveRecord {
      */
     public function getCliente() {
         return $this->hasOne(Cliente::className(), ['id_cliente' => 'cliente_id']);
+    }
+    public function getVendedor() {
+        return $this->hasOne(User::className(), ['id' => 'vendedor_id']);
     }
 
     /**
@@ -81,6 +85,22 @@ class Carrito extends \yii\db\ActiveRecord {
 
     public function sendMail() {
         $message = Yii::$app->mailer->compose('mailConsulta', ['carrito' => $this]);
+
+
+
+        $message->setFrom('no_reply@texsim.com.ar')
+//                ->setBcc('patriciopascolat@gmail.com')
+                ->setBcc(['dgvizaq@gmail.com', 'patriciopascolat@gmail.com'])
+                ->setTo('gabriela@texsim.com.ar')
+                ->setSubject('Se ha realizado la consulta nro ' . $this->id_carrito)
+//                ->setTextBody('EL cliente '.$this->cliente->nombre_cliente."\n".
+//                        "tel: ".$this->cliente->telefono."\n".
+//                        "email: ".$this->cliente->mail_cliente."\n".
+//                        " ha realizado la consulta nro ". $this->id_carrito)
+                ->send();
+    }
+    public function sendMailFacturacion() {
+        $message = Yii::$app->mailer->compose('mailFacturacion', ['carrito' => $this]);
 
 
 

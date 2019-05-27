@@ -34,12 +34,21 @@ class TexsimController extends \yii\web\Controller {
     public function actionCategorias($id) {
 //        }
         $model = \common\models\Tela::findOne($id);
+        if ($data = Yii::$app->request->post()) {
+            $model2 = \common\models\Tela::findOne($data['Tela']['id_tela']);
+            $categoria_padre = $model2->categoria->categoria_padre;
+            return $this->render('estampados', ['model' => $model2, 'categoria_padre' => $categoria_padre]);
+        }
         $categoria_padre = $model->categoria->categoria_padre;
+
         return $this->render('estampados', ['model' => $model, 'categoria_padre' => $categoria_padre]);
     }
 
     public function actionEstampados($id) {
         $model = \common\models\Tela::findOne($id);
+        if ($model->load(\Yii::$app->request->post())) {
+            
+        }
         $categoria_padre = $model->categoria->categoria_padre;
         return $this->render('estampados', ['model' => $model, 'categoria_padre' => $categoria_padre]);
     }
@@ -88,13 +97,47 @@ class TexsimController extends \yii\web\Controller {
 //    }
 
 
+    function actionNuevoPedido($categoria_padre=1) {
+        $session = Yii::$app->session;
+        $session->destroy();
+        $this->goBack(['texsim/hogar']);
+    }
+
     function actionCarrito($categoria_padre) {
         $id_carrito = $_SESSION['carrito'];
         return $this->render('cart', ['categoria_padre' => $categoria_padre, 'id_carrito' => $id_carrito]);
     }
 
+    function actionPedidoFacturacion($categoria_padre) {
+        $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+        if ($carrito == null) {
+            return $this->goBack();
+        }
+
+        if ($carrito->cliente_id == null) {
+            $model = new \common\models\Cliente(['agendado' => 1]);
+        } else {
+            $model = \common\models\Cliente::findOne($carrito->cliente_id);
+        }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $carrito->load(\Yii::$app->request->post());
+            $carrito->para_facturar = true;
+            if ($carrito->vendedor_id == null) {
+                $carrito->vendedor_id = \Yii::$app->user->getId();
+            }
+            $carrito->cliente_id = $model->id_cliente;
+            $carrito->save();
+            $carrito->sendMailFacturacion();
+            return $this->redirect(['finalizar-consulta', 'categoria_padre' => $categoria_padre, 'id_carrito' => $carrito->id_carrito]);
+        }
+        return $this->render('crearConsulta', ['categoria_padre' => $categoria_padre, 'model' => $model, 'carrito' => $carrito]);
+    }
+
     function actionCrearConsulta($categoria_padre) {
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+        if ($carrito == null) {
+            return $this->goBack();
+        }
         if ($carrito->cliente_id == null) {
             $model = new \common\models\Cliente();
         } else {
@@ -114,22 +157,25 @@ class TexsimController extends \yii\web\Controller {
             $carrito->sendMail();
             return $this->redirect(['finalizar-consulta', 'categoria_padre' => $categoria_padre, 'id_carrito' => $carrito->id_carrito]);
         }
-        return $this->render('crearConsulta', ['categoria_padre' => $categoria_padre, 'model' => $model, 'id_carrito' => $carrito->id_carrito]);
+        return $this->render('crearConsulta', ['categoria_padre' => $categoria_padre, 'model' => $model, 'carrito' => $carrito]);
     }
 
     function actionCrearConsultaWhatsApp($categoria_padre) {
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+        if ($carrito == null) {
+            return $this->goBack();
+        }
         if ($carrito->cliente_id == null) {
             $model = new \common\models\Cliente();
         } else {
             $model = \common\models\Cliente::findOne($carrito->cliente_id);
         }
-        
+
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $carrito->cliente_id = $model->id_cliente;
             $carrito->confirmado = true;
@@ -143,7 +189,7 @@ class TexsimController extends \yii\web\Controller {
         }
 //        $response = \yii\helpers\Url::to(['crear-consulta', 'categoria_padre' => $categoria_padre]);
 //        return $response;
-        return $this->render('crearConsulta', ['categoria_padre' => $categoria_padre, 'model' => $model, 'id_carrito' => $carrito->id_carrito]);
+        return $this->render('crearConsulta', ['categoria_padre' => $categoria_padre, 'model' => $model, 'carrito' => $carrito]);
     }
 
     function actionIrWhatsApp($url) {
@@ -194,6 +240,15 @@ class TexsimController extends \yii\web\Controller {
         $itemCarrito = \common\models\ItemCarrito::findOne($key);
         if ($itemCarrito->cantidad > 0) {
             $itemCarrito->cantidad -= 1;
+            $itemCarrito->save();
+        }
+    }
+    function actionCambiarPrecio() {
+        $key = \Yii::$app->request->post('id');
+        $precio = \Yii::$app->request->post('precio');
+        $itemCarrito = \common\models\ItemCarrito::findOne($key);
+        if($itemCarrito){
+            $itemCarrito->precio = $precio;
             $itemCarrito->save();
         }
     }

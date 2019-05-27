@@ -19,6 +19,7 @@ use common\widgets\Alert;
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title>TexsimDigital</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.default.min.css">
         <link rel="stylesheet" href="css/texsim-css.css">
         <link rel="stylesheet" href="css/swiper.min.css">

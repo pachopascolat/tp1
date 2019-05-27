@@ -18,7 +18,7 @@ class CarritoSearch extends Carrito
     {
         return [
             [['id_carrito', 'cliente_id'], 'integer'],
-            [['timestamp', 'confirmado'], 'safe'],
+            [['timestamp', 'confirmado','vendedor_id'], 'safe'],
         ];
     }
 
@@ -61,9 +61,11 @@ class CarritoSearch extends Carrito
             'id_carrito' => $this->id_carrito,
             'cliente_id' => $this->cliente_id,
             'timestamp' => $this->timestamp,
+            'confirmado' => $this->confirmado,
+            'para_facturar' => $this->para_facturar,
         ]);
 
-        $query->andFilterWhere(['like', 'confirmado', $this->confirmado]);
+//        $query->andFilterWhere(['like', 'confirmado', $this->confirmado]);
 
         return $dataProvider;
     }

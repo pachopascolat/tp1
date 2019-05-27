@@ -30,7 +30,6 @@ if ($_SESSION['carrito'] != ''):
 
                 <?php
                 \yii\widgets\Pjax::begin(['id' => 'cart-pjax', 'timeout' => 5000, 'linkSelector' => '']);
-                
                 ?>
                 <table class="cart table table-striped">
                     <thead class="cart-header text-center btn-title  btn-dark">
@@ -40,6 +39,7 @@ if ($_SESSION['carrito'] != ''):
                             <th class="d-none d-sm-table-cell ">Item</th>
                             <th class="d-none d-md-table-cell ">Tipo Tela</th>
                             <th>Cantidad</th>
+                            <?= Yii::$app->user->isGuest ? '' : '<th>Precio</th>' ?>
                             <th>Eliminar</th>
                         </tr>
                     </thead>
@@ -94,6 +94,11 @@ if ($_SESSION['carrito'] != ''):
                                         <div  data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-increase cambiar-cantidad">+</div>
                                     </div>
                                 </td>
+                                <?php if (!Yii::$app->user->isGuest): ?>
+                                    <td class="align-middle">
+                                        <input data-id="<?= $item->id_item_carrito ?>" type="text" value="<?= $item->precio ?>" class="form-control text-center cambiar-precio">
+                                    </td>
+                                <?php endif; ?>
                                 <td class="align-middle">
                                     <div>
                                         <a href="#" data-item-id="<?= $item->id_item_carrito ?>"  class="cart-remove">
@@ -120,24 +125,18 @@ if ($_SESSION['carrito'] != ''):
                         <i class="fa fa-chevron-left">            
                         </i> Continuar agregando
                     </a>
-        <!--                    <a class="btn btn-outline-dark" href="https://api.whatsapp.com/send?phone=541135386219&text=<?php // echo rawurlencode($carrito->getConsultaWhatsApp())                         ?>&source=&data=#" >Consultar por WhatsApp 
-                        <i style="font-size: 1.8em" class="fab fa-whatsapp"></i>
-                    </a>-->
-                    <a class="btn btn-dark"  data-toggle="collapse" href="#collapseContacto" role="button" aria-expanded="false" aria-controls="collapseContacto">
+                    <?php if (!Yii::$app->user->isGuest): ?>
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#pedido-facturacion">
+                            Pedido Facturación
+                        </button>
+                    <?php else: ?>
+                        <a class="btn btn-dark"  data-toggle="collapse" href="#collapseContacto" role="button" aria-expanded="false" aria-controls="collapseContacto">
 
-                        Realizar Consultar 
-                        <i class="fa fa-chevron-right">
-                        </i>                           
-                    </a>
-        <!--                    <a href="<?= \yii\helpers\Url::to(['crear-consulta', 'categoria_padre' => $categoria_padre]) ?>" class="btn btn-dark">
-                        Realizar Consultar 
-                        <i class="fa fa-chevron-right">
-                        </i>                           
-                    </a>-->
-                    <!--                    <a data-confirm="¿Está seguro de borrar la consulta?" href="#" class="btn btn-outline-danger borrar-carrito">Vaciar consulta 
-                                            <i class="fa fa-chevron-right">
-                                            </i>                           
-                                        </a>-->
+                            Realizar Consultar 
+                            <i class="fa fa-chevron-right">
+                            </i>                           
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>

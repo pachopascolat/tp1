@@ -26,6 +26,24 @@ $menus = [null, "hogar", "moda"];
             <li class="breadcrumb-item"><a href="<?= yii\helpers\Url::to([$menus[$model->categoria->categoria_padre]]) ?>"><?= $menus[$model->categoria->categoria_padre] ?></a></li>
             <li class="breadcrumb-item active"><?= $model->getNombreCompleto() ?>        </li>
         </ol>
+        <?php
+        $form = \yii\bootstrap4\ActiveForm::begin(['id'=>'filtro-telas']);
+        $telas = \common\models\Tela::find()->orderBy('nombre_tela')->all();
+        $items = \yii\helpers\ArrayHelper::map($telas, 'id_tela', 'nombre_tela');
+        ?>
+        <div class="d-flex align-items-center">
+                <?= $form->field($model, 'id_tela')->dropdownList($items, [
+                    'class' => 'form-control m-1',
+                    'onchange'=> 'filtrar()'
+                    ])->label(false); ?>
+
+        </div>
+
+        
+        
+        
+        
+        <?php \yii\bootstrap4\ActiveForm::end(); ?>
         <!-- Hero Content-->
         <div class="hero-content pb-5 text-center">
             <h1 class="hero-heading"><?= $model->getNombreCompleto() ?></h1>
@@ -36,8 +54,11 @@ $menus = [null, "hogar", "moda"];
     </div>
 </section>
 
+
 <div class="album py-5 ">
     <div class="container">
+
+
 
 
         <?php foreach ($model->estampados as $key => $estampado): ?>
@@ -110,7 +131,7 @@ $menus = [null, "hogar", "moda"];
 
             </div>
 
-<?php endforeach; ?>
+        <?php endforeach; ?>
 
 
 
@@ -124,7 +145,7 @@ $menus = [null, "hogar", "moda"];
             <div class="barra-clasificacion"> <p>Discontinuos</p></div>  
             <div class="swiper-container swiper1">
                 <div class="swiper-wrapper">      
-    <?php foreach ($model->discontinuos->getBehavior('galleryBehavior')->getImages() as $discontinuo) : ?>
+                    <?php foreach ($model->discontinuos->getBehavior('galleryBehavior')->getImages() as $discontinuo) : ?>
                         <div class="swiper-slide">
                             <div class="product">
                                 <div class="product-image">
@@ -152,13 +173,13 @@ $menus = [null, "hogar", "moda"];
                             </div>
 
                         </div> 
-    <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </div> 
             </div>
 
             <div class="shadow-swiper-container"></div>  
 
-<?php endif; ?>
+        <?php endif; ?>
 
 
 

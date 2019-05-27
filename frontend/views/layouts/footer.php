@@ -146,11 +146,42 @@
                 }
             });
         });
-        
-        
-        
+
+
+
 
     });
+
+    $('.cambiar-precio').change(function () {
+        var id = $(this).data('id');
+        var precio = $(this).val();
+                $.post({
+                    url: 'cambiar-precio',
+                    data: {id: id, precio: precio}
+                })
+    });
+
+
+    $('.btn-items-increase').click(function () {
+        var id = $(this).data('id');
+        $.post({
+            url: 'aumentar-cantidad',
+            data: {id: id},
+        });
+    });
+    $('.btn-items-decrease').click(function () {
+        var id = $(this).data('id');
+        $.post({
+            url: '<?= yii\helpers\Url::to('disminuir-cantidad') ?>',
+            data: {id: id},
+        });
+    });
+
+    $('#collapseContacto').on('shown.bs.collapse', function () {
+        this.scrollIntoView();
+    });
+
+
 </script>
 
 <?php

@@ -14,6 +14,11 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+//        'user' => [
+//            'controllerMap'=>[
+//                'admin'=>'backend\controllers\UsuarioController',
+//            ],
+//        ],
         'gridview' => [
             'class' => '\kartik\grid\Module'
         // enter optional module parameters below - only if you need to  
@@ -60,6 +65,10 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '' => 'carrito/index',
+                'usuarios'=>'user/admin/index',
+//                '<module:user>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+
+//                'users'=>'user/index',
                 '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],

@@ -37,9 +37,11 @@ AppAsset::register($this);
             $menuItems = [
 //                ['label' => 'Home', 'url' => ['/site/index']],
 //                ['label' => 'Ofertas', 'url' => ['/gallery-image/index', 'categoria_padre' => 1]],
+                ['label' => 'Usuarios', 'url' => ['/usuarios', 'categoria_padre' => 1]],
                 ['label' => 'Hogar', 'url' => ['/categoria/index', 'categoria_padre' => 1]],
                 ['label' => 'Moda', 'url' => ['/categoria/index', 'categoria_padre' => 2]],
                 ['label' => 'Consultas', 'url' => ['/carrito/index', 'categoria_padre' => 2]],
+                ['label' => 'Pedidos', 'url' => ['/carrito/index-pedidos', 'categoria_padre' => 2]],
                 ['label' => 'frontend', 'url' => Yii::$app->urlManagerFrontEnd->baseUrl, 'linkOptions' => ['target' => '_blank'],
                 ],
 //                ['label' => 'Hogar', 'items' => [

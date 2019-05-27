@@ -33,7 +33,7 @@ class CarritoController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'create', 'view', 'update', 'index-por-categoria', 'delete'],
+                        'actions' => ['index-pedidos','index', 'create', 'view', 'update', 'index-por-categoria', 'delete'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -51,6 +51,16 @@ class CarritoController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    public function actionIndexPedidos()
+    {
+        $searchModel = new CarritoSearch(['confirmado'=>true,'para_facturar'=>true]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('indexPedidos', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

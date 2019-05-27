@@ -26,6 +26,7 @@ class ItemCarrito extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
+            [['precio'],'double'],
             [['disenio_id'], 'integer'],
             [['disenio_id'], 'exist', 'skipOnError' => true, 'targetClass' => GalleryImage::className(), 'targetAttribute' => ['disenio_id' => 'id']],
         ];

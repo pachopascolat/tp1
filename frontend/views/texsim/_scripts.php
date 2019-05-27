@@ -1,4 +1,7 @@
 <script>
+    var filtrar = function () {
+        $("#filtro-telas").submit();
+    }
 
     //mostrar y esconder lisos
     function vermostrar(e) {
@@ -72,7 +75,7 @@
     });
 
 
-    
+
 
 
 
@@ -100,7 +103,7 @@
         id = active.data('id');
         oferta = active.data('oferta');
         agotado = active.data('agotado');
-        
+
         var modal = carrousel.closest('.modal');
         var idInput = modal.find('.modal-disenio-id');
         var h3codigo = modal.find('.modal-disenio-codigo');
@@ -119,8 +122,8 @@
                 ribonAgotado.addClass('d-none')
             }
         }
-        
-        
+
+
         cantInput.val(1);
         h3codigo.text(code);
         idInput.val(id);

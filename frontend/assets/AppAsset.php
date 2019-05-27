@@ -20,20 +20,21 @@ class AppAsset extends AssetBundle
         "css/stylesheet.css",
         "css/fixedsticky.css",
         "css/all.css",
+        "css/bootstrap.min.css"
         
     ];
     public $js = [
-        "js/jquery-3.3.1.min.js",
-        "js/bootstrap.min.js",
-        "js/swiper.min.js",
-        "js/owl.carousel.js",
-        "js/owl.carousel2.thumbs.min.js",
-        "js/smooth-scroll.polyfills.min.js",
-        "js/ofi.min.js",
-        "js/theme.js",
-        "js/bootbox.min.js",
-        "js/bootbox.locales.min.js",
-        "js/fixedsticky.js",
+//        "js/jquery-3.3.1.min.js",
+//        "js/bootstrap.min.js",
+//        "js/swiper.min.js",
+//        "js/owl.carousel.js",
+//        "js/owl.carousel2.thumbs.min.js",
+//        "js/smooth-scroll.polyfills.min.js",
+//        "js/ofi.min.js",
+//        "js/theme.js",
+//        "js/bootbox.min.js",
+//        "js/bootbox.locales.min.js",
+//        "js/fixedsticky.js",
     ];
     public $depends = [
 //        '\yii\web\JqueryAsset',
