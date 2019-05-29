@@ -188,7 +188,7 @@ use yii\helpers\Html;
 $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
 ?>
 <div class="sticky-nav" >
-    <nav class="navbar-dark navbar  <?= $color ?> navbar-expand-sm" >
+    <nav style="padding-bottom:0" class="navbar-dark navbar  <?= $color ?> navbar-expand-sm" >
         <div  class=" container d-flex align-items-center justify-content-between">
             <!--<div class="container d-flex justify-content-between">-->
 
@@ -211,13 +211,14 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
                 </div>
                 <!-- Whastapp-->
                 <div class="nav-item navbar-icon-link">
-                    <a target="_blanc" href="https://api.whatsapp.com/send?phone=541135386219&text=Me%20gustar%C3%ADa%20saber%20mas%20sobre%20sus%20productos.%20Gracias&source=&data=#" class="text-white">
+                    <a style="text-decoration: none"  target="_blanc" href="https://api.whatsapp.com/send?phone=541135386219&text=Me%20gustar%C3%ADa%20saber%20mas%20sobre%20sus%20productos.%20Gracias&source=&data=#" class="text-white">
                         <img class="svg-icon" src="img/txsim-header-whassap-01.svg" alt="whatsapp">
                         <!--<i style="font-size: 1.8em" class="fab fa-whatsapp"></i>-->
                         <!--(54 11) 35386219-->
                         <!--Iniciar Chat-->
+                        <span class="d-xs-block d-sm-none p-2">Whatsapp</span>
+
                     </a>
-                    <span class="d-xs-block d-sm-none p-2">Whatsapp</span>
                 </div>
 
 
