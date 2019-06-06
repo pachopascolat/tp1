@@ -20,10 +20,12 @@ if ($categoria_padre == 1) {
 
 
     .navbar-icon-link-badge{
+        position:relative;
         width: 18px;
         height: 18px;
         line-height: 18px;
-        top:-3px;
+        top:-10px;
+        right: 10px;
     }
 
     html,
@@ -188,6 +190,8 @@ use yii\helpers\Html;
 $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
 ?>
 <div class="sticky-nav" >
+    <?php \yii\widgets\Pjax::begin(['id' => 'carrito-pjax', 'timeout' => false]); ?>
+
     <nav style="padding-bottom:0" class="navbar-dark navbar  <?= $color ?> navbar-expand-sm" >
         <div  class=" container d-flex align-items-center justify-content-between">
             <!--<div class="container d-flex justify-content-between">-->
@@ -197,11 +201,49 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <div class="">
+                <div class="d-xs-block d-sm-none d-flex align-items-center">
+                    <a href="<?= \yii\helpers\Url::to(['index']) ?>">
+                        <img class="texto-banner" src="img/logotexsimdigital-home-franjanegra-01.svg">
+                    </a>
+                    <?php
+                    if ($_SESSION['carrito'] != '') :
+                        $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+                        if ($carrito->itemCarritos != null) :
+                            ?>
 
-            <div class="d-xs-block d-sm-none">
-                <a href="<?= \yii\helpers\Url::to(['index']) ?>">
-                    <img class="texto-banner" src="img/logotexsimdigital-home-franjanegra-01.svg">
-                </a>
+                            <div class="nav-item d-xs-block d-sm-none">
+                <!--                                    <a href="<?= yii\helpers\Url::to(['crear-consulta', 'categoria_padre' => $categoria_padre]) ?>" class="navbar-icon-link d-lg-none"> 
+                                    <img class="svg-icon " src="img/txsim-header-consulta-01.svg" alt="listado">
+                                    <div class="navbar-icon-link-badge"><?= count($carrito->itemCarritos) ?></div>
+                                </a>-->
+                                <div class="navbar-icon-link2 carrito-link">
+
+                                    <a  
+                                        href="<?= yii\helpers\Url::to(['crear-consulta', 'categoria_padre' => $categoria_padre]) ?>" 
+                                        class="navbar-icon-link ">
+
+                                        <img class="svg-icon" src="img/txsim-header-consulta-01.svg" alt="listado">
+                                        <div class="navbar-icon-link-badge"><?= count($carrito->itemCarritos) ?></div>
+
+                                    </a>
+                                    <div class="tooltiptext tooltiptext-link">
+                                        Haga click aquí para ver su consulta
+                                    </div>
+                                    <div class="tooltiptext tooltiptext-notice">
+                                        Su consulta se ha guardado aquí
+                                    </div>
+
+                                </div>
+        <!--                            <span class="d-xs-block d-sm-none p-2">Ir a Consulta</span>-->
+                            </div>
+
+
+                            <?php
+                        endif;
+                    endif;
+                    ?>
+                </div>
             </div>
             <div id="navbarNav" class="collapse navbar-collapse justify-content-end">
                 <div class="d-none d-sm-block">
@@ -224,15 +266,12 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
 
                 <!-- Cart Dropdown-->
                 <?php
-                \yii\widgets\Pjax::begin(['id' => 'carrito-pjax', 'timeout' => false]);
                 if ($_SESSION['carrito'] != '') :
                     $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                     if ($carrito->itemCarritos != null) :
-
-//                            $items = \common\models\ItemCarrito::find()->where(['id_item_carrito'=>$_SESSION['carrito']])->all();
                         ?>
 
-                        <div class="nav-item dropdown">
+                        <div class="nav-item d-none d-sm-block">
             <!--                                    <a href="<?= yii\helpers\Url::to(['crear-consulta', 'categoria_padre' => $categoria_padre]) ?>" class="navbar-icon-link d-lg-none"> 
                                 <img class="svg-icon " src="img/txsim-header-consulta-01.svg" alt="listado">
                                 <div class="navbar-icon-link-badge"><?= count($carrito->itemCarritos) ?></div>
@@ -255,16 +294,15 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
                                 </div>
 
                             </div>
-
+                            <span class="d-xs-block d-sm-none p-2">Ir a Consulta</span>
                         </div>
-                        <span class="d-xs-block d-sm-none p-2">Ir a Consulta</span>
+
 
                         <?php
                     endif;
                 endif;
                 ?>
 
-                <?php \yii\widgets\Pjax::end(); ?>
                 <!--Search Button-->
                 <div data-toggle="search" class="nav-item navbar-icon-link">
                     <!--<i style="color:white" class="fa fa-search"></i>-->
@@ -299,6 +337,7 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
         </div>
 
 
+        <?php \yii\widgets\Pjax::end(); ?>
 
     </nav>
 
