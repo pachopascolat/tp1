@@ -21,7 +21,7 @@
                                             </div>
                                             <img style="width: 90px" src="<?= $estampado->getUrl('preview') ?>" class="">
                                             <div>
-                                                <span class="codigo-estampado"><?= $estampado->id ?></span>
+                                                <span class="codigo-estampado"><?= $estampado->name ?></span>
                                             </div>
                                         </label>
                                     </div>
