@@ -143,7 +143,7 @@ $this->registerJs($js);
                 <!--</div>-->
                 <input value="<?= $estampado->id ?>" class="img-checkbox" type="checkbox" name="estampados[]"/>
                 <!--<i class="fa fa-check hidden"></i>-->
-                <span class="id-estampado"><?= $estampado->id ?></span>
+                <span class="id-estampado"><?= $estampado->name ?></span>
 
             </label>
         <?php endforeach; ?>

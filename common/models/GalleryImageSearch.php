@@ -55,11 +55,13 @@ class GalleryImageSearch extends GalleryImage {
             'e.tela_id' => $this->tela_id,
             'gallery_image.type'=>'modelo'
             ], 
-//            ['estampado.tela_id' => $this->tela_id,'g.type'=>'estampado'], 
+            ['estampado.tela_id' => $this->tela_id,'g.type'=>'modelo'], 
 //            ['g.type'=>'estampado','gallery_image.type'=>'modelo'], 
             ['lisos.tela_id' => $this->tela_id,'gallery_image.type'=>'lisos'],
             ['discontinuos.tela_id' => $this->tela_id,'gallery_image.type'=>'discontinuos']
         ]);
+        
+        $query->orderBy('CAST(gallery_image.name AS unsigned)');
 //        $query->orWhere([
 //            'lisos.tela_id' => $this->tela_id,
 //        ]);
@@ -73,11 +75,11 @@ class GalleryImageSearch extends GalleryImage {
         ]);
 
 //
-//        $dataProvider->sort->attributes['nombreTela'] = [
+//        $dataProvider->sort->attributes['name'] = [
 //            // The tables are the ones our relation are configured to
 //            // in my case they are prefixed with "tbl_"
-//            'asc' => ['tela.nombre_tela' => SORT_ASC],
-//            'desc' => ['tela.nombre_tela' => SORT_DESC],
+//            'asc' => ['name' => SORT_ASC],
+//            'desc' => ['name' => SORT_DESC],
 //        ];
 
 
