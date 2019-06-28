@@ -25,7 +25,7 @@ class Estampado extends \yii\db\ActiveRecord {
                 'type' => 'estampado',
                 'extension' => 'jpg',
                 'directory' => Yii::getAlias('@backend') . '/web/images/estampado/gallery',
-                'url' => \yii\helpers\Url::home(true).'/backend/web/images/estampado/gallery',
+                'url' => \yii\helpers\Url::home(true).'../backend/web/images/estampado/gallery',
                 'versions' => [
                     'small' => function ($img) {
                         /** @var \Imagine\Image\ImageInterface $img */
