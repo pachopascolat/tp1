@@ -1,5 +1,5 @@
 <?php
-foreach ($model->estampados as $key => $estampado):
+foreach ($model->disenios as $key => $estampado):
     foreach ($estampado->getBehavior('galleryBehavior')->getImages() as $index => $dis):
         ?>
 
@@ -27,7 +27,7 @@ foreach ($model->estampados as $key => $estampado):
                             <div class="col-lg-6">
                                 <div id="modelos-slider<?= $dis->id ?>" data-slider-id="<?= $dis->id ?>" class="owl-carousel owl-theme owl-dots-modern detail-full owl">
                                     <div data-agotado="<?= $img->agotado ?>"  data-oferta="<?= $img->oferta ?>" data-id="<?= $dis->id ?>" data-code="<?= $dis->name ?>" id="modal-img<?= $dis->id ?>" style="background: center center  url('<?= $dis->getUrl('original') ?>') no-repeat; background-size: cover;" class="detail-full-item-modal"></div>
-                                    <?= $this->render('_modelos_div', ['disenio' => $dis]) ?>
+                                    <?= $this->render('_modelos_div', ['disenio' => $img]) ?>
                                 </div>
                                 <h6 class="text-center cant-modelos" id="cant-modelos-<?= $dis->id ?>"></h6>
 

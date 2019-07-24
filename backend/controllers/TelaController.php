@@ -45,7 +45,7 @@ class TelaController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
+                        'actions' => ['ver-stock','borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -285,5 +285,7 @@ class TelaController extends Controller {
         }
         return $this->redirect(['/categoria/index', 'categoria_padre' => 1]);
     }
+
+   
 
 }

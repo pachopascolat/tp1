@@ -109,22 +109,29 @@ class Tela extends \yii\db\ActiveRecord {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDisenios() {
-        return $this->hasMany(Disenio::className(), ['tela_id' => 'id_tela']);
-    }
-
-    public function getLisos() {
-        return $this->hasOne(Lisos::className(), ['tela_id' => 'id_tela']);
-    }
+//    public function getDisenios() {
+//        return $this->hasMany(Disenio::className(), ['tela_id' => 'id_tela']);
+//    }
+//    public function getLisos() {
+//        return $this->hasOne(Lisos::className(), ['tela_id' => 'id_tela']);
+//    }
 
     public function getDiscontinuos() {
-        return $this->hasOne(Discontinuos::className(), ['tela_id' => 'id_tela']);
+        return $this->hasOne(Galeria::className(), ['tela_id' => 'id_tela'])->where(['tipo_galeria' => Galeria::DISCONTINUO])->orderBy('orden');
     }
 
     public function getEstampados() {
         return $this->hasMany(Estampado::className(), ['tela_id' => 'id_tela'])->orderBy('orden');
     }
-    
+
+    public function getDisenios() {
+        return $this->hasMany(Galeria::className(), ['tela_id' => 'id_tela'])->where(['tipo_galeria' => Galeria::DISENIO])->orderBy('orden');
+    }
+
+    public function getLisos() {
+        return $this->hasOne(Galeria::className(), ['tela_id' => 'id_tela'])->where(['tipo_galeria' => Galeria::LISO])->orderBy('orden');
+    }
+
     public function getGrupos() {
         return $this->hasMany(Grupo::className(), ['tela_id' => 'id_tela'])
 //                ->orderBy(['id_grupo' => SORT_DESC])
@@ -141,15 +148,39 @@ class Tela extends \yii\db\ActiveRecord {
     public function getNombreCompleto() {
         return $this->nombre_tela . " " . $this->descripcion_tela;
     }
-    
-    public function getCantidadDisenios(){
+
+    public function getCantidadDisenios() {
         $cant = 0;
-        foreach ($this->estampados as $estampado){
+        foreach ($this->disenios as $estampado) {
             $cant += count($estampado->getBehavior('galleryBehavior')->getImages());
         }
         return $cant;
     }
-    
+
+    public function getCantidadLisos() {
+        $cant = 0;
+        if ($this->lisos) {
+            $estampado = $this->lisos;
+            $cant += count($estampado->getBehavior('galleryBehavior')->getImages());
+        }
+        return $cant;
+    }
+
+    public function getCantidadDiscontinuos() {
+        $cant = 0;
+        $estampado = $this->discontinuos;
+        if ($this->discontinuos) {
+            $cant += count($estampado->getBehavior('galleryBehavior')->getImages());
+        }
+        return $cant;
+    }
+
+    public function getCantidadModelos() {
+        $cant = 0;
+        $query = GalleryImage::find()->joinWith('galeria')->where(['type'=>'galeria','tela_id' => $this->id_tela, 'tipo_galeria' => Galeria::MODEL0])->all();
+        $cant += count($query);
+        return $cant;
+    }
 
     public function importarDeGrupos() {
         if ($this->estampados == null) {

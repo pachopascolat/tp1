@@ -64,19 +64,27 @@ $this->title = 'Diseños';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            
             ['class' => 'yii\grid\SerialColumn'],
 //             [
 //        'class' => '\kartik\grid\CheckboxColumn'
 //    ],
-            
 //            'id',
+//            'galeria.tela_id',
             [
-                'label' => 'nombreTela',
-                'value' => function($model) {
-                    return $model->getNombreTela()   ;
-                }
+                'attribute'=>'codigo_tela',
+                'value'=>'galeria.tela.codigo_tela'
             ],
+            [
+                'attribute'=>'nombre_tela',
+                'value'=>'galeria.tela.nombre_tela'
+            ],
+//            'galeria.tela.codigo_tela',
+//            [
+//                'label' => 'nombreTela',
+//                'value' => function($model) {
+//                    return $model->getNombreTela();
+//                }
+//            ],
 //            'ownerId',
 //            [
 //                'attribute'=>'ownerId',
@@ -90,6 +98,7 @@ $this->title = 'Diseños';
 ////                }
 //            ],
             'name',
+            'description',
             [
                 'label' => 'Imagen',
                 'format' => 'html',
@@ -98,7 +107,7 @@ $this->title = 'Diseños';
                     return Html::img($model->getUrl('preview'), ['class' => 'img-thumbnail']);
                 }
             ],
-            'type',
+//            'type',
 //            'ownerId',
 //            'rank',
 //            [

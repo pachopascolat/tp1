@@ -28,24 +28,24 @@ $this->params['breadcrumbs'][] = $menus[$categoria_padre];
         'filterModel' => $searchModel,
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
-            [
-                'label' => '',
-                'class' => 'kartik\grid\ExpandRowColumn',
-                'width' => '50px',
-                'value' => function ($model, $key, $index, $column) {
-                    return GridView::ROW_COLLAPSED;
-                },
-                'detail' => function ($model, $key, $index, $column) {
-                    $searchModel = new common\models\TelaSearch(['categoria_id' => $model->id_categoria]);
-                    $dataProvider = $searchModel->search(null);
-                    return Yii::$app->controller->renderPartial('/tela/gridview', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider, 'categoria_padre' => $model->categoria_padre]);
-                },
-                'headerOptions' => ['class' => 'kartik-sheet-style'],
-                'expandOneOnly' => true
-            ],
+//            [
+//                'label' => '',
+//                'class' => 'kartik\grid\ExpandRowColumn',
+//                'width' => '50px',
+//                'value' => function ($model, $key, $index, $column) {
+//                    return GridView::ROW_COLLAPSED;
+//                },
+//                'detail' => function ($model, $key, $index, $column) {
+//                    $searchModel = new common\models\TelaSearch(['categoria_id' => $model->id_categoria]);
+//                    $dataProvider = $searchModel->search(null);
+//                    return Yii::$app->controller->renderPartial('/tela/gridview', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider, 'categoria_padre' => $model->categoria_padre]);
+//                },
+//                'headerOptions' => ['class' => 'kartik-sheet-style'],
+//                'expandOneOnly' => true
+//            ],
 //            'id_categoria',
             'nombre_categoria',
-            'descripción:ntext',
+//            'descripción:ntext',
             'orden_categoria',            
             [
                 'label' => 'Ver Telas',

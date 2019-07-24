@@ -42,10 +42,10 @@ $this->params['breadcrumbs'][] = 'Telas';
             'nombre_tela',
 //            'descripcion_tela',
             'orden_tela',
-            [
-                'label' => 'Categoria',
-                'attribute' => 'categoria.nombre_categoria',
-            ],
+//            [
+//                'label' => 'Categoria',
+//                'attribute' => 'categoria.nombre_categoria',
+//            ],
 //        'path_foto_tela',
 //        'orden_tela',
 //        'categoria_id',
@@ -62,21 +62,35 @@ $this->params['breadcrumbs'][] = 'Telas';
                 'label' => 'Diseños',
                 'format' => 'raw',
                 'value' => function ($model, $key, $index, $column) {
-                    return Html::a("({$model->getCantidadDisenios()}) Diseños", ['/estampado/update-estampados', 'tela_id' => $model->id_tela, 'categoria_padre' => $model->categoria->categoria_padre], ['class' => 'btn btn-default']);
+                    return Html::a("({$model->getCantidadDisenios()}) Diseños", ['/galeria/update-galerias','tipo'=> common\models\Galeria::DISENIO, 'tela_id' => $model->id_tela, 'categoria_padre' => $model->categoria->categoria_padre], ['class' => 'btn btn-default']);
                 }
             ],
             [
                 'label' => 'Modelos',
                 'format' => 'raw',
                 'value' => function ($model, $key, $index, $column) {
-                    return Html::a('Modelos', ['/estampado/ver-disenios', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
+                    return Html::a("({$model->getCantidadModelos()}) Modelos", ['/galeria/ver-disenios', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
+                }
+            ],
+            [
+                'label' => 'Lisos',
+                'format' => 'raw',
+                'value' => function ($model, $key, $index, $column) {
+                    return Html::a("({$model->getCantidadLisos()}) Lisos", ['/galeria/ver-lisos', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
+                }
+            ],
+            [
+                'label' => 'Discontinuos',
+                'format' => 'raw',
+                'value' => function ($model, $key, $index, $column) {
+                    return Html::a("({$model->getCantidadDiscontinuos()}) Discontinuo", ['/galeria/ver-discontinuo', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
                 }
             ],
             [
                 'label' => 'Stock',
                 'format' => 'raw',
                 'value' => function ($model, $key, $index, $column) {
-                    return Html::a('Stock', ['/gallery-image/index-by-tela', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
+                    return Html::a('Stock', ['/gallery-image/ver-stock', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
                 }
             ],
             [
@@ -103,51 +117,51 @@ $this->params['breadcrumbs'][] = 'Telas';
 //                'expandOneOnly' => true,
 //                'expandIcon'=> "Diseños ".GridView::ICON_EXPAND,   
 //            ],
-            [
-//                'label' => 'Diseños',
-                'class' => 'kartik\grid\ExpandRowColumn',
-                'width' => '50px',
-                'value' => function ($model, $key, $index, $column) {
-                    return GridView::ROW_COLLAPSED;
-                },
-                'detail' => function ($model, $key, $index, $column) {
-
-                    if ($model->discontinuos == null) {
-                        $discontinuoModel = new \common\models\Discontinuos(['tela_id' => $model->id_tela]);
-                        $discontinuoModel->save();
-                    } else {
-                        $discontinuoModel = $model->discontinuos;
-                    }
-                    return Yii::$app->controller->renderPartial('/discontinuos/_disenios', ['model' => $discontinuoModel, 'categoria_padre' => $model->categoria->categoria_padre]);
-                },
-                'headerOptions' => ['class' => 'kartik-sheet-style'],
-                'expandOneOnly' => true,
-                'expandTitle' => 'discontinuos',
-                'expandIcon' => "Discontinuos " . GridView::ICON_EXPAND,
-            ],
-            [
-//                'label' => 'Diseños',
-                'class' => 'kartik\grid\ExpandRowColumn',
-                'width' => '50px',
-                'value' => function ($model, $key, $index, $column) {
-                    return GridView::ROW_COLLAPSED;
-                },
-                'detail' => function ($model, $key, $index, $column) {
-//                    $searchModel = new common\models\TelaSearch(['categoria_id' => $model->id_categoria]);
-//                    $dataProvider = $searchModel->search(null);
-                    if ($model->lisos == null) {
-                        $lisoModel = new common\models\Lisos(['tela_id' => $model->id_tela]);
-                        $lisoModel->save();
-                    } else {
-                        $lisoModel = $model->lisos;
-                    }
-
-                    return Yii::$app->controller->renderPartial('/lisos/_disenios', ['model' => $lisoModel, 'categoria_padre' => $model->categoria->categoria_padre]);
-                },
-                'headerOptions' => ['class' => 'kartik-sheet-style'],
-                'expandOneOnly' => true,
-                'expandIcon' => "Lisos " . GridView::ICON_EXPAND,
-            ],
+//            [
+////                'label' => 'Diseños',
+//                'class' => 'kartik\grid\ExpandRowColumn',
+//                'width' => '50px',
+//                'value' => function ($model, $key, $index, $column) {
+//                    return GridView::ROW_COLLAPSED;
+//                },
+//                'detail' => function ($model, $key, $index, $column) {
+//
+//                    if ($model->discontinuos == null) {
+//                        $discontinuoModel = new \common\models\Discontinuos(['tela_id' => $model->id_tela]);
+//                        $discontinuoModel->save();
+//                    } else {
+//                        $discontinuoModel = $model->discontinuos;
+//                    }
+//                    return Yii::$app->controller->renderPartial('/discontinuos/_disenios', ['model' => $discontinuoModel, 'categoria_padre' => $model->categoria->categoria_padre]);
+//                },
+//                'headerOptions' => ['class' => 'kartik-sheet-style'],
+//                'expandOneOnly' => true,
+//                'expandTitle' => 'discontinuos',
+//                'expandIcon' => "Discontinuos " . GridView::ICON_EXPAND,
+//            ],
+//            [
+////                'label' => 'Diseños',
+//                'class' => 'kartik\grid\ExpandRowColumn',
+//                'width' => '50px',
+//                'value' => function ($model, $key, $index, $column) {
+//                    return GridView::ROW_COLLAPSED;
+//                },
+//                'detail' => function ($model, $key, $index, $column) {
+////                    $searchModel = new common\models\TelaSearch(['categoria_id' => $model->id_categoria]);
+////                    $dataProvider = $searchModel->search(null);
+//                    if ($model->lisos == null) {
+//                        $lisoModel = new common\models\Lisos(['tela_id' => $model->id_tela]);
+//                        $lisoModel->save();
+//                    } else {
+//                        $lisoModel = $model->lisos;
+//                    }
+//
+//                    return Yii::$app->controller->renderPartial('/lisos/_disenios', ['model' => $lisoModel, 'categoria_padre' => $model->categoria->categoria_padre]);
+//                },
+//                'headerOptions' => ['class' => 'kartik-sheet-style'],
+//                'expandOneOnly' => true,
+//                'expandIcon' => "Lisos " . GridView::ICON_EXPAND,
+//            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);

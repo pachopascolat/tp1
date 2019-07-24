@@ -48,8 +48,8 @@ class GalleryImage extends \yii\db\ActiveRecord {
             'type' => Yii::t('app', 'Type'),
             'ownerId' => Yii::t('app', 'Owner ID'),
             'rank' => Yii::t('app', 'Rank'),
-            'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
+            'name' => Yii::t('app', 'Codigo Color'),
+            'description' => Yii::t('app', 'Nombre Color'),
         ];
     }
 
@@ -63,15 +63,28 @@ class GalleryImage extends \yii\db\ActiveRecord {
     /**
      * @return \yii\db\ActiveQuery
      */
-   public function getModelo() {
-        return $this->hasOne(Modelo::className(), ['id_modelo' => 'ownerId']);
-    }
+//   public function getModelo() {
+//        return $this->hasOne(Modelo::className(), ['id_modelo' => 'ownerId']);
+//    }
     public function getLiso() {
         return $this->hasOne(Lisos::className(), ['id_lisos' => 'ownerId']);
     }
+
     public function getEstampados() {
         return $this->hasMany(Estampado::className(), ['id_estampado' => 'ownerId']);
     }
+
+    public function getGaleria() {
+        return $this->hasOne(Galeria::className(), ['id_galeria' => 'ownerId']);
+    }
+
+    public function getGaleriaModelos() {
+        return $this->hasOne(Galeria::className(), ['color_id' => 'id'])
+//                ->where(['color_id'=>'id'])
+//                ->where(['tipo_galeria'=> Galeria::MODEL0])
+        ;
+    }
+
     public function getDiscontinuo() {
         return $this->hasOne(Discontinuos::className(), ['id_discontinuos' => 'ownerId']);
     }
@@ -91,6 +104,9 @@ class GalleryImage extends \yii\db\ActiveRecord {
                 break;
             case 'estampado':
                 $disenio = \common\models\Estampado::findOne($img->ownerId);
+                break;
+            case 'galeria':
+                $disenio = \common\models\Galeria::findOne($img->ownerId);
                 break;
             case 'grupo':
                 $disenio = \common\models\Grupo::findOne($img->ownerId);
@@ -128,20 +144,23 @@ class GalleryImage extends \yii\db\ActiveRecord {
 
     public function getUrl($version = 'original') {
 
-        $url = \yii\helpers\Url::home(true)."../backend/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
+        $url = \yii\helpers\Url::home(true) . "../backend/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
         return $url;
     }
+
     public function getPath($version = 'original') {
 
-        $path = \Yii::getAlias("@backend")."/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
+        $path = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
         return $path;
     }
 
     public function getNombreTela() {
-        return $this->getTela()->nombre_tela;
+        if ($this->galeria)
+            return $this->galeria->tela->nombre_tela;
     }
 
     public function getTelaId() {
-        return $this->getTela()->nombre_tela;
+        return $this->getTela()->id_tela;
     }
+
 }

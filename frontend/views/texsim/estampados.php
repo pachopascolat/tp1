@@ -61,7 +61,8 @@ $menus = [null, "hogar", "moda"];
 
 
 
-        <?php foreach ($model->estampados as $key => $estampado): ?>
+        <?php 
+        foreach ($model->disenios as $key => $estampado): ?>
             <?php
             $ordenados = $estampado->ordenar();
             ?>                        
@@ -70,9 +71,14 @@ $menus = [null, "hogar", "moda"];
                 <div class="swiper-wrapper">
                     <?php
                     foreach ($ordenados as $index => $dis):
+                        $img = \common\models\GalleryImage::findOne($dis->id);
                         if ($dis == null) {
                             echo '<div class="swiper-slide"></div>';
-                        } else {
+                        } 
+                        else if($img->agotado){
+                            
+                        }
+                        else {
                             ?>   
                             <div class="swiper-slide">
                                 <div class="product">

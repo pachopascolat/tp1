@@ -35,7 +35,7 @@ class GalleryImageController extends Controller {
                 'rules' => [
                     [
                         'allow' => \Yii::$app->user->getId() == 2,
-                        'actions' => ['exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['ver-stock','exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -218,6 +218,18 @@ class GalleryImageController extends Controller {
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+     public function actionVerStock($tela_id=null) {
+        $searchModel = new \common\models\GalleryImageSearch([
+            'tela_id' => $tela_id,
+            'type'=>'galeria']);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+         return $this->render('todos_disenios', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+//                    'categoria_padre' => $categoria_padre,
         ]);
     }
 

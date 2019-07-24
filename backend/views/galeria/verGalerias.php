@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use zxbodya\yii2\galleryManager\GalleryManager;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Estampado */
+/* @var $model common\models\Galeria */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $tela->getNombreCompleto();
 ?>
 
 <p>
-    <?= Html::a(Yii::t('app', 'Crear Grupo'), ['crear-estampado', 'tela_id' => $tela_id], ['class' => 'btn btn-success']) ?>
+    <?= Html::a(Yii::t('app', 'Crear Grupo'), ['crear-galeria','tipo'=>$tipo, 'tela_id' => $tela_id], ['class' => 'btn btn-success']) ?>
 
     <?= Html::a(Yii::t('app', 'ver en Frontend'), Yii::$app->urlManagerFrontEnd->createUrl(['estampados', 'id' => $tela_id]), ['class' => 'btn btn-primary', 'target' => '_blank']) ?>
 </p>
@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $tela->getNombreCompleto();
 //                            'buttons' => $buttons,
                                 'model' => $model,
                                 'behaviorName' => 'galleryBehavior',
-                                'apiRoute' => 'estampado/galleryApi'
+                                'apiRoute' => 'galeria/galleryApi'
                             ]
                     );
                 }
@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = $tela->getNombreCompleto();
             <p>
                 <?php // echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success'])   ?>
                 <?=
-                Html::a(Yii::t('app', 'Borrar Grupo'), ['borrar-estampado', 'tela_id' => $tela_id, 'id' => $model->id_galeria], [
+                Html::a(Yii::t('app', 'Borrar Grupo'), ['borrar-galeria', 'tela_id' => $tela_id, 'id' => $model->id_galeria], [
                     'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),

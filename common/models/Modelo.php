@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-use zxbodya\yii2\galleryManager\GalleryImage;
+use common\models\GalleryImage;
 use zxbodya\yii2\galleryManager\GalleryBehavior;
 /**
  * This is the model class for table "modelo".
@@ -52,7 +52,7 @@ class Modelo extends \yii\db\ActiveRecord
     {
         return [
             [['disenio_id'], 'integer'],
-//            [['disenio_id'], 'exist', 'skipOnError' => true, 'targetClass' => GalleryImage::className(), 'targetAttribute' => ['disenio_id' => 'id']],
+            [['disenio_id'], 'exist', 'skipOnError' => true, 'targetClass' => GalleryImage::className(), 'targetAttribute' => ['disenio_id' => 'id']],
         ];
     }
 
