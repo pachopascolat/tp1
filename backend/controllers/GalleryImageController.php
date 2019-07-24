@@ -12,6 +12,8 @@ use yii\filters\AccessControl;
 use kartik\mpdf\Pdf;
 use ZipArchive;
 use mikehaertl\wkhtmlto\Pdf as Pdf2;
+use yii\web\UploadedFile;
+use moonland\phpexcel;
 
 /**
  * GalleryImageController implements the CRUD actions for GalleryImage model.
@@ -35,7 +37,7 @@ class GalleryImageController extends Controller {
                 'rules' => [
                     [
                         'allow' => \Yii::$app->user->getId() == 2,
-                        'actions' => ['ver-stock','exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -60,7 +62,7 @@ class GalleryImageController extends Controller {
     }
 
     public function actionExportar($tela_id) {
-        $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
+        $searchModel = new GalleryImageSearch(['tela_id' => $tela_id, 'agotado' => 0]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination = FALSE;
         $data = [];
@@ -113,8 +115,8 @@ class GalleryImageController extends Controller {
         $pdf = new Pdf2($options);
         $pages = array_chunk($alldata, 30);
 
-        foreach ($pages as $nro=>$page) {
-            $pdf->addPage($this->renderPartial('_report', ['data' => $page,'nro'=>$nro]));
+        foreach ($pages as $nro => $page) {
+            $pdf->addPage($this->renderPartial('_report', ['data' => $page, 'nro' => $nro]));
         }
 //        return $this->renderPartial('_report', ['data' => $pages[0]]);
 
@@ -220,17 +222,59 @@ class GalleryImageController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
-    
-     public function actionVerStock($tela_id=null) {
+
+    public function actionVerStock($tela_id = null) {
         $searchModel = new \common\models\GalleryImageSearch([
             'tela_id' => $tela_id,
-            'type'=>'galeria']);
+            'type' => 'galeria']);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-         return $this->render('todos_disenios', [
+        return $this->render('todos_disenios', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
 //                    'categoria_padre' => $categoria_padre,
         ]);
+    }
+
+    public function actionImport() {
+        $model = new GalleryImageSearch();
+        if (Yii::$app->request->isPost) {
+            
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+                $model->agotarStock();
+                $file = '../stock/' . $model->imageFile->name;
+                $data = \moonland\phpexcel\Excel::import($file, []);
+                foreach ($data as $row){
+//                    foreach ($row as  $col){
+                        $codigoTela = trim($row['art_cod']);
+                        $nombreTela = trim($row['art_nom']);
+                        $codigoColor = trim($row['col_cod']);
+                        $nombreColor = trim($row['col_nom']);
+                        $model->codigo_tela = $codigoTela;
+                        $model->name = $codigoColor;
+                        $rollo = $model->search(null)->getModels();
+                        foreach ($rollo as $modelo){
+                            $modelo->agotado = 0;
+                            $modelo->description = $nombreColor;
+                            $modelo->save();
+                        }
+//                    }
+                        if(count($rollo)>0){
+                            $stock[] = $rollo;
+                        }else{
+                            $sinCargarModel = new GalleryImageSearch();
+                            $sinCargarModel->codigo_tela = $codigoTela;
+                            $sinCargarModel->nombre_tela = $nombreTela;
+                            $sinCargarModel->name = $codigoColor;
+                            $sinCargarModel->description = $nombreColor;
+                            $sincargar[] = $sinCargarModel;
+                            
+                        }
+                }   
+            }
+        }
+
+        return $this->redirect(['ver-stock']);
     }
 
     /**

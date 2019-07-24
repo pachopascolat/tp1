@@ -5,6 +5,7 @@ use kartik\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\editable\Editable;
 use yii\web\View;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\GalleryImageSearch */
@@ -17,11 +18,15 @@ $this->title = 'Diseños';
 
 
 <div class="gallery-image-index">
-
-
-<!--    <p>
+    <?php
+    $import = ' 
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#import-stock">
+        IMPORTAR STOCK
+    </button>';
+    ?>
+    <!--    <p>
     <?= Html::a('Create Gallery Image', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>-->
+        </p>-->
 
     <?php
     Pjax::begin(['id' => 'pjax-disenios']);
@@ -54,7 +59,7 @@ $this->title = 'Diseños';
 
     <?=
     GridView::widget([
-        'toolbar' => [
+        'toolbar' => [$import,
             '{export}', '{toggleData}'
         ],
         'panel' => [
@@ -71,12 +76,12 @@ $this->title = 'Diseños';
 //            'id',
 //            'galeria.tela_id',
             [
-                'attribute'=>'codigo_tela',
-                'value'=>'galeria.tela.codigo_tela'
+                'attribute' => 'codigo_tela',
+                'value' => 'galeria.tela.codigo_tela'
             ],
             [
-                'attribute'=>'nombre_tela',
-                'value'=>'galeria.tela.nombre_tela'
+                'attribute' => 'nombre_tela',
+                'value' => 'galeria.tela.nombre_tela'
             ],
 //            'galeria.tela.codigo_tela',
 //            [
@@ -140,22 +145,22 @@ $this->title = 'Diseños';
 //                    echo Html::activeCheckbox($model, 'agotado');
                 }
             ],
-            [
-                'attribute' => 'oferta',
-                'format' => 'raw',
-                'value' => function($model, $index) {
-                    $label = "Poner en Oferta";
-                    $style = "info";
-                    if ($model->oferta) {
-                        $label = "En Oferta";
-                        $style = "warning";
-                    }
-                    return Html::a($label, null, ["data-pjax" => 0, "data-id-dis" => $index, 'class' => "oferta btn btn-$style"]);
-
-//                    return Html::activeCheckbox($model, 'agotado[]', ['value' => $model->agotado, 'disabled' => false, 'label' => false]);
-//                    echo Html::activeCheckbox($model, 'agotado');
-                }
-            ],
+//            [
+//                'attribute' => 'oferta',
+//                'format' => 'raw',
+//                'value' => function($model, $index) {
+//                    $label = "Poner en Oferta";
+//                    $style = "info";
+//                    if ($model->oferta) {
+//                        $label = "En Oferta";
+//                        $style = "warning";
+//                    }
+//                    return Html::a($label, null, ["data-pjax" => 0, "data-id-dis" => $index, 'class' => "oferta btn btn-$style"]);
+//
+////                    return Html::activeCheckbox($model, 'agotado[]', ['value' => $model->agotado, 'disabled' => false, 'label' => false]);
+////                    echo Html::activeCheckbox($model, 'agotado');
+//                }
+//            ],
             //'description:ntext',
             //'agotado',
             //'oferta',
@@ -167,4 +172,31 @@ $this->title = 'Diseños';
     <?php Pjax::end();
     ?>
 
+</div>
+<div id="import-stock" class="modal" tabindex="-1" role="dialog">
+    <?php $form = ActiveForm::begin(['action' => ['import'], 'options' => ['enctype' => 'multipart/form-data']]) ?>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Importar Stock</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="">
+                        <!--<label class="form-control">Archivo Excel</label>--> 
+                        <?= $form->field($searchModel, 'imageFile')->fileInput() ?>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Importar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+    <?php ActiveForm::end() ?>
 </div>

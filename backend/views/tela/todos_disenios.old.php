@@ -17,11 +17,10 @@ $this->title = 'Diseños';
 
 
 <div class="gallery-image-index">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#import-stock">
+  Launch demo modal
+</button>
 
-
-<!--    <p>
-    <?= Html::a('Create Gallery Image', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>-->
 
     <?php
     Pjax::begin(['id' => 'pjax-disenios']);
@@ -167,4 +166,29 @@ $this->title = 'Diseños';
     <?php Pjax::end();
     ?>
 
+</div>
+<div id="import-stock" class="modal" tabindex="-1" role="dialog">
+    <?= yii\bootstrap4\Html::beginForm(['import'],'post',['enctype' => 'multipart/form-data']); ?>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Importar Stock</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label class="form-control">Archivo Excel</label> 
+          <?= yii\bootstrap4\Html::activeFileInput($searchModel, 'imageFile', ['class'=>'form-control']) ?>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Importar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+        
+    </div>
+  </div>
+    <?= Html::endForm() ?>
 </div>

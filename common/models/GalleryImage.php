@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\web\UploadedFile;
+
 
 /**
  * This is the model class for table "gallery_image".
@@ -19,6 +21,8 @@ use Yii;
  */
 class GalleryImage extends \yii\db\ActiveRecord {
 
+    public $imageFile;
+
     /**
      * {@inheritdoc}
      */
@@ -31,6 +35,7 @@ class GalleryImage extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'csv, xls, xlsx', 'maxSize' => 1024 * 1024 * 20, 'checkExtensionByMimeType' => false],
             [['ownerId'], 'required'],
             [['rank'], 'integer'],
             [['oferta', 'agotado'], 'boolean'],
@@ -50,6 +55,7 @@ class GalleryImage extends \yii\db\ActiveRecord {
             'rank' => Yii::t('app', 'Rank'),
             'name' => Yii::t('app', 'Codigo Color'),
             'description' => Yii::t('app', 'Nombre Color'),
+            'imageFile' => 'Archivo Excel'
         ];
     }
 
@@ -163,4 +169,24 @@ class GalleryImage extends \yii\db\ActiveRecord {
         return $this->getTela()->id_tela;
     }
 
+    public function upload() {
+        if ($this->validate(['imageFile'])) {
+            $this->imageFile->saveAs(\Yii::getAlias("@webroot/../stock/") . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function agotarStock(){
+       return  \Yii::$app->db->createCommand("UPDATE gallery_image SET agotado=1")->execute();
+    }
+    
+    public function castearName(){
+        $images = $this->find()->all();
+        foreach ($images as $image){
+            $image->name = ltrim($image->name, '0');
+            $image->save();
+        }
+    }
 }
