@@ -275,7 +275,9 @@ class GalleryImageController extends Controller {
             }
         }
 
-        return $this->redirect(['ver-stock','sinCargar'=>$sinCargar]);
+        return $this->redirect(['ver-stock',
+//            'sinCargar'=>$sinCargar
+                ]);
     }
 
     /**
