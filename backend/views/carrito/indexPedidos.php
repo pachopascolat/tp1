@@ -63,9 +63,9 @@ $this->params['breadcrumbs'] = [];
             ],
             [
                 'label' => 'Editar Pedido',
-                'format'=>'html',
+                'format'=>'raw',
                 'value' => function($model) {
-                    return Html::a(Yii::t('app', 'Pedido'),  "/../texsim/update-consulta?categoria_padre=1&id_carrito=$model->id_carrito", ['class' => 'btn btn-warning', 'target' => '_blank']);
+                    return Html::a(Yii::t('app', 'Pedido'),  "/../texsim/update-consulta?categoria_padre=1&id_carrito=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-warning', 'target' => '_blank']);
                 }
             ],
 //            [

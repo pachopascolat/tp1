@@ -45,7 +45,7 @@ class TelaController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['ver-stock','borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
+                        'actions' => ['index-todos','ver-stock','borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -86,6 +86,23 @@ class TelaController extends Controller {
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
                     'categoria_padre' => $categoria_padre,
+        ]);
+    }
+    public function actionIndexTodos() {
+//        $categoria_padre = \common\models\Categoria::findOne($categoria_id)->categoria_padre;
+//        if ($categoria_padre == null) {
+//            $categoria_padre = 1;
+//        }
+        $searchModel = new TelaSearch();
+//        $searchModel->categoria_padre = $categoria_padre;
+//        $searchModel->categoria_id = $categoria_id;
+//        $searchModel = new TelaSearch(['categoria_padre' => $categoria_padre,'categoria_id'=>$categoria_id]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('indexTodos', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+//                    'categoria_padre' => $categoria_padre,
         ]);
     }
 

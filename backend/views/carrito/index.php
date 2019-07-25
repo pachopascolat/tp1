@@ -28,7 +28,7 @@ $this->params['breadcrumbs'] = [];
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
-                'attribute'=>'id_carrito',
+                'attribute' => 'id_carrito',
                 'width' => '80px',
             ],
 //            'id_carrito',
@@ -55,27 +55,34 @@ $this->params['breadcrumbs'] = [];
                     return count($model->itemCarritos);
                 }
             ],
+//            [
+////                'label' => 'Diseños',
+//                'class' => 'kartik\grid\ExpandRowColumn',
+//                'width' => '50px',
+//                'value' => function ($model, $key, $index, $column) {
+//                    return GridView::ROW_COLLAPSED;
+//                },
+//                'detail' => function ($model, $key, $index, $column) {
+//                    $searchModel = new \common\models\ItemCarritoSearch(['carrito_id' => $model->id_carrito]);
+//                    $dataProvider = $searchModel->search(null);
+//                    if ($dataProvider->totalCount > 0) {
+//                        return Yii::$app->controller->renderPartial('/item-carrito/index', ['searchModel2' => $searchModel, 'dataProvider2' => $dataProvider,'key'=>$key]);
+//                    }else{
+//                        return;
+//                    }
+//                },
+//                'headerOptions' => ['class' => 'kartik-sheet-style'],
+//                'expandOneOnly' => true,
+//                'hiddenFromExport' => false,
+//                'expandTitle' => 'Consulta',
+//                'expandIcon' => "Ver Consulta " . GridView::ICON_EXPAND,
+//            ],
             [
-//                'label' => 'Diseños',
-                'class' => 'kartik\grid\ExpandRowColumn',
-                'width' => '50px',
-                'value' => function ($model, $key, $index, $column) {
-                    return GridView::ROW_COLLAPSED;
-                },
-                'detail' => function ($model, $key, $index, $column) {
-                    $searchModel = new \common\models\ItemCarritoSearch(['carrito_id' => $model->id_carrito]);
-                    $dataProvider = $searchModel->search(null);
-                    if ($dataProvider->totalCount > 0) {
-                        return Yii::$app->controller->renderPartial('/item-carrito/index', ['searchModel2' => $searchModel, 'dataProvider2' => $dataProvider,'key'=>$key]);
-                    }else{
-                        return;
-                    }
-                },
-                'headerOptions' => ['class' => 'kartik-sheet-style'],
-                'expandOneOnly' => true,
-                'hiddenFromExport' => false,
-                'expandTitle' => 'Consulta',
-                'expandIcon' => "Ver Consulta " . GridView::ICON_EXPAND,
+                'label' => 'Editar Pedido',
+                'format' => 'raw',
+                'value' => function($model) {
+                    return Html::a(Yii::t('app', 'Pedido'), "/../texsim/update-consulta?categoria_padre=1&id_carrito=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-warning', 'target' => '_blank']);
+                }
             ],
 //            'timestamp',
 //            'confirmado',

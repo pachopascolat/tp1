@@ -8,18 +8,18 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\TelaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 $menus = [null, "Hogar", "Moda"];
-
-$this->title = Yii::t('app', "Telas de {$searchModel->categoria->nombre_categoria}");
-$this->params['breadcrumbs'][] = [
-    'label' => Yii::t('app', $menus[$categoria_padre]),
-    'url' => ['/categoria/index', 'categoria_padre' => $categoria_padre]
-];
-$this->params['breadcrumbs'][] = [
-    'label' => Yii::t('app', $searchModel->categoria->nombre_categoria),
-    'url' => ['/tela/index-por-categoria', 'categoria_id' => $searchModel->categoria_id]
-];
-$this->params['breadcrumbs'][] = 'Telas';
-?>
+//
+//$this->title = Yii::t('app', "Telas de {$searchModel->categoria->nombre_categoria}");
+//$this->params['breadcrumbs'][] = [
+//    'label' => Yii::t('app', $menus[$categoria_padre]),
+//    'url' => ['/categoria/index', 'categoria_padre' => $categoria_padre]
+//];
+//$this->params['breadcrumbs'][] = [
+//    'label' => Yii::t('app', $searchModel->categoria->nombre_categoria),
+//    'url' => ['/tela/index-por-categoria', 'categoria_id' => $searchModel->categoria_id]
+//];
+//$this->params['breadcrumbs'][] = 'Telas';
+//?>
 <div class="tela-index">
 
     <h1><?= Html::encode($this->title) ?></h1>

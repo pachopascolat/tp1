@@ -39,6 +39,7 @@ AppAsset::register($this);
 //                ['label' => 'Ofertas', 'url' => ['/gallery-image/index', 'categoria_padre' => 1]],
                 ['label' => 'Usuarios', 'url' => ['/usuarios']],
                 ['label' => 'Stock', 'url' => ['/gallery-image/ver-stock']],
+                ['label' => 'Telas', 'url' => ['/tela/index-todos']],
                 ['label' => 'Hogar', 'url' => ['/categoria/index', 'categoria_padre' => 1]],
                 ['label' => 'Moda', 'url' => ['/categoria/index', 'categoria_padre' => 2]],
                 ['label' => 'Consultas', 'url' => ['/carrito/index', 'categoria_padre' => 2]],
