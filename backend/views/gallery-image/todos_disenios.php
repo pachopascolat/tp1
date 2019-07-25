@@ -60,7 +60,7 @@ $this->title = 'Diseños';
     <?=
     GridView::widget([
         'toolbar' => [
-            count($sinCargar) > 0 ? Html::button('Sin Cargar', ['class' => 'btn btn-default', 'data-toggle' => "modal", 'data-target' => "#sin-cargar"]) : '',
+//            count($sinCargar) > 0 ? Html::button('Sin Cargar', ['class' => 'btn btn-default', 'data-toggle' => "modal", 'data-target' => "#sin-cargar"]) : '',
             $import,
             '{export}', '{toggleData}'
         ],
@@ -218,23 +218,4 @@ $this->title = 'Diseños';
         </div>
     </div>
     <?php ActiveForm::end() ?>
-</div>
-<div id="sin-cargar" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Telas no Cargadas</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <?= $this->render('_faltanCargar', ['sinCargar' => $sinCargar]); ?>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-
-        </div>
-    </div>
 </div>
