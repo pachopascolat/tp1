@@ -223,7 +223,7 @@ class GalleryImageController extends Controller {
         ]);
     }
 
-    public function actionVerStock($tela_id = null) {
+    public function actionVerStock($tela_id = null,$sinCargar = []) {
         $searchModel = new \common\models\GalleryImageSearch([
             'tela_id' => $tela_id,
             'type' => 'galeria']);
@@ -231,11 +231,12 @@ class GalleryImageController extends Controller {
         return $this->render('todos_disenios', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
+                    'sinCargar' => $sinCargar,
 //                    'categoria_padre' => $categoria_padre,
         ]);
     }
 
-    public function actionImport() {
+    public function actionImport($sinCargar = []) {
         $model = new GalleryImageSearch();
         if (Yii::$app->request->isPost) {
             
@@ -267,14 +268,14 @@ class GalleryImageController extends Controller {
                             $sinCargarModel->nombre_tela = $nombreTela;
                             $sinCargarModel->name = $codigoColor;
                             $sinCargarModel->description = $nombreColor;
-                            $sincargar[] = $sinCargarModel;
+                            $sinCargar[] = $sinCargarModel;
                             
                         }
                 }   
             }
         }
 
-        return $this->redirect(['ver-stock']);
+        return $this->redirect(['ver-stock','sinCargar'=>$sinCargar]);
     }
 
     /**

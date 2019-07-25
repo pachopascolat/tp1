@@ -1,4 +1,6 @@
-<?php if ($model->lisos != null && count($model->lisos->getBehavior('galleryBehavior')->getImages()) > 0): ?>
+<?php 
+if ($model->liso != null && count($model->liso->disenios[0]->getBehavior('galleryBehavior')->getImages()) > 0): 
+    ?>
     <div class="lisos-fixed" >
         <div class="container productos-fijos">
             <div class="barra-clasificacion"> <p>Lisos</p></div>  
@@ -6,7 +8,7 @@
                 <div class="swiper-wrapper" >      
 
 
-                    <?php foreach ($model->lisos->getBehavior('galleryBehavior')->getImages() as $lisos) : ?>
+                    <?php foreach ($model->liso->disenios[0]->getBehavior('galleryBehavior')->getImages() as $lisos) : ?>
 
                         <div class="swiper-slide">
                             <div class="product">

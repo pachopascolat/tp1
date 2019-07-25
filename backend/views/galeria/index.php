@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 
 $this->title = Yii::t('app', 'Modelos de Diseños');
 
-$tela = $searchModel;
+//$tela = $searchModel->galeria->tela;
 $nombre_tela = $tela->nombre_tela;
 
 $categoria_padre = $tela->categoria->categoria_padre;
@@ -51,36 +51,71 @@ $this->params['breadcrumbs'][] = $tela->getNombreCompleto();
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-//            'id_estampado',
-//            'nombre_estampado',
-//            'columnas',
-//            'slides',
-//            'tela_id',
 //            'id',
-//            'ownerId',
-//            'rank',
+//            'galeria.tela_id',
             [
-                'label' => 'foto',
+                'attribute' => 'codigo_tela',
+                'value' => 'galeria.tela.codigo_tela'
+            ],
+            [
+                'attribute' => 'nombre_tela',
+                'value' => 'galeria.tela.nombre_tela'
+            ],
+//            'galeria.tela.codigo_tela',
+//            [
+//                'label' => 'nombreTela',
+//                'value' => function($model) {
+//                    return $model->getNombreTela();
+//                }
+//            ],
+//            'ownerId',
+//            [
+//                'attribute'=>'ownerId',
+//                'label'=>'Id Disenio',
+//            ],
+//            [
+//                'label'=>'Nombre Tela',
+//                'attribute'=>'nombreTela',
+////                'value'=>function($model,$index){
+////                    return $model->getTela()->nombre_tela;
+////                }
+//            ],
+            'name',
+            'description',
+            [
+                'label' => 'Imagen',
                 'format' => 'raw',
+                'contentOptions' => ['style' => 'width:100px; white-space: normal;'],
                 'value' => function($model) {
-                    $src = $model->getUrl('preview');
-                    return Html::img($src, ['width' => '50px']);
+                    $url = yii\helpers\Url::to(['/galeria/update-galerias', 'tipo' => $model->galeria->tipo_galeria, 'tela_id' => $model->galeria->tela_id]);
+                    $img = Html::img($model->getUrl('preview'), ['class' => 'img-thumbnail']);
+                    $link = "<a data-pjax=0 target='_blank' href=$url  >$img</a>";
+//                    return Html::img($model->getUrl('preview'), ['class' => 'img-thumbnail']);
+                    return $link;
                 }
             ],
+//            [
+//                'label' => 'foto',
+//                'format' => 'raw',
+//                'value' => function($model) {
+//                    $src = $model->getUrl('preview');
+//                    return Html::img($src, ['width' => '50px']);
+//                }
+//            ],
 //            'name',
-            [
-                'attribute' => 'name',
-                'label' => 'codigo',
-            ],
+//            [
+//                'attribute' => 'name',
+//                'label' => 'codigo',
+//            ],
             [
                 'label' => 'cant. Modelos',
                 'width' => '10%',
                 'value' => function($model) {
-                    $galeria = common\models\Galeria::findOne(['color_id'=>$model->id]);
+                    $galeria = common\models\Galeria::findOne(['color_id' => $model->id]);
                     $cant = 0;
                     if ($galeria) {
-                       $images = $galeria->getBehavior('galleryBehavior')->getImages();
-                       $cant = count($images);
+                        $images = $galeria->getBehavior('galleryBehavior')->getImages();
+                        $cant = count($images);
                     }
 //                    $modelo = \common\models\Modelo::findOne(['disenio_id' => $model->id]);
 //                    if ($modelo != null) {

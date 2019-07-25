@@ -15,6 +15,7 @@ class GalleryImageSearch extends GalleryImage {
     public $codigo_tela;
     public $nombre_tela;
     public $tela_id;
+    public $tipo_galeria;
 
     /**
      * {@inheritdoc}
@@ -22,7 +23,7 @@ class GalleryImageSearch extends GalleryImage {
     public function rules() {
         return [
             [['id', 'rank', 'agotado', 'oferta'], 'integer'],
-            [['type', 'ownerId', 'name', 'description', 'nombreTela', 'tela_id', 'codigo_tela', 'nombre_tela'], 'safe'],
+            [['type', 'ownerId', 'name', 'description', 'nombreTela', 'tela_id', 'codigo_tela', 'nombre_tela','tipo_galeria'], 'safe'],
         ];
     }
 
@@ -43,9 +44,14 @@ class GalleryImageSearch extends GalleryImage {
      */
     public function search($params) {
         $query = GalleryImage::find();
+//        $query->select(['name','tela.codigo_tela'])->distinct();
+//        $query->select(['id','tela.codigo_tela','description','agotado']);
 
         $query->joinWith(['galeria']);
         $query->join('LEFT JOIN', 'tela', 'tela_id = id_tela');
+//        $query->where(['tipo_galeria' =>Galeria::DISENIO,'type'=>'galeria']);
+        $query->where(['<>','tipo_galeria', Galeria::LISO]);
+        $query->andWhere(['type'=>'galeria']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -77,7 +83,8 @@ class GalleryImageSearch extends GalleryImage {
             'oferta' => $this->oferta,
             'name' => $this->name,
             'tela_id' => $this->tela_id,
-            'type' => $this->type
+            'type' => $this->type,
+            'galeria.tipo_galeria' => $this->tipo_galeria,
         ]);
 
         $query->andFilterWhere(['like', 'gallery_image.type', $this->type])

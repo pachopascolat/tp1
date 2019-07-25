@@ -18,9 +18,11 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property int $categoria_id
  * @property int $largo
  * @property int $ancho
+ * @property int $liso_id
  *
  * @property Disenio[] $disenios
  * @property Categoria $categoria
+ * @property Liso $liso
  */
 class Tela extends \yii\db\ActiveRecord {
 
@@ -81,10 +83,11 @@ class Tela extends \yii\db\ActiveRecord {
         return [
             [['descripcion_tela', 'descripcion_larga_tela'], 'safe'],
             [['nombre_tela'], 'required'],
-            [['orden_tela', 'categoria_id', 'largo', 'ancho'], 'integer'],
+            [['orden_tela', 'categoria_id', 'largo', 'ancho','liso_id'], 'integer'],
             [['codigo_tela', 'nombre_tela'], 'string', 'max' => 45],
             [['path_foto_tela'], 'string', 'max' => 128],
             [['categoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['categoria_id' => 'id_categoria']],
+            [['liso_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tela::className(), 'targetAttribute' => ['liso_id' => 'id_tela']],
         ];
     }
 
@@ -131,6 +134,7 @@ class Tela extends \yii\db\ActiveRecord {
     public function getLisos() {
         return $this->hasOne(Galeria::className(), ['tela_id' => 'id_tela'])->where(['tipo_galeria' => Galeria::LISO])->orderBy('orden');
     }
+   
 
     public function getGrupos() {
         return $this->hasMany(Grupo::className(), ['tela_id' => 'id_tela'])
@@ -143,6 +147,9 @@ class Tela extends \yii\db\ActiveRecord {
      */
     public function getCategoria() {
         return $this->hasOne(Categoria::className(), ['id_categoria' => 'categoria_id']);
+    }
+    public function getLiso() {
+        return $this->hasOne(Tela::className(), ['id_tela' => 'liso_id']);
     }
 
     public function getNombreCompleto() {

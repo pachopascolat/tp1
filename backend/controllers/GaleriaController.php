@@ -174,72 +174,84 @@ class GaleriaController extends Controller {
 
     public function actionVerDisenios($tela_id) {
 
-        $tela = \common\models\Tela::findOne($tela_id);
-        foreach ($tela->disenios as $estampado) {
-            foreach ($estampado->getBehavior('galleryBehavior')->getImages() as $image) {
-                $models[] = $image;
-            }
-        }
-
-        $dataProvider = new \yii\data\ArrayDataProvider([
-            'allModels' => $models,
-//            'pagination' => [
-//                'pageSize' => 20,
-//            ]
+        $searchModel = new \common\models\GalleryImageSearch([
+            'tela_id' => $tela_id,
+            'tipo_galeria' => Galeria::DISENIO,
         ]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+
+
+
+
+
+        $tela = \common\models\Tela::findOne($tela_id);
+//        foreach ($tela->disenios as $estampado) {
+//            foreach ($estampado->getBehavior('galleryBehavior')->getImages() as $image) {
+//                $models[] = $image;
+//            }
+//        }
+//
+//        $dataProvider = new \yii\data\ArrayDataProvider([
+//            'allModels' => $models,
+////            'pagination' => [
+////                'pageSize' => 20,
+////            ]
+//        ]);
         return $this->render('index', [
-                    'searchModel' => $tela,
+                    'tela' => $tela,
+                    'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
         ]);
     }
 
-    function actionLlenarGalerias() {
-        $lisos = \common\models\Lisos::find()->all();
-        foreach ($lisos as $modelo) {
-            $galeria = Galeria::findOne(['tela_id' => $modelo->tela_id,'tipo_galeria' => Galeria::LISO]);
-            if ($galeria == null) {
-                $galeria = new Galeria(['tela_id' => $modelo->tela_id, 'tipo_galeria' => Galeria::LISO]);
-                $galeria->save();
-            }
-            $imagenes = $modelo->getBehavior('galleryBehavior')->getImages();
-            foreach ($imagenes as $image) {
-                $origen = dirname($modelo->getFilePath($image->id));
-                $destino = $galeria->getBehavior('galleryBehavior')->directory;
-                $destino .= "/$galeria->id_galeria/$image->id/";
-                $this->recursive_copy($origen, $destino);
-
-                $activeImage = \common\models\GalleryImage::findOne($image->id);
-                $activeImage->type = 'galeria';
-                $activeImage->ownerId = "$galeria->id_galeria";
-                $activeImage->save();
-            }
-        }
-
-//        $modelos = \common\models\Modelo::find()->all();
-//        foreach ($modelos as $modelo) {
-//            $galeria = Galeria::findOne(['color_id' => $modelo->disenio_id]);
+//    function actionLlenarGalerias() {
+//        $lisos = \common\models\Lisos::find()->all();
+//        foreach ($lisos as $modelo) {
+//            $galeria = Galeria::findOne(['tela_id' => $modelo->tela_id,'tipo_galeria' => Galeria::LISO]);
 //            if ($galeria == null) {
-//                $galeria = new Galeria(['tela_id' => $modelo->disenio->getTela()->id_tela, 'tipo_galeria' => Galeria::MODEL0, 'color_id' => $modelo->disenio_id]);
+//                $galeria = new Galeria(['tela_id' => $modelo->tela_id, 'tipo_galeria' => Galeria::LISO]);
 //                $galeria->save();
 //            }
 //            $imagenes = $modelo->getBehavior('galleryBehavior')->getImages();
 //            foreach ($imagenes as $image) {
-//                $url = $image->getUrl('original');
 //                $origen = dirname($modelo->getFilePath($image->id));
 //                $destino = $galeria->getBehavior('galleryBehavior')->directory;
 //                $destino .= "/$galeria->id_galeria/$image->id/";
 //                $this->recursive_copy($origen, $destino);
-////                exec("cp -r $origen $destino");
 //
 //                $activeImage = \common\models\GalleryImage::findOne($image->id);
 //                $activeImage->type = 'galeria';
 //                $activeImage->ownerId = "$galeria->id_galeria";
 //                $activeImage->save();
-//                $foo = 1;
 //            }
 //        }
-        return $this->redirect(['index']);
-    }
+//
+////        $modelos = \common\models\Modelo::find()->all();
+////        foreach ($modelos as $modelo) {
+////            $galeria = Galeria::findOne(['color_id' => $modelo->disenio_id]);
+////            if ($galeria == null) {
+////                $galeria = new Galeria(['tela_id' => $modelo->disenio->getTela()->id_tela, 'tipo_galeria' => Galeria::MODEL0, 'color_id' => $modelo->disenio_id]);
+////                $galeria->save();
+////            }
+////            $imagenes = $modelo->getBehavior('galleryBehavior')->getImages();
+////            foreach ($imagenes as $image) {
+////                $url = $image->getUrl('original');
+////                $origen = dirname($modelo->getFilePath($image->id));
+////                $destino = $galeria->getBehavior('galleryBehavior')->directory;
+////                $destino .= "/$galeria->id_galeria/$image->id/";
+////                $this->recursive_copy($origen, $destino);
+//////                exec("cp -r $origen $destino");
+////
+////                $activeImage = \common\models\GalleryImage::findOne($image->id);
+////                $activeImage->type = 'galeria';
+////                $activeImage->ownerId = "$galeria->id_galeria";
+////                $activeImage->save();
+////                $foo = 1;
+////            }
+////        }
+//        return $this->redirect(['index']);
+//    }
 
     function recursive_copy($src, $dst) {
         $dir = opendir($src);

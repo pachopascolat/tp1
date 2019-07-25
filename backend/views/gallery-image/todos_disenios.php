@@ -59,7 +59,9 @@ $this->title = 'Diseños';
 
     <?=
     GridView::widget([
-        'toolbar' => [$import,
+        'toolbar' => [
+            count($sinCargar) > 0 ? Html::button('Sin Cargar', ['class' => 'btn btn-default', 'data-toggle' => "modal", 'data-target' => "#sin-cargar"]) : '',
+            $import,
             '{export}', '{toggleData}'
         ],
         'panel' => [
@@ -74,7 +76,17 @@ $this->title = 'Diseños';
 //        'class' => '\kartik\grid\CheckboxColumn'
 //    ],
 //            'id',
-//            'galeria.tela_id',
+//            'galeria.tipo_galeria',
+            [
+                'attribute'=>'tipo_galeria',
+                'value'=>function($model){
+                    if($model->galeria->tipo_galeria ==1){
+                        return "Diseño";
+                    }else{
+                        return "Modelo";
+                    }
+                }
+            ],
             [
                 'attribute' => 'codigo_tela',
                 'value' => 'galeria.tela.codigo_tela'
@@ -106,10 +118,17 @@ $this->title = 'Diseños';
             'description',
             [
                 'label' => 'Imagen',
-                'format' => 'html',
+                'format' => 'raw',
                 'contentOptions' => ['style' => 'width:100px; white-space: normal;'],
                 'value' => function($model) {
-                    return Html::img($model->getUrl('preview'), ['class' => 'img-thumbnail']);
+                    $url = yii\helpers\Url::to(['/galeria/update-galerias', 'tipo' => $model->galeria->tipo_galeria, 'tela_id' => $model->galeria->tela_id]);
+                    if($model->galeria->tipo_galeria == common\models\Galeria::MODEL0){
+                    $url = yii\helpers\Url::to(['/galeria/ver-disenios', 'tela_id' => $model->galeria->tela_id,'GalleryImageSearch[name]'=>$model->galeria->color->name]);
+                    }
+                    $img = Html::img($model->getUrl('preview'), ['class' => 'img-thumbnail']);
+                    $link = "<a data-pjax=0 target='_blank' href=$url  >$img</a>";
+//                    return Html::img($model->getUrl('preview'), ['class' => 'img-thumbnail']);
+                    return $link;
                 }
             ],
 //            'type',
@@ -199,4 +218,23 @@ $this->title = 'Diseños';
         </div>
     </div>
     <?php ActiveForm::end() ?>
+</div>
+<div id="sin-cargar" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Telas no Cargadas</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?= $this->render('_faltanCargar', ['sinCargar' => $sinCargar]); ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
 </div>
