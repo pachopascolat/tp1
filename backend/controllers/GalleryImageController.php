@@ -130,9 +130,9 @@ class GalleryImageController extends Controller {
 //        return $this->render('_report',['data'=>$alldata]);
         $content = $this->renderPartial('_report', ['data' => $alldata]);
 
-        // setup kartik\mpdf\Pdf component
+// setup kartik\mpdf\Pdf component
         $pdf = new Pdf([
-            // set to use core fonts only
+// set to use core fonts only
             'mode' => Pdf::MODE_CORE,
             // A4 paper format
             'format' => Pdf::FORMAT_A4,
@@ -143,7 +143,7 @@ class GalleryImageController extends Controller {
             // your html content input
             'content' => $content,
             // format content from your own css file if needed or use the
-            // enhanced bootstrap css built by Krajee for mPDF formatting 
+// enhanced bootstrap css built by Krajee for mPDF formatting 
             'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
             // any css to be embedded if required
             'cssInline' => '.kv-heading-1{font-size:18px}',
@@ -156,7 +156,7 @@ class GalleryImageController extends Controller {
             ]
         ]);
 
-        // return the pdf output as per the destination setting
+// return the pdf output as per the destination setting
         return $pdf->render();
     }
 
@@ -165,13 +165,13 @@ class GalleryImageController extends Controller {
         $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->pagination = FALSE;
-        // get your HTML raw content without any layouts or scripts
+// get your HTML raw content without any layouts or scripts
 //        return $this->renderPartial('_report',['data'=>$dataProvider->getModels()]);
         $content = $this->renderPartial('_report', ['data' => $dataProvider->getModels()]);
 
-        // setup kartik\mpdf\Pdf component
+// setup kartik\mpdf\Pdf component
         $pdf = new Pdf([
-            // set to use core fonts only
+// set to use core fonts only
             'mode' => Pdf::MODE_CORE,
             // A4 paper format
             'format' => Pdf::FORMAT_A4,
@@ -182,7 +182,7 @@ class GalleryImageController extends Controller {
             // your html content input
             'content' => $content,
             // format content from your own css file if needed or use the
-            // enhanced bootstrap css built by Krajee for mPDF formatting 
+// enhanced bootstrap css built by Krajee for mPDF formatting 
             'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
             // any css to be embedded if required
             'cssInline' => '.kv-heading-1{font-size:18px}',
@@ -195,7 +195,7 @@ class GalleryImageController extends Controller {
             ]
         ]);
 
-        // return the pdf output as per the destination setting
+// return the pdf output as per the destination setting
         return $pdf->render();
     }
 
@@ -238,16 +238,16 @@ class GalleryImageController extends Controller {
     }
 
     public function actionImport($sinCargar = []) {
+        $sinCargar = [];
         $model = new GalleryImageSearch();
         if (Yii::$app->request->isPost) {
-
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload()) {
                 $model->agotarStock();
                 $file = '../stock/' . $model->imageFile->name;
                 $data = \moonland\phpexcel\Excel::import($file, []);
                 foreach ($data as $row) {
-//                    foreach ($row as  $col){
+                    $unidades = (int) str_replace([".", ","], "", strval($row['unidades_t']));
                     $codigoTela = trim($row['art_cod']);
                     $nombreTela = trim($row['art_nom']);
                     $codigoColor = trim($row['col_cod']);
@@ -256,11 +256,13 @@ class GalleryImageController extends Controller {
                     $model->name = $codigoColor;
                     $rollo = $model->search(null)->getModels();
                     foreach ($rollo as $modelo) {
-                        $modelo->agotado = 0;
-                        $modelo->description = $nombreColor;
-                        $modelo->save();
+                        if ($unidades > 2) {
+                            $modelo->agotado = 0;
+                            $modelo->description = $nombreColor;
+                            $modelo->save();
+                        }
                     }
-//                    }
+
                     if (count($rollo) > 0) {
                         $stock[] = $rollo;
                     } else {
@@ -295,6 +297,7 @@ class GalleryImageController extends Controller {
 //            'sinCargar'=>$sinCargar
         ]);
     }
+
 //    
 //    function actionSinCargar($searchModel,$dataProvider){
 //        return $this->render('sinCargar', [
@@ -343,7 +346,7 @@ class GalleryImageController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['ver-stock']);
         }
 
         return $this->render('update', [

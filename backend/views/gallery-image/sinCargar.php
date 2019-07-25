@@ -62,14 +62,15 @@ $this->title = 'Diseños';
         'toolbar' => [
 //            count($sinCargar) > 0 ? Html::button('Sin Cargar', ['class' => 'btn btn-default', 'data-toggle' => "modal", 'data-target' => "#sin-cargar"]) : '',
             $import,
-            '{export}', '{toggleData}'
+            '{export}', 
+//            '{toggleData}'
         ],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => "Diseños Sin Cargar",
         ],
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 //             [
