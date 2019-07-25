@@ -72,20 +72,20 @@ $this->params['breadcrumbs'][] = 'Telas';
                     return Html::a("({$model->getCantidadModelos()}) Modelos", ['/galeria/ver-disenios', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
                 }
             ],
-            [
-                'label' => 'Lisos',
-                'format' => 'raw',
-                'value' => function ($model, $key, $index, $column) {
-                    return Html::a("({$model->getCantidadLisos()}) Lisos", ['/galeria/ver-lisos', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
-                }
-            ],
-            [
-                'label' => 'Discontinuos',
-                'format' => 'raw',
-                'value' => function ($model, $key, $index, $column) {
-                    return Html::a("({$model->getCantidadDiscontinuos()}) Discontinuo", ['/galeria/ver-discontinuo', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
-                }
-            ],
+//            [
+//                'label' => 'Lisos',
+//                'format' => 'raw',
+//                'value' => function ($model, $key, $index, $column) {
+//                    return Html::a("({$model->getCantidadLisos()}) Lisos", ['/galeria/ver-lisos', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
+//                }
+//            ],
+//            [
+//                'label' => 'Discontinuos',
+//                'format' => 'raw',
+//                'value' => function ($model, $key, $index, $column) {
+//                    return Html::a("({$model->getCantidadDiscontinuos()}) Discontinuo", ['/galeria/ver-discontinuo', 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
+//                }
+//            ],
 //            [
 //                'label' => 'Stock',
 //                'format' => 'raw',
