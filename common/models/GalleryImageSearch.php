@@ -48,18 +48,25 @@ class GalleryImageSearch extends GalleryImage {
 //        $query->select(['tela.codigo_tela','tela.codigo_tela','name','description','agotado']);
 
         $query->joinWith(['galeria']);
-        $query->join('LEFT JOIN', 'tela', 'tela_id = id_tela')->orderBy('codigo_tela, CAST(name AS unsigned)');
+        $query->join('LEFT JOIN', 'tela', 'tela_id = id_tela')
+//                ->orderBy('codigo_tela, CAST(name AS unsigned)')
+                ;
 //        $query->where(['tipo_galeria' =>Galeria::DISENIO,'type'=>'galeria']);
         $query->where(['<>','tipo_galeria', Galeria::LISO]);
         $query->andWhere(['type'=>'galeria']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['codigo_tela' => SORT_ASC,'name'=>SORT_ASC]]
         ]);
 
         $dataProvider->sort->attributes['codigo_tela'] = [
-            'asc' => ['tela.codigo_tela' => SORT_ASC],
-            'desc' => ['tela.codigo_tela' => SORT_DESC],
+            'asc' => ['tela.codigo_tela' => SORT_ASC,'CAST(name AS unsigned)'=>SORT_ASC],
+            'desc' => ['tela.codigo_tela' => SORT_DESC,'CAST(name AS unsigned)'=>SORT_ASC],
+        ];
+        $dataProvider->sort->attributes['name'] = [
+            'asc' => ['name' => SORT_ASC],
+            'desc' => ['name' => SORT_DESC],
         ];
         $dataProvider->sort->attributes['nombre_tela'] = [
             'asc' => ['tela.nombre_tela' => SORT_ASC],
