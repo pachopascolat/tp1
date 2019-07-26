@@ -23,7 +23,7 @@ use zxbodya\yii2\galleryManager\GalleryManager;
 //                            'buttons' => $buttons,
                     'model' => $model,
                     'behaviorName' => 'galleryBehavior',
-                    'apiRoute' => 'modelo/galleryApi'
+                    'apiRoute' => 'galeria/galleryApi'
                 ]
         );
     }
