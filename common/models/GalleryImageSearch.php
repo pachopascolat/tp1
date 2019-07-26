@@ -45,10 +45,10 @@ class GalleryImageSearch extends GalleryImage {
     public function search($params) {
         $query = GalleryImage::find();
 //        $query->select(['name','tela.codigo_tela'])->distinct();
-//        $query->select(['id','tela.codigo_tela','description','agotado']);
+//        $query->select(['tela.codigo_tela','tela.codigo_tela','name','description','agotado']);
 
         $query->joinWith(['galeria']);
-        $query->join('LEFT JOIN', 'tela', 'tela_id = id_tela');
+        $query->join('LEFT JOIN', 'tela', 'tela_id = id_tela')->orderBy('codigo_tela, CAST(name AS unsigned)');
 //        $query->where(['tipo_galeria' =>Galeria::DISENIO,'type'=>'galeria']);
         $query->where(['<>','tipo_galeria', Galeria::LISO]);
         $query->andWhere(['type'=>'galeria']);
