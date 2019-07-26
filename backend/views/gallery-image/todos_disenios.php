@@ -123,7 +123,8 @@ $this->title = 'Diseños';
                 'value' => function($model) {
                     $url = yii\helpers\Url::to(['/galeria/update-galerias', 'tipo' => $model->galeria->tipo_galeria, 'tela_id' => $model->galeria->tela_id]);
                     if($model->galeria->tipo_galeria == common\models\Galeria::MODEL0){
-                    $url = yii\helpers\Url::to(['/galeria/ver-disenios', 'tela_id' => $model->galeria->tela_id,'GalleryImageSearch[name]'=>$model->galeria->color->name]);
+//                    $url = yii\helpers\Url::to(['/galeria/ver-disenios', 'tela_id' => $model->galeria->tela_id,'GalleryImageSearch[name]'=>$model->galeria->color->name]);
+                    $url = yii\helpers\Url::to(['/galeria/ver-disenios', 'tela_id' => $model->galeria->tela_id,'GalleryImageSearch[name]'=>$model->galeria->color->name??'']);
                     }
                     $img = Html::img($model->getUrl('preview'), ['class' => 'img-thumbnail']);
                     $link = "<a data-pjax=0 target='_blank' href=$url  >$img</a>";

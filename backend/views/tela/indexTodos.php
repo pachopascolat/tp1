@@ -29,8 +29,10 @@ $this->title = Yii::t('app', "Telas");
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-//        ['class' => 'yii\grid\SerialColumn'],
+        ['class' => 'yii\grid\SerialColumn'],
 //        'id_tela',
+            'categoria.categoriaPadre.nombre_categoria',
+            'categoria.nombre_categoria',
             'codigo_tela',
             'nombre_tela',
 //            'descripcion_tela',

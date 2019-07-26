@@ -15,7 +15,7 @@ class TexsimController extends \yii\web\Controller {
     }
 
     public function actionHogar() {
-        $categorias = \common\models\Categoria::find()->where(['categoria_padre' => 1])->orderBy('orden_categoria')->all();
+        $categorias = \common\models\Categoria::find()->where(['hogar' => 1])->orderBy('orden_hogar')->all();
         return $this->render('list', [
                     'categoria_padre' => 1,
                     'categorias' => $categorias,
@@ -23,7 +23,7 @@ class TexsimController extends \yii\web\Controller {
     }
 
     public function actionModa() {
-        $categorias = \common\models\Categoria::find()->where(['categoria_padre' => 2])->orderBy('orden_categoria')->all();
+        $categorias = \common\models\Categoria::find()->where(['moda' => 1])->orderBy('orden_moda')->all();
 
         return $this->render('list', [
                     'categorias' => $categorias,

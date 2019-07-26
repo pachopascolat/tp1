@@ -33,7 +33,7 @@ class CategoriaController extends Controller {
                     
                     [
                         'allow' => \Yii::$app->user->getId()==2,
-                        'actions' => ['index','create','view','update','delete'],
+                        'actions' => ['index-todos','index','create','view','update','delete'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -45,14 +45,14 @@ class CategoriaController extends Controller {
      * Lists all Categoria models.
      * @return mixed
      */
-    public function actionIndexOld() {
-        $searchModel = new CategoriaSearch(['padre' => 0]);
+    public function actionIndexTodos() {
+        $searchModel = new CategoriaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('indexTodos', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
-                    'padre' => 0,
+//                    'padre' => 0,
         ]);
     }
 
@@ -108,7 +108,7 @@ class CategoriaController extends Controller {
         $categoria_padre = $model->categoria_padre;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'categoria_padre' => $model->categoria_padre]);
+            return $this->redirect(['index-todos']);
         }
 
         return $this->render('update', [

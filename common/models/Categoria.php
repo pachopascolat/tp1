@@ -12,6 +12,10 @@ use Yii;
  * @property string $descripción
  * @property int $categoria_padre
  * @property int $orden_categoria
+ * @property int $hogar
+ * @property int $moda
+ * @property int $orden_hogar
+ * @property int $orden_moda
  *
  * @property Categoria $categoriaPadre
  * @property Categoria[] $categorias
@@ -35,7 +39,7 @@ class Categoria extends \yii\db\ActiveRecord
         return [
             [['nombre_categoria'], 'required'],
             [['descripción'], 'string'],
-            [['categoria_padre', 'orden_categoria'], 'integer'],
+            [['categoria_padre', 'orden_categoria','orden_hogar','orden_moda','hogar','moda'], 'integer'],
             [['nombre_categoria'], 'string', 'max' => 45],
             [['categoria_padre'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['categoria_padre' => 'id_categoria']],
         ];
