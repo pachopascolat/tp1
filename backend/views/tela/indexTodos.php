@@ -20,19 +20,37 @@ $this->title = Yii::t('app', "Telas");
 
     <p>
         <?= Html::a(Yii::t('app', 'Nueva Tela'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Pasar Categorias'), ['pasar-categorias'], ['class' => 'btn btn-primary']) ?>
     </p>
     <?php
     Pjax::begin();
     ?>
     <?=
     GridView::widget([
+        'toolbar' => [
+            '{export}', '{toggleData}'
+        ],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => "Telas",
+        ],
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-        ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn'],
 //        'id_tela',
-            'categoria.categoriaPadre.nombre_categoria',
-            'categoria.nombre_categoria',
+//            'categoria.categoriaPadre.nombre_categoria',
+//            [
+//                'label' => 'Categorias',
+//                'value' => function($model) {
+//                    $categorias = "";
+//                    foreach ($model->categorias as $catTela) {
+//                        $categorias .= $catTela->categoria->nombre_categoria . ", ";
+//                    }
+//                    return $categorias;
+//                }
+//            ],
+//            'categoria.nombre_categoria',
             'codigo_tela',
             'nombre_tela',
 //            'descripcion_tela',
@@ -155,6 +173,71 @@ $this->title = Yii::t('app', "Telas");
                 'headerOptions' => ['class' => 'kartik-sheet-style'],
                 'expandOneOnly' => true,
                 'expandIcon' => "Lisos " . GridView::ICON_EXPAND,
+            ],
+            [
+                'class' => 'kartik\grid\ExpandRowColumn',
+                'width' => '50px',
+                'value' => function ($model, $key, $index, $column) {
+                    return GridView::ROW_COLLAPSED;
+                },
+                'detail' => function ($model, $key, $index, $column) {
+                    return Yii::$app->controller->renderPartial('_formCategoriasNew', ['model' => $model]);
+                },
+                'headerOptions' => ['class' => 'kartik-sheet-style'],
+                'expandOneOnly' => true,
+                'expandIcon' => "Cat" . GridView::ICON_EXPAND,
+            ],
+            [
+                'class' => 'kartik\grid\ExpandRowColumn',
+                'width' => '50px',
+                'value' => function ($model, $key, $index, $column) {
+                    return GridView::ROW_COLLAPSED;
+                },
+                'detail' => function ($model, $key, $index, $column) {
+                    return Yii::$app->controller->renderPartial('_formTelasAnidadas', ['model' => $model]);
+                },
+                'headerOptions' => ['class' => 'kartik-sheet-style'],
+                'expandOneOnly' => true,
+                'expandIcon' => "" . GridView::ICON_EXPAND,
+                'header' => 'hijos',
+            ],
+//            [
+//                'label' => 'hide',
+//                'attribute' => 'ocultar',
+//                'format' => 'raw',
+//                'value' => function($model) {
+//                    return Html::activeCheckbox($model, 'ocultar', ['label' => false]);
+//                }
+//            ],
+//            [
+//                'header' => 'ocultar',
+//                'class' => 'yii\grid\CheckboxColumn',
+//                'checkboxOptions' => function($model) {
+//                    return ['value' => $model->ocultar];
+//                },
+//            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'ocultar',
+                'value' => function($model) {
+                    return $model->ocultar ? "SI" : "NO";
+                },
+//                'pageSummary' => 'Total',
+                'vAlign' => 'middle',
+                'width' => '210px',
+//                'readonly' => function($model, $key, $index, $widget) {
+//                    return (!$model->status); // do not allow editing of inactive records
+//                },
+                'editableOptions' => function ($model, $key, $index) {
+                    return [
+//                        'inputType' => \kartik\editable\Editable::BS_CHECKBOX,
+                        'inputType' => \kartik\editable\Editable::INPUT_DROPDOWN_LIST,
+                        'data' => [0 => 'NO', 1 => 'SI'], // any list of values
+                        'options' => ['class' => 'form-control'],
+                        'header' => 'Ocultar',
+                        'size' => 'sm',
+                    ];
+                }
             ],
             ['class' => 'yii\grid\ActionColumn'],
         ],

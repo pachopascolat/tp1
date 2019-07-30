@@ -103,12 +103,12 @@ class TexsimController extends \yii\web\Controller {
         $this->goBack(['texsim/hogar']);
     }
 
-    function actionCarrito($categoria_padre) {
+    function actionCarrito($categoria_padre=1) {
         $id_carrito = $_SESSION['carrito'];
         return $this->render('cart', ['categoria_padre' => $categoria_padre, 'id_carrito' => $id_carrito]);
     }
 
-    function actionPedidoFacturacion($categoria_padre) {
+    function actionPedidoFacturacion($categoria_padre=1) {
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         if ($carrito == null) {
             return $this->goBack();
@@ -133,7 +133,7 @@ class TexsimController extends \yii\web\Controller {
         return $this->render('crearConsulta', ['categoria_padre' => $categoria_padre, 'model' => $model, 'carrito' => $carrito]);
     }
 
-    function actionCrearConsulta($categoria_padre) {
+    function actionCrearConsulta($categoria_padre=1) {
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         if ($carrito == null) {
             return $this->goBack();
@@ -160,7 +160,7 @@ class TexsimController extends \yii\web\Controller {
         return $this->render('crearConsulta', ['categoria_padre' => $categoria_padre, 'model' => $model, 'carrito' => $carrito]);
     }
 
-    function actionCrearConsultaWhatsApp($categoria_padre) {
+    function actionCrearConsultaWhatsApp($categoria_padre=1) {
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         if ($carrito == null) {
             return $this->goBack();
@@ -206,7 +206,7 @@ class TexsimController extends \yii\web\Controller {
         $carrito->save();
     }
 
-    function actionFinalizarConsulta($categoria_padre, $id_carrito) {
+    function actionFinalizarConsulta($categoria_padre=1, $id_carrito) {
         $carrito = \common\models\Carrito::findOne($id_carrito);
         $carrito->confirmado = true;
         $carrito->timestamp = date("Y-m-d H:i:s");
@@ -215,7 +215,7 @@ class TexsimController extends \yii\web\Controller {
         return $this->render('contacto', ['categoria_padre' => $categoria_padre, 'id_carrito' => $id_carrito]);
     }
 
-    function actionUpdateConsulta($categoria_padre, $id_carrito) {
+    function actionUpdateConsulta($categoria_padre=1, $id_carrito) {
         $_SESSION['carrito'] = $id_carrito;
 
         return $this->redirect(['crear-consulta', 'categoria_padre' => $categoria_padre]);

@@ -7,10 +7,10 @@ use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\CategoriaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$menus = [null, "Hogar", "Moda"];
+//$menus = [null, "Hogar", "Moda"];
 
-$this->title = Yii::t('app', "Categorias de $menus[$categoria_padre]");
-$this->params['breadcrumbs'][] = $menus[$categoria_padre];
+$this->title = Yii::t('app', "Categorias de $categoria_padre");
+$this->params['breadcrumbs'][] = $categoria_padre;
 ?>
 <div class="categoria-index">
 
@@ -46,15 +46,23 @@ $this->params['breadcrumbs'][] = $menus[$categoria_padre];
 //            'id_categoria',
             'nombre_categoria',
 //            'descripción:ntext',
-            'orden_categoria',            
+//            'orden_categoria',            
+            [
+                'attribute' => 'orden_hogar',
+                'visible' => $categoria_padre == "Hogar"
+            ],
+            [
+                'attribute' => 'orden_moda',
+                'visible' => $categoria_padre == "Moda"
+            ],
             [
                 'label' => 'Ver Telas',
-                'format'=>'raw',
-                'value' => function($model){
+                'format' => 'raw',
+                'value' => function($model) {
                     $cant = 0;
                     $cant += count($model->telas);
                     return Html::a(
-                            "($cant) Telas",['/tela/index-por-categoria','categoria_id'=>$model->id_categoria],['class'=>'btn btn-info']);
+                                    "($cant) Telas", ['/tela/index-por-categoria', 'categoria_id' => $model->id_categoria], ['class' => 'btn btn-info']);
                 }
             ],
 //            [
@@ -64,8 +72,6 @@ $this->params['breadcrumbs'][] = $menus[$categoria_padre];
 //                    return Html::a('Editar',['update','id'=>$model->id_categoria],['class'=>'btn btn-warning'])." ".Html::a('Borrar',['delete','id'=>$model->id_categoria],['data-method'=>'POST','class'=>'btn btn-danger']);
 //                }
 //            ],
-            
-            
 //            'categoria_padre',
 //            'orden_categoria',
             ['class' => 'yii\grid\ActionColumn'],

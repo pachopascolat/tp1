@@ -45,7 +45,7 @@ class TelaController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index-todos','ver-stock','borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
+                        'actions' => ['delete-categoria','agregar-categoria','delete-hijo', 'agregar-hijo', 'pasar-categorias', 'index-todos', 'ver-stock', 'borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -71,7 +71,8 @@ class TelaController extends Controller {
         ]);
     }
 
-    public function actionIndexPorCategoria($categoria_id) {
+   
+    public function actionIndexPorCategoriaOld($categoria_id = 1) {
         $categoria_padre = \common\models\Categoria::findOne($categoria_id)->categoria_padre;
         if ($categoria_padre == null) {
             $categoria_padre = 1;
@@ -88,16 +89,58 @@ class TelaController extends Controller {
                     'categoria_padre' => $categoria_padre,
         ]);
     }
+
     public function actionIndexTodos() {
-//        $categoria_padre = \common\models\Categoria::findOne($categoria_id)->categoria_padre;
-//        if ($categoria_padre == null) {
-//            $categoria_padre = 1;
-//        }
+
         $searchModel = new TelaSearch();
-//        $searchModel->categoria_padre = $categoria_padre;
-//        $searchModel->categoria_id = $categoria_id;
-//        $searchModel = new TelaSearch(['categoria_padre' => $categoria_padre,'categoria_id'=>$categoria_id]);
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//        $dataProvider->setPagination(false);
+// validate if there is a editable input saved via AJAX
+        if (Yii::$app->request->post('hasEditable')) {
+            // instantiate your book model for saving
+            $tela_id = Yii::$app->request->post('editableKey');
+            $model = Tela::findOne($tela_id);
+
+            // store a default json response as desired by editable
+            $out = \yii\helpers\Json::encode(['output' => '', 'message' => '']);
+
+            // fetch the first entry in posted data (there should only be one entry 
+            // anyway in this array for an editable submission)
+            // - $posted is the posted data for Book without any indexes
+            // - $post is the converted array for single model validation
+            $posted = current($_POST['Tela']);
+            $post = ['Tela' => $posted];
+
+            // load model like any single model validation
+            if ($model->load($post)) {
+                // can save model or do something before saving model
+                $model->save();
+
+                // custom output to return to be displayed as the editable grid cell
+                // data. Normally this is empty - whereby whatever value is edited by
+                // in the input by user is updated automatically.
+                $output = '';
+
+                // specific use case where you need to validate a specific
+                // editable column posted when you have more than one
+                // EditableColumn in the grid view. We evaluate here a
+                // check to see if buy_amount was posted for the Book model
+                if (isset($posted['ocultar'])) {
+                    $output = $model->ocultar ? "SI" : "NO";
+                }
+
+                // similarly you can check if the name attribute was posted as well
+                // if (isset($posted['name'])) {
+                // $output = ''; // process as you need
+                // }
+                $out = \yii\helpers\Json::encode(['output' => $output, 'message' => '']);
+            }
+            // return ajax json encoded response and exit
+            echo $out;
+            return;
+        }
+
 
         return $this->render('indexTodos', [
                     'searchModel' => $searchModel,
@@ -125,9 +168,19 @@ class TelaController extends Controller {
      */
     public function actionCreate($categoria_padre = null, $categoria_id = null) {
         $model = new Tela(['categoria_id' => $categoria_id]);
+//        $categorias = \common\models\Categoria::find()->all();
+//        foreach ($categorias as $cat){
+//            $catTelaArray[] = new \common\models\CategoriaTela(['tela_id'=>$model->id_tela,'categoria_id'=>$cat->id_categoria]);          
+//        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index-por-categoria', 'categoria_id' => $categoria_id]);
+            $model->categoria_id = $model->categorys[0];
+            $model->save();
+            foreach ($model->categorys as $newCat) {
+                $categoriaTela = new \common\models\CategoriaTela(['tela_id' => $model->id_tela, 'categoria_id' => $newCat]);
+                $categoriaTela->save();
+            }
+            return $this->redirect(['index-todos']);
         }
 
         return $this->render('create', [
@@ -147,7 +200,15 @@ class TelaController extends Controller {
         $model = $this->findModel($id);
         $categoria_padre = $model->categoria->categoria_padre;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index-por-categoria', 'categoria_id' => $model->categoria_id]);
+            if ($model->categorys) {
+                foreach ($model->categorys as $newCat) {
+                    if (!\common\models\CategoriaTela::findOne(['tela_id' => $model->id_tela, 'categoria_id' => $newCat])) {
+                        $categoriaTela = new \common\models\CategoriaTela(['tela_id' => $model->id_tela, 'categoria_id' => $newCat]);
+                        $categoriaTela->save();
+                    }
+                }
+            }
+            return $this->redirect(['index-todos']);
         }
 
 
@@ -169,7 +230,7 @@ class TelaController extends Controller {
         $categoria_id = $model->categoria_id;
         $model->delete();
 
-        return $this->redirect(['index-por-categoria', 'categoria_id' => $categoria_id]);
+        return $this->redirect(['index-todos']);
     }
 
     /**
@@ -303,6 +364,62 @@ class TelaController extends Controller {
         return $this->redirect(['/categoria/index', 'categoria_padre' => 1]);
     }
 
-   
+    public function actionPasarCategorias() {
+        $telas = Tela::find()->all();
+        foreach ($telas as $tela) {
+            $catTela = \common\models\CategoriaTela::findOne(['tela_id' => $tela->id_tela]);
+            if ($catTela == null) {
+                $catTela = new \common\models\CategoriaTela(['tela_id' => $tela->id_tela, 'categoria_id' => $tela->categoria_id, 'orden' => $tela->orden_tela]);
+                $catTela->save();
+            }
+        }
+        return $this->redirect(['index-todos']);
+    }
+
+    public function actionAgregarHijo($id) {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->tela_hija) {
+                $tela_hija = \common\models\TelaAnidada::findOne(['tela_padre' => $model->id_tela, 'tela_hija' => $model->tela_hija]);
+                if ($tela_hija == null) {
+                    $tela_hija = new \common\models\TelaAnidada(['tela_padre' => $model->id_tela, 'tela_hija' => $model->tela_hija]);
+                    $tela_hija->save();
+                }
+            }
+        }
+        return $this->goBack();
+//        return $this->redirect(['index-todos']);
+    }
+
+    public function actionDeleteHijo($id) {
+        $model = \common\models\TelaAnidada::findOne($id);
+        if ($model) {
+            $model->delete();
+        }
+//        return $this->redirect(['index-todos']);
+        return $this->goBack();
+    }
+
+    public function actionAgregarCategoria($id) {
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->category) {
+                $category_tela = \common\models\CategoriaTela::findOne(['tela_id' => $model->id_tela, 'categoria_id' => $model->category]);
+                if ($category_tela == null) {
+                    $category_tela = new \common\models\CategoriaTela(['tela_id' => $model->id_tela, 'categoria_id' => $model->category]);
+                    $category_tela->save();
+                }
+            }
+        }
+        return $this->goBack();
+    }
+
+    public function actionDeleteCategoria($id) {
+        $model = \common\models\CategoriaTela::findOne($id);
+        if ($model) {
+            $model->delete();
+        }
+        return $this->goBack();
+    }
 
 }

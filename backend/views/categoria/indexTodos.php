@@ -55,7 +55,7 @@ use kartik\grid\GridView;
                     $cant = 0;
                     $cant += count($model->telas);
                     return Html::a(
-                            "($cant) Telas",['/tela/index-por-categoria','categoria_id'=>$model->id_categoria],['class'=>'btn btn-info']);
+                            "($cant) Telas",['/categoria-tela/index-por-categoria','categoria_id'=>$model->id_categoria],['class'=>'btn btn-info']);
                 }
             ],
 //            [

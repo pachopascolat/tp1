@@ -152,7 +152,7 @@
 
 
 //arma tantos swiper como grupos de estampados hay
-<?php foreach ($model->estampados as $key => $estampado): ?>
+<?php foreach ($model->getAllDisenios() as $key => $estampado): ?>
         var swiper<?= $key ?> = new Swiper('.swiper<?= $key ?>', {
 
             preloadImages: false,

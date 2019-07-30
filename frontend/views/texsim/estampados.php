@@ -23,12 +23,12 @@ $menus = [null, "hogar", "moda"];
         <!-- Breadcrumbs -->
         <ol class="breadcrumb justify-content-left">
             <li class="breadcrumb-item"><a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="<?= yii\helpers\Url::to([$menus[$model->categoria->categoria_padre]]) ?>"><?= $menus[$model->categoria->categoria_padre] ?></a></li>
+            <!--<li class="breadcrumb-item"><a href="<?php // echo yii\helpers\Url::to([$menus[$model->categoria->categoria_padre??'']])  ?>"><?php // echo $menus[$model->categoria->categoria_padre??'']  ?></a></li>-->
             <li class="breadcrumb-item active"><?= $model->getNombreCompleto() ?>        </li>
         </ol>
         <?php
         $form = \yii\bootstrap4\ActiveForm::begin(['id' => 'filtro-telas']);
-        $telas = \common\models\Tela::find()->orderBy('nombre_tela')->all();
+        $telas = \common\models\Tela::find()->where(['ocultar'=>false])->orderBy('nombre_tela')->all();
         $items = \yii\helpers\ArrayHelper::map($telas, 'id_tela', 'nombre_tela');
         ?>
         <div class="d-flex align-items-center">
@@ -45,7 +45,7 @@ $menus = [null, "hogar", "moda"];
 
 
 
-<?php \yii\bootstrap4\ActiveForm::end(); ?>
+        <?php \yii\bootstrap4\ActiveForm::end(); ?>
         <!-- Hero Content-->
         <div class="hero-content pb-5 text-center">
             <h1 class="hero-heading"><?= $model->getNombreCompleto() ?></h1>
@@ -63,7 +63,7 @@ $menus = [null, "hogar", "moda"];
 
 
 
-        <?php foreach ($model->disenios as $key => $estampado): ?>
+        <?php foreach ($model->getAllDisenios() as $key => $estampado): ?>
             <?php
             $ordenados = $estampado->ordenar();
             ?>                        
@@ -72,7 +72,7 @@ $menus = [null, "hogar", "moda"];
                 <div class="swiper-wrapper">
                     <?php
                     foreach ($ordenados as $index => $dis):
-                        if($dis){
+                        if ($dis) {
                             $img = \common\models\GalleryImage::findOne($dis->id);
                         }
                         if ($dis == null) {
@@ -80,23 +80,22 @@ $menus = [null, "hogar", "moda"];
                         } else if ($img->agotado) {
                             
                         } else {
-                            
                             ?>   
                             <div class="swiper-slide">
                                 <div class="product">
                                     <div class="product-image">
-            <?php
-            $img = \common\models\GalleryImage::findOne($dis->id);
-            if ($img->agotado):
-                ?>
+                                        <?php
+                                        $img = \common\models\GalleryImage::findOne($dis->id);
+                                        if ($img->agotado):
+                                            ?>
                                             <img src="<?= Yii::getAlias("@web/img/agotado.svg") ?>" class="img-fluid img-agotado">
                                             <?php
                                         elseif ($img->oferta):
                                             ?>
                                             <img src="<?= Yii::getAlias("@web/img/oferta.svg") ?>" class="img-fluid img-agotado">
 
-            <?php endif;
-            ?>
+                                        <?php endif;
+                                        ?>
                                         <img data-src='<?= $dis->getUrl('preview') ?>' class="swiper-lazy img-fluid">
                                         <div class="swiper-lazy-preloader" style="margin-top: 10px"></div>
                                         <div class="product-hover-overlay"><a  class="product-hover-overlay-link"></a>
@@ -121,10 +120,10 @@ $menus = [null, "hogar", "moda"];
 
                             </div>
 
-            <?php
-        }
-    endforeach;
-    ?>
+                            <?php
+                        }
+                    endforeach;
+                    ?>
 
                 </div>
                 <!-- If we need pagination -->
@@ -139,7 +138,7 @@ $menus = [null, "hogar", "moda"];
 
             </div>
 
-<?php endforeach; ?>
+        <?php endforeach; ?>
 
 
 
@@ -147,13 +146,13 @@ $menus = [null, "hogar", "moda"];
 
 
         <div class="shadow-swiper-container"></div> 
-<?php
-if ($model->discontinuos != null && count($model->discontinuos->getBehavior('galleryBehavior')->getImages()) > 0):
-    ?>
+        <?php
+        if ($model->discontinuos != null && count($model->discontinuos->getBehavior('galleryBehavior')->getImages()) > 0):
+            ?>
             <div class="barra-clasificacion"> <p>Discontinuos</p></div>  
             <div class="swiper-container swiper1">
                 <div class="swiper-wrapper">      
-    <?php foreach ($model->discontinuos->getBehavior('galleryBehavior')->getImages() as $discontinuo) : ?>
+                    <?php foreach ($model->discontinuos->getBehavior('galleryBehavior')->getImages() as $discontinuo) : ?>
                         <div class="swiper-slide">
                             <div class="product">
                                 <div class="product-image">
@@ -181,13 +180,13 @@ if ($model->discontinuos != null && count($model->discontinuos->getBehavior('gal
                             </div>
 
                         </div> 
-    <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </div> 
             </div>
 
             <div class="shadow-swiper-container"></div>  
 
-<?php endif; ?>
+        <?php endif; ?>
 
 
 

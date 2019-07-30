@@ -37,7 +37,7 @@ class Galeria extends \yii\db\ActiveRecord
                 'type' => 'galeria',
                 'extension' => 'jpg',
                 'directory' => Yii::getAlias('@backend') . '/web/images/galeria/gallery',
-                'url' => \yii\helpers\Url::home(true).'../backend/web/images/galeria/gallery',
+                'url' => \yii\helpers\Url::home(true).'backend/web/images/galeria/gallery',
                 'versions' => [
                     'small' => function ($img) {
                         /** @var \Imagine\Image\ImageInterface $img */

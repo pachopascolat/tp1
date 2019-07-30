@@ -27,6 +27,7 @@
         "yii2tech/html2pdf": "*",
         "yiisoft/yii2-bootstrap4": "^1.0@dev",
         "moonlandsoft/yii2-phpexcel": "*"
+
         
     },
     "require-dev": {

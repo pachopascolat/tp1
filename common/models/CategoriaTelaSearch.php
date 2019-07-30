@@ -4,12 +4,12 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Categoria;
+use common\models\CategoriaTela;
 
 /**
- * CategoriaSearch represents the model behind the search form of `common\models\Categoria`.
+ * CategoriaTelaSearch represents the model behind the search form of `common\models\CategoriaTela`.
  */
-class CategoriaSearch extends Categoria
+class CategoriaTelaSearch extends CategoriaTela
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,7 @@ class CategoriaSearch extends Categoria
     public function rules()
     {
         return [
-            [['id_categoria', 'categoria_padre', 'orden_categoria'], 'integer'],
-            [['nombre_categoria', 'descripción'], 'safe'],
+            [['id_categoria_tela', 'tela_id', 'categoria_id', 'orden'], 'integer'],
         ];
     }
 
@@ -40,7 +39,7 @@ class CategoriaSearch extends Categoria
      */
     public function search($params)
     {
-        $query = Categoria::find();
+        $query = CategoriaTela::find()->orderBy('orden');
 
         // add conditions that should always apply here
 
@@ -58,17 +57,11 @@ class CategoriaSearch extends Categoria
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_categoria' => $this->id_categoria,
-            'categoria_padre' => $this->categoria_padre,
-            'orden_categoria' => $this->orden_categoria,
-            'hogar'=>$this->hogar,
-            'moda'=>$this->moda,
-            'orden_hogar'=>$this->orden_hogar,
-            'orden_moda'=>$this->orden_moda,
+            'id_categoria_tela' => $this->id_categoria_tela,
+            'tela_id' => $this->tela_id,
+            'categoria_id' => $this->categoria_id,
+            'orden' => $this->orden,
         ]);
-
-        $query->andFilterWhere(['like', 'nombre_categoria', $this->nombre_categoria])
-            ->andFilterWhere(['like', 'descripción', $this->descripción]);
 
         return $dataProvider;
     }

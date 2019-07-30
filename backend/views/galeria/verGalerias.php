@@ -16,14 +16,14 @@ $categoria_padre = $tela->categoria->categoria_padre;
 
 $menus = [null, "Hogar", "Moda"];
 
-$this->params['breadcrumbs'][] = [
-    'label' => Yii::t('app', $menus[$categoria_padre]),
-    'url' => ['/categoria/index', 'categoria_padre' => $categoria_padre]
-];
-$this->params['breadcrumbs'][] = [
-    'label' => Yii::t('app', $tela->categoria->nombre_categoria),
-    'url' => ['/tela/index-por-categoria', 'categoria_id' => $tela->categoria_id]
-];
+//$this->params['breadcrumbs'][] = [
+//    'label' => Yii::t('app', $menus[$categoria_padre]),
+//    'url' => ['/categoria/index', 'categoria_padre' => $categoria_padre]
+//];
+//$this->params['breadcrumbs'][] = [
+//    'label' => Yii::t('app', $tela->categoria->nombre_categoria),
+//    'url' => ['/tela/index-por-categoria', 'categoria_id' => $tela->categoria_id]
+//];
 $this->params['breadcrumbs'][] = $tela->getNombreCompleto();
 ?>
 

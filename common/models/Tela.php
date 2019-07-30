@@ -19,55 +19,62 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property int $largo
  * @property int $ancho
  * @property int $liso_id
+ * @property int $ocultar
  *
  * @property Disenio[] $disenios
  * @property Categoria $categoria
+ * @property CategoriaTela $categorias
+ * @property TelaAnidada $telasHijas
  * @property Liso $liso
  */
 class Tela extends \yii\db\ActiveRecord {
 
-    public function behaviors() {
-        return [
-            'galleryBehavior' => [
-                'class' => GalleryBehavior::className(),
-                'type' => 'tela',
-                'extension' => 'jpg',
-                'directory' => Yii::getAlias('@backend') . '/web/images/tela/gallery',
-                'url' => Yii::getAlias('@web') . '/../../backend/web/images/tela/gallery',
-                'versions' => [
-                    'small' => function ($img) {
-                        /** @var \Imagine\Image\ImageInterface $img */
-                        return $img
-                                        ->copy()
-                                        ->thumbnail(new \Imagine\Image\Box(200, 200));
-                    },
+    public $categorys;
+    public $category;
+    public $tela_hija;
+    
+//    public function behaviors() {
+//        return [
+//            'galleryBehavior' => [
+//                'class' => GalleryBehavior::className(),
+//                'type' => 'tela',
+//                'extension' => 'jpg',
+//                'directory' => Yii::getAlias('@backend') . '/web/images/tela/gallery',
+//                'url' => Yii::getAlias('@web') . '/../../backend/web/images/tela/gallery',
+//                'versions' => [
+//                    'small' => function ($img) {
+//                        /** @var \Imagine\Image\ImageInterface $img */
+//                        return $img
+//                                        ->copy()
+//                                        ->thumbnail(new \Imagine\Image\Box(200, 200));
+//                    },
+////                    'medium' => function ($img) {
+////                        /** @var \Imagine\Image\ImageInterface $img */
+////                        $dstSize = $img->getSize();
+////                        $maxWidth = 800;
+////                        if ($dstSize->getWidth() > $maxWidth) {
+////                            $dstSize = $dstSize->widen($maxWidth);
+////                        }
+////                        return $img
+////                                        ->copy()
+////                                        ->resize($dstSize);
+////                    },
 //                    'medium' => function ($img) {
 //                        /** @var \Imagine\Image\ImageInterface $img */
 //                        $dstSize = $img->getSize();
-//                        $maxWidth = 800;
+//                        $maxWidth = 500;
 //                        if ($dstSize->getWidth() > $maxWidth) {
 //                            $dstSize = $dstSize->widen($maxWidth);
 //                        }
 //                        return $img
 //                                        ->copy()
 //                                        ->resize($dstSize);
+//                        ;
 //                    },
-                    'medium' => function ($img) {
-                        /** @var \Imagine\Image\ImageInterface $img */
-                        $dstSize = $img->getSize();
-                        $maxWidth = 500;
-                        if ($dstSize->getWidth() > $maxWidth) {
-                            $dstSize = $dstSize->widen($maxWidth);
-                        }
-                        return $img
-                                        ->copy()
-                                        ->resize($dstSize);
-                        ;
-                    },
-                ]
-            ]
-        ];
-    }
+//                ]
+//            ]
+//        ];
+//    }
 
     /**
      * {@inheritdoc}
@@ -81,9 +88,9 @@ class Tela extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['descripcion_tela', 'descripcion_larga_tela'], 'safe'],
+            [['descripcion_tela', 'descripcion_larga_tela','categorys','category'], 'safe'],
             [['nombre_tela'], 'required'],
-            [['orden_tela', 'categoria_id', 'largo', 'ancho','liso_id'], 'integer'],
+            [['orden_tela', 'categoria_id', 'largo', 'ancho','liso_id','ocultar','tela_hija'], 'integer'],
             [['codigo_tela', 'nombre_tela'], 'string', 'max' => 45],
             [['path_foto_tela'], 'string', 'max' => 128],
             [['categoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['categoria_id' => 'id_categoria']],
@@ -139,6 +146,14 @@ class Tela extends \yii\db\ActiveRecord {
     public function getGrupos() {
         return $this->hasMany(Grupo::className(), ['tela_id' => 'id_tela'])
 //                ->orderBy(['id_grupo' => SORT_DESC])
+        ;
+    }
+    public function getCategorias() {
+        return $this->hasMany(CategoriaTela::className(), ['tela_id' => 'id_tela'])
+        ;
+    }
+    public function getTelasHijas() {
+        return $this->hasMany(TelaAnidada::className(), ['tela_padre' => 'id_tela'])
         ;
     }
 
@@ -210,6 +225,17 @@ class Tela extends \yii\db\ActiveRecord {
         }
 
 //        return $this->getBehavior('galleryBehavior')->getImages();
+    }
+    
+    public function getAllDisenios(){
+        $galerias = $this->disenios;
+        foreach ($this->telasHijas as $tela_anidada){
+//            $galerias = $tela_anidada->telaHija->disenios;
+            foreach ($tela_anidada->telaHija->disenios as $galeria){
+                $galerias[] = $galeria;
+            }
+        }
+        return $galerias;
     }
 
 }
