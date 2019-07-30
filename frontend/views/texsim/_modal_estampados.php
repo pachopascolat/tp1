@@ -1,5 +1,5 @@
 <?php
-foreach ($model->disenios as $key => $estampado):
+foreach ($model->getAllDisenios() as $key => $estampado):
     foreach ($estampado->getBehavior('galleryBehavior')->getImages() as $index => $dis):
         ?>
 
