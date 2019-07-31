@@ -241,9 +241,10 @@ class Tela extends \yii\db\ActiveRecord {
     }
 
     function getCategoriaPadre() {
+        $categoria_padre = 1;
         $categorias = $this->categorias;
         foreach ($categorias as $categoria) {
-            if ($categoria->hogar) {
+            if ($categoria->categoria->hogar) {
                 $categoria_padre = 1;
             }else{
                 $categoria_padre = 2;
