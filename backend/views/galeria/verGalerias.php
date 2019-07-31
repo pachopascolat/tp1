@@ -12,7 +12,7 @@ use zxbodya\yii2\galleryManager\GalleryManager;
 <?php
 $nombre_tela = $tela->nombre_tela;
 
-$categoria_padre = $tela->categoria->categoria_padre;
+//$categoria_padre = $tela->categoria->categoria_padre;
 
 $menus = [null, "Hogar", "Moda"];
 
