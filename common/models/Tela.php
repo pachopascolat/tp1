@@ -32,7 +32,7 @@ class Tela extends \yii\db\ActiveRecord {
     public $categorys;
     public $category;
     public $tela_hija;
-    
+
 //    public function behaviors() {
 //        return [
 //            'galleryBehavior' => [
@@ -88,9 +88,9 @@ class Tela extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['descripcion_tela', 'descripcion_larga_tela','categorys','category'], 'safe'],
+            [['descripcion_tela', 'descripcion_larga_tela', 'categorys', 'category'], 'safe'],
             [['nombre_tela'], 'required'],
-            [['orden_tela', 'categoria_id', 'largo', 'ancho','liso_id','ocultar','tela_hija'], 'integer'],
+            [['orden_tela', 'categoria_id', 'largo', 'ancho', 'liso_id', 'ocultar', 'tela_hija'], 'integer'],
             [['codigo_tela', 'nombre_tela'], 'string', 'max' => 45],
             [['path_foto_tela'], 'string', 'max' => 128],
             [['categoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['categoria_id' => 'id_categoria']],
@@ -141,17 +141,18 @@ class Tela extends \yii\db\ActiveRecord {
     public function getLisos() {
         return $this->hasOne(Galeria::className(), ['tela_id' => 'id_tela'])->where(['tipo_galeria' => Galeria::LISO])->orderBy('orden');
     }
-   
 
     public function getGrupos() {
         return $this->hasMany(Grupo::className(), ['tela_id' => 'id_tela'])
 //                ->orderBy(['id_grupo' => SORT_DESC])
         ;
     }
+
     public function getCategorias() {
         return $this->hasMany(CategoriaTela::className(), ['tela_id' => 'id_tela'])
         ;
     }
+
     public function getTelasHijas() {
         return $this->hasMany(TelaAnidada::className(), ['tela_padre' => 'id_tela'])
         ;
@@ -163,6 +164,7 @@ class Tela extends \yii\db\ActiveRecord {
     public function getCategoria() {
         return $this->hasOne(Categoria::className(), ['id_categoria' => 'categoria_id']);
     }
+
     public function getLiso() {
         return $this->hasOne(Tela::className(), ['id_tela' => 'liso_id']);
     }
@@ -199,7 +201,7 @@ class Tela extends \yii\db\ActiveRecord {
 
     public function getCantidadModelos() {
         $cant = 0;
-        $query = GalleryImage::find()->joinWith('galeria')->where(['type'=>'galeria','tela_id' => $this->id_tela, 'tipo_galeria' => Galeria::MODEL0])->all();
+        $query = GalleryImage::find()->joinWith('galeria')->where(['type' => 'galeria', 'tela_id' => $this->id_tela, 'tipo_galeria' => Galeria::MODEL0])->all();
         $cant += count($query);
         return $cant;
     }
@@ -226,16 +228,28 @@ class Tela extends \yii\db\ActiveRecord {
 
 //        return $this->getBehavior('galleryBehavior')->getImages();
     }
-    
-    public function getAllDisenios(){
+
+    public function getAllDisenios() {
         $galerias = $this->disenios;
-        foreach ($this->telasHijas as $tela_anidada){
+        foreach ($this->telasHijas as $tela_anidada) {
 //            $galerias = $tela_anidada->telaHija->disenios;
-            foreach ($tela_anidada->telaHija->disenios as $galeria){
+            foreach ($tela_anidada->telaHija->disenios as $galeria) {
                 $galerias[] = $galeria;
             }
         }
         return $galerias;
+    }
+
+    function getCategoriaPadre() {
+        $categorias = $this->categorias;
+        foreach ($categorias as $categoria) {
+            if ($categoria->hogar) {
+                $categoria_padre = 1;
+            }else{
+                $categoria_padre = 2;
+            }
+        }
+        return $categoria_padre;
     }
 
 }

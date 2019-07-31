@@ -36,7 +36,7 @@ class TexsimController extends \yii\web\Controller {
         $model = \common\models\Tela::findOne($id);
         if ($data = Yii::$app->request->post()) {
             $model2 = \common\models\Tela::findOne($data['Tela']['id_tela']);
-            $categoria_padre = $model2->categoria->categoria_padre;
+            $categoria_padre = $model2->getCategoriaPadre();
             return $this->render('estampados', ['model' => $model2, 'categoria_padre' => $categoria_padre]);
         }
         $categoria_padre = $model->categoria->categoria_padre;

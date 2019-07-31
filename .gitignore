@@ -38,6 +38,9 @@ phpunit.phar
 /backend/web/images
 /frontend/web/index.php
 
+#archivos de stock
+/backend/stock
+
 /.htaccess
 
 /common/config/main-local.php
