@@ -49,7 +49,7 @@ class TexsimController extends \yii\web\Controller {
         if ($model->load(\Yii::$app->request->post())) {
             
         }
-//        $categoria_padre = $model->categoria->categoria_padre;
+        $categoria_padre = $model->getCategoriaPadre();
         return $this->render('estampados', ['model' => $model]);
     }
 
