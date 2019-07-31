@@ -168,11 +168,7 @@ class TelaController extends Controller {
      */
     public function actionCreate($categoria_padre = null, $categoria_id = null) {
         $model = new Tela(['categoria_id' => $categoria_id]);
-//        $categorias = \common\models\Categoria::find()->all();
-//        foreach ($categorias as $cat){
-//            $catTelaArray[] = new \common\models\CategoriaTela(['tela_id'=>$model->id_tela,'categoria_id'=>$cat->id_categoria]);          
-//        }
-
+        $model->categorys = [];
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->categoria_id = $model->categorys[0];
             $model->save();
