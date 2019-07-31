@@ -184,7 +184,7 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
         /*float:right;*/
         width:100%;
         margin-top: 10px;
-        font-size:1.2rem;
+        font-size:0.9rem;
         /*text-align: right;*/ 
     }
     .zoom-texsim
