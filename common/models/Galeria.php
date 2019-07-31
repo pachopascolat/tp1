@@ -108,6 +108,11 @@ class Galeria extends \yii\db\ActiveRecord
         return $this->hasOne(GalleryImage::className(), ['id' => 'color_id']);
     }
     
+    public function getGalleryImages(){
+        return $this->hasMany(GalleryImage::className(), ['ownerId'=>'id_galeria']);
+    }
+    
+    
 //    public function getModelos() {
 //        return $this->hasMany(GalleryImage::className(), ['color_id' => 'id'])
 ////                ->where(['color_id'=>'id'])
@@ -153,8 +158,9 @@ class Galeria extends \yii\db\ActiveRecord
         return $this->columnas;
     }
     
-    public function getImages(){
-        
+    
+    function getGalleryImages2(){
+        return GalleryImage::find()->where(['ownerId'=>$this->id_galeria])->all();
     }
     
 }

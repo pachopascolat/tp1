@@ -37,11 +37,11 @@ class TexsimController extends \yii\web\Controller {
         if ($data = Yii::$app->request->post()) {
             $model2 = \common\models\Tela::findOne($data['Tela']['id_tela']);
             $categoria_padre = $model2->getCategoriaPadre();
-            return $this->render('estampados', ['model' => $model2, 'categoria_padre' => $categoria_padre]);
+            return $this->render('estampados_1', ['model' => $model2, 'categoria_padre' => $categoria_padre]);
         }
         $categoria_padre = $model->getCategoriaPadre();
 
-        return $this->render('estampados', ['model' => $model, 'categoria_padre' => $categoria_padre]);
+        return $this->render('estampados_1', ['model' => $model, 'categoria_padre' => $categoria_padre]);
     }
 
     public function actionEstampados($id) {
@@ -50,7 +50,7 @@ class TexsimController extends \yii\web\Controller {
             
         }
         $categoria_padre = $model->getCategoriaPadre();
-        return $this->render('estampados', ['model' => $model,'categoria_padre' => $categoria_padre]);
+        return $this->render('estampados_1', ['model' => $model,'categoria_padre' => $categoria_padre]);
     }
 
     public function actionDeleteItem($id) {

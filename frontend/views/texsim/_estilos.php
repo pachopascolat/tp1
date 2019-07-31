@@ -36,6 +36,10 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     @media (min-width:320px)  { 
          /*smartphones, iPhone, portrait 480x320 phones*/  
 
+         .product-code-texsim{
+             font-size: 0.7rem !important;
+         }
+         
         .lisos-fixed{
             bottom:-40px;
             /*position: sticky !important ;*/

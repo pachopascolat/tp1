@@ -240,13 +240,38 @@ class Tela extends \yii\db\ActiveRecord {
         return $galerias;
     }
 
+    public function getAllDisenios2() {
+        $disenios = [];
+        foreach ($this->disenios as $galeria) {
+            foreach ($galeria->galleryImages as $image) {
+                $disenios[] = $image;
+            }
+        }
+        foreach ($this->telasHijas as $tela_anidada) {
+//            $galerias = $tela_anidada->telaHija->disenios;
+            foreach ($tela_anidada->telaHija->disenios as $galeria) {
+                foreach ($galeria->galleryImages as $image) {
+                    $disenios[] = $image;
+                }
+            }
+        }
+        return $disenios;
+    }
+    
+    function getSliders(){
+        $disenios = $this->getAllDisenios2();
+        $sliders = ceil(count($disenios) / 45);
+        $galeria = array_chunk($disenios, ceil(count($disenios)/$sliders));
+        return $galeria;
+    }
+
     function getCategoriaPadre() {
         $categoria_padre = 1;
         $categorias = $this->categorias;
         foreach ($categorias as $categoria) {
             if ($categoria->categoria->hogar) {
                 $categoria_padre = 1;
-            }else{
+            } else {
                 $categoria_padre = 2;
             }
         }
