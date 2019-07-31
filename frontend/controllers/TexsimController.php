@@ -50,7 +50,7 @@ class TexsimController extends \yii\web\Controller {
             
         }
         $categoria_padre = $model->getCategoriaPadre();
-        return $this->render('estampados', ['model' => $model]);
+        return $this->render('estampados', ['model' => $model,'categoria_padre' => $categoria_padre]);
     }
 
     public function actionDeleteItem($id) {
