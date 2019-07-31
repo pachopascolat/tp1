@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
-        'categoria_padre' => $categoria_padre,
+//        'categoria_padre' => $categoria_padre,
     ]) ?>
 
 </div>

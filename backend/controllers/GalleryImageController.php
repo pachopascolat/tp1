@@ -297,6 +297,65 @@ class GalleryImageController extends Controller {
 //            'sinCargar'=>$sinCargar
         ]);
     }
+    public function actionImportDiferencias($sinCargar = []) {
+        $sinCargar = [];
+        $model = new GalleryImageSearch();
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+//                $model->agotarStock();
+                $file = '../stock/' . $model->imageFile->name;
+                $data = \moonland\phpexcel\Excel::import($file, []);
+                foreach ($data as $row) {
+                    $unidades = (int) str_replace([".", ","], "", strval($row['unidades_t']));
+                    $codigoTela = trim($row['art_cod']);
+                    $nombreTela = trim($row['art_nom']);
+                    $codigoColor = trim($row['col_cod']);
+                    $nombreColor = trim($row['col_nom']);
+                    $model->codigo_tela = $codigoTela;
+                    $model->name = $codigoColor;
+                    $rollo = $model->search(null)->getModels();
+                    foreach ($rollo as $modelo) {
+//                        if ($unidades > 2) {
+//                            $modelo->agotado = 0;
+//                            $modelo->description = $nombreColor;
+//                            $modelo->save();
+//                        }
+                    }
+                    if (count($rollo) > 0) {
+                        $stock[] = $rollo;
+                    } else {
+                        $sinCargarModel = new GalleryImageSearch();
+                        $sinCargarModel->codigo_tela = $codigoTela;
+                        $sinCargarModel->nombre_tela = $nombreTela;
+                        $sinCargarModel->name = $codigoColor;
+                        $sinCargarModel->description = $nombreColor;
+                        $sinCargarModel->tipo_galeria = 1;
+                        $sinCargar[] = $sinCargarModel;
+                    }
+                }
+                if (count($sinCargar) > 0) {
+                    $dataProvider = new ArrayDataProvider([
+                        'allModels' => $sinCargar,
+                        'pagination' => [
+                            'pageSize' => false,
+                        ],
+                        'sort' => [
+                            'attributes' => ['codigo_tela', 'name'],
+                        ],
+                    ]);
+                    return $this->render('sinCargar', [
+                                'searchModel' => $sinCargarModel,
+                                'dataProvider' => $dataProvider,
+                    ]);
+                }
+            }
+        }
+
+        return $this->redirect(['ver-stock',
+//            'sinCargar'=>$sinCargar
+        ]);
+    }
 
 //    
 //    function actionSinCargar($searchModel,$dataProvider){

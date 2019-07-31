@@ -194,7 +194,7 @@ class TelaController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-        $categoria_padre = $model->categoria->categoria_padre;
+//        $categoria_padre = $model->categoria->categoria_padre;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if ($model->categorys) {
                 foreach ($model->categorys as $newCat) {
@@ -210,7 +210,7 @@ class TelaController extends Controller {
 
         return $this->render('update', [
                     'model' => $model,
-                    'categoria_padre' => $categoria_padre,
+//                    'categoria_padre' => $categoria_padre,
         ]);
     }
 
