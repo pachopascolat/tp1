@@ -75,7 +75,7 @@ $this->title = Yii::t('app', "Telas");
                 'label' => 'Diseños',
                 'format' => 'raw',
                 'value' => function ($model, $key, $index, $column) {
-                    return Html::a("({$model->getCantidadDisenios()}) Diseños", ['/galeria/update-galerias', 'tipo' => common\models\Galeria::DISENIO, 'tela_id' => $model->id_tela, 'categoria_padre' => $model->categoria->categoria_padre], ['class' => 'btn btn-default']);
+                    return Html::a("({$model->getCantidadDisenios()}) Diseños", ['/galeria/update-galerias', 'tipo' => common\models\Galeria::DISENIO, 'tela_id' => $model->id_tela], ['class' => 'btn btn-default']);
                 }
             ],
             [
