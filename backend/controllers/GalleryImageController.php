@@ -38,7 +38,7 @@ class GalleryImageController extends Controller {
                 'rules' => [
                     [
                         'allow' => \Yii::$app->user->getId() == 2,
-                        'actions' => ['import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['import-diferencias','import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['@'],
                     ],
                 ],

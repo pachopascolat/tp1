@@ -49,8 +49,8 @@ class TexsimController extends \yii\web\Controller {
         if ($model->load(\Yii::$app->request->post())) {
             
         }
-        $categoria_padre = $model->categoria->categoria_padre;
-        return $this->render('estampados', ['model' => $model, 'categoria_padre' => $categoria_padre]);
+//        $categoria_padre = $model->categoria->categoria_padre;
+        return $this->render('estampados', ['model' => $model]);
     }
 
     public function actionDeleteItem($id) {
