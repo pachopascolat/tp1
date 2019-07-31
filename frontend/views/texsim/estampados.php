@@ -100,7 +100,7 @@ $menus = [null, "hogar", "moda"];
                                         <div class="swiper-lazy-preloader" style="margin-top: 10px"></div>
                                         <div class="product-hover-overlay"><a  class="product-hover-overlay-link"></a>
                                             <div class="product-code-texsim text-light ">
-                                                <p><?= $dis->name ?></p>
+                                                <p><?= $dis->description ?></p>
                                             </div>
                                             <div class="product-hover-overlay-buttons-texsim">                        
 

@@ -35,7 +35,7 @@ foreach ($model->getAllDisenios() as $key => $estampado):
                             <div class="col-lg-6 d-flex align-items-center">
                                 <div>
                                     <h3 id="" class="modal-disenio-codigo  mt-2 mt-lg-1 font-alt">
-                                        <?= $dis->name ?>
+                                        <?= $dis->name. " " .$dis->description ?>
                                     </h3>
                                     <h2 id="" class="modal-tela-nombre mb-2  mt-lg-1 text-tiles">
                                         <?= $model->getNombreCompleto() ?>
