@@ -156,10 +156,10 @@
         var swiper<?= $key ?> = new Swiper('.swiper<?= $key ?>', {
     <?php
     if (count($galeria) <= 15) {
-        $slidesPerColumn =  ceil(count($galeria) / 7);  
+        $slidesPerColumn =  ceil(count($galeria) / 6) -1;  
 
     }else{
-        $slidesPerColumn =  ceil(count($galeria) / 15);
+        $slidesPerColumn =  ceil(count($galeria) / 12) -1;
     }
     ?>
             preloadImages: false,

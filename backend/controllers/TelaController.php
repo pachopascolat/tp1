@@ -170,7 +170,7 @@ class TelaController extends Controller {
         $model = new Tela(['categoria_id' => $categoria_id]);
         $model->categorys = [];
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->categoria_id = $model->categorys[0];
+//            $model->categoria_id = $model->categorys[0];
             $model->save();
             foreach ($model->categorys as $newCat) {
                 $categoriaTela = new \common\models\CategoriaTela(['tela_id' => $model->id_tela, 'categoria_id' => $newCat]);
