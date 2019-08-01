@@ -89,7 +89,7 @@ $catArray = ['Hogar', 'Moda'];
                     $telas = common\models\Tela::find()->where(['categoria_id' => $cat->id_categoria])->orderBy('orden_tela')->all();
 
                     foreach ($cat->categoriaTelas as $key => $catTela):
-                        if ($catTela->tela && !$catTela->tela->ocultar):
+                        if ($catTela->tela && !$catTela->tela->ocultar && !$catTela->tela->estaVacia()):
                             $tela = $catTela->tela;
                             $key % 2 == 0 ? $color = "btn-light" : $color = "btn-gray-200";
                             ?>

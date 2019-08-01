@@ -281,5 +281,9 @@ class Tela extends \yii\db\ActiveRecord {
         }
         return $categoria_padre;
     }
+    
+    function estaVacia(){
+        return count($this->getAllDisenios2())==0;
+    }
 
 }
