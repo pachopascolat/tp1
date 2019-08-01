@@ -186,7 +186,7 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
 
     .codigo-lisos{
         font-size:1rem !important;
-        text-align: right !important; 
+        /*text-align: right !important;*/ 
         padding-right: 10px;
 
     }
