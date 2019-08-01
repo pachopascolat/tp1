@@ -75,8 +75,8 @@ class Carrito extends \yii\db\ActiveRecord {
                     $img = GalleryImage::findOne($item->disenio_id);
                     $codigo_diseño = $img->name;
                     $tela = $img->getTela();
-                    $tipo = $item->getTipoTela();
-                    $mensaje .= "$cant rollos de $tela->codigo_tela $tela->nombre_tela tipo $tipo codigo $codigo_diseño \n";
+//                    $tipo = $item->getTipoTela();
+                    $mensaje .= "$cant rollos de $tela->codigo_tela $tela->nombre_tela  codigo $codigo_diseño \n";
                 }
             }
         }
