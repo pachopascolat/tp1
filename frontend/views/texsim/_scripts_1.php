@@ -154,7 +154,14 @@
 //arma tantos swiper como grupos de estampados hay
 <?php foreach ($model->getSliders() as $key => $galeria): ?>
         var swiper<?= $key ?> = new Swiper('.swiper<?= $key ?>', {
+    <?php
+    if (count($galeria) <= 15) {
+        $slidesPerColumn =  ceil(count($galeria) / 7);  
 
+    }else{
+        $slidesPerColumn =  ceil(count($galeria) / 15);
+    }
+    ?>
             preloadImages: false,
             // Enable lazy loading
             lazy: true,
@@ -162,7 +169,7 @@
             grabCursor: true,
             slidesPerView: 6,
             spaceBetween: 8,
-            slidesPerColumn: <?= ceil(count($galeria)/15) ?>,
+            slidesPerColumn: <?= $slidesPerColumn ?>,
             pagination: {
                 type: 'progressbar',
 
