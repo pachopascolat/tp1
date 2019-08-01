@@ -261,9 +261,11 @@ class Tela extends \yii\db\ActiveRecord {
     }
 
     function getSliders() {
+        $galeria = [];
         $disenios = $this->getAllDisenios2();
         $sliders = ceil(count($disenios) / 45);
-        $galeria = array_chunk($disenios, ceil(count($disenios) / $sliders));
+        if ($sliders > 0)
+            $galeria = array_chunk($disenios, ceil(count($disenios) / $sliders));
         return $galeria;
     }
 
