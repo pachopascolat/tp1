@@ -37,7 +37,7 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
          /*smartphones, iPhone, portrait 480x320 phones*/  
 
          .product-code-texsim{
-             font-size: 0.7rem !important;
+             font-size: 0.7rem;
          }
          
         .lisos-fixed{
@@ -71,6 +71,9 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
             /*position: sticky !important ;*/
             /*-webkit-position: sticky !important;*/
         }
+        .product-code-texsim{
+             font-size: 0.8rem;
+         }
 
         .swiper-button-prev{
             width: 4em ;
@@ -93,6 +96,10 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     @media (min-width:641px)  {
          /*portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones*/ 
 
+         .product-code-texsim{
+             font-size: 0.9rem;
+         }
+         
         .lisos-fixed{
             bottom:-60px;
             /*position: sticky !important ;*/
@@ -102,6 +109,10 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     @media (min-width:961px)  {
          /*tablet, landscape iPad, lo-res laptops ands desktops*/  
 
+         .product-code-texsim{
+             font-size: 1rem;
+         }
+         
         .lisos-fixed{
             bottom:-70px;
             /*position: sticky !important ;*/
@@ -188,7 +199,7 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
         /*float:right;*/
         width:100%;
         margin-top: 10px;
-        font-size:0.9rem;
+        /*font-size:0.9rem;*/
         /*text-align: right;*/ 
     }
     .zoom-texsim
