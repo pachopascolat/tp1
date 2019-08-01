@@ -38,7 +38,7 @@ class GalleryImageController extends Controller {
                 'rules' => [
                     [
                         'allow' => \Yii::$app->user->getId() == 2,
-                        'actions' => ['import-diferencias','import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -297,6 +297,7 @@ class GalleryImageController extends Controller {
 //            'sinCargar'=>$sinCargar
         ]);
     }
+
     public function actionImportDiferencias($sinCargar = []) {
         $sinCargar = [];
         $model = new GalleryImageSearch();
@@ -325,13 +326,15 @@ class GalleryImageController extends Controller {
                     if (count($rollo) > 0) {
                         $stock[] = $rollo;
                     } else {
-                        $sinCargarModel = new GalleryImageSearch();
-                        $sinCargarModel->codigo_tela = $codigoTela;
-                        $sinCargarModel->nombre_tela = $nombreTela;
-                        $sinCargarModel->name = $codigoColor;
-                        $sinCargarModel->description = $nombreColor;
-                        $sinCargarModel->tipo_galeria = 1;
-                        $sinCargar[] = $sinCargarModel;
+                        if ($unidades > 2) {
+                            $sinCargarModel = new GalleryImageSearch();
+                            $sinCargarModel->codigo_tela = $codigoTela;
+                            $sinCargarModel->nombre_tela = $nombreTela;
+                            $sinCargarModel->name = $codigoColor;
+                            $sinCargarModel->description = $nombreColor;
+                            $sinCargarModel->tipo_galeria = 1;
+                            $sinCargar[] = $sinCargarModel;
+                        }
                     }
                 }
                 if (count($sinCargar) > 0) {

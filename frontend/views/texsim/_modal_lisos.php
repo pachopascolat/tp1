@@ -13,20 +13,7 @@
                     <div class="modal-body">
                         <?php
                         $img = \common\models\GalleryImage::findOne($lisos->id);
-                        if ($img->agotado):
-                            ?>
-                            <div class="ribbon ribbon-primary">
-                                Agotado
-                            </div>
 
-                            <?php
-                        elseif ($img->oferta):
-                            ?>
-                            <div class="ribbon ribbon-primary">
-                                Oferta
-                            </div>
-
-                        <?php endif;
                         ?>
 
                         <div class="row">

@@ -8,24 +8,15 @@ if ($model->liso != null && count($model->liso->disenios[0]->getBehavior('galler
                 <div class="swiper-wrapper" >      
 
 
-                    <?php foreach ($model->liso->disenios[0]->getBehavior('galleryBehavior')->getImages() as $lisos) : ?>
+                    <?php foreach ($model->liso->disenios[0]->galleryImages as $lisos) : 
+                        
+                        ?>
 
                         <div class="swiper-slide">
                             <div class="product">
                                 <div class="product-image">
 
-                                     <?php
-                                        $img = \common\models\GalleryImage::findOne($lisos->id);
-                                        if ($img->agotado):
-                                            ?>
-                                            <img src="<?= Yii::getAlias("@web/img/agotado.svg") ?>" class="img-fluid img-agotado">
-                                            <?php
-                                        elseif ($img->oferta):
-                                            ?>
-                                            <img src="<?= Yii::getAlias("@web/img/oferta.svg") ?>" class="img-fluid img-agotado">
-
-                                        <?php endif;
-                                        ?>
+                                     
                                     
                                     <img src="<?= $lisos->getUrl('preview') ?>" alt="product" class="swiper-lazy img-fluid"/>
 
@@ -34,7 +25,7 @@ if ($model->liso != null && count($model->liso->disenios[0]->getBehavior('galler
                                     <div class="product-hover-overlay">
                                         <a  class="product-hover-overlay-link"></a>
                                         <div class="product-code-texsim text-light codigo-lisos">
-                                            <p><?= $lisos->name ?></p>
+                                            <p><?= $lisos->description ?></p>
                                         </div>
                                         <div class="product-hover-overlay-buttons-texsim">
                                             <a 

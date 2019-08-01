@@ -20,7 +20,7 @@ $this->title = 'Diseños';
 <div class="gallery-image-index">
     <?php
     $importDif = ' 
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#import-stock">
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#import-stock-diferencia">
         Ver Diferencias
     </button>';
     $import = ' 

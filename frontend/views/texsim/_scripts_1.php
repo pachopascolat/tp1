@@ -159,7 +159,7 @@
         $slidesPerColumn =  ceil(count($galeria) / 6) -1;  
 
     }else{
-        $slidesPerColumn =  ceil(count($galeria) / 12) -1;
+        $slidesPerColumn =  ceil(count($galeria) / 12);
     }
     ?>
             preloadImages: false,
@@ -169,7 +169,10 @@
             grabCursor: true,
             slidesPerView: 6,
             spaceBetween: 8,
-            slidesPerColumn: <?= $slidesPerColumn ?>,
+            slidesPerColumn: <?=$slidesPerColumn ?>,
+//            slidesPerColumn: 1,
+            slidesPerColumnFill:'row',
+//            centerInsufficientSlides:true,
             pagination: {
                 type: 'progressbar',
 
