@@ -155,11 +155,20 @@
 <?php foreach ($model->getSliders() as $key => $galeria): ?>
         var swiper<?= $key ?> = new Swiper('.swiper<?= $key ?>', {
     <?php
-    if (count($galeria) <= 15) {
-        $slidesPerColumn =  ceil(count($galeria) / 6) -1;  
-
-    }else{
-        $slidesPerColumn =  ceil(count($galeria) / 12);
+    $cantidad = count($galeria);
+    if ($cantidad <= 7) {
+        $slidesPerColumnMovil = 1;
+    } elseif ($cantidad <= 11) {
+        $slidesPerColumnMovil = 2;
+    } else {
+        $slidesPerColumnMovil = 3;
+    }
+    if ($cantidad <= 11) {
+        $slidesPerColumn = 1;
+    } elseif ($cantidad <= 17) {
+        $slidesPerColumn = 2;
+    } else {
+        $slidesPerColumn = 3;
     }
     ?>
             preloadImages: false,
@@ -169,10 +178,9 @@
             grabCursor: true,
             slidesPerView: 6,
             spaceBetween: 8,
-            slidesPerColumn: <?=$slidesPerColumn ?>,
-//            slidesPerColumn: 1,
-            slidesPerColumnFill:'row',
-//            centerInsufficientSlides:true,
+            //            slidesPerColumn: 1,
+            slidesPerColumnFill: 'row',
+            //            centerInsufficientSlides:true,
             pagination: {
                 type: 'progressbar',
 
@@ -187,24 +195,29 @@
                 320: {
                     slidesPerView: 4,
                     spaceBetween: 4,
+                    slidesPerColumn: <?= $slidesPerColumnMovil ?>,
+
                     //                        slidesPerColumn: 3,
 
                 },
                 // when window width is >= 480px
                 480: {
-                    slidesPerView: 6,
+                    slidesPerColumn: <?= $slidesPerColumnMovil ?>,
+                    slidesPerView: 4,
                     spaceBetween: 4,
                     //                        slidesPerColumn: 3,
 
                 },
                 // when window width is >= 640px
                 520: {
-                    slidesPerView: 4,
+                    slidesPerColumn: <?= $slidesPerColumn ?>,
+                    slidesPerView: 6,
                     spaceBetween: 6,
                     //                        slidesPerColumn: 3,
 
                 },
                 980: {
+                    slidesPerColumn: <?= $slidesPerColumn ?>,
                     slidesPerView: 6,
                     spaceBetween: 8,
                     //                        slidesPerColumn: 3,
