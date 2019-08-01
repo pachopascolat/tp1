@@ -32,7 +32,7 @@ foreach ($model->getSliders() as $key => $galeria):
                                 <h6 class="text-center cant-modelos" id="cant-modelos-<?= $dis->id ?>"></h6>
 
                             </div>
-                            <div class="col-lg-6 d-flex align-items-center">
+                            <div class="col-lg-6 d-flex align-items-center justify-content-center">
                                 <div>
                                     <h3 id="" class="modal-disenio-codigo  mt-2 mt-lg-1 font-alt">
                                         <?= $dis->name. " " .$dis->description ?>
