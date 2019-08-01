@@ -28,7 +28,7 @@ $menus = [null, "hogar", "moda"];
         </ol>
         <?php
         $form = \yii\bootstrap4\ActiveForm::begin(['id' => 'filtro-telas']);
-        $telas = \common\models\Tela::find()->where(['ocultar'=>false])->orderBy('nombre_tela')->all();
+        $telas = \common\models\Tela::getTelasLlenas();
         $items = \yii\helpers\ArrayHelper::map($telas, 'id_tela', 'nombre_tela');
         ?>
         <div class="d-flex align-items-center">

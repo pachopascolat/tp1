@@ -285,5 +285,16 @@ class Tela extends \yii\db\ActiveRecord {
     function estaVacia(){
         return count($this->getAllDisenios2())==0;
     }
+    
+    static function getTelasLlenas(){
+        $telasLLenas = [];
+        $telas = self::find()->where(['ocultar'=>false])->orderBy('nombre_tela')->all();
+        foreach ($telas as $tela){
+            if(!$tela->estaVacia()){
+                $telasLLenas[] = $tela;
+            }
+        }
+        return $telasLLenas;
+    }
 
 }
