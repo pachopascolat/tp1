@@ -1,6 +1,6 @@
 <!--modal de cada liso-->
-<?php if ($model->liso != null && count($model->liso->disenios[0]->getBehavior('galleryBehavior')->getImages()) > 0): ?>
-    <?php foreach ($model->liso->disenios[0]->getBehavior('galleryBehavior')->getImages() as $lisos) : ?>
+<?php if ($model->liso != null && !$model->liso->estaVacia()): ?>
+    <?php foreach ($model->liso->getAllDisenios2() as $lisos) : ?>
 
         <div id="exampleModal-<?= $lisos->id ?>" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade quickview">
             <div role="document" class="modal-dialog modal-lg">

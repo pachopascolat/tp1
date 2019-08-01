@@ -383,8 +383,8 @@ class TelaController extends Controller {
                 }
             }
         }
-        return $this->goBack();
-//        return $this->redirect(['index-todos']);
+//        return $this->goBack();
+        return $this->redirect(['index-todos']);
     }
 
     public function actionDeleteHijo($id) {
@@ -392,8 +392,8 @@ class TelaController extends Controller {
         if ($model) {
             $model->delete();
         }
-//        return $this->redirect(['index-todos']);
-        return $this->goBack();
+        return $this->redirect(['index-todos']);
+//        return $this->goBack();
     }
 
     public function actionAgregarCategoria($id) {
@@ -407,7 +407,7 @@ class TelaController extends Controller {
                 }
             }
         }
-        return $this->goBack();
+        return $this->redirect(['index-todos']);
     }
 
     public function actionDeleteCategoria($id) {
@@ -415,7 +415,7 @@ class TelaController extends Controller {
         if ($model) {
             $model->delete();
         }
-        return $this->goBack();
+        return $this->redirect(['index-todos']);
     }
 
 }

@@ -1,5 +1,5 @@
 <?php 
-if ($model->liso != null && count($model->liso->disenios[0]->getBehavior('galleryBehavior')->getImages()) > 0): 
+if ($model->liso != null && !$model->liso->estaVacia()): 
     ?>
     <div class="lisos-fixed" >
         <div class="container productos-fijos">
@@ -8,7 +8,7 @@ if ($model->liso != null && count($model->liso->disenios[0]->getBehavior('galler
                 <div class="swiper-wrapper" >      
 
 
-                    <?php foreach ($model->liso->disenios[0]->galleryImages as $lisos) : 
+                    <?php foreach ($model->liso->getAllDisenios2() as $lisos) : 
                         
                         ?>
 
