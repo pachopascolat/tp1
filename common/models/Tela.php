@@ -244,24 +244,26 @@ class Tela extends \yii\db\ActiveRecord {
         $disenios = [];
         foreach ($this->disenios as $galeria) {
             foreach ($galeria->galleryImages as $image) {
-                $disenios[] = $image;
+                if (!$image->agotado)
+                    $disenios[] = $image;
             }
         }
         foreach ($this->telasHijas as $tela_anidada) {
 //            $galerias = $tela_anidada->telaHija->disenios;
             foreach ($tela_anidada->telaHija->disenios as $galeria) {
                 foreach ($galeria->galleryImages as $image) {
-                    $disenios[] = $image;
+                    if (!$image->agotado)
+                        $disenios[] = $image;
                 }
             }
         }
         return $disenios;
     }
-    
-    function getSliders(){
+
+    function getSliders() {
         $disenios = $this->getAllDisenios2();
         $sliders = ceil(count($disenios) / 45);
-        $galeria = array_chunk($disenios, ceil(count($disenios)/$sliders));
+        $galeria = array_chunk($disenios, ceil(count($disenios) / $sliders));
         return $galeria;
     }
 

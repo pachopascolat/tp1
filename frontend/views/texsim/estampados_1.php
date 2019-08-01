@@ -78,7 +78,8 @@ $menus = [null, "hogar", "moda"];
 //                        }
                         if ($img == null) {
                             echo '<div class="swiper-slide"></div>';
-                        } else if ($img->agotado) {
+                        } else 
+                            if ($img->agotado) {
                             
                         } else {
                             ?>   
