@@ -68,7 +68,7 @@ $catArray = ['Hogar', 'Moda'];
                             <?php
                             if ($cat->telas != null && count($cat->telas) > $foo):
                                 ?>
-                                                                        <!--<a role="button" class="more-less-link"  data-toggle="collapse" href="#collapse<?= $cat->id_categoria ?>" role="button" aria-expanded="false" aria-controls="collapseExample<?= $cat->id_categoria ?>">-->
+                                                                                <!--<a role="button" class="more-less-link"  data-toggle="collapse" href="#collapse<?= $cat->id_categoria ?>" role="button" aria-expanded="false" aria-controls="collapseExample<?= $cat->id_categoria ?>">-->
                                 <div class="float-right">                          
                                     <?php if ($index == 0) echo"<small>ver telas</small>"; ?>
                                     <i class="fas fa-plus more-less"></i>
@@ -87,16 +87,15 @@ $catArray = ['Hogar', 'Moda'];
 //                            echo "<div class='row'></div>";
 //                        }
                     $telas = common\models\Tela::find()->where(['categoria_id' => $cat->id_categoria])->orderBy('orden_tela')->all();
-
+                    $odd = true;
                     foreach ($cat->categoriaTelas as $key => $catTela):
                         if ($catTela->tela && !$catTela->tela->ocultar && !$catTela->tela->estaVacia()):
                             $tela = $catTela->tela;
-                            $key % 2 == 0 ? $color = "btn-light" : $color = "btn-gray-200";
                             ?>
                             <div  class="row" >
                                 <div class="col-12 col-md-12 col-sm-12">
                                     <div>
-                                        <a  class="col-12  btn <?= $color ?> text-dark text-left letter-spacing" href="<?= yii\helpers\Url::to(['texsim/categorias', 'id' => $tela->id_tela, 'nombre_tela' => $tela->nombre_tela]) ?>">
+                                        <a  class="col-12  btn <?= $odd ? "btn-light" : "btn-gray-200" ?> text-dark text-left letter-spacing" href="<?= yii\helpers\Url::to(['texsim/categorias', 'id' => $tela->id_tela, 'nombre_tela' => $tela->nombre_tela]) ?>">
                                             <h6><?= $tela->nombre_tela ?> <small><?= $tela->descripcion_tela ?></small></h6>
                                         </a>
                                     </div>
@@ -104,6 +103,7 @@ $catArray = ['Hogar', 'Moda'];
                             </div>
 
                             <?php
+                            $odd = !$odd;
                         endif;
                     endforeach;
                     ?>
