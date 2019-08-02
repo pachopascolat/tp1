@@ -29,11 +29,11 @@
                                         <?= $lisos->name ." ".$lisos->description ?>
                                     </h3>
                                     <h2 id="" class="modal-tela-nombre mb-2  mt-lg-1 text-tiles">
-                                        <?= $model->getNombreCompleto() ?>
+                                        <?= $lisos->getTela()->nombre_tela ?>
                                     </h2>
 
                                     <p id="" class="modal-descripcion mb-4 text-muted">
-                                        <?= $model->descripcion_larga_tela ?>                                                           
+                                        <?= $lisos->getTela()->descripcion_larga_tela ?>                                                           
                                     </p>
                                     <form action="#">
                                         <input class="modal-disenio-id" name="id" value="<?= $lisos->id ?>" type="hidden"></input>

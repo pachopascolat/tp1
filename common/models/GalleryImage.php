@@ -128,25 +128,25 @@ class GalleryImage extends \yii\db\ActiveRecord {
         return $disenio;
     }
 
-    public function getTela() {
-        $tela = new Tela();
-        if ($this->type == 'modelo') {
-            $modelo = Modelo::findOne($this->ownerId);
-            if ($modelo != null) {
-                $modelimg = GalleryImage::findOne($modelo->disenio_id);
-                $disenio = \common\models\Estampado::findOne($modelimg->ownerId);
-                $tela = \common\models\Tela::findOne($disenio->tela_id);
-            }
-        } elseif ($this->type == 'tela') {
-            return $this->getTipoDisenio();
-        } else {
-            if ($this->getTipoDisenio() != null) {
-                $tela_id = $this->getTipoDisenio()->tela_id;
-                $tela = \common\models\Tela::findOne($tela_id);
-            }
-        }
-        return $tela;
-    }
+//    public function getTela() {
+//        $tela = new Tela();
+//        if ($this->type == 'modelo') {
+//            $modelo = Modelo::findOne($this->ownerId);
+//            if ($modelo != null) {
+//                $modelimg = GalleryImage::findOne($modelo->disenio_id);
+//                $disenio = \common\models\Estampado::findOne($modelimg->ownerId);
+//                $tela = \common\models\Tela::findOne($disenio->tela_id);
+//            }
+//        } elseif ($this->type == 'tela') {
+//            return $this->getTipoDisenio();
+//        } else {
+//            if ($this->getTipoDisenio() != null) {
+//                $tela_id = $this->getTipoDisenio()->tela_id;
+//                $tela = \common\models\Tela::findOne($tela_id);
+//            }
+//        }
+//        return $tela;
+//    }
 
     public function getUrl($version = 'original') {
 
@@ -164,6 +164,10 @@ class GalleryImage extends \yii\db\ActiveRecord {
     public function getNombreTela() {
         if ($this->galeria)
             return $this->galeria->tela->nombre_tela;
+    }
+    public function getTela() {
+        if ($this->galeria)
+            return $this->galeria->tela;
     }
 
     public function getTelaId() {

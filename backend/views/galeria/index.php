@@ -13,18 +13,18 @@ $this->title = Yii::t('app', 'Modelos de Diseños');
 //$tela = $searchModel->galeria->tela;
 $nombre_tela = $tela->nombre_tela;
 
-$categoria_padre = $tela->categoria->categoria_padre;
+//$categoria_padre = $tela->categoria->categoria_padre;
 
 $menus = [null, "Hogar", "Moda"];
 
-$this->params['breadcrumbs'][] = [
-    'label' => Yii::t('app', $menus[$categoria_padre]),
-    'url' => ['/categoria/index', 'categoria_padre' => $categoria_padre]
-];
-$this->params['breadcrumbs'][] = [
-    'label' => Yii::t('app', $tela->categoria->nombre_categoria),
-    'url' => ['/tela/index-por-categoria', 'categoria_id' => $tela->categoria_id]
-];
+//$this->params['breadcrumbs'][] = [
+//    'label' => Yii::t('app', $menus[$categoria_padre]),
+//    'url' => ['/categoria/index', 'categoria_padre' => $categoria_padre]
+//];
+//$this->params['breadcrumbs'][] = [
+//    'label' => Yii::t('app', $tela->categoria->nombre_categoria),
+//    'url' => ['/tela/index-por-categoria', 'categoria_id' => $tela->categoria_id]
+//];
 $this->params['breadcrumbs'][] = $tela->getNombreCompleto();
 ?>
 <div class="estampado-index">
