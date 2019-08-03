@@ -47,7 +47,7 @@
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
 
-                                                <button id="submit-consulta" type="button" class="submit-zoom btn btn-dark btn-lg mb-1">Consultar<i class="fa fa-chevron-right"></i></button>
+                                                <button  type="button" class="submit-zoom btn btn-dark btn-lg mb-1">Consultar<i class="fa fa-chevron-right"></i></button>
                                             </li>
 
                                         </ul>

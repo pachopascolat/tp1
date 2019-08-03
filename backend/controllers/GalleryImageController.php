@@ -38,7 +38,7 @@ class GalleryImageController extends Controller {
                 'rules' => [
                     [
                         'allow' => \Yii::$app->user->getId() == 2,
-                        'actions' => ['import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -46,7 +46,7 @@ class GalleryImageController extends Controller {
         ];
     }
 
-    public function actionPhotoGrid($tela_id) {
+    public function actionPhotoGrid() {
 //        $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 //        $dataProvider->pagination = FALSE;
@@ -60,6 +60,22 @@ class GalleryImageController extends Controller {
         }
 
 //        return $this->render('_photoGrid', ['data' => $dataProvider->getModels(),'tela_id'=>$tela_id]);
+    }
+
+    public function actionExportIndex($tela_id = -1) {
+        $data = [];
+//        $telas = [];
+        $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        if ($searchModel->load(\Yii::$app->request->post())) {
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }
+        $dataProvider->setPagination(FALSE);
+        $data = $dataProvider->getModels();
+        return $this->render('exportIndex', ['data' => $data,
+//            'telas'=>$telas,
+                    'searchModel' => $searchModel]);
     }
 
     public function actionExportar($tela_id) {
@@ -459,6 +475,16 @@ class GalleryImageController extends Controller {
         $model = GalleryImage::findOne($id);
         if ($model != null) {
             $model->oferta = !$model->oferta;
+            $model->save();
+        }
+//        $this->redirect(['index']);
+    }
+
+    public function actionToggleEstado() {
+        $id = Yii::$app->request->get('id');
+        $model = GalleryImage::findOne($id);
+        if ($model != null) {
+            $model->estado = !$model->estado;
             $model->save();
         }
 //        $this->redirect(['index']);

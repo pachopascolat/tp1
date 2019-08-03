@@ -46,6 +46,16 @@ $this->title = 'Diseños';
                 }
             })
         });
+        $('.estado').on('click',function () {
+            var id = $(this).data('id-dis');
+            $.ajax({
+                url: 'toggle-estado',
+                data: {id: id},
+                success: function () {
+                    $.pjax.reload({container: '#pjax-disenios',timeout:1500});
+                }
+            })
+        });
         $('.oferta').on('click',function () {
             var id = $(this).data('id-dis');
             $.ajax({
@@ -171,6 +181,24 @@ $this->title = 'Diseños';
 //                    echo Html::activeCheckbox($model, 'agotado');
                 }
             ],
+            [
+                'attribute' => 'estado',
+                'format' => 'raw',
+                'value' => function($model, $index) {
+                    $label = "Normal";
+                    $style = "default";
+                    if ($model->estado == 1) {
+                        $label = "Visible";
+                        $style = "primary";
+                    }
+                    return Html::a($label, null, ["data-pjax" => 0, "data-id-dis" => $index, 'class' => "estado btn btn-$style"]);
+
+//                    return Html::activeCheckbox($model, 'agotado[]', ['value' => $model->agotado, 'disabled' => false, 'label' => false]);
+//                    echo Html::activeCheckbox($model, 'agotado');
+                }
+            ],
+                    
+                   
 //            [
 //                'attribute' => 'oferta',
 //                'format' => 'raw',

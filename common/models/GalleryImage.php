@@ -5,7 +5,6 @@ namespace common\models;
 use Yii;
 use yii\web\UploadedFile;
 
-
 /**
  * This is the model class for table "gallery_image".
  *
@@ -15,6 +14,8 @@ use yii\web\UploadedFile;
  * @property int $rank
  * @property string $name
  * @property string $description
+ * @property int $agotado
+ * @property int $estado
  *
  * @property ItemCarrito[] $itemCarritos
  * @property Modelo[] $modelos
@@ -37,7 +38,8 @@ class GalleryImage extends \yii\db\ActiveRecord {
         return [
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'csv, xls, xlsx', 'maxSize' => 1024 * 1024 * 20, 'checkExtensionByMimeType' => false],
             [['ownerId'], 'required'],
-            [['rank'], 'integer'],
+            [['rank',], 'integer'],
+            [['estado',], 'safe'],
             [['oferta', 'agotado'], 'boolean'],
             [['description'], 'string'],
             [['type', 'ownerId', 'name'], 'string', 'max' => 255],
@@ -87,7 +89,7 @@ class GalleryImage extends \yii\db\ActiveRecord {
     public function getGaleriaModelos() {
         return $this->hasOne(Galeria::className(), ['color_id' => 'id'])
 //                ->where(['color_id'=>'id'])
-//                ->where(['tipo_galeria'=> Galeria::MODEL0])
+                        ->where(['tipo_galeria' => Galeria::MODEL0])
         ;
     }
 
@@ -151,7 +153,7 @@ class GalleryImage extends \yii\db\ActiveRecord {
     public function getUrl($version = 'original') {
 
 //        $domain = parse_url('http://google.com', PHP_URL_HOST);
-        $url = trim(\yii\helpers\Url::home(true),"admin/") . "/backend/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
+        $url = trim(\yii\helpers\Url::home(true), "admin/") . "/backend/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
         return $url;
     }
 
@@ -165,6 +167,7 @@ class GalleryImage extends \yii\db\ActiveRecord {
         if ($this->galeria)
             return $this->galeria->tela->nombre_tela;
     }
+
     public function getTela() {
         if ($this->galeria)
             return $this->galeria->tela;
@@ -183,15 +186,29 @@ class GalleryImage extends \yii\db\ActiveRecord {
         }
     }
 
-    public function agotarStock(){
-       return  \Yii::$app->db->createCommand("UPDATE gallery_image SET agotado=1")->execute();
+    public function agotarStock() {
+        return \Yii::$app->db->createCommand("UPDATE gallery_image SET agotado=1")->execute();
     }
-    
-    public function castearName(){
+
+    public function castearName() {
         $images = $this->find()->all();
-        foreach ($images as $image){
+        foreach ($images as $image) {
             $image->name = ltrim($image->name, '0');
             $image->save();
         }
     }
+
+    function hayQueMostrarlo() {
+        return $this->estado || !$this->agotado;
+    }
+
+    function tieneModelos() {
+        if ($this->galeriaModelos) {
+            foreach ($this->galeriaModelos->getGalleryImages2() as $image) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

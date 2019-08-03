@@ -56,7 +56,7 @@ foreach ($model->getAllDisenios() as $key => $estampado):
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
 
-                                                <button id="submit-consulta" type="button" class="submit-zoom btn btn-dark btn-lg mb-1"> Consultar<i class="fa fa-chevron-right"></i></button>
+                                                <button id="" type="button" class="submit-zoom btn btn-dark btn-lg mb-1"> Consultar<i class="fa fa-chevron-right"></i></button>
                                             </li>
 
                                         </ul>

@@ -3,6 +3,17 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
 ?>
 
 <style>
+    
+    
+    .vermas{
+            background: rgba(0,0,0,.6);
+        z-index: 1000;
+        position: absolute;
+        bottom:0;
+        right: 0;
+        padding: 1px;
+    }
+    
     .ribbon-agotado::before{
         border-top: 14px solid #EF453D;
     }
@@ -180,6 +191,7 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     }
 
     .product-hover-overlay{
+        /*height: 80%;*/
         display: block;
     }
 

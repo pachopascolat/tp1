@@ -53,7 +53,8 @@ class GalleryImageSearch extends GalleryImage {
                 ;
 //        $query->where(['tipo_galeria' =>Galeria::DISENIO,'type'=>'galeria']);
         $query->where(['<>','tipo_galeria', Galeria::LISO]);
-        $query->andWhere(['type'=>'galeria']);
+        $query->andWhere(['agotado'=>false]);
+        $query->orWhere(['estado'=>1]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -89,9 +90,10 @@ class GalleryImageSearch extends GalleryImage {
             'agotado' => $this->agotado,
             'oferta' => $this->oferta,
             'name' => $this->name,
-            'tela_id' => $this->tela_id,
+//            'tela_id' => $this->tela_id,
             'type' => $this->type,
             'galeria.tipo_galeria' => $this->tipo_galeria,
+            'tela.id_tela'=>$this->tela_id,
         ]);
 
         $query->andFilterWhere(['like', 'gallery_image.type', $this->type])

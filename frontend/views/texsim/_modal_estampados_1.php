@@ -12,22 +12,26 @@ foreach ($model->getSliders() as $key => $galeria):
                         </svg>
                     </button>
                     <div class="modal-body"> 
-                        
+
                         <?php
                         $img = $dis;
                         ?>
-                        <div class="ribbon ribbon-agotado <?=!$img->agotado? "d-none":""?>">
-                            Agotado
-                        </div>
-                        <div class="ribbon ribbon-oferta <?=!$img->oferta? "d-none":""?>">
-                            Oferta
-                        </div>
+        <!--                        <div class="ribbon ribbon-agotado <?php // echo !$img->agotado? "d-none":"" ?>">
+            Agotado
+        </div>
+        <div class="ribbon ribbon-oferta <?php // echo !$img->oferta? "d-none":"" ?>">
+            Oferta
+        </div>-->
 
                         <div class="row">
                             <div class="col-lg-6">
                                 <div id="modelos-slider<?= $dis->id ?>" data-slider-id="<?= $dis->id ?>" class="owl-carousel owl-theme owl-dots-modern detail-full owl">
-                                    <div data-agotado="<?= $img->agotado ?>"  data-oferta="<?= $img->oferta ?>" data-id="<?= $dis->id ?>" data-code="<?= $dis->name ?>" id="modal-img<?= $dis->id ?>" style="background: center center  url('<?= $dis->getUrl('original') ?>') no-repeat; background-size: cover;" class="detail-full-item-modal"></div>
-                                    <?= $this->render('_modelos_div', ['disenio' => $img]) ?>
+                                    <div 
+                                        data-nombre="<?= $dis->description ?>" 
+                                        data-id="<?= $dis->id ?>" 
+                                        data-code="<?= $dis->name ?>" 
+                                        id="modal-img<?= $dis->id ?>" style="background: center center  url('<?= $dis->getUrl('original') ?>') no-repeat; background-size: cover;" class="detail-full-item-modal"></div>
+                                        <?= $this->render('_modelos_div', ['disenio' => $img]) ?>
                                 </div>
                                 <h6 class="text-center cant-modelos" id="cant-modelos-<?= $dis->id ?>"></h6>
 
@@ -35,7 +39,7 @@ foreach ($model->getSliders() as $key => $galeria):
                             <div class="col-lg-6 d-flex align-items-center justify-content-center">
                                 <div>
                                     <h3 id="" class="modal-disenio-codigo  mt-2 mt-lg-1 font-alt">
-                                        <?= $dis->name. " " .$dis->description ?>
+                                        <?= $dis->name . " " . $dis->description ?>
                                     </h3>
                                     <h2 id="" class="modal-tela-nombre mb-2  mt-lg-1 text-tiles">
                                         <?= $img->getTela()->nombre_tela ?>
@@ -56,7 +60,7 @@ foreach ($model->getSliders() as $key => $galeria):
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
 
-                                                <button id="submit-consulta" type="button" class="submit-zoom btn btn-dark btn-lg mb-1"> Consultar<i class="fa fa-chevron-right"></i></button>
+                                                <button  type="button" class="submit-zoom btn btn-dark btn-lg mb-1"> Consultar<i class="fa fa-chevron-right"></i></button>
                                             </li>
 
                                         </ul>

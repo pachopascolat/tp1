@@ -109,7 +109,12 @@ class Galeria extends \yii\db\ActiveRecord
     }
     
     public function getGalleryImages(){
-        return $this->hasMany(GalleryImage::className(), ['ownerId'=>'id_galeria'])->where(['agotado'=>false]);
+        return $this->hasMany(GalleryImage::className(), ['ownerId'=>'id_galeria'])
+                ->where(['agotado'=>false])
+//                ->andWhere()
+                ->orWhere(['estado'=>1])
+                ->andWhere(['type'=>'galeria'])
+                ;
     }
     
     

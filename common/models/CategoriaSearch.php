@@ -9,13 +9,12 @@ use common\models\Categoria;
 /**
  * CategoriaSearch represents the model behind the search form of `common\models\Categoria`.
  */
-class CategoriaSearch extends Categoria
-{
+class CategoriaSearch extends Categoria {
+
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id_categoria', 'categoria_padre', 'orden_categoria'], 'integer'],
             [['nombre_categoria', 'descripción'], 'safe'],
@@ -25,8 +24,7 @@ class CategoriaSearch extends Categoria
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -38,9 +36,10 @@ class CategoriaSearch extends Categoria
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
-        $query = Categoria::find();
+    public function search($params) {
+        $query = Categoria::find()
+//                ->joinWith('categoriaTelas')
+                ->orderBy('moda', 'orden_hogar');
 
         // add conditions that should always apply here
 
@@ -61,15 +60,16 @@ class CategoriaSearch extends Categoria
             'id_categoria' => $this->id_categoria,
             'categoria_padre' => $this->categoria_padre,
             'orden_categoria' => $this->orden_categoria,
-            'hogar'=>$this->hogar,
-            'moda'=>$this->moda,
-            'orden_hogar'=>$this->orden_hogar,
-            'orden_moda'=>$this->orden_moda,
+            'hogar' => $this->hogar,
+            'moda' => $this->moda,
+            'orden_hogar' => $this->orden_hogar,
+            'orden_moda' => $this->orden_moda,
         ]);
 
         $query->andFilterWhere(['like', 'nombre_categoria', $this->nombre_categoria])
-            ->andFilterWhere(['like', 'descripción', $this->descripción]);
+                ->andFilterWhere(['like', 'descripción', $this->descripción]);
 
         return $dataProvider;
     }
+
 }

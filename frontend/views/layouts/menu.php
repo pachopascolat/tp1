@@ -387,7 +387,7 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
 
 
                                 <?=
-                                $form->field($user, 'login', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']]
+                                $form->field($user, 'login', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1', 'autocomplete'=>"username"]]
                                 );
                                 ?>
 
@@ -395,7 +395,7 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
 
                                 <?=
                                         $form->field(
-                                                $user, 'password', ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2']])
+                                                $user, 'password', ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2', 'autocomplete'=>"current-password"]])
                                         ->passwordInput()
                                         ->label()
                                 ?>

@@ -11,7 +11,9 @@ if ($disenio->galeriaModelos) {
         $active = common\models\GalleryImage::findOne($dis->id);
         if (!$active->agotado):
             ?>
-            <div data-id="<?= $dis->id ?>" data-code="<?= $dis->name ?>" id="modal-img<?= $dis->id ?>" style="background: center center  url('<?= $dis->getUrl('original') ?>') no-repeat; background-size: cover;" class="detail-full-item-modal"></div>
+            <div
+                data-nombre="<?= $dis->description ?>" 
+                data-id="<?= $dis->id ?>" data-code="<?= $dis->name ?>" id="modal-img<?= $dis->id ?>" style="background: center center  url('<?= $dis->getUrl('original') ?>') no-repeat; background-size: cover;" class="detail-full-item-modal"></div>
             <?php
         endif;
     endforeach;

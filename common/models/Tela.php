@@ -244,7 +244,7 @@ class Tela extends \yii\db\ActiveRecord {
         $disenios = [];
         foreach ($this->disenios as $galeria) {
             foreach ($galeria->galleryImages as $image) {
-                if (!$image->agotado)
+//                if ($image->hayQueMostrarlo())
                     $disenios[] = $image;
             }
         }
@@ -252,7 +252,7 @@ class Tela extends \yii\db\ActiveRecord {
 //            $galerias = $tela_anidada->telaHija->disenios;
             foreach ($tela_anidada->telaHija->disenios as $galeria) {
                 foreach ($galeria->galleryImages as $image) {
-                    if (!$image->agotado)
+//                    if ($image->hayQueMostrarlo())
                         $disenios[] = $image;
                 }
             }

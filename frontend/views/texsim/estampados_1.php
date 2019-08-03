@@ -23,7 +23,7 @@ $menus = [null, "hogar", "moda"];
         <!-- Breadcrumbs -->
         <ol class="breadcrumb justify-content-left">
             <li class="breadcrumb-item"><a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
-            <!--<li class="breadcrumb-item"><a href="<?php // echo yii\helpers\Url::to([$menus[$model->categoria->categoria_padre??'']])  ?>"><?php // echo $menus[$model->categoria->categoria_padre??'']  ?></a></li>-->
+            <!--<li class="breadcrumb-item"><a href="<?php // echo yii\helpers\Url::to([$menus[$model->categoria->categoria_padre??'']])      ?>"><?php // echo $menus[$model->categoria->categoria_padre??'']      ?></a></li>-->
             <li class="breadcrumb-item active"><?= $model->getNombreCompleto() ?>        </li>
         </ol>
         <?php
@@ -34,8 +34,8 @@ $menus = [null, "hogar", "moda"];
         <div class="d-flex align-items-center">
             <?=
             $form->field($model, 'id_tela')->dropdownList($items, [
-                'class' => 'form-control m-1',
-                'onchange' => 'filtrar()'
+                'class' => 'form-control p-0 filtrar-telas',
+//                'onchange' => 'filtrar()'
             ])->label(false);
             ?>
 
@@ -67,7 +67,7 @@ $menus = [null, "hogar", "moda"];
             <?php
 //            $ordenados = $estampado->ordenar();
             ?>                        
-            <div class="swiper-container swiper<?=$key?>">
+            <div class="swiper-container swiper<?= $key ?>">
 
                 <div class="swiper-wrapper">
                     <?php
@@ -78,9 +78,6 @@ $menus = [null, "hogar", "moda"];
 //                        }
                         if ($img == null) {
                             echo '<div class="swiper-slide"></div>';
-                        } else 
-                            if ($img->agotado) {
-                            
                         } else {
                             ?>   
                             <div class="swiper-slide">
@@ -88,18 +85,29 @@ $menus = [null, "hogar", "moda"];
                                     <div class="product-image">
                                         <?php
 //                                        $img = \common\models\GalleryImage::findOne($dis->id);
-                                        if ($img->agotado):
-                                            ?>
-                                            <img src="<?= Yii::getAlias("@web/img/agotado.svg") ?>" class="img-fluid img-agotado">
-                                            <?php
-                                        elseif ($img->oferta):
-                                            ?>
-                                            <img src="<?= Yii::getAlias("@web/img/oferta.svg") ?>" class="img-fluid img-agotado">
+//                                        if ($img->agotado):
+                                        ?>
+                                            <!--<img src="<?= Yii::getAlias("@web/img/agotado.svg") ?>" class="img-fluid img-agotado">-->
+                                        <?php
+//                                        elseif ($img->oferta):
+                                        ?>
+                                            <!--<img src="<?= Yii::getAlias("@web/img/oferta.svg") ?>" class="img-fluid img-agotado">-->
 
-                                        <?php endif;
+                                        <?php // endif;
                                         ?>
                                         <img data-src='<?= $dis->getUrl('preview') ?>' class="swiper-lazy img-fluid">
                                         <div class="swiper-lazy-preloader" style="margin-top: 10px"></div>
+                                        <?php if ($dis->tieneModelos()): ?>
+                                            <a 
+                                                href=""
+                                                data-target="#exampleModal-<?= $dis->id ?>"
+                                                data-toggle="modal"
+                                                class="text-light vermas">
+                                                ver +
+                                                 <!--<i class="fa fa-expand-arrows-alt"></i>-->
+                                                <!--<i class="fa fa-2x fa-plus-circle"></i>-->
+                                            </a>
+                                        <?php endif; ?>
                                         <div class="product-hover-overlay"><a  class="product-hover-overlay-link"></a>
                                             <div class="product-code-texsim text-light ">
                                                 <p><?= $dis->description ?></p>
@@ -114,6 +122,7 @@ $menus = [null, "hogar", "moda"];
                                                      <!--<i class="fa fa-expand-arrows-alt"></i>-->
                                                     <i class="fa fa-2x fa-search"></i>
                                                 </a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -148,7 +157,7 @@ $menus = [null, "hogar", "moda"];
 
 
         <div class="shadow-swiper-container"></div> 
-      
+
 
     </div>
 

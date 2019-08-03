@@ -1,7 +1,13 @@
 <script>
-    var filtrar = function () {
-        $("#filtro-telas").submit();
-    }
+    $('.filtrar-telas').change(function () {
+        var id = $(this).val();
+        var url = 'designs?id=' + id;
+        if (url) {
+            window.location = url;
+        }
+        return false;
+//        $("#filtro-telas").submit();
+    });
 
     //mostrar y esconder lisos
     function vermostrar(e) {
@@ -99,10 +105,11 @@
 //        var code;
 //        var id;
         var oferta, agotado, id, code;
-        code = active.data('code');
-        id = active.data('id');
-        oferta = active.data('oferta');
-        agotado = active.data('agotado');
+        var code = active.data('code');
+        var name = active.data('nombre');
+        var id = active.data('id');
+        var oferta = active.data('oferta');
+        var agotado = active.data('agotado');
 
         var modal = carrousel.closest('.modal');
         var idInput = modal.find('.modal-disenio-id');
@@ -125,7 +132,7 @@
 
 
         cantInput.val(1);
-        h3codigo.text(code);
+        h3codigo.text(code+" "+name);
         idInput.val(id);
         counter(event);
 //                    console.log(code);
