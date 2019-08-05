@@ -6,12 +6,16 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     
     
     .vermas{
-            background: rgba(0,0,0,.6);
+            /*background-color:#343A40;*/
+            background-color:black;
         z-index: 1000;
         position: absolute;
         bottom:0;
         right: 0;
-        padding: 1px;
+        padding: 0.4em;
+        /*font-size: 0.8em;*/
+        font-weight: bold;
+        text-decoration: none !important;
     }
     
     .ribbon-agotado::before{
@@ -47,6 +51,10 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     @media (min-width:320px)  { 
          /*smartphones, iPhone, portrait 480x320 phones*/  
 
+         .vermas{
+             font-size: 0.4em;
+         }
+         
          .product-code-texsim{
              font-size: 0.7rem;
          }
@@ -77,6 +85,10 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     @media (min-width:481px)  {
          /*portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide.*/  
 
+         .vermas{
+             font-size: 0.5em;
+         }
+         
         .lisos-fixed{
             bottom:-50px;
             /*position: sticky !important ;*/
@@ -107,6 +119,10 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     @media (min-width:641px)  {
          /*portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones*/ 
 
+         .vermas{
+             font-size: 0.6em;
+         }
+         
          .product-code-texsim{
              font-size: 0.9rem;
          }
@@ -120,6 +136,10 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     @media (min-width:961px)  {
          /*tablet, landscape iPad, lo-res laptops ands desktops*/  
 
+         .vermas{
+             font-size: 0.7em;
+         }
+         
          .product-code-texsim{
              font-size: 1rem;
          }
@@ -134,6 +154,10 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     @media (min-width:1025px) {
          /*big landscape tablets, laptops, and desktops*/  
 
+         .vermas{
+             font-size: 0.8em;
+         }
+         
         .lisos-fixed{
             position: fixed !important ;
             /*-webkit-position: sticky;*/

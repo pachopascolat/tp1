@@ -103,7 +103,7 @@ $menus = [null, "hogar", "moda"];
                                                 data-target="#exampleModal-<?= $dis->id ?>"
                                                 data-toggle="modal"
                                                 class="text-light vermas">
-                                                ver +
+                                                VER +
                                                  <!--<i class="fa fa-expand-arrows-alt"></i>-->
                                                 <!--<i class="fa fa-2x fa-plus-circle"></i>-->
                                             </a>
