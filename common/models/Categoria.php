@@ -93,4 +93,8 @@ class Categoria extends \yii\db\ActiveRecord
         $parent = $this->hogar?'Hogar':'Moda';
         return $this->nombre_categoria." ($parent)";
     }
+    
+    function getNroTelas(){
+        return count($this->categoriaTelas);
+    }
 }

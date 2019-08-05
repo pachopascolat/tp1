@@ -43,6 +43,7 @@ class TelaSearch extends Tela
     {
         $query = Tela::find();
         $query->joinWith('categoria');
+        $query->joinWith('categorias');
 
         // add conditions that should always apply here
 
@@ -63,10 +64,11 @@ class TelaSearch extends Tela
         $query->andFilterWhere([
             'id_tela' => $this->id_tela,
             'orden_tela' => $this->orden_tela,
-            'categoria_id' => $this->categoria_id,
+//            'categoria_id' => $this->categoria_id,
             'categoria_padre' => $this->categoria_padre,
             'largo' => $this->largo,
             'ancho' => $this->ancho,
+            'categoria_tela.categoria_id'=>$this->categoria_id,
         ]);
 
         $query

@@ -72,21 +72,18 @@ class TelaController extends Controller {
     }
 
    
-    public function actionIndexPorCategoriaOld($categoria_id = 1) {
-        $categoria_padre = \common\models\Categoria::findOne($categoria_id)->categoria_padre;
-        if ($categoria_padre == null) {
-            $categoria_padre = 1;
-        }
-        $searchModel = new TelaSearch();
+    public function actionIndexPorCategoria($categoria_id = null) {
+        
+        $searchModel = new TelaSearch(['categoria_id'=>$categoria_id]);
 //        $searchModel->categoria_padre = $categoria_padre;
-        $searchModel->categoria_id = $categoria_id;
+//        $searchModel->categoria_id = $categoria_id;
 //        $searchModel = new TelaSearch(['categoria_padre' => $categoria_padre,'categoria_id'=>$categoria_id]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('indexPorCategoria', [
+        return $this->render('indexTodos', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
-                    'categoria_padre' => $categoria_padre,
+//                    'categoria_padre' => $categoria_padre,
         ]);
     }
 
