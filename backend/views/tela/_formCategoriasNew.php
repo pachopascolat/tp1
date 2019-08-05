@@ -16,7 +16,10 @@ use zxbodya\yii2\galleryManager\GalleryManager;
 
     <?php
     $categorias = \common\models\Categoria::find()->orderBy('nombre_categoria')->all();
-    $items = yii\helpers\ArrayHelper::map($categorias, 'id_categoria', 'nombre_categoria');
+    foreach ($categorias as $categoria){
+        $categoria->parent_category = $categoria->getParentCategory();
+    }
+    $items = yii\helpers\ArrayHelper::map($categorias, 'id_categoria', 'parent_category');
 //    echo Html::activeDropDownList($model, 'tela_hija', $items, ['class' => 'form-control']);
     echo $form->field($model, 'category')->dropDownList($items, ['prompt'=>'Seleccione Nueva Categoria','class' => 'form-control'])->label(false);
     ?>

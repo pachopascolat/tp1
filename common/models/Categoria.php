@@ -24,6 +24,7 @@ use Yii;
  */
 class Categoria extends \yii\db\ActiveRecord
 {
+    public $parent_category;
     /**
      * {@inheritdoc}
      */
@@ -41,7 +42,7 @@ class Categoria extends \yii\db\ActiveRecord
             [['nombre_categoria'], 'required'],
             [['descripción'], 'string'],
             [['categoria_padre', 'orden_categoria','orden_hogar','orden_moda','hogar','moda'], 'integer'],
-            [['nombre_categoria'], 'string', 'max' => 45],
+            [['nombre_categoria','parent_category'], 'string', 'max' => 45],
             [['categoria_padre'], 'exist', 'skipOnError' => true, 'targetClass' => Categoria::className(), 'targetAttribute' => ['categoria_padre' => 'id_categoria']],
         ];
     }
@@ -86,5 +87,10 @@ class Categoria extends \yii\db\ActiveRecord
     public function getTelas()
     {
         return $this->hasMany(Tela::className(), ['categoria_id' => 'id_categoria'])->orderBy('orden_tela');
+    }
+    
+    function getParentCategory(){
+        $parent = $this->hogar?'Hogar':'Moda';
+        return $this->nombre_categoria." ($parent)";
     }
 }
