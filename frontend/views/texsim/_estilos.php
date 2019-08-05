@@ -47,6 +47,38 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
 
     }
 
+    @media (min-width:1px){
+        .vermas{
+             font-size: 0.4em;
+         }
+         
+         .product-code-texsim{
+             font-size: 0.7rem;
+         }
+         
+        .lisos-fixed{
+            bottom:-40px;
+            /*position: sticky !important ;*/
+            /*position: -webkit-sticky !important;*/           
+        }
+        .swiper-button-prev{
+            width: 3em ;
+            height: 3em ;
+            background-size: 3em ;
+            border: none ;
+
+        }
+        .swiper-button-next{
+            width: 3em ;
+            height: 3em ;
+            background-size: 3em ;
+            border: none ;
+
+        }
+        .zoom-texsim{
+            font-size: 0.6em ;
+        }
+    }
 
     @media (min-width:320px)  { 
          /*smartphones, iPhone, portrait 480x320 phones*/  
