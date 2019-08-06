@@ -10,9 +10,9 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
             background-color:black;
         z-index: 1000;
         position: absolute;
-        bottom:0;
-        right: 0;
-        padding: 0.4em;
+        bottom:0.4em;
+        right: -0.4em;
+        padding: 0.4em 1em 0.4em 1em;
         /*font-size: 0.8em;*/
         font-weight: bold;
         text-decoration: none !important;
@@ -186,9 +186,9 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
     @media (min-width:1025px) {
          /*big landscape tablets, laptops, and desktops*/  
 
-         .vermas{
+/*         .vermas{
              font-size: 0.8em;
-         }
+         }*/
          
         .lisos-fixed{
             position: fixed !important ;
