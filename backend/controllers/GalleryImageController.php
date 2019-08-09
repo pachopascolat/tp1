@@ -66,10 +66,10 @@ class GalleryImageController extends Controller {
         $data = [];
 //        $telas = [];
         $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->searchVisibles(Yii::$app->request->queryParams);
         
         if ($searchModel->load(\Yii::$app->request->post())) {
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $dataProvider = $searchModel->searchVisibles(Yii::$app->request->queryParams);
         }
         $dataProvider->setPagination(FALSE);
         $data = $dataProvider->getModels();
