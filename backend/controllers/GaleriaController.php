@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\helpers\FileHelper;
 use zxbodya\yii2\galleryManager\GalleryManagerAction;
 use yii\base\Model;
+use yii\filters\AccessControl;
 
 /**
  * GaleriaController implements the CRUD actions for Galeria model.
@@ -38,6 +39,18 @@ class GaleriaController extends Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+//                'only' => ['login', 'logout', 'signup'],
+                'rules' => [
+                    [
+//                        'allow' => \Yii::$app->user->getId() == 2,
+                        'allow' => true,
+                        'actions' => ['ver-disenios','update-galerias','borrar-galeria','crear-galeria','index-todos', 'index', 'create', 'view', 'update', 'delete'],
+                        'roles' => ['stockManager'],
+                    ],
                 ],
             ],
         ];

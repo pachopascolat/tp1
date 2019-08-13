@@ -46,7 +46,7 @@ class TelaController extends Controller {
                     [
                         'allow' => true,
                         'actions' => ['delete-categoria','agregar-categoria','delete-hijo', 'agregar-hijo', 'pasar-categorias', 'index-todos', 'ver-stock', 'borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
-                        'roles' => ['@'],
+                        'roles' => ['stockManager'],
                     ],
                 ],
             ],

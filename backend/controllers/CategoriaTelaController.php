@@ -8,7 +8,7 @@ use common\models\CategoriaTelaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\filters\AccessControl;
 /**
  * CategoriaTelaController implements the CRUD actions for CategoriaTela model.
  */
@@ -23,6 +23,18 @@ class CategoriaTelaController extends Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+//                'only' => ['login', 'logout', 'signup'],
+                'rules' => [
+                    [
+//                        'allow' => \Yii::$app->user->getId() == 2,
+                        'allow' => true,
+                        'actions' => ['index-por-categoria','index-todos', 'index', 'create', 'view', 'update', 'delete'],
+                        'roles' => ['stockManager'],
+                    ],
                 ],
             ],
         ];

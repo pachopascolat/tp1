@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 use zxbodya\yii2\galleryManager\GalleryManagerAction;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-
+use yii\filters\AccessControl;
 /**
  * EstampadoController implements the CRUD actions for Estampado model.
  */
@@ -38,6 +38,18 @@ class EstampadoController extends Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+//                'only' => ['login', 'logout', 'signup'],
+                'rules' => [
+                    [
+//                        'allow' => \Yii::$app->user->getId() == 2,
+                        'allow' => true,
+                        'actions' => ['index-todos', 'index', 'create', 'view', 'update', 'delete'],
+                        'roles' => ['stockManager'],
+                    ],
                 ],
             ],
         ];

@@ -31,9 +31,10 @@ class CategoriaController extends Controller {
 //                'only' => ['login', 'logout', 'signup'],
                 'rules' => [
                     [
-                        'allow' => \Yii::$app->user->getId() == 2,
+//                        'allow' => \Yii::$app->user->getId() == 2,
+                        'allow' => true,
                         'actions' => ['index-todos', 'index', 'create', 'view', 'update', 'delete'],
-                        'roles' => ['@'],
+                        'roles' => ['stockManager'],
                     ],
                 ],
             ],

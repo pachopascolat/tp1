@@ -14,6 +14,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        
 //        'user' => [
 //            'controllerMap'=>[
 //                'admin'=>'backend\controllers\UsuarioController',

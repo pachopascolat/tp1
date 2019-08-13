@@ -34,7 +34,7 @@ class CarritoController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index-pedidos','index', 'create', 'view', 'update', 'index-por-categoria', 'delete'],
-                        'roles' => ['@'],
+                        'roles' => ['ventasManager'],
                     ],
                 ],
             ],
