@@ -48,7 +48,7 @@ class GaleriaController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['ver-disenios','update-galerias','borrar-galeria','crear-galeria','index-todos', 'index', 'create', 'view', 'update', 'delete'],
+                        'actions' => ['galleryApi','ver-disenios','update-galerias','borrar-galeria','crear-galeria','index-todos', 'index', 'create', 'view', 'update', 'delete'],
                         'roles' => ['stockManager'],
                     ],
                 ],
