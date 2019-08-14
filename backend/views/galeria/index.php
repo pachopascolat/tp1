@@ -141,7 +141,7 @@ $this->params['breadcrumbs'][] = $tela->getNombreCompleto();
 //                    }
                     $modelo = common\models\Galeria::findOne(['color_id' => $model->id]);
                     if ($modelo == null) {
-                        $modelo = new \common\models\Galeria(['color_id' => $model->id]);
+                        $modelo = new \common\models\Galeria(['color_id' => $model->id,'tela_id'=>$model->galeria->tela_id]);
                         $modelo->save();
                     }
                     return Yii::$app->controller->renderPartial('/modelo/_form', ['model' => $modelo]);
