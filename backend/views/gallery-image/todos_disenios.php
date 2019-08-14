@@ -77,7 +77,6 @@ $this->title = 'Diseños';
 //            count($sinCargar) > 0 ? Html::button('Sin Cargar', ['class' => 'btn btn-default', 'data-toggle' => "modal", 'data-target' => "#sin-cargar"]) : '',
             $importDif,
             $import,
-            
             '{export}', '{toggleData}'
         ],
         'panel' => [
@@ -94,11 +93,11 @@ $this->title = 'Diseños';
 //            'id',
 //            'galeria.tipo_galeria',
             [
-                'attribute'=>'tipo_galeria',
-                'value'=>function($model){
-                    if($model->galeria->tipo_galeria ==1){
+                'attribute' => 'tipo_galeria',
+                'value' => function($model) {
+                    if ($model->galeria->tipo_galeria == 1) {
                         return "Diseño";
-                    }else{
+                    } else {
                         return "Modelo";
                     }
                 }
@@ -109,8 +108,12 @@ $this->title = 'Diseños';
             ],
             [
                 'attribute' => 'nombre_tela',
-                'value' => 'galeria.tela.nombre_tela'
+                'format' => 'raw',
+                'value' => function($model) {
+                    return Html::a($model->galeria->tela->nombre_tela, Yii::$app->urlManagerFrontEnd->createUrl(['designs', 'id' => $model->galeria->tela_id]), ['data-pjax'=>0,'target' => '_blank']);
+                }
             ],
+            
 //            'galeria.tela.codigo_tela',
 //            [
 //                'label' => 'nombreTela',
@@ -138,9 +141,9 @@ $this->title = 'Diseños';
                 'contentOptions' => ['style' => 'width:100px; white-space: normal;'],
                 'value' => function($model) {
                     $url = yii\helpers\Url::to(['/galeria/update-galerias', 'tipo' => $model->galeria->tipo_galeria, 'tela_id' => $model->galeria->tela_id]);
-                    if($model->galeria->tipo_galeria == common\models\Galeria::MODEL0){
+                    if ($model->galeria->tipo_galeria == common\models\Galeria::MODEL0) {
 //                    $url = yii\helpers\Url::to(['/galeria/ver-disenios', 'tela_id' => $model->galeria->tela_id,'GalleryImageSearch[name]'=>$model->galeria->color->name]);
-                    $url = yii\helpers\Url::to(['/galeria/ver-disenios', 'tela_id' => $model->galeria->tela_id,'GalleryImageSearch[name]'=>$model->galeria->color->name??'']);
+                        $url = yii\helpers\Url::to(['/galeria/ver-disenios', 'tela_id' => $model->galeria->tela_id, 'GalleryImageSearch[name]' => $model->galeria->color->name ?? '']);
                     }
                     $img = Html::img($model->getUrl('preview'), ['class' => 'img-thumbnail']);
                     $link = "<a data-pjax=0 target='_blank' href=$url  >$img</a>";
@@ -197,8 +200,6 @@ $this->title = 'Diseños';
 //                    echo Html::activeCheckbox($model, 'agotado');
                 }
             ],
-                    
-                   
 //            [
 //                'attribute' => 'oferta',
 //                'format' => 'raw',
@@ -228,7 +229,7 @@ $this->title = 'Diseños';
 
 </div>
 <div id="import-stock" class="modal" tabindex="-1" role="dialog">
-    <?php $form = ActiveForm::begin(['action' => ['import'], 'options' => ['enctype' => 'multipart/form-data']]) ?>
+<?php $form = ActiveForm::begin(['action' => ['import'], 'options' => ['enctype' => 'multipart/form-data']]) ?>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -241,7 +242,7 @@ $this->title = 'Diseños';
                 <div class="container">
                     <div class="">
                         <!--<label class="form-control">Archivo Excel</label>--> 
-                        <?= $form->field($searchModel, 'imageFile')->fileInput() ?>
+<?= $form->field($searchModel, 'imageFile')->fileInput() ?>
                     </div>
                 </div>
             </div>
@@ -252,7 +253,7 @@ $this->title = 'Diseños';
 
         </div>
     </div>
-    <?php ActiveForm::end() ?>
+<?php ActiveForm::end() ?>
 </div>
 <div id="import-stock-diferencia" class="modal" tabindex="-1" role="dialog">
     <?php $form = ActiveForm::begin(['action' => ['import-diferencias'], 'options' => ['enctype' => 'multipart/form-data']]) ?>
@@ -268,7 +269,7 @@ $this->title = 'Diseños';
                 <div class="container">
                     <div class="">
                         <!--<label class="form-control">Archivo Excel</label>--> 
-                        <?= $form->field($searchModel, 'imageFile')->fileInput() ?>
+<?= $form->field($searchModel, 'imageFile')->fileInput() ?>
                     </div>
                 </div>
             </div>
@@ -279,5 +280,5 @@ $this->title = 'Diseños';
 
         </div>
     </div>
-    <?php ActiveForm::end() ?>
+<?php ActiveForm::end() ?>
 </div>

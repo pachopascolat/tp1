@@ -52,7 +52,14 @@ $this->title = Yii::t('app', "Telas");
 //            ],
 //            'categoria.nombre_categoria',
             'codigo_tela',
-            'nombre_tela',
+            [
+                'attribute'=>'nombre_tela',
+                'format'=>'raw',
+                'value' => function($model){
+                    return Html::a($model->nombre_tela,Yii::$app->urlManagerFrontEnd->createUrl(['designs', 'id' => $model->id_tela]), ['target'=>'_blank']);
+                }
+            ],
+//            'nombre_tela',
 //            'descripcion_tela',
 //            'orden_tela',
 //            [
