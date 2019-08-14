@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $tela->getNombreCompleto();
 
     <p>
         <?= Html::a(Yii::t('app', 'ver en Frontend'), Yii::$app->urlManagerFrontEnd->createUrl(['designs', 'id' => $tela->id_tela]), ['class' => 'btn btn-primary', 'target' => '_blank', 'data-pjax' => 0]) ?>
+        <?= Html::a(Yii::t('app', 'Ir a Diseños'), ['update-galerias', 'tela_id' => $tela->id_tela], ['class' => 'btn btn-warning']) ?>
 
     </p>
 
@@ -141,7 +142,7 @@ $this->params['breadcrumbs'][] = $tela->getNombreCompleto();
 //                    }
                     $modelo = common\models\Galeria::findOne(['color_id' => $model->id]);
                     if ($modelo == null) {
-                        $modelo = new \common\models\Galeria(['tipo_galeria'=> common\models\Galeria::MODEL0,'color_id' => $model->id,'tela_id'=>$model->galeria->tela_id]);
+                        $modelo = new \common\models\Galeria(['tipo_galeria' => common\models\Galeria::MODEL0, 'color_id' => $model->id, 'tela_id' => $model->galeria->tela_id]);
                         $modelo->save();
                     }
                     return Yii::$app->controller->renderPartial('/modelo/_form', ['model' => $modelo]);

@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $tela->getNombreCompleto();
 
 <p>
     <?= Html::a(Yii::t('app', 'Crear Grupo'), ['crear-galeria','tipo'=>$tipo, 'tela_id' => $tela_id], ['class' => 'btn btn-success']) ?>
+    <?= Html::a(Yii::t('app', 'Ir a Modelos'), ['ver-disenios','tipo'=>$tipo, 'tela_id' => $tela_id], ['class' => 'btn btn-warning']) ?>
 
     <?= Html::a(Yii::t('app', 'ver en Frontend'), Yii::$app->urlManagerFrontEnd->createUrl(['designs', 'id' => $tela_id]), ['class' => 'btn btn-primary', 'target' => '_blank']) ?>
 </p>
