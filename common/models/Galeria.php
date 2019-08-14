@@ -43,7 +43,19 @@ class Galeria extends \yii\db\ActiveRecord
                         /** @var \Imagine\Image\ImageInterface $img */
                         return $img
                                         ->copy()
-                                        ->thumbnail(new \Imagine\Image\Box(200, 200));
+                                        ->thumbnail(new \Imagine\Image\Box(100, 100));
+                    },
+                    '700' => function ($img) {
+                        /** @var \Imagine\Image\ImageInterface $img */
+                        return $img
+                                        ->copy()
+                                        ->thumbnail(new \Imagine\Image\Box(700, 700));
+                    },
+                    '500' => function ($img) {
+                        /** @var \Imagine\Image\ImageInterface $img */
+                        return $img
+                                        ->copy()
+                                        ->thumbnail(new \Imagine\Image\Box(500, 500));
                     },
                 ]
             ]
