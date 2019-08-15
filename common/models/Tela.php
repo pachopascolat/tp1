@@ -262,7 +262,7 @@ class Tela extends \yii\db\ActiveRecord {
     public function getAllDisenios3() {
         $searchModel = new GalleryImageSearch();
         $searchModel->tela_id = $this->id_tela;
-        $dataprovider = $searchModel->searchVisibles(null);
+        $dataprovider = $searchModel->searchOrdenables(null);
         $dataprovider->setPagination(false);
         return $dataprovider->getModels();
     }
