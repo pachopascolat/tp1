@@ -37,6 +37,7 @@ AppAsset::register($this);
             $menuItems = [
 //                ['label' => 'Home', 'url' => ['/site/index']],
 //                ['label' => 'Ofertas', 'url' => ['/gallery-image/index', 'categoria_padre' => 1]],
+                ['label' => 'Ordenar', 'url' => ['/gallery-image/ordenar-disenios']],
                 ['label' => 'PDF', 'url' => ['/gallery-image/export-index']],
                 ['label' => 'Usuarios', 'url' => ['/usuarios']],
                 ['label' => 'Stock', 'url' => ['/gallery-image/ver-stock']],

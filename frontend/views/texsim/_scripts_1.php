@@ -1,4 +1,13 @@
 <script>
+
+    $('.modal').on('show.bs.modal', function (event) {
+        var id = $(this).data('id');
+        var owl = $('#modelos-slider' + id);
+        owl.trigger('to.owl.carousel', [0, 0]);
+        owl.trigger('refresh.owl.carousel');
+    });
+
+
     $('.filtrar-telas').change(function () {
         var id = $(this).val();
         var url = 'designs?id=' + id;
@@ -91,17 +100,21 @@
         items: 1,
         nav: true,
         navText: ["<img class='nav-zoom' src='img/flechaizq.svg'>", "<img class='nav-zoom' src='img/flechader.svg'>"],
-//                    onInitialized: counter,
+//        onInitialized: callback,
         onTranslated: callback,
-        onRefresh: counter,
-        onDragged:
-                callback
+        onRefresh: callback,
+//        onToOwlCarrousel:callback,
+//        onDragged:callback,
+//        onChanged: callback,
 
     });
     function callback(event) {
+        var element = event.target;
         var target = event.relatedTarget;
         var carrousel = target.$element;
         var active = carrousel.find('div.owl-item.active > div');
+//        var active = element.find('div.owl-item.active > div');
+//        active = item
 //        var code;
 //        var id;
         var oferta, agotado, id, code;
@@ -132,7 +145,7 @@
 
 
         cantInput.val(1);
-        h3codigo.text(code+" "+name);
+        h3codigo.text(code + " " + name);
         idInput.val(id);
         counter(event);
 //                    console.log(code);

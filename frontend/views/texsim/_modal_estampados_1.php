@@ -3,7 +3,7 @@ foreach ($model->getSliders() as $key => $galeria):
     foreach ($galeria as $index => $dis):
         ?>
 
-        <div id="exampleModal-<?= $dis->id ?>" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade quickview">
+        <div data-id="<?= $dis->id ?>"  id="exampleModal-<?= $dis->id ?>" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade quickview">
             <div role="document" class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <button type="button" data-dismiss="modal" aria-label="Close" class="close modal-close">
@@ -26,11 +26,14 @@ foreach ($model->getSliders() as $key => $galeria):
                         <div class="row">
                             <div class="col-lg-6">
                                 <div id="modelos-slider<?= $dis->id ?>" data-slider-id="<?= $dis->id ?>" class="owl-carousel owl-theme owl-dots-modern detail-full owl">
-                                    <div 
+                                    <div id="modelo-<?= $dis->id ?>" 
                                         data-nombre="<?= $dis->description ?>" 
                                         data-id="<?= $dis->id ?>" 
                                         data-code="<?= $dis->name ?>" 
-                                        id="modal-img<?= $dis->id ?>" style="background: center center  url('<?= $dis->getUrl('original') ?>') no-repeat; background-size: cover;" class="detail-full-item-modal"></div>
+                                        id="modal-img<?= $dis->id ?>" 
+                                        style="background: center center  url('<?= $dis->getUrl('original') ?>') no-repeat; background-size: cover;" 
+                                        class="detail-full-item-modal">
+                                    </div>
                                         <?= $this->render('_modelos_div', ['disenio' => $img]) ?>
                                 </div>
                                 <h6 class="text-center cant-modelos" id="cant-modelos-<?= $dis->id ?>"></h6>

@@ -112,7 +112,7 @@ class GalleryImageSearch extends GalleryImage {
 
         $query->joinWith(['galeria']);
         $query->join('LEFT JOIN', 'tela', 'tela_id = id_tela')
-//                ->orderBy('codigo_tela, CAST(name AS unsigned)')
+                ->orderBy('rank')
                 ;
 //        $query->where(['tipo_galeria' =>Galeria::DISENIO,'type'=>'galeria']);
         $query->where(['<>','tipo_galeria', Galeria::LISO]);
@@ -146,6 +146,76 @@ class GalleryImageSearch extends GalleryImage {
             return $dataProvider;
         }
 
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'rank' => $this->rank,
+            'agotado' => $this->agotado,
+            'oferta' => $this->oferta,
+            'name' => $this->name,
+//            'tela_id' => $this->tela_id,
+            'type' => $this->type,
+            'galeria.tipo_galeria' => $this->tipo_galeria,
+            'tela.id_tela'=>$this->tela_id,
+        ]);
+
+        $query->andFilterWhere(['like', 'gallery_image.type', $this->type])
+                ->andFilterWhere(['like', 'ownerId', $this->ownerId])
+//                ->andFilterWhere(['like', 'name', $this->name])
+                ->andFilterWhere(['like', 'tela.nombre_tela', $this->nombre_tela])
+                ->andFilterWhere(['like', 'tela.codigo_tela', $this->codigo_tela])
+                ->andFilterWhere(['like', 'description', $this->description]);
+
+        return $dataProvider;
+    }
+    public function searchOrdenables($params) {
+        $query = GalleryImage::find();
+//        $query->select(['name','tela.codigo_tela'])->distinct();
+//        $query->select(['tela.codigo_tela','tela.codigo_tela','name','description','agotado']);
+
+        $query->joinWith(['galeria']);
+        $query->join('LEFT JOIN', 'tela', 'tela_id = id_tela')
+                ->orderBy('rank')
+                ;
+//        $query->where(['tipo_galeria' =>Galeria::DISENIO,'type'=>'galeria']);
+//        $query->where(['<>','tipo_galeria', Galeria::LISO]);
+        
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort'=> ['defaultOrder' => ['codigo_tela' => SORT_ASC,'name'=>SORT_ASC]]
+        ]);
+
+        $dataProvider->sort->attributes['codigo_tela'] = [
+            'asc' => ['tela.codigo_tela' => SORT_ASC,'CAST(name AS unsigned)'=>SORT_ASC],
+            'desc' => ['tela.codigo_tela' => SORT_DESC,'CAST(name AS unsigned)'=>SORT_ASC],
+        ];
+        $dataProvider->sort->attributes['name'] = [
+            'asc' => ['name' => SORT_ASC],
+            'desc' => ['name' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['nombre_tela'] = [
+            'asc' => ['tela.nombre_tela' => SORT_ASC],
+            'desc' => ['tela.nombre_tela' => SORT_DESC],
+        ];
+
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->where(['tipo_galeria'=>Galeria::DISENIO]);
+        $query->andWhere(['agotado'=>false]);
+        $query->orWhere(['estado'=>1]);
+        
+        
+        
+        
+        
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,

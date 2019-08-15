@@ -39,7 +39,7 @@ class GalleryImageController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['ordenar-disenios','export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -68,13 +68,37 @@ class GalleryImageController extends Controller {
 //        $telas = [];
         $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
         $dataProvider = $searchModel->searchVisibles(Yii::$app->request->queryParams);
-        
+
         if ($searchModel->load(\Yii::$app->request->post())) {
             $dataProvider = $searchModel->searchVisibles(Yii::$app->request->queryParams);
         }
         $dataProvider->setPagination(FALSE);
         $data = $dataProvider->getModels();
         return $this->render('exportIndex', ['data' => $data,
+//            'telas'=>$telas,
+                    'searchModel' => $searchModel]);
+    }
+
+    public function actionOrdenarDisenios($tela_id = -1) {
+        $data = [];
+//        $telas = [];
+        $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
+        $dataProvider = $searchModel->searchOrdenables(Yii::$app->request->queryParams);
+        if ($searchModel->load(\Yii::$app->request->post())) {
+            $dataProvider = $searchModel->searchOrdenables(Yii::$app->request->queryParams);
+        }
+        if($items = Yii::$app->request->post('items')){
+            foreach ($items as $order => $id){
+                $galleryImage = GalleryImage::findOne($id);
+                if($galleryImage){
+                    $galleryImage->rank = $order;
+                    $galleryImage->save();
+                }
+            }
+        }
+        $dataProvider->setPagination(FALSE);
+        $data = $dataProvider->getModels();
+        return $this->render('ordenarIndex', ['data' => $data,
 //            'telas'=>$telas,
                     'searchModel' => $searchModel]);
     }
