@@ -259,10 +259,17 @@ class Tela extends \yii\db\ActiveRecord {
         }
         return $disenios;
     }
+    public function getAllDisenios3() {
+        $searchModel = new GalleryImageSearch();
+        $searchModel->tela_id = $this->id_tela;
+        $dataprovider = $searchModel->searchVisibles(null);
+        $dataprovider->setPagination(false);
+        return $dataprovider->getModels();
+    }
 
     function getSliders() {
         $galeria = [];
-        $disenios = $this->getAllDisenios2();
+        $disenios = $this->getAllDisenios3();
         $sliders = ceil(count($disenios) / 45);
         if ($sliders > 0)
             $galeria = array_chunk($disenios, ceil(count($disenios) / $sliders));
