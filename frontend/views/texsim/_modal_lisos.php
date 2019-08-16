@@ -19,7 +19,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div id="" data-slider-id="1" class="owl-carousel owl-theme owl-dots-modern detail-full owl">
-                                    <div data-code="<?= $lisos->id ?>" id="modal-img<?= $lisos->id ?>" style="background: center center  url('<?= $lisos->getUrl('original') ?>') no-repeat; background-size: cover;" class="detail-full-item-modal"></div>
+                                    <div data-nombre="<?= $lisos->description ?>" data-code="<?= $lisos->name ?>" id="modal-img<?= $lisos->id ?>" style="background: center center  url('<?= $lisos->getUrl('original') ?>') no-repeat; background-size: cover;" class="detail-full-item-modal"></div>
                                 </div>
                                 <h6 class="text-center" id="cant-modelos"></h6>
                             </div>

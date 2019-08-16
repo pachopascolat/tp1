@@ -1,6 +1,6 @@
 <script>
 
-    $('.modal').on('show.bs.modal', function (event) {
+    $('.modal-disenios').on('show.bs.modal', function (event) {
         var id = $(this).data('id');
         var owl = $('#modelos-slider' + id);
         owl.trigger('to.owl.carousel', [0, 0]);
@@ -105,10 +105,12 @@
         onRefresh: callback,
 //        onToOwlCarrousel:callback,
 //        onDragged:callback,
-//        onChanged: callback,
+//        onChange: callback,
 
     });
     function callback(event) {
+                if (event.item.count>1) {
+
         var element = event.target;
         var target = event.relatedTarget;
         var carrousel = target.$element;
@@ -117,36 +119,37 @@
 //        active = item
 //        var code;
 //        var id;
-        var oferta, agotado, id, code;
-        var code = active.data('code');
-        var name = active.data('nombre');
-        var id = active.data('id');
-        var oferta = active.data('oferta');
-        var agotado = active.data('agotado');
+            var oferta, agotado, id, code;
+            var code = active.data('code');
+            var name = active.data('nombre');
+            var id = active.data('id');
+            var oferta = active.data('oferta');
+            var agotado = active.data('agotado');
 
-        var modal = carrousel.closest('.modal');
-        var idInput = modal.find('.modal-disenio-id');
-        var h3codigo = modal.find('.modal-disenio-codigo');
-        var cantInput = modal.find('.modal-cantidad');
-        var ribonOferta = modal.find('.ribbon-oferta');
-        var ribonAgotado = modal.find('.ribbon-agotado');
-        if (agotado) {
-            ribonOferta.addClass('d-none');
-            ribonAgotado.removeClass('d-none')
-        } else {
-            if (oferta) {
-                ribonAgotado.addClass('d-none')
-                ribonOferta.removeClass('d-none')
-            } else {
+            var modal = carrousel.closest('.modal');
+            var idInput = modal.find('.modal-disenio-id');
+            var h3codigo = modal.find('.modal-disenio-codigo');
+            var cantInput = modal.find('.modal-cantidad');
+            var ribonOferta = modal.find('.ribbon-oferta');
+            var ribonAgotado = modal.find('.ribbon-agotado');
+            if (agotado) {
                 ribonOferta.addClass('d-none');
-                ribonAgotado.addClass('d-none')
+                ribonAgotado.removeClass('d-none')
+            } else {
+                if (oferta) {
+                    ribonAgotado.addClass('d-none')
+                    ribonOferta.removeClass('d-none')
+                } else {
+                    ribonOferta.addClass('d-none');
+                    ribonAgotado.addClass('d-none')
+                }
             }
+
+
+            cantInput.val(1);
+            h3codigo.text(code + " " + name);
+            idInput.val(id);
         }
-
-
-        cantInput.val(1);
-        h3codigo.text(code + " " + name);
-        idInput.val(id);
         counter(event);
 //                    console.log(code);
     }

@@ -3,7 +3,7 @@ foreach ($model->getSliders() as $key => $galeria):
     foreach ($galeria as $index => $dis):
         ?>
 
-        <div data-id="<?= $dis->id ?>"  id="exampleModal-<?= $dis->id ?>" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade quickview">
+        <div data-id="<?= $dis->id ?>"  id="exampleModal-<?= $dis->id ?>" tabindex="-1" role="dialog" aria-hidden="true" class="modal-disenios modal fade quickview">
             <div role="document" class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <button type="button" data-dismiss="modal" aria-label="Close" class="close modal-close">
