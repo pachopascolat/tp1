@@ -105,7 +105,7 @@ class Tela extends \yii\db\ActiveRecord {
         return [
             'id_tela' => Yii::t('app', 'Id Tela'),
             'codigo_tela' => Yii::t('app', 'Codigo'),
-            'nombre_tela' => Yii::t('app', 'Nombre'),
+            'nombre_tela' => Yii::t('app', 'Nombre Tela'),
             'descripcion_tela' => Yii::t('app', 'Tipo'),
             'descripcion_larga_tela' => Yii::t('app', 'Descripción'),
             'path_foto_tela' => Yii::t('app', 'Path Foto Tela'),

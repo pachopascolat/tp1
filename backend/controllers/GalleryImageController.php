@@ -39,7 +39,7 @@ class GalleryImageController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['ordenar-disenios','export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['ordenar-disenios', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -87,10 +87,10 @@ class GalleryImageController extends Controller {
         if ($searchModel->load(\Yii::$app->request->post())) {
             $dataProvider = $searchModel->searchOrdenables(Yii::$app->request->queryParams);
         }
-        if($items = Yii::$app->request->post('items')){
-            foreach ($items as $order => $id){
+        if ($items = Yii::$app->request->post('items')) {
+            foreach ($items as $order => $id) {
                 $galleryImage = GalleryImage::findOne($id);
-                if($galleryImage){
+                if ($galleryImage) {
                     $galleryImage->rank = $order;
                     $galleryImage->save();
                 }
@@ -155,7 +155,9 @@ class GalleryImageController extends Controller {
 
 //        $pdf = new Pdf2(\Yii::getAlias("@backend/views/gallery-image/_report.php"));
         $pdf = new Pdf2($options);
-        $pages = array_chunk($alldata, 30);
+        $pages = array_chunk($alldata, 12);
+        $pdf->addPage($this->renderPartial('_reportPrimera', ['data' => $pages[0], 'nro' => $nro]));
+        $pages = array_chunk($alldata, 16);
 
         foreach ($pages as $nro => $page) {
             $pdf->addPage($this->renderPartial('_report', ['data' => $page, 'nro' => $nro]));

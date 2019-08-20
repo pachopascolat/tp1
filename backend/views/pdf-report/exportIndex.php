@@ -135,7 +135,7 @@ $this->registerJs($js2);
 
 </style>
 <div>
-    <?php $form = ActiveForm::begin(['id'=>'export-form']);
+    <?php $form = ActiveForm::begin(['id' => 'export-form']);
     ?>
 
     <!--<button type="button" class="btn btn-info toggle-seleccionar">Seleccionar Todo</button>-->
@@ -146,24 +146,29 @@ $this->registerJs($js2);
     $telas = common\models\Tela::getTelasLlenas();
     $items = yii\helpers\ArrayHelper::map($telas, 'id_tela', 'nombre_tela');
     echo $form->field($searchModel, 'tela_id')->dropDownList($items, [
-        'onchange'=>'$("#export-form").submit()',
-        'prompt'=>'Seleccione una tela'
+        'onchange' => '$("#export-form").submit()',
+        'prompt' => 'Seleccione una tela'
 //        'multiple' => 'multiple'
     ]);
 //    echo \yii\helpers\Html::activeDropDownList($searchModel, 'codigo_tela', $items);
     ?>
 
     <button style="display: none" type="button" class="btn btn-warning toggle-deseleccionar ">Deseleccionar Todo</button>
-    <button id="pdf-button" type="button" class="btn btn-success" onclick="exportar('<?php echo yii\helpers\Url::to(['photo-grid']) ?>')">PDF</button>
+
     <!--<button id="zip-button" type="submit" class="btn btn-primary" >ZIP</button>-->
 
     <?php
 //    $model = new common\models\PdfReport();
-    echo $form->field($model, 'header')->fileInput(['class'=>'form-control']); 
-    echo $form->field($model, 'tela_id')->hiddenInput()->label(false); 
-            
-            ?>
-
+    echo $form->field($model, 'header')->fileInput(['class' => 'form-control']);
+    echo $form->field($model, 'header2')->fileInput(['class' => 'form-control']);
+    echo $form->field($model, 'tela_id')->hiddenInput()->label(false);
+    echo $form->field($model, 'nombre_pdf')->textInput();
+    echo $form->field($model, 'guardar')->checkbox();
+    ?>
+    <button id="pdf-button" 
+            type="submit" 
+            class="btn btn-success" 
+            >PDF</button>
     <div id="sortable"  class="">
         <?php
         foreach ($data as $estampado):

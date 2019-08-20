@@ -45,3 +45,5 @@ phpunit.phar
 
 /common/config/main-local.php
 
+/backend/uploads
+/backend/web/pdf

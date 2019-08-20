@@ -38,7 +38,12 @@ AppAsset::register($this);
 //                ['label' => 'Home', 'url' => ['/site/index']],
 //                ['label' => 'Ofertas', 'url' => ['/gallery-image/index', 'categoria_padre' => 1]],
                 ['label' => 'Ordenar', 'url' => ['/gallery-image/ordenar-disenios']],
-                ['label' => 'PDF', 'url' => ['/gallery-image/export-index']],
+                ['label' => 'PDF','items'=>[
+                    ['label'=>'crear','url' => ['/pdf-report/export-index']],
+                    ['label'=>'descargar','url' => ['/pdf-report/index']],
+                ]
+                    
+                    ],
                 ['label' => 'Usuarios', 'url' => ['/usuarios']],
                 ['label' => 'Stock', 'url' => ['/gallery-image/ver-stock']],
                 ['label' => 'Telas', 'url' => ['/tela/index-todos']],

@@ -5,7 +5,14 @@
 <html>
     <body>
         <div class="pagina-pdf">
-            <?php echo $this->render("_pdfHeader") ?>
+            <div>
+                <a href="http://texsim.com.ar">
+                   <img style="width: 100%" src="
+                       <?= Yii::getAlias('@backend/web/pdf/headers/'.$header2) ?>
+                     ">
+                </a>
+            </div>
+            
             <div  class="centrar">
                 <h1><?= $data[0]->getNombreTela() ?></h1>
                 <table align="center">
