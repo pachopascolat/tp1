@@ -38,7 +38,7 @@ $menus = [null, "hogar", "moda"];
 //                'onchange' => 'filtrar()'
             ])->label(false);
             ?>
-            <?php if (Yii::$app->user->can('descargarPdf')): ?>
+            <?php if (Yii::$app->user->can('gestionarCarrito')): ?>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pdf-modal">
                     PDF
                 </button>
