@@ -23,7 +23,7 @@ $menus = [null, "hogar", "moda"];
         <!-- Breadcrumbs -->
         <ol class="breadcrumb justify-content-left">
             <li class="breadcrumb-item"><a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
-            <!--<li class="breadcrumb-item"><a href="<?php // echo yii\helpers\Url::to([$menus[$model->categoria->categoria_padre??'']])      ?>"><?php // echo $menus[$model->categoria->categoria_padre??'']      ?></a></li>-->
+            <!--<li class="breadcrumb-item"><a href="<?php // echo yii\helpers\Url::to([$menus[$model->categoria->categoria_padre??'']])            ?>"><?php // echo $menus[$model->categoria->categoria_padre??'']            ?></a></li>-->
             <li class="breadcrumb-item active"><?= $model->getNombreCompleto() ?>        </li>
         </ol>
         <?php
@@ -31,13 +31,18 @@ $menus = [null, "hogar", "moda"];
         $telas = \common\models\Tela::getTelasLlenas();
         $items = \yii\helpers\ArrayHelper::map($telas, 'id_tela', 'nombre_tela');
         ?>
-        <div class="d-flex align-items-center">
+        <div class="d-flex justify-content-between">
             <?=
             $form->field($model, 'id_tela')->dropdownList($items, [
                 'class' => 'form-control p-0 filtrar-telas',
 //                'onchange' => 'filtrar()'
             ])->label(false);
             ?>
+            <?php if (Yii::$app->user->can('descargarPdf')): ?>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pdf-modal">
+                    PDF
+                </button>
+            <?php endif; ?>
 
         </div>
 
@@ -46,6 +51,7 @@ $menus = [null, "hogar", "moda"];
 
 
         <?php \yii\bootstrap4\ActiveForm::end(); ?>
+
         <!-- Hero Content-->
         <div class="hero-content pb-5 text-center">
             <h1 class="hero-heading"><?= $model->getNombreCompleto() ?></h1>
@@ -178,6 +184,38 @@ $menus = [null, "hogar", "moda"];
 <?= $this->render('_modal_lisos', ['model' => $model]); ?>   
 
 <?= $this->render('_modal_estampados_1', ['model' => $model]); ?>   
+
+
+
+<div id="pdf-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Descargar PDF</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <?php
+                    $pdfs = \common\models\PdfReport::find()->where(['tela_id' => $model->id_tela])->all();
+                    foreach ($pdfs as $pdf):
+                        ?>
+                        <li class="list-group-item text-center">
+                            <a class="btn btn-primary" href="<?= yii\helpers\Url::to(['descargar-pdf', 'id' => $pdf->id_pdf_report]) ?>">
+                                <?= $pdf->nombre_pdf ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

@@ -3,29 +3,36 @@
 ?>
 <!DOCTYPE html>
 <html>
+
     <body>
         <div class="pagina-pdf">
-            <!--            <div class="" style="
-                             width:21cm;
-                             height: 7cm; 
-                             background-image: url('<?php // echo Yii::getAlias('@backend/web/img/header-pdf.jpg')     ?>');
-                             background-repeat: no-repeat;
-                             background-size: cover;
-                             ">
-            
-                        </div>-->
+
+            <style>
+                .header1-pdf{
+                    background-image: url('<?= Yii::getAlias('@backend/web/pdf/headers/' . $header) ?>');
+                }
+            </style>
+
+
             <div>
-                <a href="http://texsim.com.ar">
-                   <img style="width: 100%" src="
-                       <?= Yii::getAlias('@backend/web/pdf/headers/'.$header) ?>
-                     ">
+                <a href="<?= yii\helpers\Url::base(true) . "/../designs?id=" . $data[0]->getTela()->id_tela ?>">
+                    <span>
+                        <img style="width: 100%" src="
+                        <?= Yii::getAlias('@backend/web/pdf/headers/' . $header) ?>
+                             ">
+                    </span>
                 </a>
             </div>
+
             <?php
 //            echo $this->render("_pdfHeader") 
             ?>
             <div  class="centrar">
-                <h1><?= $data[0]->getNombreTela() ?></h1>
+                <h1>
+                    <a target="_blank" class="titulo-1" href="<?= yii\helpers\Url::base(true) . "/../designs?id=" . $data[0]->getTela()->id_tela ?>">
+                        <span class=""><?= $data[0]->getNombreTela() ?></span>
+                    </a>
+                </h1>
                 <table align="center">
                     <?php $filas = array_chunk($data, 4); ?>
                     <?php foreach ($filas as $fila): ?>

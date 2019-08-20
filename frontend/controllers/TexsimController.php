@@ -253,5 +253,15 @@ class TexsimController extends \yii\web\Controller {
             $itemCarrito->save();
         }
     }
+    public function actionDescargarPdf($id) {
+        $pdf = \common\models\PdfReport::findOne($id);
+        if ($pdf) {
+            $path = Yii::getAlias('@backend') . '/uploads/pdf-report';
+            $file = $path . "/$pdf->id_pdf_report.pdf";
+            if (file_exists($file)) {
+                return Yii::$app->response->sendFile($file);
+            }
+        }
+    }
 
 }
