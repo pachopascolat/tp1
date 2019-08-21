@@ -205,10 +205,19 @@ class GalleryImage extends \yii\db\ActiveRecord {
     function tieneModelos() {
         if ($this->galeriaModelos) {
             foreach ($this->galeriaModelos->getGalleryImages2() as $image) {
-                return true;
+                if (!$image->agotado || $image->estado)
+                    return true;
             }
         }
         return false;
+    }
+
+    function getModelosVisibles() {
+        $modelos = GalleryImage::find()->joinWith('galeria')->where([
+                            'color_id' => 'id'
+                        ])->andWhere(['agotado' => FALSE])
+                        ->orWhere(['estado' => true])->all();
+        return $modelos;
     }
 
 }

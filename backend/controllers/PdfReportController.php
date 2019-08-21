@@ -230,7 +230,7 @@ class PdfReportController extends Controller {
             $path = Yii::getAlias('@backend') . '/uploads/pdf-report';
             $file = $path . "/$pdf->id_pdf_report.pdf";
             if (file_exists($file)) {
-                return Yii::$app->response->sendFile($file);
+                return Yii::$app->response->sendFile($file,$pdf->nombre_pdf);
             }
         }
     }

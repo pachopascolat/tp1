@@ -9,7 +9,7 @@ if ($disenio->galeriaModelos) {
 //    $imageList = $modelos->getBehavior('galleryBehavior')->getImages();
     foreach ($disenio->galeriaModelos->getBehavior('galleryBehavior')->getImages() as $dis) :
         $active = common\models\GalleryImage::findOne($dis->id);
-        if (!$active->agotado):
+        if (!$active->agotado || $active->estado):
             ?>
             <div
                 data-nombre="<?= $dis->description ?>" 

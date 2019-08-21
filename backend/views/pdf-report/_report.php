@@ -14,7 +14,11 @@
             </div>
             
             <div  class="centrar">
-                <h1><?= $data[0]->getNombreTela() ?></h1>
+               <h1>
+                    <a target="_blank" class="titulo-1" href="<?= yii\helpers\Url::base(true) . "/../designs?id=" . $data[0]->getTela()->id_tela ?>">
+                        <span class=""><?= $data[0]->getNombreTela() ?></span>
+                    </a>
+                </h1>
                 <table align="center">
                     <?php $filas = array_chunk($data, 4); ?>
                     <?php foreach ($filas as $fila): ?>

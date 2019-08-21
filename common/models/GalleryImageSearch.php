@@ -187,7 +187,7 @@ class GalleryImageSearch extends GalleryImage {
         ->orderBy('rank')
         ;
         
-        $query->where(['tipo_galeria' => Galeria::DISENIO]);
+//        $query->where(['tipo_galeria' => Galeria::DISENIO]);
         $query->andWhere(['agotado' => false]);
         $query->orWhere(['estado' => 1]);
         
@@ -240,7 +240,7 @@ class GalleryImageSearch extends GalleryImage {
             'name' => $this->name,
 //            'tela_id' => $this->tela_id,
             'type' => $this->type,
-            'galeria.tipo_galeria' => $this->tipo_galeria,
+            'galeria.tipo_galeria' => Galeria::DISENIO,
             'tela.id_tela' => $this->tela_id,
         ]);
 
