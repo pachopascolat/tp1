@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use mikehaertl\wkhtmlto\Pdf as Pdf2;
 use common\models\GalleryImageSearch;
 use common\models\GalleryImage;
+use yii\filters\AccessControl;
 
 /**
  * PdfReportController implements the CRUD actions for PdfReport model.
@@ -26,6 +27,18 @@ class PdfReportController extends Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+//                'only' => ['login', 'logout', 'signup'],
+                'rules' => [
+                    [
+//                        'allow' => \Yii::$app->user->getId() == 2,
+                        'allow' => true,
+                        'actions' => ['ordenar-disenios', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'roles' => ['stockManager'],
+                    ],
                 ],
             ],
         ];
@@ -113,7 +126,7 @@ class PdfReportController extends Controller {
             unset($pages[0]);
         }
         $pages = array_chunk($alldata, 16);
-        
+
         foreach ($pages as $nro => $page) {
             $pdf->addPage($this->renderPartial('_report', ['data' => $page, 'nro' => $nro, 'header2' => $model->getHeaderName(2)]));
         }
@@ -124,7 +137,7 @@ class PdfReportController extends Controller {
             $model->nombre_pdf = trim($model->tela->nombre_tela . "-" . $date);
         }
         if ($model->guardar && $model->save()) {
-            $pdf->saveAs(Yii::getAlias("@backend/uploads/pdf-report/" . $model->id_pdf_report. ".pdf"));
+            $pdf->saveAs(Yii::getAlias("@backend/uploads/pdf-report/" . $model->id_pdf_report . ".pdf"));
         }
         $timestamp = date("Y-m-d-H-m-i");
         if (!$pdf->send("$model->nombre_pdf.pdf")) {
@@ -230,7 +243,7 @@ class PdfReportController extends Controller {
             $path = Yii::getAlias('@backend') . '/uploads/pdf-report';
             $file = $path . "/$pdf->id_pdf_report.pdf";
             if (file_exists($file)) {
-                return Yii::$app->response->sendFile($file,$pdf->nombre_pdf);
+                return Yii::$app->response->sendFile($file, $pdf->nombre_pdf);
             }
         }
     }

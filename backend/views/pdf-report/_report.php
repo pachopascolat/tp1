@@ -7,16 +7,17 @@
         <div class="pagina-pdf">
             <div>
                 <a href="http://texsim.com.ar">
-                   <img style="width: 100%" src="
-                       <?= Yii::getAlias('@backend/web/pdf/headers/'.$header2) ?>
-                     ">
+                    <img style="width: 100%" src="
+                    <?= Yii::getAlias('@backend/web/pdf/headers/' . $header2) ?>
+                         ">
                 </a>
             </div>
-            
+
             <div  class="centrar">
-               <h1>
+                <h1>
                     <a target="_blank" class="titulo-1" href="<?= yii\helpers\Url::base(true) . "/../designs?id=" . $data[0]->getTela()->id_tela ?>">
-                        <span class=""><?= $data[0]->getNombreTela() ?></span>
+                        <span>CLICK PARA VER <?= strtoupper($data[0]->getNombreTela()) ?> EN LA WEB</span>
+
                     </a>
                 </h1>
                 <table align="center">
@@ -27,9 +28,9 @@
                                 <td width="25%">
                                     <div class="disenio-pdf">  
                                         <label style="text-align: center" class="pdf-img-container">
-<!--                                            <div>
-                                                <span class="codigo-tela"><?= $estampado->getTela()->codigo_tela ?></span>
-                                            </div>-->
+                                            <!--                                            <div>
+                                                                                            <span class="codigo-tela"><?= $estampado->getTela()->codigo_tela ?></span>
+                                                                                        </div>-->
                                             <img style="width: 100%" src="<?= $estampado->getUrl('preview') ?>" class="">
                                             <div>
                                                 <span class="codigo-estampado-pdf"><?= $estampado->name ?></span>
@@ -37,10 +38,10 @@
                                         </label>
                                     </div>
                                 </td>
-                                <?php 
+                                <?php
                                 $restan = 4 - count($fila);
-                                if($restan>0){
-                                    for($i=0;$i<$restan;$i++){
+                                if ($restan > 0) {
+                                    for ($i = 0; $i < $restan; $i++) {
                                         echo "<td width='25%'></td>";
                                     }
                                 }

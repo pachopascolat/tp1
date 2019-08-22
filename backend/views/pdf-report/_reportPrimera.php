@@ -30,7 +30,8 @@
             <div  class="centrar">
                 <h1>
                     <a target="_blank" class="titulo-1" href="<?= yii\helpers\Url::base(true) . "/../designs?id=" . $data[0]->getTela()->id_tela ?>">
-                        <span class=""><?= $data[0]->getNombreTela() ?></span>
+                        <span>CLICK PARA VER <?= strtoupper($data[0]->getNombreTela()) ?> EN LA WEB</span>
+
                     </a>
                 </h1>
                 <table align="center">

@@ -19,6 +19,8 @@ use yii\web\UploadedFile;
  *
  * @property ItemCarrito[] $itemCarritos
  * @property Modelo[] $modelos
+ * @property Galeria $galeria
+ * 
  */
 class GalleryImage extends \yii\db\ActiveRecord {
 
@@ -162,6 +164,12 @@ class GalleryImage extends \yii\db\ActiveRecord {
         $path = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
         return $path;
     }
+    public function getFolder() {
+
+        $path = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$this->ownerId/$this->id/";
+        return $path;
+    }
+    
 
     public function getNombreTela() {
         if ($this->galeria)
@@ -218,6 +226,28 @@ class GalleryImage extends \yii\db\ActiveRecord {
                         ])->andWhere(['agotado' => FALSE])
                         ->orWhere(['estado' => true])->all();
         return $modelos;
+    }
+
+    function convertirEnPadre() {
+        $padre = GalleryImage::findOne($this->galeria->color_id);
+        $transaction = $padre->getDb()->beginTransaction();
+        try {
+            $ownerIdPadre = $padre->ownerId;
+            $rankPadre = $padre->rank;
+            $padre->ownerId = $this->ownerId;
+            $padre->rank = $this->rank;
+            $this->ownerId = $ownerIdPadre;
+            $this->rank = $rankPadre;
+            
+          
+            $padre->save();
+            $this->save;
+            $transaction->commit();
+            return true;
+        } catch (Exception $exc) {
+            $transaction->rollBack();
+            return false;
+        }
     }
 
 }
