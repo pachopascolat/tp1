@@ -158,11 +158,11 @@ class GalleryImageSearch extends GalleryImage {
 //            'tela_id' => $this->tela_id,
             'type' => $this->type,
             'galeria.tipo_galeria' => $this->tipo_galeria,
-            'tela.id_tela' => $this->tela_id,
+            'tela_anidada.tela_padre' => $this->tela_id,
         ]);
         $query->orFilterWhere([
+            'tela.id_tela' => $this->tela_id,
 //            'tela_anidad.tela_hija' => $this->tela_id,
-            'tela_anidada.tela_padre' => $this->tela_id,
         ]);
 
         $query->andFilterWhere(['like', 'gallery_image.type', $this->type])
@@ -184,14 +184,14 @@ class GalleryImageSearch extends GalleryImage {
         $query->join('LEFT JOIN', 'tela', 'tela_id = id_tela');
         $query->join('LEFT JOIN', 'tela_anidada', 'tela_hija = id_tela')
 //        $query->join('LEFT JOIN', 'tela_anidada', 'tela_padre = id_tela')
-        ->orderBy('rank')
+                ->orderBy('rank')
         ;
-        
+
 //        $query->where(['tipo_galeria' => Galeria::DISENIO]);
         $query->andWhere(['agotado' => false]);
         $query->orWhere(['estado' => 1]);
-        
-        
+
+
 //        $query->where(['tipo_galeria' =>Galeria::DISENIO,'type'=>'galeria']);
 //        $query->where(['<>','tipo_galeria', Galeria::LISO]);
 
@@ -223,9 +223,9 @@ class GalleryImageSearch extends GalleryImage {
             return $dataProvider;
         }
 
-        
-        
-        
+
+
+
 
 
 
@@ -241,14 +241,14 @@ class GalleryImageSearch extends GalleryImage {
 //            'tela_id' => $this->tela_id,
             'type' => $this->type,
             'galeria.tipo_galeria' => Galeria::DISENIO,
-            'tela.id_tela' => $this->tela_id,
+            'tela_anidada.tela_padre' => $this->tela_id,
         ]);
 
         $query->orFilterWhere([
+            'tela.id_tela' => $this->tela_id,
 //            'tela_anidada.tela_hija' => $this->tela_id,
-            'tela_anidada.tela_padre' => $this->tela_id,
         ]);
-        
+
         $query->andFilterWhere(['like', 'gallery_image.type', $this->type])
                 ->andFilterWhere(['like', 'ownerId', $this->ownerId])
 //                ->andFilterWhere(['like', 'name', $this->name])
@@ -256,8 +256,8 @@ class GalleryImageSearch extends GalleryImage {
                 ->andFilterWhere(['like', 'tela.codigo_tela', $this->codigo_tela])
                 ->andFilterWhere(['like', 'description', $this->description]);
 
-        
-        
+
+
         return $dataProvider;
     }
 
