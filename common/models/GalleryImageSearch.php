@@ -117,9 +117,23 @@ class GalleryImageSearch extends GalleryImage {
                 ->orderBy('rank')
         ;
 //        $query->where(['tipo_galeria' =>Galeria::DISENIO,'type'=>'galeria']);
-        $query->where(['<>', 'tipo_galeria', Galeria::LISO]);
-        $query->andWhere(['agotado' => false]);
-        $query->orWhere(['estado' => 1]);
+//        $query->where(['<>', 'tipo_galeria', Galeria::LISO]);
+        $query->andWhere([
+            'agotado' => false,
+            'tela.id_tela' => $this->tela_id,
+        ]);
+        $query->orWhere([
+            'tela_anidada.tela_padre' => $this->tela_id,
+            'agotado' => false,
+        ]);
+        $query->orWhere([
+            'tela_anidada.tela_padre' => $this->tela_id,
+            'estado' => 1
+        ]);
+        $query->orWhere([
+            'tela.id_tela' => $this->tela_id,
+            'estado' => 1
+        ]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -149,28 +163,28 @@ class GalleryImageSearch extends GalleryImage {
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'rank' => $this->rank,
-            'agotado' => $this->agotado,
-            'oferta' => $this->oferta,
-            'name' => $this->name,
-//            'tela_id' => $this->tela_id,
-            'type' => $this->type,
-            'galeria.tipo_galeria' => $this->tipo_galeria,
-            'tela_anidada.tela_padre' => $this->tela_id,
-        ]);
-        $query->orFilterWhere([
-            'tela.id_tela' => $this->tela_id,
-//            'tela_anidad.tela_hija' => $this->tela_id,
-        ]);
-
-        $query->andFilterWhere(['like', 'gallery_image.type', $this->type])
-                ->andFilterWhere(['like', 'ownerId', $this->ownerId])
-//                ->andFilterWhere(['like', 'name', $this->name])
-                ->andFilterWhere(['like', 'tela.nombre_tela', $this->nombre_tela])
-                ->andFilterWhere(['like', 'tela.codigo_tela', $this->codigo_tela])
-                ->andFilterWhere(['like', 'description', $this->description]);
+//        $query->andFilterWhere([
+//            'id' => $this->id,
+//            'rank' => $this->rank,
+//            'agotado' => $this->agotado,
+//            'oferta' => $this->oferta,
+//            'name' => $this->name,
+////            'tela_id' => $this->tela_id,
+//            'type' => $this->type,
+//            'galeria.tipo_galeria' => $this->tipo_galeria,
+//            'tela.id_tela' => $this->tela_id,
+//        ]);
+//        $query->orFilterWhere([
+////            'tela_anidad.tela_hija' => $this->tela_id,
+//            'tela_anidada.tela_padre' => $this->tela_id,
+//        ]);
+//
+//        $query->andFilterWhere(['like', 'gallery_image.type', $this->type])
+//                ->andFilterWhere(['like', 'ownerId', $this->ownerId])
+////                ->andFilterWhere(['like', 'name', $this->name])
+//                ->andFilterWhere(['like', 'tela.nombre_tela', $this->nombre_tela])
+//                ->andFilterWhere(['like', 'tela.codigo_tela', $this->codigo_tela])
+//                ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }
@@ -186,11 +200,27 @@ class GalleryImageSearch extends GalleryImage {
 //        $query->join('LEFT JOIN', 'tela_anidada', 'tela_padre = id_tela')
                 ->orderBy('rank')
         ;
-
-//        $query->where(['tipo_galeria' => Galeria::DISENIO]);
-        $query->andWhere(['agotado' => false]);
-        $query->orWhere(['estado' => 1]);
-
+//        $query->andWhere(['tipo_galeri' => Galeria::DISENIO]);
+        $query->andWhere([
+            'tipo_galeria' => Galeria::DISENIO,
+            'agotado' => false,
+            'tela.id_tela' => $this->tela_id,
+        ]);
+        $query->orWhere([
+            'tipo_galeria' => Galeria::DISENIO,
+            'tela_anidada.tela_padre' => $this->tela_id,
+            'agotado' => false,
+        ]);
+        $query->orWhere([
+            'tipo_galeria' => Galeria::DISENIO,
+            'tela_anidada.tela_padre' => $this->tela_id,
+            'estado' => 1
+        ]);
+        $query->orWhere([
+            'tipo_galeria' => Galeria::DISENIO,
+            'tela.id_tela' => $this->tela_id,
+            'estado' => 1
+        ]);
 
 //        $query->where(['tipo_galeria' =>Galeria::DISENIO,'type'=>'galeria']);
 //        $query->where(['<>','tipo_galeria', Galeria::LISO]);
@@ -232,29 +262,29 @@ class GalleryImageSearch extends GalleryImage {
 
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'rank' => $this->rank,
-            'agotado' => $this->agotado,
-            'oferta' => $this->oferta,
-            'name' => $this->name,
-//            'tela_id' => $this->tela_id,
-            'type' => $this->type,
-            'galeria.tipo_galeria' => Galeria::DISENIO,
-            'tela_anidada.tela_padre' => $this->tela_id,
-        ]);
-
-        $query->orFilterWhere([
-            'tela.id_tela' => $this->tela_id,
-//            'tela_anidada.tela_hija' => $this->tela_id,
-        ]);
-
-        $query->andFilterWhere(['like', 'gallery_image.type', $this->type])
-                ->andFilterWhere(['like', 'ownerId', $this->ownerId])
-//                ->andFilterWhere(['like', 'name', $this->name])
-                ->andFilterWhere(['like', 'tela.nombre_tela', $this->nombre_tela])
-                ->andFilterWhere(['like', 'tela.codigo_tela', $this->codigo_tela])
-                ->andFilterWhere(['like', 'description', $this->description]);
+//        $query->andFilterWhere([
+//            'id' => $this->id,
+//            'rank' => $this->rank,
+//            'agotado' => $this->agotado,
+//            'oferta' => $this->oferta,
+//            'name' => $this->name,
+////            'tela_id' => $this->tela_id,
+//            'type' => $this->type,
+//            'galeria.tipo_galeria' => Galeria::DISENIO,
+//            'tela.id_tela' => $this->tela_id,
+//        ]);
+//
+//        $query->orFilterWhere([
+////            'tela_anidada.tela_hija' => $this->tela_id,
+//            'tela_anidada.tela_padre' => $this->tela_id,
+//        ]);
+//
+//        $query->andFilterWhere(['like', 'gallery_image.type', $this->type])
+//                ->andFilterWhere(['like', 'ownerId', $this->ownerId])
+////                ->andFilterWhere(['like', 'name', $this->name])
+//                ->andFilterWhere(['like', 'tela.nombre_tela', $this->nombre_tela])
+//                ->andFilterWhere(['like', 'tela.codigo_tela', $this->codigo_tela])
+//                ->andFilterWhere(['like', 'description', $this->description]);
 
 
 
