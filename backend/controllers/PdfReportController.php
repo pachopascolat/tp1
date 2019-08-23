@@ -36,7 +36,7 @@ class PdfReportController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['ordenar-disenios', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['ordenar-disenios', 'export-pdf', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -62,6 +62,22 @@ class PdfReportController extends Controller {
 
     public function actionExportIndex($tela_id = -1) {
         $model = new PdfReport();
+        $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
+        $dataProvider = $searchModel->searchVisibles(Yii::$app->request->queryParams);
+        if ($searchModel->load(\Yii::$app->request->post())) {
+            $model->tela_id = $searchModel->tela_id;
+            $dataProvider = $searchModel->searchVisibles(Yii::$app->request->queryParams);
+        }
+        $dataProvider->setPagination(FALSE);
+        $data = $dataProvider->getModels();
+        return $this->render('exportIndex', ['data' => $data,
+//            'telas'=>$telas,
+                    'model' => $model,
+                    'searchModel' => $searchModel]);
+    }
+
+    public function actionExportPdf($tela_id = -1) {
+        $model = new PdfReport();
         $data = [];
 //        $telas = [];
         $searchModel = new GalleryImageSearch(['tela_id' => $tela_id]);
@@ -74,7 +90,6 @@ class PdfReportController extends Controller {
         if ($estampados = \Yii::$app->request->post("estampados")) {
             $this->report($estampados);
         }
-
 
         $dataProvider->setPagination(FALSE);
         $data = $dataProvider->getModels();

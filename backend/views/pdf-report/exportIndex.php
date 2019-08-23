@@ -135,7 +135,7 @@ $this->registerJs($js2);
 
 </style>
 <div>
-    <?php $form = ActiveForm::begin(['id' => 'export-form']);
+    <?php $form = ActiveForm::begin(['id' => 'cambiar-tela']);
     ?>
 
     <!--<button type="button" class="btn btn-info toggle-seleccionar">Seleccionar Todo</button>-->
@@ -146,11 +146,15 @@ $this->registerJs($js2);
     $telas = common\models\Tela::getTelasLlenas();
     $items = yii\helpers\ArrayHelper::map($telas, 'id_tela', 'nombre_tela');
     echo $form->field($searchModel, 'tela_id')->dropDownList($items, [
-        'onchange' => '$("#export-form").submit()',
+        'onchange' => '$("#cambiar-tela").submit()',
         'prompt' => 'Seleccione una tela'
 //        'multiple' => 'multiple'
     ]);
 //    echo \yii\helpers\Html::activeDropDownList($searchModel, 'codigo_tela', $items);
+    ?>
+
+    <?php ActiveForm::end(); ?>
+    <?php $form = ActiveForm::begin(['id' => 'export-pdf','action'=> yii\helpers\Url::to(['export-pdf'])]);
     ?>
 
     <button style="display: none" type="button" class="btn btn-warning toggle-deseleccionar ">Deseleccionar Todo</button>
@@ -165,9 +169,9 @@ $this->registerJs($js2);
     echo $form->field($model, 'nombre_pdf')->textInput();
     echo $form->field($model, 'guardar')->checkbox();
     ?>
-    <button id="pdf-button" 
-            type="submit" 
-            class="btn btn-success" 
+    <button id="pdf-button" name="pdf-button" 
+            type='submit'
+            class="btn btn-success"
             >PDF</button>
     <div id="sortable"  class="">
         <?php
