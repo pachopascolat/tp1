@@ -36,7 +36,7 @@ class PdfReportController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['ordenar-disenios', 'export-pdf', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['descargar-pdf', 'ordenar-disenios', 'export-pdf', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -137,11 +137,10 @@ class PdfReportController extends Controller {
             $pages = array_chunk($alldata, 12);
             $pdf->addPage($this->renderPartial('_reportPrimera', ['data' => $pages[0], 'nro' => 1, 'header' => $model->getHeaderName(1)]));
         }
+        $pages = array_chunk($alldata, 16);
         if ($model->header) {
             unset($pages[0]);
         }
-        $pages = array_chunk($alldata, 16);
-
         foreach ($pages as $nro => $page) {
             $pdf->addPage($this->renderPartial('_report', ['data' => $page, 'nro' => $nro, 'header2' => $model->getHeaderName(2)]));
         }
