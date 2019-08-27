@@ -89,7 +89,7 @@ class GalleryImageSearch extends GalleryImage {
             'rank' => $this->rank,
             'agotado' => $this->agotado,
             'oferta' => $this->oferta,
-            'name' => $this->name,
+            'CAST(name AS unsigned)' => $this->name,
 //            'tela_id' => $this->tela_id,
             'type' => $this->type,
             'galeria.tipo_galeria' => $this->tipo_galeria,
