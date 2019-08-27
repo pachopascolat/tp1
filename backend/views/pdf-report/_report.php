@@ -45,16 +45,17 @@
                                         </label>
                                     </div>
                                 </td>
-                                <?php
-                                $restan = 4 - count($fila);
-                                if ($restan > 0) {
-                                    for ($i = 0; $i < $restan; $i++) {
-                                        echo "<td width='25%'></td>";
-                                    }
-                                }
-                                ?>
+
                                 <?php
                             endforeach;
+                            ?>
+                            <?php
+                            $restan = 4 - count($fila);
+                            if ($restan > 0) {
+                                for ($i = 0; $i < $restan; $i++) {
+                                    echo "<td></td>";
+                                }
+                            }
                             ?>
                         </tr>
                     <?php endforeach; ?>
