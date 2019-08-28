@@ -11,7 +11,7 @@ $categoria_padre == 1 ? $color = '#F06386' : $color = '#CFC92A';
         z-index: 1000;
         position: absolute;
         bottom:0.4em;
-        right: -0.4em;
+        right: 0;
         padding: 0.4em 1em 0.4em 1em;
         /*font-size: 0.8em;*/
         font-weight: bold;
