@@ -136,11 +136,9 @@ class PdfReportController extends Controller {
         if ($model->header) {
             $pages = array_chunk($alldata, 12);
             $pdf->addPage($this->renderPartial('_reportPrimera', ['data' => $pages[0], 'nro' => 1, 'header' => $model->getHeaderName(1)]));
+            $alldata = array_slice($alldata, 12);
         }
         $pages = array_chunk($alldata, 16);
-        if ($model->header) {
-            unset($pages[0]);
-        }
         foreach ($pages as $nro => $page) {
             $pdf->addPage($this->renderPartial('_report', ['data' => $page, 'nro' => $nro, 'header2' => $model->getHeaderName(2)]));
         }
