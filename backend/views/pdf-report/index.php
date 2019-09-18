@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Descargar',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    $path = trim($model->tela->nombre_tela . "-" . $model->id_pdf_report);
+//                    $path = trim($model->tela->nombre_tela . "-" . $model->id_pdf_report);
 //                    $url = Yii::getAlias("@web/backend/web/../uploads/pdf-report/$path.pdf");
                     return Html::a('Descargar', ['descargar-pdf','id'=>$model->id_pdf_report], ['class' => 'btn btn-success']);
                 }
