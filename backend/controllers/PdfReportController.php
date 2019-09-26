@@ -37,7 +37,7 @@ class PdfReportController extends Controller {
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
                         'actions' => ['descargar-pdf', 'ordenar-disenios', 'export-pdf', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
-                        'roles' => ['stockManager'],
+                        'roles' => ['stockManager,ventasManager'],
                     ],
                 ],
             ],
