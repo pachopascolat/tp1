@@ -164,10 +164,24 @@ class GalleryImage extends \yii\db\ActiveRecord {
         $path = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$this->ownerId/$this->id/$version.jpg";
         return $path;
     }
+
     public function getFolder() {
 
-        $path = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$this->ownerId/$this->id/";
+        $path = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$this->ownerId/$this->id";
         return $path;
+    }
+
+    public function getFatherFolder() {
+
+        $path = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$this->ownerId";
+        return $path;
+    }
+    public function renameFatherFolder($new) {
+
+        $path = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$this->ownerId";
+        $newPath = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$new";
+        rename($path, $newPath);
+        return $newPath;
     }
     
 
@@ -232,22 +246,54 @@ class GalleryImage extends \yii\db\ActiveRecord {
         $padre = GalleryImage::findOne($this->galeria->color_id);
         $transaction = $padre->getDb()->beginTransaction();
         try {
-            $ownerIdPadre = $padre->ownerId;
-            $rankPadre = $padre->rank;
-            $padre->ownerId = $this->ownerId;
-            $padre->rank = $this->rank;
-            $this->ownerId = $ownerIdPadre;
-            $this->rank = $rankPadre;
+
+            //copia de seguridad de la carpeta
+            $this->recurse_copy($padre->getFolder(), $padre->getFolder() . ".old");
+            $this->recurse_copy($this->getFolder(), $this->getFolder() . ".old");
+
             
-          
-            $padre->save();
-            $this->save;
+            $this->recurse_copy($this->getFolder(), $padre->getFolder());
+            $this->recurse_copy($padre->getFolder().".old", $this->getFolder());
+
+
+            
+            $newPadre = new GalleryImage();
+            $newPadre->setAttributes($padre->getAttributes());
+            
+            $padre->setAttributes($this->getAttributes());
+            $padre->ownerId = $newPadre->ownerId;
+            
+            $ownerId_hijo = $this->ownerId;
+            $this->setAttributes($newPadre->getAttributes());
+            $this->ownerId = $ownerId_hijo;
+           
+            $padre->update();
+            $this->update();
+
+
             $transaction->commit();
             return true;
         } catch (Exception $exc) {
+            $this->recurse_copy($padre->getFolder() . ".old", $padre->getFolder());
+            $this->recurse_copy($this->getFolder() . ".old", $this->getFolder());
             $transaction->rollBack();
             return false;
         }
+    }
+
+    private function recurse_copy($src, $dst) {
+        $dir = opendir($src);
+        @mkdir($dst);
+        while (false !== ( $file = readdir($dir))) {
+            if (( $file != '.' ) && ( $file != '..' )) {
+                if (is_dir($src . '/' . $file)) {
+                    $this->recurse_copy($src . '/' . $file, $dst . '/' . $file);
+                } else {
+                    copy($src . '/' . $file, $dst . '/' . $file);
+                }
+            }
+        }
+        closedir($dir);
     }
 
 }

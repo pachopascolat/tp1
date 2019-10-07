@@ -36,6 +36,14 @@ $this->title = 'Diseños';
     Pjax::begin(['id' => 'pjax-disenios']);
 
     $js = "
+        
+
+        $(document).on('pjax:end', function() {
+            $('.img-thumbnail').each(function(){
+                        var src = $(this).attr('src')+'?hola';
+                        $(this).attr('src',src);
+                    });
+        });
         $('.agotado').on('click',function () {
             var id = $(this).data('id-dis');
             $.ajax({
@@ -53,6 +61,17 @@ $this->title = 'Diseños';
                 data: {id: id},
                 success: function () {
                     $.pjax.reload({container: '#pjax-disenios',timeout:1500});
+                }
+            })
+        });
+        $('.hacer-padre').on('click',function () {
+            var id = $(this).data('id-dis');
+            $.ajax({
+                url: 'convertir-padre',
+                data: {id: id},
+                success: function () {
+                    $.pjax.reload({container: '#pjax-disenios',timeout:1500});
+                    
                 }
             })
         });
@@ -90,8 +109,10 @@ $this->title = 'Diseños';
 //             [
 //        'class' => '\kartik\grid\CheckboxColumn'
 //    ],
-//            'id',
-//            'galeria.tipo_galeria',
+            'id',
+            'ownerId',
+            'galeria.id_galeria',
+            'galeria.color_id',
             [
                 'attribute' => 'tipo_galeria',
                 'value' => function($model) {
@@ -110,10 +131,9 @@ $this->title = 'Diseños';
                 'attribute' => 'nombre_tela',
                 'format' => 'raw',
                 'value' => function($model) {
-                    return Html::a($model->galeria->tela->nombre_tela, Yii::$app->urlManagerFrontEnd->createUrl(['designs', 'id' => $model->galeria->tela_id]), ['data-pjax'=>0,'target' => '_blank']);
+                    return Html::a($model->galeria->tela->nombre_tela, Yii::$app->urlManagerFrontEnd->createUrl(['designs', 'id' => $model->galeria->tela_id]), ['data-pjax' => 0, 'target' => '_blank']);
                 }
             ],
-            
 //            'galeria.tela.codigo_tela',
 //            [
 //                'label' => 'nombreTela',
@@ -135,6 +155,16 @@ $this->title = 'Diseños';
 //            ],
             'name',
             'description',
+            [
+                'format' => 'raw',
+                'value' => function($model, $index) {
+                    if ($model->galeria->tipo_galeria == 3) {
+                        return Html::a('hacer Principal', null, ["data-id-dis" => $index, 'data-pjax' => 0, 'class' => ['btn btn-sx btn-info hacer-padre']]);
+                    } else {
+                        return "";
+                    }
+                }
+            ],
             [
                 'label' => 'Imagen',
                 'format' => 'raw',
@@ -229,7 +259,7 @@ $this->title = 'Diseños';
 
 </div>
 <div id="import-stock" class="modal" tabindex="-1" role="dialog">
-<?php $form = ActiveForm::begin(['action' => ['import'], 'options' => ['enctype' => 'multipart/form-data']]) ?>
+    <?php $form = ActiveForm::begin(['action' => ['import'], 'options' => ['enctype' => 'multipart/form-data']]) ?>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -242,7 +272,7 @@ $this->title = 'Diseños';
                 <div class="container">
                     <div class="">
                         <!--<label class="form-control">Archivo Excel</label>--> 
-<?= $form->field($searchModel, 'imageFile')->fileInput() ?>
+                        <?= $form->field($searchModel, 'imageFile')->fileInput() ?>
                     </div>
                 </div>
             </div>
@@ -253,7 +283,7 @@ $this->title = 'Diseños';
 
         </div>
     </div>
-<?php ActiveForm::end() ?>
+    <?php ActiveForm::end() ?>
 </div>
 <div id="import-stock-diferencia" class="modal" tabindex="-1" role="dialog">
     <?php $form = ActiveForm::begin(['action' => ['import-diferencias'], 'options' => ['enctype' => 'multipart/form-data']]) ?>
@@ -269,7 +299,7 @@ $this->title = 'Diseños';
                 <div class="container">
                     <div class="">
                         <!--<label class="form-control">Archivo Excel</label>--> 
-<?= $form->field($searchModel, 'imageFile')->fileInput() ?>
+                        <?= $form->field($searchModel, 'imageFile')->fileInput() ?>
                     </div>
                 </div>
             </div>
@@ -280,5 +310,5 @@ $this->title = 'Diseños';
 
         </div>
     </div>
-<?php ActiveForm::end() ?>
+    <?php ActiveForm::end() ?>
 </div>

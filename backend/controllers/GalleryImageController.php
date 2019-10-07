@@ -39,7 +39,7 @@ class GalleryImageController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['ordenar-disenios', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['convertir-padre', 'ordenar-disenios', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -515,6 +515,16 @@ class GalleryImageController extends Controller {
             $model->save();
         }
 //        $this->redirect(['index']);
+    }
+
+    function actionConvertirPadre() {
+        $id = Yii::$app->request->get('id');
+        $galleryImage = GalleryImage::findOne($id);
+        if ($galleryImage != null) {
+            $galleryImage->convertirEnPadre();
+//            return $this->goBack();
+        }
+        return true;
     }
 
 }
