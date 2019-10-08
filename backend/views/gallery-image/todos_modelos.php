@@ -17,30 +17,16 @@ $this->title = 'Diseños';
 
 
 
-<div class="gallery-image-index">
+<div class="gallery-image-index-models">
+  
     <?php
-    $importDif = ' 
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#import-stock-diferencia">
-        Ver Diferencias
-    </button>';
-    $import = ' 
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#import-stock">
-        IMPORTAR STOCK
-    </button>';
-    ?>
-    <!--    <p>
-    <?= Html::a('Create Gallery Image', ['create'], ['class' => 'btn btn-success']) ?>
-        </p>-->
-
-    <?php
-    Pjax::begin(['id' => 'pjax-disenios']);
 
     $js = "
         
 
-        $(document).on('pjax:success', function() {
+        $(document).on('pjax:end', function() {
             $('.img-thumbnail').each(function(){
-                        var src = $(this).attr('src')+'?'+new Date();
+                        var src = $(this).attr('src')+'?hola';
                         $(this).attr('src',src);
                     });
         });
@@ -86,7 +72,7 @@ $this->title = 'Diseños';
             })
         });
     ";
-    $this->registerJs($js, View::POS_END);
+//    $this->registerJs($js, View::POS_END);
     ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
@@ -94,16 +80,16 @@ $this->title = 'Diseños';
     GridView::widget([
         'toolbar' => [
 //            count($sinCargar) > 0 ? Html::button('Sin Cargar', ['class' => 'btn btn-default', 'data-toggle' => "modal", 'data-target' => "#sin-cargar"]) : '',
-            $importDif,
-            $import,
+//            $importDif,
+//            $import,
             '{export}', '{toggleData}'
         ],
         'panel' => [
-            'type' => GridView::TYPE_PRIMARY,
+            'type' => GridView::TYPE_INFO,
             'heading' => "Stock",
         ],
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 //             [
@@ -113,57 +99,17 @@ $this->title = 'Diseños';
 //            'ownerId',
 //            'galeria.id_galeria',
 //            'galeria.color_id',
-            [
-                'attribute' => 'tipo_galeria',
-                'value' => function($model) {
-                    if ($model->galeria->tipo_galeria == 1) {
-                        return "Diseño";
-                    } else {
-                        return "Modelo";
-                    }
-                }
-            ],
-            [
-                'label' => 'cant. Modelos',
-                'format' => 'raw',
-                'width' => '10%',
-                'value' => function($model) {
-                    
-                    $url = null;
-                    $cant = $model->getCantidadModelos();
-                    
-//                    $galeria = common\models\Galeria::findOne(['color_id' => $model->id]);
-//                    $cant = 0;
-                    if ($cant>0) {
-                        $url = yii\helpers\Url::to(['/galeria/ver-disenios', 'tela_id' => $model->galeria->tela_id, 'GalleryImageSearch[]', 'GalleryImageSearch[name]' => $model->name ?? '']);
-                        return Html::a($cant, $url);
-                    }
-                    return $cant;
-                }
-            ],
-            [
-//                'visible'=>false,
-                'class' => 'kartik\grid\ExpandRowColumn',
-                'width' => '50px',
-                'value' => function ($model, $key, $index, $column) {
-                    if ($model->getCantidadModelos()>0) {
-                        return GridView::ROW_COLLAPSED;
-                    } else {
-                        return "";
-                    }
-                },
-                'detail' => function ($model, $key, $index, $column) {
-                    $galeria = \common\models\Galeria::findOne(['color_id'=>$model->id]);
-                    $query = $model->find()->where(['ownerId'=>$galeria->id_galeria??'']);
-                    $provider = new \yii\data\ActiveDataProvider([
-                        'query' => $query,
-                    ]);
-                    return Yii::$app->controller->renderPartial('todos_modelos', ['searchModel' => $model, 'dataProvider' => $provider]);
-                },
-                'headerOptions' => ['class' => 'kartik-sheet-style'],
-                'expandOneOnly' => true,
-                'expandIcon' => "Modelos" . GridView::ICON_EXPAND,
-            ],
+//            [
+//                'attribute' => 'tipo_galeria',
+//                'value' => function($model) {
+//                    if ($model->galeria->tipo_galeria == 1) {
+//                        return "Diseño";
+//                    } else {
+//                        return "Modelo";
+//                    }
+//                }
+//            ],
+            
             [
                 'attribute' => 'codigo_tela',
                 'value' => 'galeria.tela.codigo_tela'
@@ -196,16 +142,16 @@ $this->title = 'Diseños';
 //            ],
             'name',
             'description',
-//            [
-//                'format' => 'raw',
-//                'value' => function($model, $index) {
-//                    if ($model->galeria->tipo_galeria == 3) {
-//                        return Html::a('hacer Principal', null, ["data-id-dis" => $index, 'data-pjax' => 0, 'class' => ['btn btn-sx btn-info hacer-padre']]);
-//                    } else {
-//                        return "";
-//                    }
-//                }
-//            ],
+            [
+                'format' => 'raw',
+                'value' => function($model, $index) {
+                    if ($model->galeria->tipo_galeria == 3) {
+                        return Html::a('hacer Principal', null, ["data-id-dis" => $index, 'data-pjax' => 0, 'class' => ['btn btn-sx btn-info hacer-padre']]);
+                    } else {
+                        return "";
+                    }
+                }
+            ],
             [
                 'label' => 'Imagen',
                 'format' => 'raw',
@@ -295,61 +241,7 @@ $this->title = 'Diseños';
     ]);
     ?>
 
-    <?php Pjax::end();
-    ?>
+
 
 </div>
-<div id="import-stock" class="modal" tabindex="-1" role="dialog">
-    <?php $form = ActiveForm::begin(['action' => ['import'], 'options' => ['enctype' => 'multipart/form-data']]) ?>
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Importar Stock</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="">
-                        <!--<label class="form-control">Archivo Excel</label>--> 
-                        <?= $form->field($searchModel, 'imageFile')->fileInput() ?>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Importar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
 
-        </div>
-    </div>
-    <?php ActiveForm::end() ?>
-</div>
-<div id="import-stock-diferencia" class="modal" tabindex="-1" role="dialog">
-    <?php $form = ActiveForm::begin(['action' => ['import-diferencias'], 'options' => ['enctype' => 'multipart/form-data']]) ?>
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Importar Stock</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="">
-                        <!--<label class="form-control">Archivo Excel</label>--> 
-                        <?= $form->field($searchModel, 'imageFile')->fileInput() ?>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Importar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-
-        </div>
-    </div>
-    <?php ActiveForm::end() ?>
-</div>

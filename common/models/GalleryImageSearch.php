@@ -58,7 +58,7 @@ class GalleryImageSearch extends GalleryImage {
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['codigo_tela' => SORT_ASC, 'name' => SORT_ASC]]
+            'sort' => ['defaultOrder' => ['ownerId'=>SORT_ASC,'codigo_tela' => SORT_ASC, 'name' => SORT_ASC]]
         ]);
 
         $dataProvider->sort->attributes['codigo_tela'] = [

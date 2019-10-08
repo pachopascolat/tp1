@@ -176,6 +176,7 @@ class GalleryImage extends \yii\db\ActiveRecord {
         $path = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$this->ownerId";
         return $path;
     }
+
     public function renameFatherFolder($new) {
 
         $path = \Yii::getAlias("@backend") . "/web/images/$this->type/gallery/$this->ownerId";
@@ -183,7 +184,6 @@ class GalleryImage extends \yii\db\ActiveRecord {
         rename($path, $newPath);
         return $newPath;
     }
-    
 
     public function getNombreTela() {
         if ($this->galeria)
@@ -234,6 +234,18 @@ class GalleryImage extends \yii\db\ActiveRecord {
         return false;
     }
 
+    function getCantidadModelos() {
+        $galeria = Galeria::findOne(['color_id' => $this->id]);
+        $cant = 0;
+        if ($galeria) {
+            $images = $galeria->getBehavior('galleryBehavior')->getImages();
+            $cant = count($images);
+//            $url = yii\helpers\Url::to(['/galeria/ver-disenios', 'tela_id' => $model->galeria->tela_id, 'GalleryImageSearch[]', 'GalleryImageSearch[name]' => $model->name ?? '']);
+//            return Html::a($cant, $url);
+        }
+        return $cant;
+    }
+
     function getModelosVisibles() {
         $modelos = GalleryImage::find()->joinWith('galeria')->where([
                             'color_id' => 'id'
@@ -251,22 +263,22 @@ class GalleryImage extends \yii\db\ActiveRecord {
             $this->recurse_copy($padre->getFolder(), $padre->getFolder() . ".old");
             $this->recurse_copy($this->getFolder(), $this->getFolder() . ".old");
 
-            
+
             $this->recurse_copy($this->getFolder(), $padre->getFolder());
-            $this->recurse_copy($padre->getFolder().".old", $this->getFolder());
+            $this->recurse_copy($padre->getFolder() . ".old", $this->getFolder());
 
 
-            
+
             $newPadre = new GalleryImage();
             $newPadre->setAttributes($padre->getAttributes());
-            
+
             $padre->setAttributes($this->getAttributes());
             $padre->ownerId = $newPadre->ownerId;
-            
+
             $ownerId_hijo = $this->ownerId;
             $this->setAttributes($newPadre->getAttributes());
             $this->ownerId = $ownerId_hijo;
-           
+
             $padre->update();
             $this->update();
 
