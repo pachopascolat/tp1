@@ -4,7 +4,20 @@
 @charset "utf-8";   
 /* CSS Document */
 
+.navbar-icon-link-badge {
+    margin-right: -1.5em;
+}
+.navbar-icon-link {
+    /*margin: .3em;*/
+}
 
+.btn-pedido{
+    margin: .5em;
+}
+
+.svg-icon{
+    text-align: center;
+}
 
 .codigo-centrado{
     position: absolute;

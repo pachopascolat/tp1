@@ -36,6 +36,7 @@ AppAsset::register($this);
                 <link rel="stylesheet" href="css/regular.css">
                 <link rel="stylesheet" href="css/brands.css" >
                 <link rel="stylesheet" href="css/fontawesome.css" >-->
+        <!--<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">-->
 
         <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">

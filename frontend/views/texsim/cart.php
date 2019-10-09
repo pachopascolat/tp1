@@ -29,7 +29,7 @@ if ($_SESSION['carrito'] != ''):
             <div class="container"> 
 
                 <?php
-                \yii\widgets\Pjax::begin(['id' => 'cart-pjax', 'timeout' => 5000, 'linkSelector' => '']);
+                \yii\widgets\Pjax::begin(['id' => 'cart-pjax']);
                 ?>
                 <table class="cart table table-striped">
                     <thead class="cart-header text-center btn-title  btn-dark">
@@ -130,7 +130,7 @@ if ($_SESSION['carrito'] != ''):
                             Pedido Facturación
                         </button>
                     <?php else: ?>
-                        <a class="btn btn-dark"  data-toggle="collapse" href="#collapseContacto" role="button" aria-expanded="false" aria-controls="collapseContacto">
+                        <a class="btn btn-dark"  data-toggle="modal" href="#pedido-simple" role="button" aria-expanded="false" aria-controls="collapseContacto">
 
                             Realizar Consultar 
                             <i class="fa fa-chevron-right">
