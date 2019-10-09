@@ -142,16 +142,16 @@ $this->title = 'Diseños';
 //            ],
             'name',
             'description',
-            [
-                'format' => 'raw',
-                'value' => function($model, $index) {
-                    if ($model->galeria->tipo_galeria == 3) {
-                        return Html::a('hacer Principal', null, ["data-id-dis" => $index, 'data-pjax' => 0, 'class' => ['btn btn-sx btn-info hacer-padre']]);
-                    } else {
-                        return "";
-                    }
-                }
-            ],
+//            [
+//                'format' => 'raw',
+//                'value' => function($model, $index) {
+//                    if ($model->galeria->tipo_galeria == 3) {
+//                        return Html::a('hacer Principal', null, ["data-id-dis" => $index, 'data-pjax' => 0, 'class' => ['btn btn-sx btn-info hacer-padre']]);
+//                    } else {
+//                        return "";
+//                    }
+//                }
+//            ],
             [
                 'label' => 'Imagen',
                 'format' => 'raw',
