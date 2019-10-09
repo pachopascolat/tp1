@@ -124,15 +124,5 @@ $catArray = ['Hogar', 'Moda'];
 
 <script>
 
-    /*******************************
-     * ACCORDION WITH TOGGLE ICONS
-     *******************************/
-    function toggleIcon(e) {
-        var heading = $(e.target).prev('.panel-heading');
-        var icon = heading.find('.more-less');
-
-        icon.toggleClass('fa-plus fa-minus');
-    }
-    $('.panel-group').on('hidden.bs.collapse', toggleIcon);
-    $('.panel-group').on('shown.bs.collapse', toggleIcon);
+   
 </script>

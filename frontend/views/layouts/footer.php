@@ -30,9 +30,9 @@
     injectSvgSprite('https://demo.bootstrapious.com/sell/1-2-0/icons/orion-svg-sprite.svg');
 
 </script>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/swiper.min.js"></script>
+<!--<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>-->
+<!--<script src="js/swiper.min.js"></script>
 
 <script src="js/owl.carousel.js"></script>
 <script src="js/owl.carousel2.thumbs.min.js"></script>
@@ -43,143 +43,14 @@
 <script src="js/theme.js"></script>
 <script src="js/bootbox.min.js"></script>
 <script src="js/bootbox.locales.min.js"></script>
-<script src="js/jquery.pjax.js"></script>
+<script src="js/jquery.pjax.js"></script>-->
 <!--<script src="js/fixedsticky.js"></script>-->
 <!--<script src="js/stickybits.min.js"></script>-->
-<script src="js/jquery.sticky-kit.js"></script>
+<!--<script src="js/jquery.sticky-kit.js"></script>-->
 
 
 <script>
 
-//stickybits('selector', {parentClass: 'album'});
-//stickybits('div.lisos-fixed', {
-////    parentClass: 'album',
-////    stuckClass: 'lisos-fixed',
-//    verticalPosition: 'bottom'
-//    });
-
-
-
-//    stickybits('.lisos-fixed',{verticalPosition: 'bottom'});
-//    stickybits('.sticky-nav');
-
-    $(".sticky-nav").stick_in_parent();
-//    $(".lisos-fixed").stick_in_parent();
-
-    $('.borrar-carrito').on('click', function (event) {
-        event.preventDefault();
-        var cart = $('#cart-pjax');
-        var message = $(this).data('confirm');
-        bootbox.confirm({
-            message: message,
-            buttons: {
-                confirm: {
-                    label: 'Si',
-                    className: 'btn-success'
-                },
-                cancel: {
-                    label: 'No',
-                    className: 'btn-danger'
-                }
-            },
-            callback: function (result) {
-                if (result) {
-                    $.ajax({
-                        url: '<?= \yii\helpers\Url::to('delete-carrito') ?>',
-                        success: function () {
-                            $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
-                            if (cart.length) {
-                                $.pjax.reload({container: '#cart-pjax', async: false, 'timeout': false});
-                            }
-                        }
-                    });
-                }
-            }
-        });
-
-    });
-
-
-    $('.cart-remove').on('click', function (event) {
-        event.preventDefault();
-        var cart = $('#cart-pjax');
-        var itemid = $(this).data('item-id');
-        $.ajax({
-            url: '<?= \yii\helpers\Url::to('delete-item') ?>' + "?id=" + itemid,
-            success: function (result) {
-                $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
-                if (cart.length) {
-                    $.pjax.reload({container: '#cart-pjax', async: false, 'timeout': false});
-                }
-            }
-        });
-    });
-
-
-
-    $(document).on('ready pjax:success', function () {
-        $('.borrar-carrito').on('click', function (event) {
-            event.preventDefault();
-            var cart = $('#cart-pjax');
-            $.ajax({
-                url: '<?= \yii\helpers\Url::to('delete-carrito') ?>',
-                success: function () {
-                    $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
-                    if (cart.length) {
-                        $.pjax.reload({container: '#cart-pjax', async: false, 'timeout': false});
-                    }
-                }
-            }
-            );
-        });
-        $('.cart-remove').on('click', function (event) {
-            event.preventDefault();
-            var cart = $('#cart-pjax');
-            var itemid = $(this).data('item-id');
-            $.ajax({
-                url: '<?= \yii\helpers\Url::to('delete-item') ?>' + "?id=" + itemid,
-                success: function (result) {
-                    $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
-                    if (cart.length) {
-                        $.pjax.reload({container: '#cart-pjax', async: false, 'timeout': false});
-                    }
-                }
-            });
-        });
-
-
-
-
-    });
-
-    $('.cambiar-precio').change(function () {
-        var id = $(this).data('id');
-        var precio = $(this).val();
-                $.post({
-                    url: 'cambiar-precio',
-                    data: {id: id, precio: precio}
-                })
-    });
-
-
-    $('.btn-items-increase').click(function () {
-        var id = $(this).data('id');
-        $.post({
-            url: 'aumentar-cantidad',
-            data: {id: id},
-        });
-    });
-    $('.btn-items-decrease').click(function () {
-        var id = $(this).data('id');
-        $.post({
-            url: '<?= yii\helpers\Url::to('disminuir-cantidad') ?>',
-            data: {id: id},
-        });
-    });
-
-    $('#collapseContacto').on('shown.bs.collapse', function () {
-        this.scrollIntoView();
-    });
 
 
 </script>

@@ -157,9 +157,9 @@ if ($categoria_padre == 1) {
 
 
 
-    <nav class="navbar navbar-dark bg-dark shadow-sm" >
+    <nav class="navbar navbar-dark bg-dark shadow-sm pb-0" >
         <div class="container d-flex justify-content-between">
-            <div  class="navbar-brand d-flex align-items-center">
+            <div  class="navbar-brand d-flex align-items-center pb-0">
                 <a class="hogar-link active" href="<?= yii\helpers\Url::to(['texsim/hogar']) ?>" style="max-width:72px">
                     <img  src="<?= $hogar ?>" class="responsive boton-hogar" style="width:72px" >
                 </a>
@@ -278,7 +278,7 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
                             </a>-->
                             <div class="navbar-icon-link2 carrito-link">
 
-                                <a  
+                                <a  data-pjax=0
                                     href="<?= yii\helpers\Url::to(['crear-consulta', 'categoria_padre' => $categoria_padre]) ?>" 
                                     class="navbar-icon-link ">
 

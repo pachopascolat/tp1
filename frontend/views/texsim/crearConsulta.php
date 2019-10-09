@@ -44,7 +44,9 @@ echo $this->render('cart', ['categoria_padre' => $categoria_padre, 'id_carrito' 
                           <p class="text-muted">Si tiene alguna pregunta, no dude en <a href="#">contactarnos</a>, nuestro centro de servicio al cliente se comunicará a la brevedad.</p>
                           <hr>-->
                             <!--<form action="customer-orders.html" method="get">-->
-                            <?php $form = \yii\widgets\ActiveForm::begin(); ?>
+                            <?php $form = \yii\widgets\ActiveForm::begin([
+                                'enableAjaxValidation'=>true,
+                            ]); ?>
                             <div class="form-group">
                                 <label for="name" class="form-label">Nombre o Razón Social</label>
                                 <!--<input id="name" type="text" class="form-control">-->

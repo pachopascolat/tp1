@@ -29,14 +29,26 @@ class Cliente extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['nombre_cliente'], 'required',
-                'message' =>"Por favor complete su Nombre"
-                ],
+                'message' => "Por favor complete su Nombre"
+            ],
             [['mail_cliente'], 'email'],
-            [['cuit','nro_cliente'], 'integer'],
-            [['direccion_envio','agendado'], 'safe'],
-            ['telefono', 'either', 'skipOnEmpty' => false, 'params' => ['other' => 'mail_cliente']],
+            [['cuit', 'nro_cliente'], 'integer'],
+            [['direccion_envio', 'agendado'], 'safe'],
+//            ['telefono', 'either', 'skipOnEmpty' => false, 'params' => ['other' => 'mail_cliente']],
+            ['telefono', 'filledContacts','skipOnError'=>true,'skipOnEmpty'=>false],
+//            ['telefono', 'integer'],
             [['nombre_cliente', 'telefono', 'mail_cliente'], 'string', 'max' => 128],
         ];
+    }
+
+    public function filledContacts($attribute, $params, $validator) {
+
+        if (!$this->hasErrors('mail_cliente') && !$this->hasErrors('telefono')) { // If any contact field has validation errors, then don't show a message.
+
+            if (empty($this->mail_cliente) && empty($this->telefono))
+                $validator->addError($this,$attribute,"Uno de los campos Telefono o Email debe ser completado.");
+//                $this->addError('mail_cliente', "Uno de los campos Telefono o Email debe ser completado.");
+        }
     }
 
     public function either($attribute_name, $params) {
@@ -69,7 +81,7 @@ class Cliente extends \yii\db\ActiveRecord {
         }
 
         $this->addError($attribute_name, Yii::t('user', "Uno de los campos Telefono o Email debe ser completado."));
-        
+        return;
     }
 
     /**
