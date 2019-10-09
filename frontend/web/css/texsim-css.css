@@ -4,6 +4,23 @@
 @charset "utf-8";   
 /* CSS Document */
 
+
+.loading{
+    /*width: 48px;*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*right: 50%;*/
+    /*left: 50%;*/
+/*    background: url(../img/loading.gif) center no-repeat;*/
+    /*background-size: cover;*/
+    /*z-index: 10;*/
+}
+
+.loading-div{
+    /*display: none;*/
+
+}
+
 .navbar-icon-link-badge {
     margin-right: -1.5em;
 }

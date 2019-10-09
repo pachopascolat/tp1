@@ -1,3 +1,15 @@
+
+$('.modal form').on('afterValidate',function(){
+    $('.spinner-border').addClass("d-none");
+})
+
+$('.modal form').on('submit',function(){
+    
+    $('.spinner-border').removeClass("d-none");
+//    $('.loading-div').addClass("spinner-border-sm");
+    
+});
+
 /*******************************
  * ACCORDION WITH TOGGLE ICONS
  *******************************/

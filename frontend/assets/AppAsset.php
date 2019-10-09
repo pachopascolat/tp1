@@ -19,7 +19,7 @@ class AppAsset extends AssetBundle {
         "css/owl.carousel.css",
         "css/stylesheet.css",
         "css/fixedsticky.css",
-        "css/fontawesome.min.css",
+//        "css/fontawesome.min.css",
         "css/all.css",
 //        "css/bootstrap.min.css"
     ];

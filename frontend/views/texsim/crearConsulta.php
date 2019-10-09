@@ -141,13 +141,24 @@ $form = \yii\widgets\ActiveForm::begin([
                                                                         <input id="Contraseña" type="Contraseña" class="form-control">
                                                                     </div>-->
                                         <hr>
-                                        <div class="d-flex justify-content-between flex-column flex-lg-row">
+                                        <div class="d-flex justify-content-between flex-column flex-lg-row loading-div">
 
                                             <div class="form-group text-center">
-                                                <button type="submit" class="btn-pedido btn btn-outline-secondary"><svg class="svg-icon"><use xlink:href="#envelope-1"> </use></svg><p>ENVIAR POR MAIL</p> </button>
+                                                <button type="submit" class="btn-pedido btn btn-outline-secondary"><svg class="svg-icon"><use xlink:href="#envelope-1"> </use></svg>
+                                                     <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                                    <span class="sr-only">Loading...</span>
+                                                    <p>ENVIAR POR MAIL</p> 
+                                                </button>
+                                            
+                                            
                                             </div>
                                             <div class="form-group text-center">
-                                                <button type="submit" formaction="<?= \yii\helpers\Url::to(['crear-consulta-whats-app', 'categoria_padre' => $categoria_padre]) ?>" id="consulta-whatsapp" type="" class="btn-pedido btn btn-outline-secondary"><svg class="svg-icon"><use xlink:href="#envelope-1"> </use></svg><p>ENVIAR POR WHATSAPP</p> </div>
+                                                <button type="submit" formaction="<?= \yii\helpers\Url::to(['crear-consulta-whats-app', 'categoria_padre' => $categoria_padre]) ?>" id="consulta-whatsapp" type="" class="btn-pedido btn btn-outline-secondary"><svg class="svg-icon"><use xlink:href="#envelope-1"> </use></svg>
+                                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                                    <span class="sr-only">Loading...</span>
+                                                    <p>ENVIAR POR WHATSAPP</p>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     <!--                            </form>-->
@@ -168,7 +179,7 @@ $form = \yii\widgets\ActiveForm::begin([
 <div id="pedido-facturacion" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-           
+
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
