@@ -11,6 +11,7 @@ use Yii;
  * @property int $disenio_id
  *
  * @property GalleryImage $disenio
+ * @property Carrito $carrito
  */
 class ItemCarrito extends \yii\db\ActiveRecord {
 
