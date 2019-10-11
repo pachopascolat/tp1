@@ -211,7 +211,7 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
                     $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
 //                        if ($carrito->itemCarritos != null) :
                     ?>
-                    <div class="carrito-count-div <?= $carrito->itemCarritos?'':'d-none' ?>">
+                    <div class="carrito-count-div <?= $carrito && $carrito->itemCarritos?'':'d-none' ?>">
                         <div class=" nav-item d-xs-block d-sm-none" >
                             <div class="navbar-icon-link2 carrito-link">
 
@@ -220,7 +220,7 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
                                     class="navbar-icon-link ">
 
                                     <img class="svg-icon" src="img/txsim-header-consulta-01.svg" alt="listado">
-                                    <div class="navbar-icon-link-badge carrito-count"><?= count($carrito->itemCarritos) ?? '' ?></div>
+                                    <div class="navbar-icon-link-badge carrito-count"><?= $carrito?count($carrito->itemCarritos):'' ?></div>
 
                                 </a>
                                 <div class="tooltiptext tooltiptext-link">
@@ -265,7 +265,7 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
                 $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
 //                    if ($carrito->itemCarritos != null) :
                 ?>
-                <div class="carrito-count-div <?= $carrito->itemCarritos?'':'d-none' ?>">
+                <div class="carrito-count-div <?= $carrito && $carrito->itemCarritos?'':'d-none' ?>">
 
                     <div class="nav-item d-none d-sm-block">
                         <div class="navbar-icon-link2 carrito-link">
@@ -275,7 +275,7 @@ $categoria_padre == 1 ? $color = 'color-hogar' : $color = 'color-moda';
                                 class="navbar-icon-link ">
 
                                 <img class="svg-icon" src="img/txsim-header-consulta-01.svg" alt="listado">
-                                <div class="navbar-icon-link-badge carrito-count"><?= count($carrito->itemCarritos) ?? '' ?></div>
+                                <div class="navbar-icon-link-badge carrito-count"><?= $carrito?count($carrito->itemCarritos):'' ?></div>
 
                             </a>
                             <div class="tooltiptext tooltiptext-link">
