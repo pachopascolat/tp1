@@ -50,7 +50,7 @@ class TexsimController extends \yii\web\Controller {
             
         }
         $categoria_padre = $model->getCategoriaPadre();
-        return $this->render('estampados_1', ['model' => $model,'categoria_padre' => $categoria_padre]);
+        return $this->render('estampados_1', ['model' => $model, 'categoria_padre' => $categoria_padre]);
     }
 
     public function actionDeleteItem($id) {
@@ -59,6 +59,7 @@ class TexsimController extends \yii\web\Controller {
         if ($item != null) {
             $item->delete();
         }
+        return count($item->carrito->itemCarritos);
     }
 
     public function actionAgregarItem() {
@@ -76,6 +77,8 @@ class TexsimController extends \yii\web\Controller {
             'cantidad' => $cantidad,
             'disenio_id' => $id]);
         $item->save();
+
+        return count($item->carrito->itemCarritos);
 
 //        return $items;
     }
@@ -253,13 +256,14 @@ class TexsimController extends \yii\web\Controller {
             $itemCarrito->save();
         }
     }
+
     public function actionDescargarPdf($id) {
         $pdf = \common\models\PdfReport::findOne($id);
         if ($pdf) {
             $path = Yii::getAlias('@backend') . '/uploads/pdf-report';
             $file = $path . "/$pdf->id_pdf_report.pdf";
             if (file_exists($file)) {
-                return Yii::$app->response->sendFile($file,$pdf->nombre_pdf.".pdf");
+                return Yii::$app->response->sendFile($file, $pdf->nombre_pdf . ".pdf");
             }
         }
     }

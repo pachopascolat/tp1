@@ -26,7 +26,7 @@
                         <!--                            <div class="form-group">
                                                         <label for="name" class="form-label">Nro Cliente</label>
                                                         <input id="name" type="text" class="form-control">
-                        <?= $form->field($model, 'nro_cliente')->textInput(['class' => 'form-control'])->label(false) ?>
+                        <?= $form->field($model, 'nro_cliente')->textInput(['class' => 'form-control','id'=>'nro-cliente-input'])->label(false) ?>
                                                     </div>-->
 
                         <div class="form-group">
@@ -37,18 +37,18 @@
                         <div class="form-group">
                             <label for="name" class="form-label">Nombre o Razón Social</label>
                             <!--<input id="name" type="text" class="form-control">-->
-                            <?= $form->field($model, 'nombre_cliente')->textInput(['class' => 'form-control'])->label(false) ?>
+                            <?= $form->field($model, 'nombre_cliente')->textInput(['class' => 'form-control','id'=>'nombre-cliente-input'])->label(false) ?>
                         </div>
                         <div class="form-group">
                             <label for="telefono" class="form-label">Teléfono</label>
                             <!--<input id="email" type="text" class="form-control">-->
-                            <?= $form->field($model, 'telefono')->textInput(['class' => 'form-control'])->label(false) ?>
+                            <?= $form->field($model, 'telefono')->textInput(['class' => 'form-control','id'=>'telefono-cliente-input'])->label(false) ?>
 
                         </div>
                         <div class="form-group">
                             <label for="mail_cliente" class="form-label">Mail</label>
                             <!--<input id="Usuario" type="Usuario" class="form-control">-->
-                            <?= $form->field($model, 'mail_cliente')->textInput(['type' => 'email', 'class' => 'form-control'])->label(false) ?>
+                            <?= $form->field($model, 'mail_cliente')->textInput(['type' => 'email', 'class' => 'form-control','id'=>'email-cliente-input'])->label(false) ?>
 
                         </div>
                         <div class="form-group">

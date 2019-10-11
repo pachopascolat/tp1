@@ -1,13 +1,13 @@
 
-$('.modal form').on('afterValidate',function(){
+$('.modal form').on('afterValidate', function () {
     $('.spinner-border').addClass("d-none");
 })
 
-$('.modal form').on('submit',function(){
-    
+$('.modal form').on('submit', function () {
+
     $('.spinner-border').removeClass("d-none");
 //    $('.loading-div').addClass("spinner-border-sm");
-    
+
 });
 
 /*******************************
@@ -46,10 +46,13 @@ $('.borrar-carrito').on('click', function (event) {
             if (result) {
                 $.ajax({
                     url: 'delete-carrito',
-                    success: function () {
-                        $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
+                    success: function (e) {
+                        $('.carrito-count').each(function () {
+                            $(this).text(e);
+                        });
+//                        $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
                         if (cart.length) {
-                            $.pjax.reload({container: '#cart-pjax', async: false, 'timeout': false});
+                            $.pjax.reload({container: '#cart-pjax'});
                         }
                     }
                 });
@@ -63,10 +66,13 @@ $('.cart-remove').on('click', function (event) {
     var itemid = $(this).data('item-id');
     $.ajax({
         url: 'delete-item' + "?id=" + itemid,
-        success: function (result) {
-            $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
+        success: function (e) {
+            $('.carrito-count').each(function () {
+                $(this).text(e);
+            });
+//            $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
             if (cart.length) {
-                $.pjax.reload({container: '#cart-pjax', async: false, 'timeout': false});
+                $.pjax.reload({container: '#cart-pjax'});
             }
         }
     });
@@ -77,10 +83,13 @@ $(document).on('ready pjax:success', function () {
         var cart = $('#cart-pjax');
         $.ajax({
             url: 'delete-carrito',
-            success: function () {
-                $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
+            success: function (e) {
+                $('.carrito-count').each(function () {
+                    $(this).text(e);
+                });
+//                $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
                 if (cart.length) {
-                    $.pjax.reload({container: '#cart-pjax', async: false, 'timeout': false});
+                    $.pjax.reload({container: '#cart-pjax'});
                 }
             }
         }
@@ -92,15 +101,57 @@ $(document).on('ready pjax:success', function () {
         var itemid = $(this).data('item-id');
         $.ajax({
             url: 'delete-item' + "?id=" + itemid,
-            success: function (result) {
-                $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
+            success: function (e) {
+                $('.carrito-count').each(function () {
+                    $(this).text(e);
+                });
+//                $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
                 if (cart.length) {
-                    $.pjax.reload({container: '#cart-pjax', async: false, 'timeout': false});
+                    $.pjax.reload({container: '#cart-pjax'});
                 }
             }
         });
     });
+    $('.cambiar-precio').change(function () {
+        var id = $(this).data('id');
+        var precio = $(this).val();
+        $.post({
+            url: 'cambiar-precio',
+            data: {id: id, precio: precio}
+        })
+    });
+    $('.btn-items-increase').click(function () {
+        var id = $(this).data('id');
+        $.post({
+            url: 'aumentar-cantidad',
+            data: {id: id},
+        });
+    });
+    $('.btn-items-decrease').click(function () {
+        var id = $(this).data('id');
+        $.post({
+            url: 'disminuir-cantidad',
+            data: {id: id},
+        });
+    });
+    $('.btn-items-decrease').on('click', function () {
+        var input = $(this).siblings('.input-items');
+        if (parseInt(input.val(), 10) >= 1) {
+            input.val(parseInt(input.val(), 10) - 1);
+        }
+    });
+
+    $('.btn-items-increase').on('click', function () {
+        var input = $(this).siblings('.input-items');
+        input.val(parseInt(input.val(), 10) + 1);
+    });
 });
+
+
+
+
+
+
 $('.cambiar-precio').change(function () {
     var id = $(this).data('id');
     var precio = $(this).val();
@@ -197,7 +248,14 @@ $('.submit-zoom').on('click', function () {
         url: 'agregar-item',
         data: form.serialize(),
         success: function (e) {
-            $.pjax.reload({container: '#carrito-pjax', 'timeout': false});
+            $('.carrito-count-div').each(function () {
+                $(this).removeClass('d-none');
+            })
+
+            $('.carrito-count').each(function () {
+                $(this).text(e);
+            })
+            //$.pjax.reload({container: '#carrito-pjax', 'timeout': false});
         }
     });
 //                        $.pjax.reload(options);

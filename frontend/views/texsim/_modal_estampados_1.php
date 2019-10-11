@@ -63,7 +63,7 @@ foreach ($model->getSliders() as $key => $galeria):
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
 
-                                                <button  type="button" class="submit-zoom btn btn-dark btn-lg mb-1"> Consultar<i class="fa fa-chevron-right"></i></button>
+                                                <button data-pjax="false"  type="button" class="submit-zoom btn btn-dark btn-lg mb-1"> Consultar<i class="fa fa-chevron-right"></i></button>
                                             </li>
 
                                         </ul>
