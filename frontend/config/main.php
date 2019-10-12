@@ -36,7 +36,7 @@ return [
                 'moda' => 'texsim/moda',
 //                'texsim/categorias'=>'texsim/designs',
 //                'texsim/estampados' => 'texsim/designs',
-                'designs' => 'texsim/estampados',
+                'designs' => 'texsim/categorias',
                 '<id:\d+>-<nombre_tela:[^/]+>' => 'texsim/categorias',
 //                '<nombre:\w+>' => 'design',
                 'agregar-items' => 'texsim/agregar-items',

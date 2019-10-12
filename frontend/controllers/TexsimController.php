@@ -32,16 +32,20 @@ class TexsimController extends \yii\web\Controller {
     }
 
     public function actionCategorias($id) {
-//        }
-        $model = \common\models\Tela::findOne($id);
-        if ($data = Yii::$app->request->post()) {
-            $model2 = \common\models\Tela::findOne($data['Tela']['id_tela']);
-            $categoria_padre = $model2->getCategoriaPadre();
-            return $this->render('estampados_1', ['model' => $model2, 'categoria_padre' => $categoria_padre]);
+        $dis = \common\models\GalleryImage::findOne(\Yii::$app->request->post('modal_id'));
+        if($dis ==null){
+            $dis = New \common\models\GalleryImage();
         }
+        
+        
+        $model = \common\models\Tela::findOne($id);
+//        if ($data = Yii::$app->request->get('id')) {
+//            $model2 = \common\models\Tela::findOne($data['id']);
+//            $categoria_padre = $model2->getCategoriaPadre();
+//            return $this->render('estampados_1', ['model' => $model2, 'categoria_padre' => $categoria_padre,'design'=>$dis]);
+//        }
         $categoria_padre = $model->getCategoriaPadre();
-
-        return $this->render('estampados_1', ['model' => $model, 'categoria_padre' => $categoria_padre]);
+        return $this->render('estampados_1', ['model' => $model, 'categoria_padre' => $categoria_padre,'design'=>$dis]);
     }
 
     public function actionEstampados($id) {

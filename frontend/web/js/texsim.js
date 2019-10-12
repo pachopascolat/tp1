@@ -1,4 +1,37 @@
 
+jQuery.event.special.touchstart = {
+  setup: function( _, ns, handle ){
+    if ( ns.includes("noPreventDefault") ) {
+      this.addEventListener("touchstart", handle, { passive: false });
+    } else {
+      this.addEventListener("touchstart", handle, { passive: true });
+    }
+  }
+};
+
+
+$('.btn-pjax-modal').on('click',function(){
+    var modal_id = $(this).data('modal-id');
+    $.pjax.reload({
+        container:'#pjax-modal-todos',
+        type:'POST',
+        data:{modal_id:modal_id}
+        });
+//    $.ajax({
+//        url: 'delete-item' + "?id=" + itemid,
+//        success: function (e) {
+//            $('.carrito-count').each(function () {
+//                $(this).text(e);
+//            });
+////            $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
+//            if (cart.length) {
+//                $.pjax.reload({container: '#cart-pjax'});
+//            }
+//        }
+//    }); 
+});
+
+
 $('.modal form').on('afterValidate', function () {
     $('.spinner-border').addClass("d-none");
 })
@@ -236,6 +269,7 @@ $(document).ready(function () {
     });
 });
 //agrega item a carrito
+
 $('.submit-zoom').on('click', function () {
     var form = $(this).closest('form');
     var mymodal = $(this).closest('.modal');

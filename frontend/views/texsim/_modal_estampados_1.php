@@ -34,7 +34,7 @@ foreach ($model->getSliders() as $key => $galeria):
                                         style="background: center center  url('<?= $dis->getUrl('original') ?>') no-repeat; background-size: cover;" 
                                         class="detail-full-item-modal">
                                     </div>
-                                        <?= $this->render('_modelos_div', ['disenio' => $img]) ?>
+                                        <?php echo $this->render('_modelos_div', ['disenio' => $img]) ?>
                                 </div>
                                 <h6 class="text-center cant-modelos" id="cant-modelos-<?= $dis->id ?>"></h6>
 

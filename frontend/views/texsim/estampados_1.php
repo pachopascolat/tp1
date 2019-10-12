@@ -181,7 +181,7 @@ $menus = [null, "hogar", "moda"];
 
 
 
-<?= $this->render('_modal_lisos', ['model' => $model]); ?>   
+<?php echo $this->render('_modal_lisos', ['model' => $model]); ?>   
 
 <?= $this->render('_modal_estampados_1', ['model' => $model]); ?>   
 
