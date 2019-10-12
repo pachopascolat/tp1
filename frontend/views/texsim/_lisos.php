@@ -19,7 +19,7 @@ if ($model->liso != null && !$model->liso->estaVacia()):
 
 
 
-                                    <img alt="<?= $lisos->description ?>" data-src="<?= $lisos->getUrl('preview') ?>" alt="product" class="swiper-lazy img-fluid"/>
+                                    <img onerror="this.style.display='none' alt="<?= $lisos->description ?>" data-src="<?= $lisos->getUrl('preview') ?>" alt="product" class="swiper-lazy img-fluid"/>
 
 
 
