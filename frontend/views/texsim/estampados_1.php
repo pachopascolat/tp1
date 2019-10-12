@@ -101,7 +101,7 @@ $menus = [null, "hogar", "moda"];
 
                                         <?php // endif;
                                         ?>
-                                        <img data-src='<?= $dis->getUrl('preview') ?>' class="swiper-lazy img-fluid">
+                                        <img alt="<?= $dis->description ?>" data-src='<?= $dis->getUrl('preview') ?>' class="swiper-lazy img-fluid">
                                         <div class="swiper-lazy-preloader" style="margin-top: 10px"></div>
                                         <?php if ($dis->tieneModelos()): ?>
                                             <a 

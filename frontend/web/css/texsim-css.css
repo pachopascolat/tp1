@@ -5,6 +5,15 @@
 /* CSS Document */
 
 
+.swiper-slide img{
+      text-indent:-9999px
+
+}
+
+.swiper-lazy-preloader{
+  height: 100%;
+}
+
 
 .loading{
     /*width: 48px;*/

@@ -1,5 +1,5 @@
-<?php 
-if ($model->liso != null && !$model->liso->estaVacia()): 
+<?php
+if ($model->liso != null && !$model->liso->estaVacia()):
     ?>
     <div class="lisos-fixed" >
         <div class="container productos-fijos">
@@ -8,17 +8,18 @@ if ($model->liso != null && !$model->liso->estaVacia()):
                 <div class="swiper-wrapper" >      
 
 
-                    <?php foreach ($model->liso->getAllDisenios2() as $lisos) : 
-                        
+                    <?php foreach ($model->liso->getAllDisenios2() as $lisos) :
                         ?>
 
-                        <div class="swiper-slide">
+                        <div class="swiper-slide swiper-lazy">
+                            <div class="swiper-lazy-preloader" style="margin-top: 10px"></div>
+
                             <div class="product">
                                 <div class="product-image">
 
-                                     
-                                    
-                                    <img src="<?= $lisos->getUrl('preview') ?>" alt="product" class="swiper-lazy img-fluid"/>
+
+
+                                    <img alt="<?= $lisos->description ?>" data-src="<?= $lisos->getUrl('preview') ?>" alt="product" class="swiper-lazy img-fluid"/>
 
 
 
@@ -30,7 +31,7 @@ if ($model->liso != null && !$model->liso->estaVacia()):
                                         <div class="product-hover-overlay-buttons-texsim">
                                             <a 
                                                 href="" 
-                                                data-target="#exampleModal-<?=$lisos->id?>"
+                                                data-target="#exampleModal-<?= $lisos->id ?>"
                                                 data-toggle="modal"
                                                 class="zoom-texsim">
 
