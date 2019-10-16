@@ -54,7 +54,7 @@
                                                                                         </div>-->
                                             <img style="width: 100%" src="<?= $estampado->getUrl('preview') ?>" class="">
                                             <div>
-                                                <span class="codigo-estampado-pdf"><?= $estampado->name ?></span>
+                                                <span class="codigo-estampado-pdf"><?= intval($estampado->name)<150?$estampado->description:$estampado->name ?></span>
                                             </div>
                                         </label>
                                     </div>
