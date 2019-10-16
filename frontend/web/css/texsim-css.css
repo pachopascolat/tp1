@@ -5,11 +5,20 @@
 /* CSS Document */
 
 
-.swiper-slide img{
+.swiper-slide img {
+    background: white;
+    text-indent: -9999px;
+    /*border: 15px solid #fff;*/
+    color: transparent!important;
+    -webkit-appearance: none!important;
+}
+
+
+/*.swiper-slide img{
       background: white;
       color: white;
 
-}
+}*/
 
 .swiper-lazy-preloader{
   height: 100%;

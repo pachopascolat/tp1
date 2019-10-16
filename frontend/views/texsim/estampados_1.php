@@ -23,7 +23,7 @@ $menus = [null, "hogar", "moda"];
         <!-- Breadcrumbs -->
         <ol class="breadcrumb justify-content-left">
             <li class="breadcrumb-item"><a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
-            <!--<li class="breadcrumb-item"><a href="<?php // echo yii\helpers\Url::to([$menus[$model->categoria->categoria_padre??'']])            ?>"><?php // echo $menus[$model->categoria->categoria_padre??'']            ?></a></li>-->
+            <!--<li class="breadcrumb-item"><a href="<?php // echo yii\helpers\Url::to([$menus[$model->categoria->categoria_padre??'']])             ?>"><?php // echo $menus[$model->categoria->categoria_padre??'']             ?></a></li>-->
             <li class="breadcrumb-item active"><?= $model->getNombreCompleto() ?>        </li>
         </ol>
         <?php
@@ -101,8 +101,10 @@ $menus = [null, "hogar", "moda"];
 
                                         <?php // endif;
                                         ?>
-                                        <img onerror="this.style.display='none' alt="<?= $dis->description ?>" data-src='<?= $dis->getUrl('preview') ?>' class="swiper-lazy img-fluid">
-                                        <div class="swiper-lazy-preloader" style="margin-top: 10px"></div>
+                                        <img  data-srcset='<?= $dis->getUrl('preview') ?>' class="swiper-lazy img-fluid">
+<!--                                        <div class="swiper-lazy-preloader" style="margin-top: 10px">
+
+                                        </div>-->
                                         <?php if ($dis->tieneModelos()): ?>
                                             <a 
                                                 href=""
@@ -134,6 +136,7 @@ $menus = [null, "hogar", "moda"];
                                     </div>
 
                                 </div>
+                                <div class="swiper-lazy-preloader mt-auto"></div>
 
                             </div>
 

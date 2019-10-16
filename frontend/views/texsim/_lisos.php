@@ -12,14 +12,14 @@ if ($model->liso != null && !$model->liso->estaVacia()):
                         ?>
 
                         <div class="swiper-slide swiper-lazy">
-                            <div class="swiper-lazy-preloader" style="margin-top: 10px"></div>
+                            <!--<div class="swiper-lazy-preloader" style="margin-top: 10px"></div>-->
 
                             <div class="product">
                                 <div class="product-image">
 
 
 
-                                    <img onerror="this.style.display='none' alt="<?= $lisos->description ?>" data-src="<?= $lisos->getUrl('preview') ?>" alt="product" class="swiper-lazy img-fluid"/>
+                                    <img  data-srcset="<?= $lisos->getUrl('preview') ?>" class="swiper-lazy img-fluid"/>
 
 
 
@@ -45,7 +45,7 @@ if ($model->liso != null && !$model->liso->estaVacia()):
                                 </div>
 
                             </div>
-                            <div class="swiper-lazy-preloader"></div>
+                            <div class="swiper-lazy-preloader mt-auto"></div>
 
                         </div>
 
