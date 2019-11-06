@@ -120,5 +120,7 @@ class PdfReport extends \yii\db\ActiveRecord {
         }
         return "header1.jpg";
     }
+    
+   
 
 }

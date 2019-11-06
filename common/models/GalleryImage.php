@@ -25,6 +25,7 @@ use yii\web\UploadedFile;
 class GalleryImage extends \yii\db\ActiveRecord {
 
     public $imageFile;
+    public $pdf_rank;
 
     /**
      * {@inheritdoc}
@@ -40,7 +41,7 @@ class GalleryImage extends \yii\db\ActiveRecord {
         return [
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'csv, xls, xlsx', 'maxSize' => 1024 * 1024 * 20, 'checkExtensionByMimeType' => false],
             [['ownerId'], 'required'],
-            [['rank',], 'integer'],
+            [['rank','pdf-rank'], 'integer'],
             [['estado',], 'safe'],
             [['oferta', 'agotado'], 'boolean'],
             [['description'], 'string'],

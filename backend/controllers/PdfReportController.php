@@ -100,8 +100,10 @@ class PdfReportController extends Controller {
     }
 
     public function report($estampados) {
-        foreach ($estampados as $id) {
-            $alldata[] = GalleryImage::findOne($id);
+        foreach ($estampados as $order => $id) {
+            $image = GalleryImage::findOne($id);
+            $image->pdf_rank = $order;
+            $alldata[] = $image;
         }
         $options = [
             'binary' => Yii::getAlias("@vendor/wkhtmltopdf"),
@@ -149,6 +151,7 @@ class PdfReportController extends Controller {
             $model->nombre_pdf = trim($model->tela->nombre_tela . "-" . $date);
         }
         if ($model->guardar && $model->save()) {
+            
             $pdf->saveAs(Yii::getAlias("@backend/uploads/pdf-report/" . $model->id_pdf_report . ".pdf"));
         }
         $timestamp = date("Y-m-d-H-m-i");
