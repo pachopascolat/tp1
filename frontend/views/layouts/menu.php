@@ -28,7 +28,7 @@
                             <div class="nav-item d-none d-sm-block">
                                 <div class="navbar-icon-link2 carrito-link">
                                     <a  data-pjax=0
-                                        href="<?= yii\helpers\Url::to(['crear-consulta', 'categoria_padre' => $categoria_padre]) ?>" 
+                                        href="<?= yii\helpers\Url::to(['crear-consulta']) ?>" 
                                         class="navbar-icon-link ">
 
                                         <img class="header-icon" src="img/txsim-header-consulta-01.svg" alt="listado">
@@ -85,8 +85,8 @@
                             </li>
 
                         </ul>
-                        <form class="form-inline my-2 my-lg-0 navbar-link flex-fill">
-                            <input class="form-control texsim-search-input nav-item w-100" type="search" placeholder="" aria-label="Search">
+                        <form method="POST" action="<?= \yii\helpers\Url::to(['/texsim/buscar-telas'])?>"  class="form-inline my-2 my-lg-0 navbar-link flex-fill">
+                            <input id="busqueda" name="busqueda" class="form-control texsim-search-input nav-item w-100" type="search" placeholder="" aria-label="Search">
                             <!--<i class="fa fa-search text-light"></i>-->
                             <img src="img/lupa-01.svg" class="lupa-icon"></img>
                             <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->

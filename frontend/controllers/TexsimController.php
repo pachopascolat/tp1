@@ -287,4 +287,16 @@ class TexsimController extends \yii\web\Controller {
         }
     }
 
+    function actionBuscarTelas() {
+        $telas = [];
+        $busqueda = \Yii::$app->request->post('busqueda');
+        if ($busqueda != "") {
+            $telas = \common\models\Tela::find()->where(['like', 'nombre_tela', '%'.$busqueda.'%', false])->all();
+        }
+//        $model = new \common\models\CategoriaSearch(['nombre_categoria'=>$busqueda]);
+//        $dataprovider = $model->search(null);
+//        $dataprovider->setPagination(false);
+        return $this->render('buscar', ['telas' => $telas]);
+    }
+
 }

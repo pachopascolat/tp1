@@ -35,6 +35,7 @@ return [
                 'hogar' => 'texsim/hogar',
                 'moda' => 'texsim/moda',
                 'categoria' => 'texsim/por-categoria',
+                'buscador'=> 'texsim/buscar-telas',
                 
 //                'texsim/categorias'=>'texsim/designs',
 //                'texsim/estampados' => 'texsim/designs',

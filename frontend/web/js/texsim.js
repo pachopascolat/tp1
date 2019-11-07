@@ -1,4 +1,6 @@
-
+$('.lupa-icon').on('click',function(){
+    $('form').submit();
+})
 //$('.menu-cat-toggle').on('click', function () {
 //    var cat = $(this).data('categoria');
 //    var collapse = '#collapse' + cat;
