@@ -18,12 +18,12 @@ class AppAsset extends AssetBundle {
         "css/swiper.min.css",
         "css/owl.carousel.min.css",
         "css/owl.theme.default.min.css",
-        
         "css/stylesheet.css",
         "css/fixedsticky.css",
 //        "css/fontawesome.min.css",
-        "css/all.css",
+//        "css/all.css",
 //        "css/bootstrap.min.css"
+        "css/menu-header.css",
     ];
     public $js = [
 //        "js/jquery-3.3.1.min.js",

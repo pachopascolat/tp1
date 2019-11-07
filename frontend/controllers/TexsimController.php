@@ -8,17 +8,32 @@ use yii\widgets\ActiveForm;
 
 class TexsimController extends \yii\web\Controller {
 
-    public function actionIndex() {
-//        $session = Yii::$app->session;
-//        $session->destroy();
-        return $this->render('index');
-    }
-
     public function actionHogar() {
         $categorias = \common\models\Categoria::find()->where(['hogar' => 1])->orderBy('orden_hogar')->all();
         return $this->render('list', [
                     'categoria_padre' => 1,
                     'categorias' => $categorias,
+        ]);
+    }
+
+    public function actionIndex() {
+        $categorias = \common\models\Categoria::find()->orderBy('hogar, orden_hogar')->all();
+//        $categoriaHogar = \common\models\Categoria::find()->where(['hogar' => 1])->orderBy('orden_hogar')->all();
+//        $categoriaIndumentaria = \common\models\Categoria::find()->where(['moda' => 1])->orderBy('orden_moda')->all();
+        return $this->render('list', [
+                    'categoria_padre' => 1,
+                    'categorias' => $categorias,
+//                    'collapse' => $collapse,
+//                    'categoriaHogar' => $categoriaHogar,
+//                    'categoriaIndumentaria' => $categoriaIndumentaria,
+        ]);
+    }
+
+    public function actionPorCategoria($categoria_id) {
+        $categoria = \common\models\Categoria::findOne($categoria_id);
+        return $this->render('porCategoria', [
+                    'cat' => $categoria,
+                    'categoria_padre' => 1,
         ]);
     }
 
@@ -33,11 +48,11 @@ class TexsimController extends \yii\web\Controller {
 
     public function actionCategorias($id) {
         $dis = \common\models\GalleryImage::findOne(\Yii::$app->request->post('modal_id'));
-        if($dis ==null){
+        if ($dis == null) {
             $dis = New \common\models\GalleryImage();
         }
-        
-        
+
+
         $model = \common\models\Tela::findOne($id);
 //        if ($data = Yii::$app->request->get('id')) {
 //            $model2 = \common\models\Tela::findOne($data['id']);
@@ -45,7 +60,7 @@ class TexsimController extends \yii\web\Controller {
 //            return $this->render('estampados_1', ['model' => $model2, 'categoria_padre' => $categoria_padre,'design'=>$dis]);
 //        }
         $categoria_padre = $model->getCategoriaPadre();
-        return $this->render('estampados_1', ['model' => $model, 'categoria_padre' => $categoria_padre,'design'=>$dis]);
+        return $this->render('estampados_1', ['model' => $model, 'categoria_padre' => $categoria_padre, 'design' => $dis]);
     }
 
     public function actionEstampados($id) {

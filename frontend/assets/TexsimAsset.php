@@ -7,8 +7,8 @@ use yii\web\AssetBundle;
 /**
  * Main frontend application asset bundle.
  */
-class TexsimAsset extends AssetBundle
-{
+class TexsimAsset extends AssetBundle {
+
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
@@ -21,8 +21,8 @@ class TexsimAsset extends AssetBundle
         "css/fixedsticky.css",
         "css/fontawesome.min.css",
         "css/all.css",
-        "css/bootstrap.min.css"
-        
+        "css/bootstrap.min.css",
+        "css/menu-header.css",
     ];
     public $js = [
 //        "js/jquery-3.3.1.min.js",
@@ -42,4 +42,5 @@ class TexsimAsset extends AssetBundle
         'yii\bootstrap4\BootstrapPluginAsset',
 //        'yii\web\AppAsset',
     ];
+
 }

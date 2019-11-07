@@ -10,7 +10,7 @@ $catArray = ['Hogar', 'Moda'];
 
 <?= $this->render('/layouts/menu', ['categoria_padre' => $categoria_padre]); ?>
 
-<?= $this->render('_carousel'); ?>
+<?php echo $this->render('_carousel'); ?>
 
 <style>
 
@@ -47,7 +47,7 @@ $catArray = ['Hogar', 'Moda'];
         </ol> 
         <!-- Hero Content-->
         <div class="hero-content pb-5 text-center">
-            <h1 class="hero-heading">Todas las Telas</h1>
+            <h1 class="hero-heading"><?= $cat->nombre_categoria?></h1>
             <!--<div class="row">   
               <div class="col-xl-8 offset-xl-2"><p class="lead text-muted">You have 3 items in your shopping cart</p></div>
             </div>-->
@@ -61,7 +61,7 @@ $catArray = ['Hogar', 'Moda'];
         <div class="lista-container panel-group" role="tablist" aria-multiselectable="true" >
             <?php
             $foo = 0;
-            foreach ($categorias as $index => $cat):
+//            foreach ($categorias as $index => $cat):
                 ?>
                 <div role="tab" class="btn-title btn-dark panel-heading  ">
                     <a class="more-less-link"  data-toggle="collapse" href="#collapse<?= $cat->id_categoria ?>" role="button" aria-expanded="false" aria-controls="collapseExample<?= $cat->id_categoria ?>">
@@ -72,9 +72,9 @@ $catArray = ['Hogar', 'Moda'];
                                 ?>
                                                                                         <!--<a role="button" class="more-less-link"  data-toggle="collapse" href="#collapse<?= $cat->id_categoria ?>" role="button" aria-expanded="false" aria-controls="collapseExample<?= $cat->id_categoria ?>">-->
                                 <div class="float-right">                          
-                                    <?php if ($index == 0) echo"<small>ver telas</small>"; ?>
+                                    <?php // echo"<small>ver telas</small>"; ?>
                                     <!--<i class="fas fa-plus more-less"></i>-->
-                                    <i class="fa fa-plus more-less" aria-hidden="true"></i>
+                                    <i class="fa fa-minus more-less " aria-hidden="true"></i>
 
                                     <!--</a>-->    
                                 </div>
@@ -85,7 +85,7 @@ $catArray = ['Hogar', 'Moda'];
                         </h6>
                     </a>
                 </div>
-                <div  id="collapse<?= $cat->id_categoria ?>" class="collapse" >
+                <div  id="collapse<?= $cat->id_categoria ?>" class="collapse show" >
                     <?php
 //                        if ($cat->telas == null) {
 //                            echo "<div class='row'></div>";
@@ -114,7 +114,7 @@ $catArray = ['Hogar', 'Moda'];
                 </div>
                 <div style="height: 2rem">
                 </div>
-                <?php endforeach; ?>
+                <?php // endforeach; ?>
         </div>
 
     </div>

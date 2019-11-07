@@ -34,6 +34,8 @@ return [
                 '' => 'texsim/index',
                 'hogar' => 'texsim/hogar',
                 'moda' => 'texsim/moda',
+                'categoria' => 'texsim/por-categoria',
+                
 //                'texsim/categorias'=>'texsim/designs',
 //                'texsim/estampados' => 'texsim/designs',
                 'designs' => 'texsim/categorias',

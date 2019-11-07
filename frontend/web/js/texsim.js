@@ -1,22 +1,64 @@
 
+//$('.menu-cat-toggle').on('click', function () {
+//    var cat = $(this).data('categoria');
+//    var collapse = '#collapse' + cat;
+//    $(collapse).collapse('show');
+//    $(collapse).on('shown.bs.collapse', function () {
+//        this.scrollIntoView();
+//    });
+//})
+
+//$('#collapse7').on('shown.bs.collapse', function () {
+//    this.scrollIntoView();
+//});
+
+//function mostrarCategoria(id) {
+//    var cat = '#collapse' + id
+//    $(cat).collapse('show');
+//    $(cat).on('shown.bs.collapse', function () {
+//        this.scrollIntoView();
+//    });
+//}
+
+//$('.categoriactiva').on('shown.bs.collapse', function () {
+//    this.scrollIntoView();
+////    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+////        // you're at the bottom of the page
+////    } else {
+//        window.scrollBy(0, -180);
+////    }
+//});
+//
+//$(document).ready(function () {
+//    var categoria = $('.categoriactiva');
+//    categoria.collapse('show');
+////    categoria.scrollIntoView();
+////    window.scrollBy(0, -300);
+//
+//
+//});
+
+
+
+
 jQuery.event.special.touchstart = {
-  setup: function( _, ns, handle ){
-    if ( ns.includes("noPreventDefault") ) {
-      this.addEventListener("touchstart", handle, { passive: false });
-    } else {
-      this.addEventListener("touchstart", handle, { passive: true });
+    setup: function (_, ns, handle) {
+        if (ns.includes("noPreventDefault")) {
+            this.addEventListener("touchstart", handle, {passive: false});
+        } else {
+            this.addEventListener("touchstart", handle, {passive: true});
+        }
     }
-  }
 };
 
 
-$('.btn-pjax-modal').on('click',function(){
+$('.btn-pjax-modal').on('click', function () {
     var modal_id = $(this).data('modal-id');
     $.pjax.reload({
-        container:'#pjax-modal-todos',
-        type:'POST',
-        data:{modal_id:modal_id}
-        });
+        container: '#pjax-modal-todos',
+        type: 'POST',
+        data: {modal_id: modal_id}
+    });
 //    $.ajax({
 //        url: 'delete-item' + "?id=" + itemid,
 //        success: function (e) {

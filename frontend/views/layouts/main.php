@@ -28,8 +28,9 @@ AppAsset::register($this);
                 <link rel="stylesheet" href="css/owl.carousel.css">
                 <link rel="stylesheet" href="css/stylesheet.css">-->
         <!--<link rel="stylesheet" href="css/fixedsticky.css">-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">-->
 
         <!--<link rel="stylesheet" href="css/all.css" >-->
         <!--        <link rel="stylesheet" href="css/solid.css" >
