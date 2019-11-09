@@ -138,18 +138,18 @@
     <div class="d-lg-none">
         <nav class="navbar-movil navbar navbar-texsim navbar-dark">
             <div class="container">
-                <div class="w-100 d-flex">
-                    <a class="navbar-brand" href="/">
+                <div class="w-100 d-flex align-items-center">
+                    <a class="navbar-brand p-0" href="/">
                         <img class="img-fluid p-0" src="img/logotexsim-02.svg">
 
                     </a>
-                    <div class="d-flex w-100 justify-content-end <?= $carrito && $carrito->itemCarritos ? '' : 'd-none' ?>">
+                    <div class="d-flex w-100 justify-content-end">
                         <!-- Cart Dropdown-->
                         <?php
                         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                         ?>
                         
-                        <div class="carrito-count-div d-flex align-items-center ">
+                        <div class="carrito-count-div align-items-center <?= $carrito && $carrito->itemCarritos ? 'd-flex' : 'd-none' ?>">
                             <div class="navbar-icon-link2 carrito-link">
                                 <a  data-pjax=0
                                     href="<?= yii\helpers\Url::to(['crear-consulta']) ?>" 
