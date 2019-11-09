@@ -198,7 +198,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <a class="navbar-brand d-flex align-items-end" href="/">
+                <a class="navbar-brand d-flex align-items-end w-100 pr-3 pb-0" href="/">
                     <img class=" img-fluid p-0 " src="img/logotexsim-02.svg">
 
                 </a>

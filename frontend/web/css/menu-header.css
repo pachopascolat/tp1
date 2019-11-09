@@ -294,14 +294,14 @@ body, html{
 .navbar-movil .navbar-brand img {
     /*max-width: 200px;*/
     /*max-width: 250px;*/
-    min-width: 150px;
+    min-width: 180px;
     width: 100%
 }
 
 
 .modal-sidebar a{
     font-family: 'Oswald', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 900;
     color: #0074ab;
     text-transform: uppercase;
@@ -309,7 +309,7 @@ body, html{
 
 .modal-sidebar .side-menu-link{
     font-family: 'Oswald', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 900;
     color: #0074ab;
     text-transform: uppercase;
