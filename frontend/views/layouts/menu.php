@@ -148,27 +148,28 @@
                         <?php
                         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                         ?>
-                        
-                        <div class="carrito-count-div align-items-center <?= $carrito && $carrito->itemCarritos ? 'd-flex' : 'd-none' ?>">
-                            <div class="navbar-icon-link2 carrito-link">
-                                <a  data-pjax=0
-                                    href="<?= yii\helpers\Url::to(['crear-consulta']) ?>" 
-                                    class="navbar-icon-link ">
+                        <div class="d-flex align-items-center" > 
+                            <div class="carrito-count-div  <?= $carrito && $carrito->itemCarritos ? '' : 'd-none' ?>">
+                                <div class="navbar-icon-link2 carrito-link  ">
+                                    <a  data-pjax=0
+                                        href="<?= yii\helpers\Url::to(['crear-consulta']) ?>" 
+                                        class="navbar-icon-link ">
 
-                                    <img class="header-icon" src="img/txsim-header-consulta-01.svg" alt="listado">
-                                    <div class="navbar-icon-link-badge carrito-count"><?= $carrito ? count($carrito->itemCarritos) : '' ?></div>
+                                        <img class="header-icon" src="img/txsim-header-consulta-01.svg" alt="listado">
+                                        <div class="navbar-icon-link-badge carrito-count"><?= $carrito ? count($carrito->itemCarritos) : '' ?></div>
 
-                                </a>
-                                <div class="tooltiptext tooltiptext-link">
-                                    Haga click aquí para ver su consulta
-                                </div>
-                                <div class="tooltiptext tooltiptext-notice">
-                                    Su consulta se ha guardado aquí
-                                </div>
+                                    </a>
+                                    <div class="tooltiptext tooltiptext-link">
+                                        Haga click aquí para ver su consulta
+                                    </div>
+                                    <div class="tooltiptext tooltiptext-notice">
+                                        Su consulta se ha guardado aquí
+                                    </div>
 
                             <!--<span class="d-xs-block d-sm-none p-2">Ir a Consulta</span>-->
-                            </div>
+                                </div>
 
+                            </div>
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#sidebar-left" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
