@@ -39,14 +39,24 @@ h4,h5,h6{
 }
 
 body, html{
-    height: 100%;
+
     /*padding-top: 106px;*/
 }
 
 .carousel img{
-    width: 226px;
+    height: 226px;
+    width: 100%;
+    /*margin: auto;*/
+    object-fit: cover;
+
 }
 
+.carousel-item{
+    /*display: flex;*/
+    /*justify-content: center;*/
+    height: 226px;  
+    /*overflow: hidden;*/
+}
 
 .lupa-icon{
     width: 28px;
@@ -317,7 +327,7 @@ body, html{
 
 .modal-sidebar .item-categoria-padre a{
     color: white;
-    
+
 }
 
 .modal-sidebar .item-categoria {
