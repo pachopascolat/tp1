@@ -136,14 +136,14 @@
     <!--nav para pantallas moviles-->
 
     <div class="d-lg-none">
-        <nav class="navbar-movil navbar navbar-expand-lg navbar-texsim navbar-dark d-lg-flex">
+        <nav class="navbar-movil navbar navbar-texsim navbar-dark">
             <div class="container">
-                <div class="w-100 d-flex justify-content-between">
-                    <a class="navbar-brand d-flex align-items-end" href="/">
-                        <img class="logo-texsim-blanco p-0" src="img/logotexsim-02.svg">
+                <div class="w-100 d-flex">
+                    <a class="navbar-brand" href="/">
+                        <img class="img-fluid p-0" src="img/logotexsim-02.svg">
 
                     </a>
-                    <div class="d-flex">
+                    <div class="d-flex w-100 justify-content-end">
                         <!-- Cart Dropdown-->
                         <?php
 //                if ($_SESSION['carrito'] != '') :
@@ -200,7 +200,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <a class="navbar-brand d-flex align-items-end" href="/">
-                    <img class=" img-fluid p-0" src="img/logotexsim-02.svg">
+                    <img class=" img-fluid p-0 " src="img/logotexsim-02.svg">
 
                 </a>
             </div>
