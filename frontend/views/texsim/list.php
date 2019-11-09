@@ -12,29 +12,7 @@ $catArray = ['Hogar', 'Moda'];
 
 <?= $this->render('_carousel'); ?>
 
-<style>
 
-    /*******************************
-* ACCORDION WITH TOGGLE ICONS
-* Does not work properly if "in" is added after "collapse".
-*******************************/
-
-
-
-    .more-less-link{
-        color: white;
-        text-decoration: none ;
-    }
-
-
-    .more-less-link:hover{
-        color: whitesmoke;
-        text-decoration: none !important;
-    }
-
-    /* ----- v CAN BE DELETED v ----- */
-
-</style>
 
 
 
@@ -56,7 +34,7 @@ $catArray = ['Hogar', 'Moda'];
 
 </section>
 
-<div class="album py-5 ">
+<section class="">
     <div class="container " >
         <div class="lista-container panel-group" role="tablist" aria-multiselectable="true" >
             <?php
@@ -119,7 +97,7 @@ $catArray = ['Hogar', 'Moda'];
 
     </div>
 
-</div>
+</section>
 
 
 

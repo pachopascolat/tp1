@@ -56,7 +56,7 @@ $catArray = ['Hogar', 'Moda'];
 
 </section>
 
-<div class="album py-5 ">
+<section class="">
     <div class="container " >
         <div class="lista-container panel-group" role="tablist" aria-multiselectable="true" >
             <?php
@@ -119,7 +119,7 @@ $catArray = ['Hogar', 'Moda'];
 
     </div>
 
-</div>
+</section>
 
 
 

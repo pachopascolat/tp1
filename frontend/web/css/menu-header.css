@@ -12,8 +12,35 @@ and open the template in the editor.
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap');
 
 
-body{
-    padding-top: 106px;
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{
+    font-family: 'Oswald', sans-serif;
+}
+
+h1,h2,h3
+{
+    font-weight: 600;
+}
+h4,h5,h6{
+    font-weight: 500;
+}
+
+
+.logout-btn{
+    letter-spacing: 0;
+    border: none;
+    font-size: 0.9rem;
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 14px;
+    text-transform: none;
+    line-height: 0;
+}
+
+body, html{
+    height: 100%;
+    /*padding-top: 106px;*/
 }
 
 .carousel img{
@@ -25,22 +52,22 @@ body{
     width: 28px;
     margin-left: -45px;
     z-index: 10;
+    cursor:pointer;
 }
 
-.sucursales-div{
-    padding-bottom: 8px;
+.sucursales-div {
+    margin-bottom: 8px;
     /*height: 40px;*/
 }
 
-.direcciones-sucursales{
-    margin-top: -5px;
-    /*padding-bottom: 5px;*/
-}
+
+
 
 .direcciones-sucursales span {
+    vertical-align: central;
     font-size: 0.7rem;
+    /*padding-bottom: 10px;*/
     color: #2F8CAF;
-    /*padding-bottom: 0.1rem;*/
 }
 
 .texsim-search-input, .texsim-search-input:focus{
@@ -72,11 +99,11 @@ body{
 
 
 
-.sucursales-toggle{
+.sucursales-toggle span{
     background-color: transparent;
     cursor: pointer;
     font-size: 0.9rem;
-    padding-bottom: 5px;
+    /*padding-bottom: 5px;*/
     margin-right: -2px;
 }
 
@@ -91,7 +118,7 @@ body{
 .navbar-texsim{
     z-index: 20;
     font-family: 'Oswald', sans-serif;
-    background-color: #3cb5ea;
+    background-color: #3AB3EA;
     font-weight: 900;
     font-size: 1rem;
     padding-bottom: 16px;
@@ -126,15 +153,15 @@ body{
     width: 130px !important;
     min-width: 130px !important;
     text-transform: uppercase;
-    
+
 
 
 }
 
 .ellipses {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .dropdown-toggle::after { 
@@ -154,9 +181,9 @@ body{
 
 .dropdown-menu a{
     font-family: 'Oswald', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     font-weight: 900;
-    color: #2F8CAF;
+    color: #0074ab;
     width: 130px !important;
 
     padding-left: 1em;
@@ -239,4 +266,111 @@ body{
     line-height: 18px;
     top:-10px;
     right: 10px;
+}
+
+
+
+.modal-sidebar .modal-content{
+    background-color: #3AB3EA;
+}
+
+
+
+.modal-sidebar .modal-dialog
+{
+    max-width: 300px !important;
+    width: 50% !important;
+
+}
+
+
+
+.modal-sidebar .navbar-brand 
+{
+    margin-top: 1em;
+    width: 80%;
+}
+
+
+.modal-sidebar a{
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 900;
+    color: #0074ab;
+    text-transform: uppercase;
+}
+
+.modal-sidebar .side-menu-link{
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 900;
+    color: #0074ab;
+    text-transform: uppercase;
+}
+
+.modal-sidebar .item-categoria-padre a{
+    color: white;
+}
+
+.modal-sidebar .item-categoria a:hover{
+    color:white;
+}
+
+.modal-sidebar .fa{
+    font-size: 1.6rem;
+    margin-right:  0.8rem;
+    /*margin-right: 18px;*/
+
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.text-white{
+    color:white;
+}
+
+.text-blue{
+    color: #0074ab;
+}
+
+.modal-sidebar .dir-sucursales span{
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+}
+
+
+
+/* MODAL FADE LEFT RIGHT BOTTOM */
+/*.modal.fade:not(.in).left .modal-dialog {
+    -webkit-transform: translate3d(-25%, 0, 0);
+    transform: translate3d(-25%, 0, 0);
+}
+.modal.fade:not(.in).right .modal-dialog {
+    -webkit-transform: translate3d(25%, 0, 0);
+    transform: translate3d(25%, 0, 0);
+}
+.modal.fade:not(.in).bottom .modal-dialog {
+    -webkit-transform: translate3d(0, 25%, 0);
+    transform: translate3d(0, 25%, 0);
+}*/
+
+
+
+.modal.left .modal-dialog {
+    /*padding-left: 50px;*/
+    position:absolute;
+    top:0;
+    left:0;
+    margin:0;
+}
+
+.modal.left .modal-dialog.modal-sm {
+    /*max-width:300px;*/
+}
+
+.modal.left .modal-content, .modal.right .modal-content {
+    min-height:100vh;
+    border:0;
 }
