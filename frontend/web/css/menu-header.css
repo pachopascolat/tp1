@@ -317,6 +317,11 @@ body, html{
 
 .modal-sidebar .item-categoria-padre a{
     color: white;
+    
+}
+
+.modal-sidebar .item-categoria {
+    padding-left: 0.1rem;
 }
 
 .modal-sidebar .item-categoria a:hover{

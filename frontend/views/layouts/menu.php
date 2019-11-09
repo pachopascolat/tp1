@@ -143,14 +143,13 @@
                         <img class="img-fluid p-0" src="img/logotexsim-02.svg">
 
                     </a>
-                    <div class="d-flex w-100 justify-content-end">
+                    <div class="d-flex w-100 justify-content-end <?= $carrito && $carrito->itemCarritos ? '' : 'd-none' ?>">
                         <!-- Cart Dropdown-->
                         <?php
-//                if ($_SESSION['carrito'] != '') :
                         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
-//                    if ($carrito->itemCarritos != null) :
                         ?>
-                        <div class="carrito-count-div d-flex align-items-center <?= $carrito && $carrito->itemCarritos ? '' : 'd-none' ?>">
+                        
+                        <div class="carrito-count-div d-flex align-items-center ">
                             <div class="navbar-icon-link2 carrito-link">
                                 <a  data-pjax=0
                                     href="<?= yii\helpers\Url::to(['crear-consulta']) ?>" 
@@ -205,11 +204,11 @@
                 </a>
             </div>
             <div class="modal-body">
-                <div class="side-menu-indumentaria mb-3">
+                <div class="side-menu-indumentaria mb-3 mt-0">
                     <ul class="navbar-nav">
 
                         <li class="nav-item item-categoria-padre">
-                            <a class="nav-link" href="#" id="" >
+                            <a class="nav-link pt-0" href="#" id="" >
                                 INDUMENTARIA
                             </a>
                         </li>
