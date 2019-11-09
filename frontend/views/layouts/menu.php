@@ -16,10 +16,10 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div class="menu-container-div d-flex flex-column w-100 ">
-                            <div  class="sucursales-div d-flex justify-content-end">
+                            <div  class="sucursales-div d-flex justify-content-end align-items-center">
                                 <div class="direcciones-sucursales d-flex justify-content-end align-items-center">
                                     <div id="sucursales-dir" class="collapse text-light mr-2">
-                                        <span>
+                                        <span class="text-blue">
                                             Lavalle 2571 - 2120 0550 / Feria: Azcuenaga 580 - 2120 0580 / Feria: Olavarria 2348 Villa Celina - 6072 6831
                                         </span>
                                     </div>
@@ -98,7 +98,7 @@
                                             $categorias = \common\models\Categoria::find()->where(['moda' => true])->all();
                                             foreach ($categorias as $categoria):
                                                 ?>
-                                                <a data-categoria="<?= $categoria->id_categoria ?>" class="dropdown-item ellipses" href="<?= yii\helpers\Url::to(['por-categoria', 'categoria_id' => $categoria->id_categoria]) ?>"><?= $categoria->nombre_categoria ?></a>
+                                                <a data-categoria="<?= $categoria->id_categoria ?>" class="pt-0 pb-0 text-blue dropdown-item ellipses" href="<?= yii\helpers\Url::to(['por-categoria', 'categoria_id' => $categoria->id_categoria]) ?>"><?= $categoria->nombre_categoria ?></a>
                                             <?php endforeach; ?>
 
                                     </li>
@@ -114,7 +114,7 @@
                                             $categorias = \common\models\Categoria::find()->where(['hogar' => true])->all();
                                             foreach ($categorias as $categoria):
                                                 ?>
-                                                <a data-categoria="<?= $categoria->id_categoria ?>" class="dropdown-item ellipses" href="<?= yii\helpers\Url::to(['por-categoria', 'categoria_id' => $categoria->id_categoria]) ?>"><?= $categoria->nombre_categoria ?></a>
+                                                <a data-categoria="<?= $categoria->id_categoria ?>" class="pt-0 pb-0 dropdown-item ellipses" href="<?= yii\helpers\Url::to(['por-categoria', 'categoria_id' => $categoria->id_categoria]) ?>"><?= $categoria->nombre_categoria ?></a>
                                             <?php endforeach; ?>
                                     </li>
 
@@ -198,7 +198,7 @@
 <div class="modal fade left modal-sidebar" id="sidebar-left" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header pb-2">
                 <a class="navbar-brand d-flex align-items-end w-100 pr-3 pb-0" href="/">
                     <img class=" img-fluid p-0 " src="img/logotexsim-02.svg">
 
@@ -209,7 +209,7 @@
                     <ul class="navbar-nav">
 
                         <li class="nav-item item-categoria-padre">
-                            <a class="nav-link pt-0" href="#" id="" >
+                            <a class="pb-1 pt-0" href="#" id="" >
                                 INDUMENTARIA
                             </a>
                         </li>
@@ -229,7 +229,7 @@
                     <ul class="navbar-nav">
 
                         <li class="nav-item item-categoria-padre">
-                            <a class="nav-link" href="#" id="" >
+                            <a class="pb-1" href="#" id="" >
                                 hogar
                             </a>
                         </li>
@@ -249,32 +249,7 @@
                     <a href="instagram.com/texsim"><i class="fa fa-instagram text-light"></i></a>
                     <a href="facebook.com/texsim"><i class="fa fa-facebook text-light"></i></a>
                     <a target="_blanc" href="https://api.whatsapp.com/send?phone=541135386219&text=Me%20gustar%C3%ADa%20saber%20mas%20sobre%20sus%20productos.%20Gracias&source=&data=#"><i class="fa fa-whatsapp text-light"></i></a>
-                    <div class="d-inline-block">
-                        <?php if (Yii::$app->user->isGuest) { ?>
-                            <div class=" text-white" data-toggle="modal" data-target="#login-modal">
-                                <i style="" class="fa fa-lock "></i>
-                                <!--<span>Login</span>-->
-                                <!--<span class="d-xs-block d-sm-none">Login</span>-->
 
-                            </div>
-
-                            <?php
-                        } else {
-                            echo '<i style="" class="fa fa-lock header-icon d-xs-block d-sm-none "></i>';
-                            echo \yii\helpers\Html::beginForm(['/user/logout'], 'post');
-                            ?>
-                            <button name="logout" class="btn text-light logout-btn" onclick="$('form').submit()">
-                                <span>Logout(<?= Yii::$app->user->identity->username ?>)</span>
-                            </button>
-                            <?php
-//                                echo \yii\helpers\Html::submitButton(
-////                                        'Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn text-white word-break', 'name' => 'logout']
-//                                        'Logout', ['class' => 'text-white nav-link p-0 ml-1', 'name' => 'logout']
-//                                );
-                            echo \yii\helpers\Html::endForm();
-                        }
-                        ?>
-                    </div>
                 </div>
                 <div class="side-menu-consultas text-white mb-3">
                     <a> 
@@ -308,9 +283,13 @@
                     ?>
                 </div>
                 <div class="side-menu-sucursales mb-3">
-                    <div class="side-menu-link cursor-pointer" href="#" data-target="#side-menu-suc-dir" id="" role="button" data-toggle="collapse" >
-                        sucursales
+
+                    <div class="side-menu-link cursor-pointer text-blue d-inline" data-target="#side-menu-suc-dir" id="" role="button" data-toggle="collapse" >
+                        <span>sucursales</span>
+                        <div class="arrow-down"></div>
                     </div>
+
+
                     <div id="side-menu-suc-dir" class="collapse dir-sucursales" aria-labelledby="navbarDropdown">
                         <div><span class="text-blue">Lavalle 2571 / 2120 0550</span> </div>
                         <div><span class="text-blue">Azcuenaga 580 / 2120 0580</span></div>

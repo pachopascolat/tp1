@@ -12,7 +12,7 @@ and open the template in the editor.
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap');
 
 
-h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{
+h1,h2,h3,.h1,.h2,.h3{
     font-family: 'Oswald', sans-serif;
 }
 
@@ -20,9 +20,9 @@ h1,h2,h3
 {
     font-weight: 600;
 }
-h4,h5,h6{
+/*h4,h5,h6{
     font-weight: 500;
-}
+}*/
 
 
 .logout-btn{
@@ -43,18 +43,22 @@ body, html{
     /*padding-top: 106px;*/
 }
 
-.carousel img{
+/*.carousel {
     height: 226px;
     width: 100%;
-    /*margin: auto;*/
+    margin-right: 30%;
+    margin-left: -66%;
+    margin: auto;
     object-fit: cover;
 
-}
+}*/
 
-.carousel-item{
+.carousel-item > div{
     /*display: flex;*/
     /*justify-content: center;*/
-    height: 226px;  
+    height: 226px;
+    background-size: cover;
+    background-position: center;
     /*overflow: hidden;*/
 }
 
@@ -77,7 +81,7 @@ body, html{
     vertical-align: central;
     font-size: 0.7rem;
     /*padding-bottom: 10px;*/
-    color: #2F8CAF;
+    /*color: #2F8CAF;*/
 }
 
 .texsim-search-input, .texsim-search-input:focus{
@@ -298,7 +302,7 @@ body, html{
 .modal-sidebar .navbar-brand 
 {
     margin-top: 1em;
-    width: 80%;
+    width: 90%;
 }
 
 .navbar-movil .navbar-brand img {
@@ -363,6 +367,56 @@ body, html{
 }
 
 
+@media screen and (max-width: 360px)  {
+    .modal-sidebar .side-menu-link, .modal-sidebar a, .dir-sucursales{
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.8rem ;
+    }   
+
+    .modal-sidebar .fa{
+        font-size: 1.2rem;
+        margin-right: 0.5rem;
+        /*margin-right: 18px;*/
+
+    }
+
+    .arrow-up{
+         
+        border-left: 7px solid transparent !important;
+        border-right: 7px solid transparent !important;
+
+        border-bottom:  11px solid #0074ab !important;
+    }
+
+
+
+
+    .arrow-down{
+         
+        border-left: 7px solid transparent !important;
+        border-right: 7px solid transparent !important;
+
+        border-top: 11px solid #0074ab !important;
+    }
+
+
+
+}
+
+.carousel-item > div{
+    height: 226px;
+    background-size: cover;
+    background-position: center;
+    /*overflow: hidden;*/
+}
+
+@media screen and (max-width: 660px)  {
+    .carousel-item > div{
+        height: 200px;
+        background-position-x: 570px;
+    }
+}
+
 
 /* MODAL FADE LEFT RIGHT BOTTOM */
 /*.modal.fade:not(.in).left .modal-dialog {
@@ -396,3 +450,28 @@ body, html{
     min-height:100vh;
     border:0;
 }
+
+
+.arrow-up{
+    display: inline-block;
+    width: 0; 
+    height: 0; 
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+
+    border-bottom:  14px solid #0074ab;
+}
+
+
+
+
+.arrow-down{
+    display: inline-block;
+    width: 0; 
+    height: 0; 
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+
+    border-top: 14px solid #0074ab;
+}
+

@@ -1,4 +1,15 @@
 
+$('#side-menu-suc-dir').on('show.bs.collapse', function () {
+    var arrow = $('.arrow-down');
+    arrow.removeClass('arrow-down');
+    arrow.addClass('arrow-up');
+});
+$('#side-menu-suc-dir').on('hide.bs.collapse', function () {
+    var arrow = $('.arrow-up');
+    arrow.removeClass('arrow-up');
+    arrow.addClass('arrow-down');
+});
+
 $(document).ready(function () {
     $(".modal a").not(".dropdown-toggle").on("click", function () {
         $(".modal").modal("hide");
