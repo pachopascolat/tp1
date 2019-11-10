@@ -90,7 +90,7 @@
                                 <ul class="navbar-nav">
 
                                     <li class="nav-item dropdown text-center">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             INDUMENTARIA
                                         </a>
                                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
@@ -106,7 +106,7 @@
                                 <ul class="navbar-nav">
 
                                     <li class="nav-item dropdown text-center">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             HOGAR
                                         </a>
                                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
@@ -138,17 +138,27 @@
     <div class="d-lg-none">
         <nav class="navbar-movil navbar navbar-texsim navbar-dark">
             <div class="container">
+                <div id="movil-search-input" class="w-100 collapse ">
+                    <form method="POST" action="<?= \yii\helpers\Url::to(['/texsim/buscar-telas']) ?>"  class="form-inline my-2 my-lg-0 navbar-link flex-fill">
+                        <input id="busqueda" name="busqueda" class="form-control texsim-search-input nav-item w-100" type="search" placeholder="" aria-label="Search">
+                        <!--<i class="fa fa-search text-light"></i>-->
+                        <img src="img/lupa-01.svg" class="lupa-icon"></img>
+                        <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+                    </form>
+                </div>
                 <div class="w-100 d-flex align-items-center">
                     <a class="navbar-brand p-0" href="/">
                         <img class="img-fluid p-0" src="img/logotexsim-02.svg">
 
                     </a>
                     <div class="d-flex w-100 justify-content-end">
+
                         <!-- Cart Dropdown-->
                         <?php
                         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                         ?>
-                        <div class="d-flex align-items-center" > 
+                        <div class="d-flex align-items-center" >
+
                             <div class="carrito-count-div  <?= $carrito && $carrito->itemCarritos ? '' : 'd-none' ?>">
                                 <div class="navbar-icon-link2 carrito-link  ">
                                     <a  data-pjax=0
@@ -171,6 +181,7 @@
 
                             </div>
                         </div>
+
                         <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#sidebar-left" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -205,6 +216,10 @@
                 </a>
             </div>
             <div class="modal-body">
+                <div class="side-menu-link text-white cursor-pointer pb-3" data-toggle="collapse"  data-target="#movil-search-input">
+                    <span>Buscador</span>
+                    <img src="img/lupa-01.svg" class="lupa-toggle-icon"></img>
+                </div>
                 <div class="side-menu-indumentaria mb-3 mt-0">
                     <ul class="navbar-nav">
 

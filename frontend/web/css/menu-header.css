@@ -69,12 +69,25 @@ body, html{
     cursor:pointer;
 }
 
+.lupa-toggle-icon{
+    cursor:pointer;
+    width: 20px;
+}
+
 .sucursales-div {
     margin-bottom: 8px;
     /*height: 40px;*/
 }
 
+.navbar-texsim #busqueda{
+    font-size: 1rem;
+    font-weight: 700;
+}
 
+.tooltiptext-notice{
+    font-weight: 500;
+    margin-right: 1em;
+}
 
 
 .direcciones-sucursales span {

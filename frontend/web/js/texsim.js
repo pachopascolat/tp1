@@ -1,4 +1,8 @@
 
+$('#movil-search-input').on('show.bs.collapse', function () {
+    $('.modal-sidebar').modal('hide');
+});
+
 $('#side-menu-suc-dir').on('show.bs.collapse', function () {
     var arrow = $('.arrow-down');
     arrow.removeClass('arrow-down');
@@ -18,9 +22,17 @@ $(document).ready(function () {
 
 
 $('.lupa-icon').on('click', function () {
-    $('form').submit();
+    var form = $(this).closest('form');
+    form.submit();
 })
 
+$('.search-input').on('keypress', function (e) {
+    if (e.which === 13) {
+        e.preventDefault();
+        var form = $(this).closest('form');
+        form.submit();
+    }
+})
 
 jQuery.event.special.touchstart = {
     setup: function (_, ns, handle) {
@@ -38,7 +50,8 @@ $('.btn-pjax-modal').on('click', function () {
     $.pjax.reload({
         container: '#pjax-modal-todos',
         type: 'POST',
-        data: {modal_id: modal_id}
+        data: {modal_id: modal_id},
+        success: function(){consultaguardada();}
     });
 //    $.ajax({
 //        url: 'delete-item' + "?id=" + itemid,
@@ -128,29 +141,29 @@ $('.cart-remove').on('click', function (event) {
             });
 //            $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
             if (cart.length) {
-                $.pjax.reload({container: '#cart-pjax'});
+                $.pjax.reload({container: '#cart-pjax', 'timeout': false});
             }
         }
     });
 });
 $(document).on('ready pjax:success', function () {
-    $('.borrar-carrito').on('click', function (event) {
-        event.preventDefault();
-        var cart = $('#cart-pjax');
-        $.ajax({
-            url: 'delete-carrito',
-            success: function (e) {
-                $('.carrito-count').each(function () {
-                    $(this).text(e);
-                });
-//                $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
-                if (cart.length) {
-                    $.pjax.reload({container: '#cart-pjax'});
-                }
-            }
-        }
-        );
-    });
+//    $('.borrar-carrito').on('click', function (event) {
+//        event.preventDefault();
+//        var cart = $('#cart-pjax');
+//        $.ajax({
+//            url: 'delete-carrito',
+//            success: function (e) {
+//                $('.carrito-count').each(function () {
+//                    $(this).text(e);
+//                });
+////                $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
+//                if (cart.length) {
+//                    $.pjax.reload({container: '#cart-pjax'});
+//                }
+//            }
+//        }
+//        );
+//    });
     $('.cart-remove').on('click', function (event) {
         event.preventDefault();
         var cart = $('#cart-pjax');
@@ -163,7 +176,7 @@ $(document).on('ready pjax:success', function () {
                 });
 //                $.pjax.reload({container: '#carrito-pjax', async: false, 'timeout': false});
                 if (cart.length) {
-                    $.pjax.reload({container: '#cart-pjax'});
+                    $.pjax.reload({container: '#cart-pjax', 'timeout': false});
                 }
             }
         });
@@ -260,13 +273,20 @@ function verocultar(e) {
 }
 $('.collapse').on('hidden.bs.collapse', vermostrar);
 $('.collapse').on('shown.bs.collapse', verocultar);
-$(document).on('ready pjax:success', function () {
+//$(document).on('ready pjax:success', function () {
+//
+//    var notice = $('.tooltiptext-notice');
+//    notice.fadeIn('slow', function () {
+//        notice.delay(1000).fadeOut();
+//    });
+//});
 
+consultaguardada = function(){
     var notice = $('.tooltiptext-notice');
     notice.fadeIn('slow', function () {
         notice.delay(1000).fadeOut();
     });
-});
+}
 //acomada cuando no anda sticky
 $(document).ready(function () {
     var $win = $(window);
@@ -307,11 +327,12 @@ $('.submit-zoom').on('click', function () {
         success: function (e) {
             $('.carrito-count-div').each(function () {
                 $(this).removeClass('d-none');
-            })
+            });
 
             $('.carrito-count').each(function () {
                 $(this).text(e);
-            })
+            });
+            consultaguardada();
             //$.pjax.reload({container: '#carrito-pjax', 'timeout': false});
         }
     });
