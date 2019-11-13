@@ -322,7 +322,8 @@ body, html{
     /*max-width: 200px;*/
     /*max-width: 250px;*/
     min-width: 180px;
-    width: 100%
+    width: 100%;
+    padding-bottom: 0.8rem;
 }
 
 

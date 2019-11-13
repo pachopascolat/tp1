@@ -35,8 +35,7 @@ return [
                 'hogar' => 'texsim/hogar',
                 'moda' => 'texsim/moda',
                 'categoria' => 'texsim/por-categoria',
-                'buscador'=> 'texsim/buscar-telas',
-                
+                'buscador' => 'texsim/buscar-telas',
 //                'texsim/categorias'=>'texsim/designs',
 //                'texsim/estampados' => 'texsim/designs',
                 'designs' => 'texsim/categorias',
@@ -58,7 +57,6 @@ return [
                 'finalizar-consulta' => 'texsim/finalizar-consulta',
                 'login' => 'security/login',
 //                '<module:user>/login' => 'security/login',
-                
                 'logout' => 'security/logout',
                 'nuevo-pedido' => 'texsim/nuevo-pedido',
 //                '<controller:\w+>/<id:\d+>' => '<controller>/view',
@@ -90,6 +88,7 @@ return [
             'errorAction' => 'site/error',
         ],
         'assetManager' => [
+            'appendTimestamp' => true,
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'sourcePath' => null,

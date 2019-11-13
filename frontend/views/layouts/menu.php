@@ -147,8 +147,8 @@
                     </form>
                 </div>
                 <div class="w-100 d-flex align-items-center">
-                    <a class="navbar-brand p-0" href="/">
-                        <img class="img-fluid p-0" src="img/logotexsim-02.svg">
+                    <a class="navbar-brand" href="/">
+                        <img class="img-fluid" src="img/logotexsim-02.svg">
 
                     </a>
                     <div class="d-flex w-100 justify-content-end">
