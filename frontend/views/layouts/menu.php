@@ -98,7 +98,7 @@
                                             $categorias = \common\models\Categoria::find()->where(['moda' => true])->all();
                                             foreach ($categorias as $categoria):
                                                 ?>
-                                                <a data-categoria="<?= $categoria->id_categoria ?>" class="pt-0 pb-0 text-blue dropdown-item ellipses" href="<?= yii\helpers\Url::to(['por-categoria', 'categoria_id' => $categoria->id_categoria]) ?>"><?= $categoria->nombre_categoria ?></a>
+                                                <a data-categoria="<?= $categoria->id_categoria ?>" class="pt-0 pb-1 text-blue dropdown-item ellipses" href="<?= yii\helpers\Url::to(['por-categoria', 'categoria_id' => $categoria->id_categoria]) ?>"><?= $categoria->nombre_categoria ?></a>
                                             <?php endforeach; ?>
 
                                     </li>
@@ -114,7 +114,7 @@
                                             $categorias = \common\models\Categoria::find()->where(['hogar' => true])->all();
                                             foreach ($categorias as $categoria):
                                                 ?>
-                                                <a data-categoria="<?= $categoria->id_categoria ?>" class="pt-0 pb-0 dropdown-item ellipses" href="<?= yii\helpers\Url::to(['por-categoria', 'categoria_id' => $categoria->id_categoria]) ?>"><?= $categoria->nombre_categoria ?></a>
+                                                <a data-categoria="<?= $categoria->id_categoria ?>" class="pt-0 pb-1 dropdown-item ellipses" href="<?= yii\helpers\Url::to(['por-categoria', 'categoria_id' => $categoria->id_categoria]) ?>"><?= $categoria->nombre_categoria ?></a>
                                             <?php endforeach; ?>
                                     </li>
 

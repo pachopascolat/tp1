@@ -5,7 +5,7 @@
 
     </div>
 </footer>
-<script>
+<!--<script>
     // ------------------------------------------------------- //
     //   Inject SVG Sprite - 
     //   see more here 
@@ -29,7 +29,7 @@
     // pls don't forget to change to your domain :)
     injectSvgSprite('https://demo.bootstrapious.com/sell/1-2-0/icons/orion-svg-sprite.svg');
 
-</script>
+</script>-->
 <!--<script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>-->
 <!--<script src="js/swiper.min.js"></script>
