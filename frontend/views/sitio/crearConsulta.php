@@ -8,6 +8,9 @@
 
 
 <?php
+//echo $this->render('nav3_sin');
+
+
 echo $this->render('cart', ['id_carrito' => $carrito->id_carrito]);
 ?>
 
@@ -55,7 +58,8 @@ echo $this->render('cart', ['id_carrito' => $carrito->id_carrito]);
                                         <div class="d-flex justify-content-between flex-column flex-lg-row loading-div">
 
                                             <div class="form-group text-center">
-                                                <button type="submit" class="btn-pedido btn btn-outline-secondary"><svg class="svg-icon"><use xlink:href="#envelope-1"> </use></svg>
+                                                <button type="submit" class="btn-pedido btn btn-outline-secondary">
+                                                    <i class="fal fa-envelope fa-2x"></i>
                                                      <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                                                     <span class="sr-only">Loading...</span>
                                                     <p>ENVIAR POR MAIL</p> 
@@ -65,7 +69,7 @@ echo $this->render('cart', ['id_carrito' => $carrito->id_carrito]);
                                             </div>
                                             <div class="form-group text-center">
                                                 <button type="submit" formaction="<?php echo \yii\helpers\Url::to(['crear-consulta-whats-app']) ?>" id="consulta-whatsapp" type="" class="btn-pedido btn btn-outline-secondary">
-                                                    <svg class="svg-icon"><use xlink:href="#envelope-1"> </use></svg>
+                                                    <i class="fal fa-envelope fa-2x"></i>
                                                     <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                                                     <span class="sr-only">Loading...</span>
                                                     <p>ENVIAR POR WHATSAPP</p>

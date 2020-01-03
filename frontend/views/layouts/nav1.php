@@ -5,7 +5,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
     <div class="container">
         <div class="w-100 d-flex justify-content-around align-items-center">
             <div class="logo">
-                <a class="navbar-brand d-flex" href="#">
+                <a class="navbar-brand d-flex" href="<?= \yii\helpers\Url::base(true) ?>">
                     <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/logotexsim-02.svg" alt="Logo Texsim">
                 </a>
             </div>

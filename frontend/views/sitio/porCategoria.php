@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-
+echo $this->render('nav3');
 
 //$categoria_padre = $_SESSION['categoria_padre']??1;
 //$categoria_padre = 1;

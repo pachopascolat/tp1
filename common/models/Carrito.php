@@ -72,9 +72,9 @@ class Carrito extends \yii\db\ActiveRecord {
             if ($this->itemCarritos != null) {
                 foreach ($this->itemCarritos as $item) {
                     $cant = $item->cantidad;
-                    $img = GalleryImage::findOne($item->disenio_id);
-                    $codigo_diseño = $img->name;
-                    $tela = $img->getTela();
+//                    $img = GalleryImage::findOne($item->disenio_id);
+                    $codigo_diseño = $item->articulo->codigo_color;
+                    $tela = $item->articulo->tela;
 //                    $tipo = $item->getTipoTela();
                     $mensaje .= "$cant rollos de $tela->codigo_tela $tela->nombre_tela  codigo $codigo_diseño \n";
                 }
@@ -90,8 +90,8 @@ class Carrito extends \yii\db\ActiveRecord {
 
         $message->setFrom('no_reply@texsim.com.ar')
 //                ->setBcc('patriciopascolat@gmail.com')
-                ->setBcc(['dgvizaq@gmail.com', 'patriciopascolat@gmail.com'])
-                ->setTo('pedidos@texsim.com.ar')
+                ->setBcc(['dgvizaq@gmailpatriciopascolat@gmail.com'])
+//                ->setTo('pedidos@texsim.com.ar')
                 ->setSubject('Se ha realizado la consulta nro ' . $this->id_carrito)
 //                ->setTextBody('EL cliente '.$this->cliente->nombre_cliente."\n".
 //                        "tel: ".$this->cliente->telefono."\n".

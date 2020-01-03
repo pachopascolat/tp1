@@ -118,5 +118,20 @@ class SitioController extends \yii\web\Controller {
         }
         return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
     }
+    
+    function actionFinalizarConsulta($categoria_padre = 1, $id_carrito) {
+        $carrito = \common\models\Carrito::findOne($id_carrito);
+        $carrito->confirmado = true;
+        $carrito->timestamp = date("Y-m-d H:i:s");
+        $carrito->save();
+        $_SESSION['carrito'] = '';
+        return $this->render('finalizarConsulta', ['id_carrito' => $id_carrito]);
+    }
 
+    function actionUpdateConsulta($id_carrito) {
+        $_SESSION['carrito'] = $id_carrito;
+
+        return $this->redirect(['crear-consulta']);
+    }
+    
 }

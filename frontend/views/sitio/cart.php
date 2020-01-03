@@ -3,15 +3,16 @@
 <!-- Hero Section-->
 <section class="hero">
     <div class="container">
-        <!-- Breadcrumbs -->
-<!--        <ol class="breadcrumb justify-content-left">
-            <li class="breadcrumb-item"><a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
+         <!--Breadcrumbs--> 
+        <ol class="breadcrumb justify-content-left pl-0">
+            <li class="breadcrumb-item">
+                <a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
             <li class="breadcrumb-item active">Lista de consultas        </li>
-        </ol>-->
+        </ol>
         <!-- Hero Content-->
         <div class="hero-content pb-5 text-center">
             <h1 class="hero-heading">Consulta</h1>
-            <!--<div class="row">   
+<!--            <div class="row">   
               <div class="col-xl-8 offset-xl-2"><p class="lead text-muted">You have 3 items in your shopping cart</p></div>
             </div>-->
         </div>

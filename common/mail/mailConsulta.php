@@ -7,42 +7,43 @@
 <table width="80%" border="1" bordercolor="#0000FF" cellpadding="10">
     <thead>
         <tr>
-            <th>codigo disenio</th>
-            <th>imagen</th>
-            <th>codigo tela</th>
-            <th>tela</th>
-            <th>Tipo</th>
-            <th>cantidad</th>
+            <th>Codigo Tela</th>
+            <th>Codigo Color</th>
+            <th>Imagen</th>
+            <th>Tela</th>
+            <th>Color</th>
+            <th>Cantidad</th>
         </tr>
     </thead>
     <tbody>
         <?php
         foreach ($carrito->itemCarritos as $item):
             ?>
-        <tr>
-            <td><?=$item->disenio->name?></td>
-            <td><?php
-               $web = yii\helpers\Url::base('https');
+            <tr>
+                <td><?= $item->articulo->tela->codigo_tela ?></td>
+                <td><?= $item->articulo->codigo_color ?></td>
+                <td><?php
+                    $web = yii\helpers\Url::base('https');
                     $url = $item->getUrl('preview');
                     $path = $url;
                     $parts = explode('/', $path);
                     $parts = array_slice($parts, 3);
                     $newpath = implode('/', $parts);
-                    $urlok = $web ."/". $newpath;
+                    $urlok = $web . "/" . $newpath;
 //                    echo yii\helpers\Html::img($web.$url, ['class' => 'img-thumbnail']);
                     ?>
                     <a href="<?php echo $urlok ?>"><img width="80px" src="<?= $urlok ?>"> </a> 
                 </td>
+
+
                 
-               
-            <td><?=$item->getCodigoTela()?></td>
-            <td><?=$item->getNombreTela()?></td>
-            <td>
-                <?=$item->getTipoTela();?>
-            </td>
-            <td><?=$item->cantidad?></td>
-            
-        </tr>
+                <td><?= $item->articulo->tela->nombre_tela ?></td>
+                <td>
+                    <?= $item->articulo->nombre_color; ?>
+                </td>
+                <td><?= $item->cantidad ?></td>
+
+            </tr>
             <?php
         endforeach;
         ?>
