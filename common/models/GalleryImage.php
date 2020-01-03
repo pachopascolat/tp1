@@ -4,6 +4,9 @@ namespace common\models;
 
 use Yii;
 use yii\web\UploadedFile;
+use yii\imagine\Image;
+use noam148\imagemanager\models\ImageManager;
+use yii\helpers\BaseFileHelper;
 
 /**
  * This is the model class for table "gallery_image".
@@ -41,7 +44,7 @@ class GalleryImage extends \yii\db\ActiveRecord {
         return [
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'csv, xls, xlsx', 'maxSize' => 1024 * 1024 * 20, 'checkExtensionByMimeType' => false],
             [['ownerId'], 'required'],
-            [['rank','pdf-rank'], 'integer'],
+            [['rank', 'pdf-rank'], 'integer'],
             [['estado',], 'safe'],
             [['oferta', 'agotado'], 'boolean'],
             [['description'], 'string'],
@@ -307,6 +310,83 @@ class GalleryImage extends \yii\db\ActiveRecord {
             }
         }
         closedir($dir);
+    }
+
+    public function migrarImagen() {
+        $galleryImage = $this;
+        $sTempFile = $galleryImage->getPath();
+        $tela = $galleryImage->getTela();
+
+        $cod_tela = $tela->codigo_tela ?? 'sinTela';
+        $cod_color = $galleryImage->name;
+        $name = $galleryImage->description;
+        $nameFile = "$cod_tela-$cod_color-$name";
+
+        //set response header
+//        Yii::$app->getResponse()->format = Response::FORMAT_JSON;
+        // Check if the user is allowed to upload the image
+//        if (Yii::$app->controller->module->canUploadImage == false) {
+        // Return the response array to prevent from the action being executed any further
+//            return [];
+//        }
+        // Create the transaction and set the success variable
+//        $transaction = Yii::$app->db->beginTransaction();
+        $bSuccess = false;
+
+        //disable Csrf
+//        Yii::$app->controller->enableCsrfValidation = false;
+        //return default
+//        $return = $files;
+        //set media path
+        $sMediaPath = \Yii::$app->imagemanager->mediaPath;
+        //create the folder
+        BaseFileHelper::createDirectory($sMediaPath);
+
+        //check file isset
+        if (true) {
+            //loop through each uploaded file
+//            foreach ($files AS $key => $sTempFile) {
+            //collect variables
+            $sFileName = dirname($sTempFile);
+            $sFileExtension = pathinfo($sTempFile, PATHINFO_EXTENSION)??'jpg';
+//                $iErrorCode = $sTempFile['error'];
+            //if uploaded file has no error code  than continue;
+            if (file_exists($sTempFile)) {
+                //create a file record
+                $model = new ImageManager();
+//                $model->fileName = str_replace("_", "-", $sFileName);
+                $model->fileName = $nameFile.".".$sFileExtension;
+                $model->fileHash = Yii::$app->getSecurity()->generateRandomString(32);
+                if ($tela) {
+                    $articulo = new Articulo(['tela_id' => $tela->id_tela]);
+                    $articulo->codigo_color = intval($galleryImage->name);
+                    $articulo->nombre_color = $galleryImage->description;
+                    $articulo->imagen_id = $model->id;
+                    if ($model->validate() && $articulo->validate()) {
+                        $model->save(false);
+                        $articulo->imagen_id = $model->id;
+                        $articulo->save(false);
+                        //move file to dir
+                        $sSaveFileName = $model->id . "_" . $model->fileHash . "." . $sFileExtension;
+                        //move_uploaded_file($sTempFile, $sMediaPath."/".$sFileName);
+                        //save with Imagine class
+                        Image::getImagine()->open($sTempFile)->save($sMediaPath . "/" . $sSaveFileName);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                //if file is saved add record
+            }
+//            }
+        }
+
+        return true;
+
+
+
+        //echo return json encoded
+//        return $this->redirect('ver-stock');
     }
 
 }

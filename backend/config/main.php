@@ -14,7 +14,6 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
-        
 //        'user' => [
 //            'controllerMap'=>[
 //                'admin'=>'backend\controllers\UsuarioController',
@@ -27,6 +26,15 @@ return [
         // message source
         // 'downloadAction' => 'gridview/export/download',
         // 'i18n' => []
+        ],
+        'datecontrol' => [
+            'class' => '\kartik\datecontrol\Module',
+        // see settings on http://demos.krajee.com/datecontrol#module
+        ],
+        // If you use tree table
+        'treemanager' => [
+            'class' => '\kartik\tree\Module',
+        // see settings on http://demos.krajee.com/tree-manager#module
         ],
         'imagemanager' => [
             'class' => 'noam148\imagemanager\Module',
@@ -66,11 +74,13 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '' => 'carrito/index',
-                'usuarios'=>'user/admin/index',
+                'usuarios' => 'user/admin/index',
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 //                '<module:user>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
-
 //                'users'=>'user/index',
-                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+//                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
         'urlManagerFrontEnd' => [

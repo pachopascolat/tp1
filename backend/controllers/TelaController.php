@@ -45,7 +45,7 @@ class TelaController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['delete-categoria','agregar-categoria','delete-hijo', 'agregar-hijo', 'pasar-categorias', 'index-todos', 'ver-stock', 'borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
+                        'actions' => ['migrar-telas', 'delete-categoria', 'agregar-categoria', 'delete-hijo', 'agregar-hijo', 'pasar-categorias', 'index-todos', 'ver-stock', 'borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -71,10 +71,9 @@ class TelaController extends Controller {
         ]);
     }
 
-   
     public function actionIndexPorCategoria($categoria_id = null) {
-        
-        $searchModel = new TelaSearch(['categoria_id'=>$categoria_id]);
+
+        $searchModel = new TelaSearch(['categoria_id' => $categoria_id]);
 //        $searchModel->categoria_padre = $categoria_padre;
 //        $searchModel->categoria_id = $categoria_id;
 //        $searchModel = new TelaSearch(['categoria_padre' => $categoria_padre,'categoria_id'=>$categoria_id]);
@@ -411,6 +410,37 @@ class TelaController extends Controller {
         $model = \common\models\CategoriaTela::findOne($id);
         if ($model) {
             $model->delete();
+        }
+        return $this->redirect(['index-todos']);
+    }
+
+    public function actionMigrarTelas() {
+        set_time_limit(3600);
+        $telas = Tela::find()->all();
+
+//        foreach ($telas as $tela) {
+//
+//
+//            /* @var \common\models\Tela $tela */
+//
+////            $imagenes = $tela->getAllDisenios();
+//            $imagenes2 = $tela->getAllDisenios2();
+////            $imagenes3 = $tela->getAllDisenios3();
+//            foreach ($imagenes2 as $image) {
+//                $image->migrarImagen();
+//            }
+//        }
+        foreach ($telas as $tela) {
+
+//            if (TRUE) {
+            $vidriera = new \common\models\Vidriera(['orden_vidriera' => $tela->orden_tela, 'categoria_id' => $tela->categoria_id, 'nombre' => $tela->nombre_tela]);
+            $vidriera->save();
+            $articulos = \common\models\Articulo::find()->where(['tela_id' => $tela->id_tela])->all();
+            foreach ($articulos as $articulo) {
+                $itemVidriera = new \common\models\ItemVidirera(['vidriera_id' => $vidriera->id_vidriera, 'articulo_id' => $articulo->id_articulo, 'imagen_id' => $articulo->imagen_id]);
+                $itemVidriera->save();
+            }
+//            }
         }
         return $this->redirect(['index-todos']);
     }

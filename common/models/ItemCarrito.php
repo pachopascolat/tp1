@@ -9,8 +9,10 @@ use Yii;
  *
  * @property int $id_item_carrito
  * @property int $disenio_id
+ * @property int $articulo_id
  *
  * @property GalleryImage $disenio
+ * @property Articulo $articulo
  * @property Carrito $carrito
  */
 class ItemCarrito extends \yii\db\ActiveRecord {
@@ -28,8 +30,9 @@ class ItemCarrito extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['precio'],'double'],
-            [['disenio_id'], 'integer'],
+            [['disenio_id','articulo_id'], 'integer'],
             [['disenio_id'], 'exist', 'skipOnError' => true, 'targetClass' => GalleryImage::className(), 'targetAttribute' => ['disenio_id' => 'id']],
+            [['articulo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articulo::className(), 'targetAttribute' => ['articulo_id' => 'id_articulo']],
         ];
     }
 
@@ -48,6 +51,9 @@ class ItemCarrito extends \yii\db\ActiveRecord {
      */
     public function getDisenio() {
         return $this->hasOne(GalleryImage::className(), ['id' => 'disenio_id']);
+    }
+    public function getArticulo() {
+        return $this->hasOne(Articulo::className(), ['id_articulo' => 'articulo_id']);
     }
 
     public function getCarrito() {

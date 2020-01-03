@@ -40,6 +40,7 @@ phpunit.phar
 
 #archivos de stock
 /backend/stock
+/backend/uploads/*
 
 /.htaccess
 

@@ -27,9 +27,12 @@
         "yii2tech/html2pdf": "*",
         "yiisoft/yii2-bootstrap4": "^1.0@dev",
         "moonlandsoft/yii2-phpexcel": "*",
-        "dektrium/yii2-rbac": "1.0.0-alpha@dev"
+        "dektrium/yii2-rbac": "1.0.0-alpha@dev",
+        "noam148/yii2-image-manager": "*",
+        "mootensai/yii2-enhanced-gii": "dev-master",
+        "kartik-v/yii2-mpdf": "dev-master",
+        "kartik-v/yii2-tree-manager": "dev-master"
 
-        
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

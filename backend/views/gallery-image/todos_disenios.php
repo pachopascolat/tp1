@@ -128,13 +128,13 @@ $this->title = 'Diseños';
                 'format' => 'raw',
                 'width' => '10%',
                 'value' => function($model) {
-                    
+
                     $url = null;
                     $cant = $model->getCantidadModelos();
-                    
+
 //                    $galeria = common\models\Galeria::findOne(['color_id' => $model->id]);
 //                    $cant = 0;
-                    if ($cant>0) {
+                    if ($cant > 0) {
                         $url = yii\helpers\Url::to(['/galeria/ver-disenios', 'tela_id' => $model->galeria->tela_id, 'GalleryImageSearch[]', 'GalleryImageSearch[name]' => $model->name ?? '']);
                         return Html::a($cant, $url);
                     }
@@ -146,15 +146,15 @@ $this->title = 'Diseños';
                 'class' => 'kartik\grid\ExpandRowColumn',
                 'width' => '50px',
                 'value' => function ($model, $key, $index, $column) {
-                    if ($model->getCantidadModelos()>0) {
+                    if ($model->getCantidadModelos() > 0) {
                         return GridView::ROW_COLLAPSED;
                     } else {
                         return "";
                     }
                 },
                 'detail' => function ($model, $key, $index, $column) {
-                    $galeria = \common\models\Galeria::findOne(['color_id'=>$model->id]);
-                    $query = $model->find()->where(['ownerId'=>$galeria->id_galeria??'']);
+                    $galeria = \common\models\Galeria::findOne(['color_id' => $model->id]);
+                    $query = $model->find()->where(['ownerId' => $galeria->id_galeria ?? '']);
                     $provider = new \yii\data\ActiveDataProvider([
                         'query' => $query,
                     ]);
@@ -269,6 +269,13 @@ $this->title = 'Diseños';
 
 //                    return Html::activeCheckbox($model, 'agotado[]', ['value' => $model->agotado, 'disabled' => false, 'label' => false]);
 //                    echo Html::activeCheckbox($model, 'agotado');
+                }
+            ],
+            [
+                'label'=>'imageManager',
+                'format'=>'raw',
+                'value' => function($model){
+                    return Html::a('guardar', ['guardar-imagen','id'=>$model->id], ['class'=>'btn btn-info']);
                 }
             ],
 //            [

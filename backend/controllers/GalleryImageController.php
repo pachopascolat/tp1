@@ -15,6 +15,9 @@ use mikehaertl\wkhtmlto\Pdf as Pdf2;
 use yii\web\UploadedFile;
 use moonland\phpexcel;
 use yii\data\ArrayDataProvider;
+use yii\helpers\BaseFileHelper;
+use noam148\imagemanager\models\ImageManager;
+use yii\imagine\Image;
 
 /**
  * GalleryImageController implements the CRUD actions for GalleryImage model.
@@ -39,7 +42,7 @@ class GalleryImageController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['convertir-padre', 'ordenar-disenios', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['migrar-imagenes','guardar-imagen', 'convertir-padre', 'ordenar-disenios', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -525,6 +528,37 @@ class GalleryImageController extends Controller {
 //            return $this->goBack();
         }
         return true;
+    }
+    
+    function actionMigrarImagenes(){
+        set_time_limit(3600);
+        $gallerys = GalleryImage::find()->all();
+        $transaction = Yii::$app->db->beginTransaction();
+        $bSuccess = true;
+        foreach ($gallerys as $image){
+            if(!$image->migrarImagen()){
+                $bSuccess = false;
+                $transaction->rollBack();
+                return $this->redirect(['ver-todos']);
+            }
+        }
+        if ($bSuccess) {
+            // The upload action went successful, save the transaction
+            $transaction->commit();
+        } else {
+            // There where problems during the upload, kill the transaction
+            $transaction->rollBack();
+        }
+        return $this->redirect(['/imagemanager']);
+    }
+    
+
+    public function actionGuardarImagen($id) {
+        $galleryImage = GalleryImage::findOne($id);
+       
+        $galleryImage->migrarImagen();
+        //echo return json encoded
+        return $this->redirect('ver-stock');
     }
 
 }
