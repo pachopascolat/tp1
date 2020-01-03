@@ -34,7 +34,7 @@ $filaRestoItems = array_chunk($restoItems, 7);
                         <div class="hover-div">
 
                             <a data-toggle="modal" data-target="#item-modal-<?= $item->id_item_vidriera ?? '' ?>" class="" href="" data-id-item="<?= $item->id_item_vidriera ?>">
-                                <img class="w-100 lazy" data-src="<?= $url ?>">
+                                <img class="w-100 lazy" data-src="<?= $url2 ?>">
                                 <div class="item-vidriera d-flex align-items-center justify-content-center">
                                     <img data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lazy lupa-item align-self-center">
                                     <span class="text-light w-100 text-center"><?= $item->articulo->nombre_color ?? '' ?></span>
@@ -56,7 +56,7 @@ $filaRestoItems = array_chunk($restoItems, 7);
                                     <div class="hover-div">
 
                                         <a data-toggle="modal" data-target="#item-modal-<?= $item->id_item_vidriera ?? '' ?>" class="" href="" data-id-item="<?= $item->id_item_vidriera ?>">
-                                            <img class="w-100 lazy" data-src="<?= $url2 ?? '' ?>">
+                                            <img class="w-100 lazy" data-src="<?= $url ?? '' ?>">
                                             <div class="item-vidriera d-flex align-items-center justify-content-center">
                                                 <img data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lazy lupa-item align-self-center">
                                                 <span class="text-light w-100 text-center"><?= $item->articulo->nombre_color ?? '' ?></span>
@@ -80,7 +80,7 @@ $filaRestoItems = array_chunk($restoItems, 7);
                             <?= $this->render('_modalItem', ['item' => $item, 'url' => $url2]) ?>
                             <div class="hover-div">
                                 <a data-toggle="modal" data-target="#item-modal-<?= $item->id_item_vidriera ?? '' ?>" class="" href="" data-id-item="<?= $item->id_item_vidriera ?>">
-                                    <img class="w-100 lazy" data-src="<?= Yii::$app->imagemanager->getImagePath($item->imagen_id ?? null) ?? '' ?>">
+                                    <img class="w-100 lazy" data-src="<?= $url ?>">
                                     <div class="item-vidriera d-flex align-items-center justify-content-center">
                                         <img data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lazy lupa-item align-self-center">
                                         <span class="text-light w-100 text-center"><?= $item->articulo->nombre_color ?? '' ?></span>
