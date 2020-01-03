@@ -27,9 +27,10 @@ $filaRestoItems = array_chunk($restoItems, 7);
                 <?php $item = $items[0] ?? null; ?>
                 <div class="col">
                     <?php if ($item) : ?>
-                        <?php $url = Yii::$app->imagemanager->getImagePath($item->imagen_id ??null) ?>
+                        <?php $url = Yii::$app->imagemanager->getImagePath($item->imagen_id ??null,100,100) ?>
+                        <?php $url2 = Yii::$app->imagemanager->getImagePath($item->imagen_id ??null) ?>
                         <?php // $url = yii\helpers\Url::base(true)."/backend/uploads/{$item->imagen->id}_{$item->imagen->fileHash}.jpg" ?>
-                        <?= $this->render('_modalItem', ['item' => $item, 'url' => $url]) ?>
+                        <?= $this->render('_modalItem', ['item' => $item, 'url' => $url2]) ?>
                         <div class="hover-div">
 
                             <a data-toggle="modal" data-target="#item-modal-<?= $item->id_item_vidriera ?? '' ?>" class="" href="" data-id-item="<?= $item->id_item_vidriera ?>">
@@ -55,7 +56,7 @@ $filaRestoItems = array_chunk($restoItems, 7);
                                     <div class="hover-div">
 
                                         <a data-toggle="modal" data-target="#item-modal-<?= $item->id_item_vidriera ?? '' ?>" class="" href="" data-id-item="<?= $item->id_item_vidriera ?>">
-                                            <img class="w-100 lazy" data-src="<?= $url ?? '' ?>">
+                                            <img class="w-100 lazy" data-src="<?= $url2 ?? '' ?>">
                                             <div class="item-vidriera d-flex align-items-center justify-content-center">
                                                 <img data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lazy lupa-item align-self-center">
                                                 <span class="text-light w-100 text-center"><?= $item->articulo->nombre_color ?? '' ?></span>

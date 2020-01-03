@@ -37,16 +37,19 @@ AppAsset::register($this);
             $menuItems = [
 //                ['label' => 'Home', 'url' => ['/site/index']],
 //                ['label' => 'Ofertas', 'url' => ['/gallery-image/index', 'categoria_padre' => 1]],
+                ['label' => 'Vidrieras', 'url' => ['/vidriera/index']],
                 ['label' => 'Ordenar', 'url' => ['/gallery-image/ordenar-disenios']],
-                ['label' => 'PDF','items'=>[
-                    ['label'=>'crear','url' => ['/pdf-report/export-index']],
-                    ['label'=>'descargar','url' => ['/pdf-report/index']],
-                ]
-                    
-                    ],
+                ['label' => 'PDF', 'items' => [
+                        ['label' => 'crear', 'url' => ['/pdf-report/export-index']],
+                        ['label' => 'descargar', 'url' => ['/pdf-report/index']],
+                    ]
+                ],
                 ['label' => 'Usuarios', 'url' => ['/usuarios']],
-                ['label' => 'Stock', 'url' => ['/gallery-image/ver-stock']],
-                ['label' => 'Telas', 'url' => ['/tela/index-todos']],
+                ['label' => 'Stock', 'items' => [
+                        ['label' => 'Articulos', 'url' => ['/articulo/index']],
+                        ['label' => 'Telas', 'url' => ['/tela/index-todos']],
+                    ]
+                ],
                 ['label' => 'Categorias', 'url' => ['/categoria/index-todos']],
 //                ['label' => 'Hogar', 'url' => ['/categoria/index', 'categoria_padre' => 1]],
 //                ['label' => 'Moda', 'url' => ['/categoria/index', 'categoria_padre' => 2]],
@@ -89,12 +92,12 @@ AppAsset::register($this);
             ?>
 
             <div class="container">
-                <?=
-                Breadcrumbs::widget([
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    'homeLink'=>false,
-                ])
-                ?>
+<?=
+Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    'homeLink' => false,
+])
+?>
                 <?= Alert::widget() ?>
                 <?= $content ?>
             </div>
@@ -108,7 +111,7 @@ AppAsset::register($this);
             </div>
         </footer>
 
-        <?php $this->endBody() ?>
+<?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>
