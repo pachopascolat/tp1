@@ -5,6 +5,7 @@ use kartik\builder\TabularForm;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
+use noam148\imagemanager\models\ImageManager;
 
 $dataProvider = new ArrayDataProvider([
     'allModels' => $row,
@@ -37,7 +38,7 @@ echo TabularForm::widget([
             'type' => TabularForm::INPUT_WIDGET,
             'widgetClass' => \kartik\widgets\Select2::className(),
             'options' => [
-                'data' => \yii\helpers\ArrayHelper::map(\common\models\ImageManager::find()->orderBy('id')->asArray()->all(), 'id', 'id'),
+                'data' => \yii\helpers\ArrayHelper::map(ImageManager::find()->orderBy('id')->asArray()->all(), 'id', 'id'),
                 'options' => ['placeholder' => 'Choose ImageManager'],
             ],
             'columnOptions' => ['width' => '200px']

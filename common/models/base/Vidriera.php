@@ -73,7 +73,7 @@ class Vidriera extends \yii\db\ActiveRecord
      */
     public function getItemVidireras()
     {
-        return $this->hasMany(\common\models\ItemVidirera::className(), ['vidriera_id' => 'id_vidriera']);
+        return $this->hasMany(\common\models\ItemVidirera::className(), ['vidriera_id' => 'id_vidriera'])->orderBy('orden_item_vidriera');
     }
         
     /**

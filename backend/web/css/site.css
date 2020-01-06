@@ -1,10 +1,81 @@
+.modal-body {
+    max-height: calc(100vh - 212px);
+    overflow-y: auto;
+}
+
+
+.new-item-div{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.new-item-div i{
+    position: absolute;
+    top:0;
+    right: 0;
+    padding: 4px;
+    color: blue;
+    background-color: white;
+        
+}
+
+.d-none{
+    display: none !important;
+}
+
+d-flex{
+    display: flex !important;
+}
+
+.items-vidrieras{
+    display: inline-block;
+    position: relative;
+}
+
+.ui-sortable-handle {
+    margin:   4px;
+}
 
 
 
+.items-vidrieras-div .fa-check-circle{
+    display: none !important;
+}
 
+.items-vidrieras-div .selected{
+    display: inline-block !important;
+}
 
+.items-vidrieras .fa-times{
+    position: absolute;
+    top:0;
+    right: 0;
+    padding: 4px;
+    background: rgba(0,0,0,0.5);
+    cursor: pointer;
+    color:blue;
+    display: inline-block !important;
+}
+.items-vidrieras .fa-image{
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 4px;
+    background: rgba(0,0,0,0.5);
+    cursor: pointer;
+    color: white
+}
 
-
+.items-vidrieras span, .image-name{
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+    color: white;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    /*width: 100%;*/
+}
 
 
 

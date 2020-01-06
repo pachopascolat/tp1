@@ -23,5 +23,16 @@ class Vidriera extends BaseVidriera
         ]);
     }
     
+    public function addItems($items){
+        foreach ($items as $id){
+            $item = Articulo::findOne($id);
+            $newItem = new ItemVidirera([
+                'vidriera_id'=> $this->id_vidriera,
+                'articulo_id'=> $item->id_articulo,
+                'imagen_id'=>$item->imagen_id,
+            ]);
+            $newItem->save();
+        }
+    }
 	
 }

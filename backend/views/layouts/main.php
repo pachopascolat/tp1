@@ -38,7 +38,7 @@ AppAsset::register($this);
 //                ['label' => 'Home', 'url' => ['/site/index']],
 //                ['label' => 'Ofertas', 'url' => ['/gallery-image/index', 'categoria_padre' => 1]],
                 ['label' => 'Vidrieras', 'url' => ['/vidriera/index']],
-                ['label' => 'Ordenar', 'url' => ['/gallery-image/ordenar-disenios']],
+//                ['label' => 'Ordenar', 'url' => ['/gallery-image/ordenar-disenios']],
                 ['label' => 'PDF', 'items' => [
                         ['label' => 'crear', 'url' => ['/pdf-report/export-index']],
                         ['label' => 'descargar', 'url' => ['/pdf-report/index']],
@@ -54,7 +54,7 @@ AppAsset::register($this);
 //                ['label' => 'Hogar', 'url' => ['/categoria/index', 'categoria_padre' => 1]],
 //                ['label' => 'Moda', 'url' => ['/categoria/index', 'categoria_padre' => 2]],
                 ['label' => 'Consultas', 'url' => ['/carrito/index', 'categoria_padre' => 2]],
-                ['label' => 'Pedidos', 'url' => ['/carrito/index-pedidos', 'categoria_padre' => 2]],
+//                ['label' => 'Pedidos', 'url' => ['/carrito/index-pedidos', 'categoria_padre' => 2]],
                 ['label' => 'frontend', 'url' => Yii::$app->urlManagerFrontEnd->baseUrl, 'linkOptions' => ['target' => '_blank'],
                 ],
 //                ['label' => 'Hogar', 'items' => [
