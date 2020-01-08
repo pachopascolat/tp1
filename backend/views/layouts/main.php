@@ -40,14 +40,14 @@ AppAsset::register($this);
                 ['label' => 'Vidrieras', 'url' => ['/vidriera/index']],
 //                ['label' => 'Ordenar', 'url' => ['/gallery-image/ordenar-disenios']],
                 ['label' => 'PDF', 'items' => [
-                        ['label' => 'crear', 'url' => ['/pdf-report/export-index']],
+                        ['label' => 'crear', 'url' => ['/pdf-report/create-pdf']],
                         ['label' => 'descargar', 'url' => ['/pdf-report/index']],
                     ]
                 ],
                 ['label' => 'Usuarios', 'url' => ['/usuarios']],
                 ['label' => 'Stock', 'items' => [
                         ['label' => 'Articulos', 'url' => ['/articulo/index']],
-                        ['label' => 'Telas', 'url' => ['/tela/index-todos']],
+                        ['label' => 'Telas', 'url' => ['/tela/index']],
                     ]
                 ],
                 ['label' => 'Categorias', 'url' => ['/categoria/index-todos']],

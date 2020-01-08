@@ -2,9 +2,9 @@
 
 namespace common\models;
 
-
 use Yii;
 use noam148\imagemanager\models\ImageManager;
+
 /**
  * This is the model class for table "articulo".
  *
@@ -20,24 +20,25 @@ use noam148\imagemanager\models\ImageManager;
  * @property Tela $tela
  * @property ImageManager $imagen
  */
-class Articulo extends \yii\db\ActiveRecord
-{
+class Articulo extends \yii\db\ActiveRecord {
+
+    public $imageFile;
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'articulo';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['tela_id', 'codigo_color', 'imagen_id', 'existencia', 'estado'], 'integer'],
-            [['nombre_color','nombre_articulo'], 'string', 'max' => 45],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'csv, xls, xlsx', 'maxSize' => 1024 * 1024 * 20, 'checkExtensionByMimeType' => false],
+            [['nombre_color', 'nombre_articulo'], 'string', 'max' => 45],
             [['tela_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tela::className(), 'targetAttribute' => ['tela_id' => 'id_tela']],
             [['imagen_id'], 'exist', 'skipOnError' => true, 'targetClass' => ImageManager::className(), 'targetAttribute' => ['imagen_id' => 'id']],
         ];
@@ -46,8 +47,7 @@ class Articulo extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id_articulo' => 'Id Articulo',
             'nombre' => 'Nombre',
@@ -62,16 +62,28 @@ class Articulo extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTela()
-    {
+    public function getTela() {
         return $this->hasOne(Tela::className(), ['id_tela' => 'tela_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getImagen()
-    {
+    public function getImagen() {
         return $this->hasOne(ImageManager::className(), ['id' => 'imagen_id']);
     }
+
+    public function upload() {
+        if ($this->validate(['imageFile'])) {
+            $this->imageFile->saveAs(\Yii::getAlias("@webroot/../stock/") . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function agotarStock() {
+        return \Yii::$app->db->createCommand("UPDATE articulo SET existencia=0")->execute();
+    }
+
 }

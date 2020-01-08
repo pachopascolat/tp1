@@ -512,6 +512,11 @@ h1,h2,h3,h4,h5,h6{
 }
 /*nav2*/
 
+
+#telas-dropdown{
+    height: 300px;
+}
+
 .nav3 .logo{
     width: 70px;
 }

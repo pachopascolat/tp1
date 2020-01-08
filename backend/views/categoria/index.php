@@ -8,9 +8,8 @@ use kartik\grid\GridView;
 /* @var $searchModel common\models\CategoriaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 //$menus = [null, "Hogar", "Moda"];
-
-$this->title = Yii::t('app', "Categorias de $categoria_padre");
-$this->params['breadcrumbs'][] = $categoria_padre;
+//$this->title = Yii::t('app', "Categorias de $categoria_padre");
+//$this->params['breadcrumbs'][] = $categoria_padre;
 ?>
 <div class="categoria-index">
 
@@ -19,7 +18,7 @@ $this->params['breadcrumbs'][] = $categoria_padre;
     <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Nueva Categoria'), ['create', 'categoria_padre' => $searchModel->categoria_padre], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Nueva Categoria'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?=
@@ -47,24 +46,24 @@ $this->params['breadcrumbs'][] = $categoria_padre;
             'nombre_categoria',
 //            'descripción:ntext',
 //            'orden_categoria',            
-            [
-                'attribute' => 'orden_hogar',
-                'visible' => $categoria_padre == "Hogar"
-            ],
-            [
-                'attribute' => 'orden_moda',
-                'visible' => $categoria_padre == "Moda"
-            ],
-            [
-                'label' => 'Ver Telas',
-                'format' => 'raw',
-                'value' => function($model) {
-                    $cant = 0;
-                    $cant += count($model->telas);
-                    return Html::a(
-                                    "($cant) Telas", ['/tela/index-por-categoria', 'categoria_id' => $model->id_categoria], ['class' => 'btn btn-info']);
-                }
-            ],
+//            [
+//                'attribute' => 'orden_hogar',
+//                'visible' => $categoria_padre == "Hogar"
+//            ],
+//            [
+//                'attribute' => 'orden_moda',
+//                'visible' => $categoria_padre == "Moda"
+//            ],
+//            [
+//                'label' => 'Ver Telas',
+//                'format' => 'raw',
+//                'value' => function($model) {
+//                    $cant = 0;
+//                    $cant += count($model->telas);
+//                    return Html::a(
+//                                    "($cant) Telas", ['/tela/index-por-categoria', 'categoria_id' => $model->id_categoria], ['class' => 'btn btn-info']);
+//                }
+//            ],
 //            [
 //                'label' => 'Accion',
 //                'format'=>'raw',
@@ -74,6 +73,24 @@ $this->params['breadcrumbs'][] = $categoria_padre;
 //            ],
 //            'categoria_padre',
 //            'orden_categoria',
+            [
+//                'label' => 'Diseños',
+                'class' => 'kartik\grid\ExpandRowColumn',
+                'width' => '50px',
+                'value' => function ($model, $key, $index, $column) {
+                    return GridView::ROW_COLLAPSED;
+                },
+//                'detail' => function ($model, $key, $index, $column) {
+//                    $searchModel = new common\models\ArticuloSearch(['tela_id'=>$model->id_tela]);
+//                    $dataProvider = $searchModel->search(null);
+//                    return Yii::$app->controller->renderPartial('/articulo/index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
+//                },
+                'detailUrl' => yii\helpers\Url::to(['/vidriera/index-por-categoria  ']),
+                'headerOptions' => ['class' => 'kartik-sheet-style'],
+                'expandOneOnly' => true,
+                'expandTitle' => 'Vidrieras',
+                'expandIcon' => "Vidrieras " . GridView::ICON_EXPAND,
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);

@@ -36,7 +36,7 @@ class PdfReportController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['descargar-pdf', 'ordenar-disenios', 'export-pdf', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'actions' => ['create-pdf','descargar-pdf', 'ordenar-disenios', 'export-pdf', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['stockManager','ventasManager'],
                     ],
                 ],
@@ -98,12 +98,15 @@ class PdfReportController extends Controller {
                     'model' => $model,
                     'searchModel' => $searchModel]);
     }
+   
 
     public function report($estampados) {
-        foreach ($estampados as $order => $id) {
-            $image = GalleryImage::findOne($id);
-            $image->pdf_rank = $order;
-            $alldata[] = $image;
+        /* @var $estampados \common\models\Vidriera */ 
+        foreach ($estampados->itemVidireras as $order => $item) {
+//            $image = GalleryImage::findOne($id);
+//            $image->pdf_rank = $order;
+////            $alldata[] = $image;
+            $alldata[] = $item;
         }
         $options = [
             'binary' => Yii::getAlias("@vendor/wkhtmltopdf"),
@@ -201,6 +204,24 @@ class PdfReportController extends Controller {
         }
 
         return $this->render('create', [
+                    'model' => $model,
+        ]);
+    }
+    public function actionCreatePdf() {
+        $model = new PdfReport();
+
+        
+        
+        if ($model->load(Yii::$app->request->post())) {
+            $vidriera = \common\models\Vidriera::findOne($model->vidriera_id);
+            $this->report($vidriera);
+        }
+        
+        if ($model->load(Yii::$app->request->get())) {
+            
+        }
+
+        return $this->render('createPdf', [
                     'model' => $model,
         ]);
     }

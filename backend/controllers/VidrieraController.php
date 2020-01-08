@@ -38,6 +38,20 @@ class VidrieraController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
+    
+    public function actionIndexPorCategoria() {
+        if (isset($_POST['expandRowKey'])) {
+        $searchModel = new VidrieraSearch(['categoria_id'=>$_POST['expandRowKey']]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->renderPartial('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+        }else{
+            return '<div class="alert alert-danger">No data found</div>';
+        }
+    }
 
     /**
      * Displays a single Vidriera model.
@@ -64,7 +78,7 @@ class VidrieraController extends Controller {
         $model = new Vidriera();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['ordenar-vidriera','id'=>$model->id_vidriera]);
+            return $this->redirect(['ordenar-vidriera', 'id' => $model->id_vidriera]);
         } else {
             return $this->render('create', [
                         'model' => $model,
@@ -142,6 +156,7 @@ class VidrieraController extends Controller {
     public function actionFiltrarArticulos() {
         $articuloSearch = new \common\models\ArticuloSearch();
         $dataprovider = $articuloSearch->search(Yii::$app->request->queryParams);
+        $dataprovider->getPagination()->setPageSize(100);
         return $this->renderAjax('_modal_nuevo_item', [
 //            'vidriera' => $vidriera,
                     'dataProvider' => $dataprovider,
@@ -191,6 +206,23 @@ class VidrieraController extends Controller {
         $vidriera = $item->vidriera ?? null;
         if ($item) {
             $item->delete();
+        }
+        return $this->renderAjax('_items_vidriera', [
+                    'vidriera' => $vidriera,
+        ]);
+    }
+
+    public function actionDeleteAllItems() {
+        $vidriera = new Vidriera();
+        if ($ids = \Yii::$app->request->post('ids')) {
+            \common\models\ItemVidirera::deleteAll(['id_item_vidriera' => $ids]);
+//            foreach ($ids as $id){
+//                $model = \common\models\ItemVidirera::findOne($id);
+//                if($model){
+//                    $model->delete();
+//                }
+//            }
+//            $vidriera = $model->vidriera;
         }
         return $this->renderAjax('_items_vidriera', [
                     'vidriera' => $vidriera,

@@ -5,6 +5,28 @@ $(document).ready(function () {
     });
     lazyLoadInstance.update();
 
+
+//borrar todo
+
+    $('.items-borrar-todo').click(function () {
+        var idList = [];
+        var delbtn = $('.items-vidrieras .delete-item-btn');
+        delbtn.each(function(){
+            idList.push($(this).data('id-item'));
+        });
+        $.pjax.reload({
+            push: false,
+            replace: false,
+            url: 'delete-all-items',
+            type: 'POST',
+            data: {ids: idList},
+            container: '#item-vidriera-pjax',
+            timeout: false,
+            async: false,
+        })
+    });
+
+
 // deseleccionar todo
 
     $(".items-vidrieras-div .modal").on('hidden.bs.modal', function () {
@@ -75,10 +97,10 @@ $(document).ready(function () {
 
     //seleccionar los items nuevos
 
-    
+
 //seleccionar las imagenes a cambiar
 
-    
+
 
 })
 
@@ -91,10 +113,10 @@ $(document).on('pjax:success', function () {
 
 
 // seleccionar items nuevos
-    
+
 
 //seleccionar las imagenes a cambiar
 
-  
+
 
 })

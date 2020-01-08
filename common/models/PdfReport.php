@@ -15,6 +15,7 @@ use Yii;
  * 
  *
  * @property Tela $tela
+ * @property Vidriera $vidriera
  * @property User $userIdPdf
  */
 class PdfReport extends \yii\db\ActiveRecord {
@@ -41,7 +42,7 @@ class PdfReport extends \yii\db\ActiveRecord {
             ],
             [['timestamp_pdf', 'guardar'], 'safe'],
             [['nombre_pdf'], 'string'],
-            [['tela_id', 'user_id_pdf'], 'integer'],
+            [['tela_id', 'user_id_pdf','vidriera_id'], 'integer'],
             [['tela_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tela::className(), 'targetAttribute' => ['tela_id' => 'id_tela']],
             [['user_id_pdf'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id_pdf' => 'id']],
         ];
@@ -99,6 +100,9 @@ class PdfReport extends \yii\db\ActiveRecord {
      */
     public function getTela() {
         return $this->hasOne(Tela::className(), ['id_tela' => 'tela_id']);
+    }
+    public function getVidriera() {
+        return $this->hasOne(Vidriera::className(), ['id_vidriera' => 'vidriera_id']);
     }
 
     /**

@@ -57,6 +57,10 @@ return [
 //        ],
     ],
     'components' => [
+        'assetsAutoCompress' =>
+        [
+            'class'         => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+        ],
         'imagemanager' => [
             'class' => 'noam148\imagemanager\components\ImageManagerGetPath',
             //set media path (outside the web folder is possible)

@@ -15,7 +15,7 @@
 
 
             <div>
-                <a href="<?= yii\helpers\Url::base(true) . "/../designs?id=" . $data[0]->vidriera_id ?>">
+                <a href="<?= yii\helpers\Url::base(true) . "/../designs?id=" . $data[0]->getTela()->id_tela ?>">
                     <span>
                         <img style="width: 100%" src="
                         <?= Yii::getAlias('@backend/web/pdf/headers/' . $header) ?>
@@ -32,11 +32,11 @@
                 <table align="center">
                     <tr>
                         <td colspan="3">
-                            <h1 style="text-align: left;"><?= strtoupper($data[0]->vidriera->nombre) ?></h1>
+                            <h1 style="text-align: left;"><?= strtoupper($data[0]->getNombreTela()) ?></h1>
                         </td>
                         <td>
                             <h2 style="text-align: right;">
-                                <a target="_blank" class="titulo-1" href="<?= yii\helpers\Url::base(true) . "/../sitio/por-vidriera?id=" . $data[0]->vidriera_id ?>">
+                                <a target="_blank" class="titulo-1" href="<?= yii\helpers\Url::base(true) . "/../designs?id=" . $data[0]->getTela()->id_tela ?>">
                                     VER EN LA WEB
                                 </a>
                             </h2>
@@ -49,9 +49,12 @@
                                 <td width="25%">
                                     <div class="disenio-pdf">  
                                         <label style="text-align: center" class="pdf-img-container">
-                                            <img style="width: 100%" src="<?= $estampado->getFullUrl() ?>" class="">
+                                            <!--                                            <div>
+                                                                                            <span class="codigo-tela"><?= $estampado->getTela()->codigo_tela ?></span>
+                                                                                        </div>-->
+                                            <img style="width: 100%" src="<?= $estampado->getUrl('preview') ?>" class="">
                                             <div>
-                                                <span class="codigo-estampado-pdf"><?= intval($estampado->articulo->codigo_color)<150?$estampado->articulo->nombre_color:$estampado->articulo->codigo_color ?></span>
+                                                <span class="codigo-estampado-pdf"><?= intval($estampado->name)<150?$estampado->description:$estampado->name ?></span>
                                             </div>
                                         </label>
                                     </div>

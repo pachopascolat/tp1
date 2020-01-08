@@ -26,7 +26,9 @@ class AppAsset extends AssetBundle {
 //        "css/menu-header.css",
         "css/texsim2020.css",
         "fontawesome/css/all.css",
-        "css/oldweb.css"
+        "css/oldweb.css",
+//        '//fonts.googleapis.com/css?family=Oswald:400,700',
+        '//fonts.googleapis.com/css?family=Oswald&display=swap'
     ];
     public $js = [
 //        "js/jquery-3.3.1.min.js",

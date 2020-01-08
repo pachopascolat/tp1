@@ -11,6 +11,9 @@ $this->params['breadcrumbs'][] = ['label' => $vidriera->nombre, 'url' => ['orden
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-nuevo-item">
             Agregar Item
         </button>
+        <button data-confirm="Esta seguro que desea borrar todos los items?"  type="button" class="btn btn-danger items-borrar-todo">
+            Borrar Todo
+        </button>
         <a class="btn btn-success" target="_blank" href="<?= Yii::$app->urlManagerFrontEnd->createUrl(['/sitio/por-vidriera', 'id' => $vidriera->id_vidriera])??'' ?>">
             Ver en Front
         </a>

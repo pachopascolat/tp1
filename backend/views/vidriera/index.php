@@ -42,15 +42,15 @@ $this->registerJs($search);
 //            'headerOptions' => ['class' => 'kartik-sheet-style'],
 //            'expandOneOnly' => true
 //        ],
-        'id_vidriera',
+//        'id_vidriera',
         'nombre',
-        'estado',
+//        'estado',
         [
             'attribute' => 'categoria_id',
             'label' => 'Categoria',
             'value' => function($model) {
                 if ($model->categoria) {
-                    return $model->categoria->id_categoria;
+                    return $model->categoria->nombre_categoria;
                 } else {
                     return NULL;
                 }

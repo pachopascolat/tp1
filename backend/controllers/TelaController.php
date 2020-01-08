@@ -71,6 +71,9 @@ class TelaController extends Controller {
         ]);
     }
 
+      
+    
+    
     public function actionIndexPorCategoria($categoria_id = null) {
 
         $searchModel = new TelaSearch(['categoria_id' => $categoria_id]);

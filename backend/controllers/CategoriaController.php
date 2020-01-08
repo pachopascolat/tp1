@@ -56,18 +56,18 @@ class CategoriaController extends Controller {
         ]);
     }
 
-    public function actionIndex($categoria_padre) {
-        if ($categoria_padre == 1) {
-            $searchModel = new CategoriaSearch(['hogar' => true]);
-        } else {
-            $searchModel = new CategoriaSearch(['moda' => true]);
-        }
+    public function actionIndex() {
+//        if ($categoria_padre == 1) {
+            $searchModel = new CategoriaSearch();
+////        } else {
+//            $searchModel = new CategoriaSearch(['moda' => true]);
+//        }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
-                    'categoria_padre' => $categoria_padre==1? "Hogar" : "Moda"
+//                    'categoria_padre' => $categoria_padre==1? "Hogar" : "Moda"
         ]);
     }
 

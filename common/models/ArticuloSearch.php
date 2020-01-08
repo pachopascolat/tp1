@@ -11,6 +11,10 @@ use common\models\Articulo;
  */
 class ArticuloSearch extends Articulo
 {
+    
+    public $nombre_tela;
+    public $codigo_tela;
+   
     /**
      * {@inheritdoc}
      */
@@ -18,7 +22,7 @@ class ArticuloSearch extends Articulo
     {
         return [
             [['id_articulo', 'tela_id', 'codigo_color', 'imagen_id', 'existencia', 'estado'], 'integer'],
-            [['nombre_color', 'nombre_articulo'], 'safe'],
+            [['nombre_color', 'nombre_articulo','imageFile','nombre_tela','codigo_tela'], 'safe'],
         ];
     }
 
@@ -40,7 +44,7 @@ class ArticuloSearch extends Articulo
      */
     public function search($params)
     {
-        $query = Articulo::find();
+        $query = Articulo::find()->joinWith('tela');
 
         // add conditions that should always apply here
 
@@ -61,13 +65,15 @@ class ArticuloSearch extends Articulo
             'id_articulo' => $this->id_articulo,
             'tela_id' => $this->tela_id,
             'codigo_color' => $this->codigo_color,
+            'codigo_tela' => $this->codigo_tela,
             'imagen_id' => $this->imagen_id,
             'existencia' => $this->existencia,
             'estado' => $this->estado,
         ]);
 
         $query->andFilterWhere(['like', 'nombre_color', $this->nombre_color])
-            ->andFilterWhere(['like', 'nombre_articulo', $this->nombre_articulo]);
+            ->andFilterWhere(['like', 'nombre_articulo', $this->nombre_articulo])
+            ->andFilterWhere(['like', 'nombre_tela', $this->nombre_tela]);
 
         return $dataProvider;
     }

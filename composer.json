@@ -31,7 +31,9 @@
         "noam148/yii2-image-manager": "*",
         "mootensai/yii2-enhanced-gii": "dev-master",
         "kartik-v/yii2-mpdf": "dev-master",
-        "kartik-v/yii2-tree-manager": "dev-master"
+        "kartik-v/yii2-tree-manager": "dev-master",
+        "skeeks/yii2-assets-auto-compress": "*",
+
 
     },
     "require-dev": {

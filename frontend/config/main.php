@@ -23,6 +23,10 @@ return [
         ],
     ],
     'components' => [
+        'assetsAutoCompress' =>
+        [
+            'class'         => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'baseUrl' => "",

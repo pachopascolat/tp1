@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'id_pdf_report',
             'timestamp_pdf',
             'nombre_pdf',
-            'tela.nombre_tela',
+//            'tela.nombre_tela',
             'userIdPdf.username',
             [
                 'label' => 'Descargar',

@@ -19,21 +19,19 @@ use noam148\imagemanager\models\ImageManager;
  * @property Articulo $articulo
  * @property Vidriera $vidriera
  */
-class ItemVidirera extends \yii\db\ActiveRecord
-{
+class ItemVidirera extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'item_vidirera';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['articulo_id', 'imagen_id', 'vidriera_id', 'orden_item_vidriera', 'ranking'], 'integer'],
             [['imagen_id'], 'exist', 'skipOnError' => true, 'targetClass' => ImageManager::className(), 'targetAttribute' => ['imagen_id' => 'id']],
@@ -45,8 +43,7 @@ class ItemVidirera extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id_item_vidriera' => 'Id Item Vidriera',
             'articulo_id' => 'Articulo ID',
@@ -60,24 +57,34 @@ class ItemVidirera extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getImagen()
-    {
+    public function getImagen() {
         return $this->hasOne(ImageManager::className(), ['id' => 'imagen_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getArticulo()
-    {
+    public function getArticulo() {
         return $this->hasOne(Articulo::className(), ['id_articulo' => 'articulo_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getVidriera()
-    {
+    public function getVidriera() {
         return $this->hasOne(Vidriera::className(), ['id_vidriera' => 'vidriera_id']);
     }
+
+    public function getUrl($width=120,$height=120) {
+        $url = \Yii::$app->imagemanager->getImagePath($this->imagen_id, $width, $height);
+        return $url;
+    }
+    public function getFullUrl($width=120,$height=120) {
+        
+        $url =  \yii\helpers\Url::base(true)."/..".Yii::$app->imagemanager->getImagePath($this->imagen_id, $width, $height);
+        return $url;
+        
+    }
+    
+
 }

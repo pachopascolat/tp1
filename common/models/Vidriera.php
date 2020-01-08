@@ -10,6 +10,13 @@ use \common\models\base\Vidriera as BaseVidriera;
  */
 class Vidriera extends BaseVidriera
 {
+    
+    const PRINCIPAL = 1;
+    const TELAS = 2;
+    const PROMOCIONES = 3;
+    const PDF = 4;
+    const ICONOS = 5;
+    const DISCONTINUOS = 6;
     /**
      * @inheritdoc
      */

@@ -54,9 +54,11 @@
                                 Telas
                                 <!--<i class="far fa-angle-down"></i>-->
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink4">
+                            <div id="telas-dropdown" class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuLink4">
                                 <?php
-                                $telas = \common\models\Vidriera::find()->all();
+                                $telas = \common\models\Vidriera::find()->joinWith('categoria')
+                                        ->where(['categoria_padre'=>[1,2]])
+                                        ->all();
                                 foreach ($telas as $tela):
                                     ?>
                                 <a class="dropdown-item" href="<?= yii\helpers\Url::to(['/sitio/por-vidriera','id'=>$tela->id_vidriera])?>"><?= $tela->nombre?></a>

@@ -91,7 +91,7 @@ foreach ($dataProvider->getModels() as $item):
                             <input  type="texts" name="selectedItem[]" value="<?= $item->id_articulo ?>" disabled="disabled" class="new-item-checkbox d-none selectable">
                             <img class="w-100" src="<?= $url ?>">
                             <i   class="fa fa-check-circle fa-2x"></i>
-                            <span class="image-name"><?= "$item->codigo_color $item->nombre_color" ?></span>
+                            <span class="image-name <?= $item->existencia?'':'text-danger'?>"><?= "$item->codigo_color $item->nombre_color" ?></span>
                             <!--</div>-->
                         </div>
     <?php

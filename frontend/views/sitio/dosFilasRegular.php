@@ -44,8 +44,8 @@ if ($total < 18) {
             <?php endfor; ?>
         </div>
         <div class="d-flex justify-content-end">
-            <a href="<?= yii\helpers\Url::to(['por-vidriera', 'id' => $vidriera[0]->vidriera_id]) ?>">
-                <span>ver mas</span>
+            <a class="text-dark" href="<?= yii\helpers\Url::to(['por-vidriera', 'id' => $vidriera[0]->vidriera_id]) ?>">
+                <h5 >ver mas</h5>
             </a>
         </div>
     </div>
