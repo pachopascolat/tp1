@@ -42,12 +42,12 @@ return [
             'noIncludeJsFilesOnPjax' => true, //Do not connect the js files when all pjax requests
             'htmlFormatter' => [
                 //Enable compression html
-                'class' => 'skeeks\yii2\assetsAuto\formatters\html\TylerHtmlCompressor',
+                'class' => '\skeeks\yii2\assetsAuto\formatters\html\TylerHtmlCompressor',
                 'extra' => false, //use more compact algorithm
                 'noComments' => true, //cut all the html comments
                 'maxNumberRows' => 50000, //The maximum number of rows that the formatter runs on
                 //or
-                'class' => 'skeeks\yii2\assetsAuto\formatters\html\MrclayHtmlCompressor',
+//                'class' => '\skeeks\yii2\assetsAuto\formatters\html\MrclayHtmlCompressor',
             //or any other your handler implements skeeks\yii2\assetsAuto\IFormatter interface
             //or false
             ],
