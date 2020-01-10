@@ -1,3 +1,5 @@
+<!--<h1><?= $vidriera->nombre ?></h1>-->
+    
 <div >
     <?php
     yii\widgets\Pjax::begin(['id' => 'item-vidriera-pjax',
@@ -19,7 +21,7 @@
                 $.pjax.reload({
                     push: false,
                     replace: false,
-                    url: 'delete-item?id=' + id,
+                    url: '/admin/vidriera/delete-item?id=' + id,
                     type: 'POST',
                     data: {id: id},
                     container: '#item-vidriera-pjax',
@@ -42,7 +44,7 @@
 
         $( "#sortable" ).on( "sortupdate", function( event, ui ) {
             var sortedIDs = $( "#sortable" ).sortable( "toArray" );
-            $.post("ordenar-items", { "items": sortedIDs } );
+            $.post("/admin/vidriera/ordenar-items", { "items": sortedIDs } );
         } );
 
         $( function() {

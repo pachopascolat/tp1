@@ -35,7 +35,7 @@ class SecurityController extends BaseSecurityController {
             $this->trigger(self::EVENT_AFTER_LOGIN, $event);
 //            return $this->goBack(['texsim/hogar']);
         }
-        return $this->goBack(['texsim/hogar']);
+        return $this->goBack(['']);
 
 //        return $this->render('login', [
 //            'model'  => $model,
@@ -55,7 +55,7 @@ class SecurityController extends BaseSecurityController {
         $session = \Yii::$app->session;
         $session->destroy();
         
-        return $this->goBack(['texsim/hogar']);
+        return $this->goBack(['']);
     }
 
     //put your code here

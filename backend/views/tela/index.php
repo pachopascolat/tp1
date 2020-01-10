@@ -27,10 +27,10 @@ $menus = [null, "Hogar", "Moda"];
 <?php // echo $this->render('_search', ['model' => $searchModel]);    ?>
 
 <!--    <p>
-<?= Html::a(Yii::t('app', 'Create Tela'), ['create', 'categoria_padre' => $categoria_padre], ['class' => 'btn btn-success']) ?>
+<?= Html::a(Yii::t('app', 'Create Tela'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>-->
     <!--Pjax::begin();-->
-    <?= Html::a(Yii::t('app', 'Nueva Tela'), ['create', 'categoria_padre' => $categoria_padre, 'categoria_id' => $searchModel->categoria_id], ['class' => 'btn btn-success']) ?>
+    <?= Html::a(Yii::t('app', 'Nueva Tela'), ['create', 'categoria_id' => $searchModel->categoria_id], ['class' => 'btn btn-success']) ?>
 
     <?=
     GridView::widget([

@@ -21,7 +21,7 @@ $this->registerJs($search);
     <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <p>
-        <?= Html::a('Create Vidriera', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Vidriera', ['create','categoria_id'=>$searchModel->categoria_id], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
     <div class="search-form" style="display:none">
@@ -56,7 +56,7 @@ $this->registerJs($search);
                 }
             },
             'filterType' => GridView::FILTER_SELECT2,
-            'filter' => \yii\helpers\ArrayHelper::map(\common\models\Categoria::find()->asArray()->all(), 'id_categoria', 'id_categoria'),
+            'filter' => \yii\helpers\ArrayHelper::map(\common\models\Categoria::find()->asArray()->all(), 'id_categoria', 'nombre_categoria'),
             'filterWidgetOptions' => [
                 'pluginOptions' => ['allowClear' => true],
             ],

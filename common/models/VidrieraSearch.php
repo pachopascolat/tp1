@@ -18,7 +18,7 @@ use common\models\Vidriera;
     public function rules()
     {
         return [
-            [['id_vidriera', 'categoria_id', 'orden_vidriera'], 'integer'],
+            [['id_vidriera', 'categoria_id', 'orden_vidriera','categoria_padre'], 'integer'],
             [['nombre', 'estado'], 'safe'],
         ];
     }
@@ -41,7 +41,7 @@ use common\models\Vidriera;
      */
     public function search($params)
     {
-        $query = Vidriera::find();
+        $query = Vidriera::find()->joinWith('categoria');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,12 +58,19 @@ use common\models\Vidriera;
         $query->andFilterWhere([
             'id_vidriera' => $this->id_vidriera,
             'categoria_id' => $this->categoria_id,
+            'categoria_padre' => $this->categoria_padre,
             'orden_vidriera' => $this->orden_vidriera,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
             ->andFilterWhere(['like', 'estado', $this->estado]);
 
+        $query->orFilterWhere([
+//                        'categoria_id' => $this->categoria_id,
+                        'categoria_padre' => $this->categoria_id
+        ]);
+        
+        
         return $dataProvider;
     }
 }

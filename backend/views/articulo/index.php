@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\ActiveForm;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ArticuloSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,7 +19,7 @@ $this->title = 'Articulos';
         <?= Html::a('Create Articulo', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <?=
     GridView::widget([
@@ -40,16 +41,45 @@ $this->title = 'Articulos';
             'codigo_color',
             'nombre_color',
 //            'tela_id',
-            'tela.codigo_tela',
-            'tela.nombre_tela',
+            [
+                'attribute'=>'codigo_tela',
+                'value' => 'tela.codigo_tela',
+            ],
+            [
+                'attribute'=>'nombre_tela',
+                'value' => 'tela.nombre_tela',
+            ],
+           
+//            'tela.codigo_tela',
+//            'tela.nombre_tela',
 //            'codigo_color',
+            'imagen_id',
             [
                 'format' => 'raw',
                 'value' => function($model) {
-                    $src = \Yii::$app->imagemanager->getImagePath($model->imagen_id, 50, 50, 'inset');
-                    return Html::img($src);
+                    echo $this->render('_modal_imagen_form', ['model' => $model]);
+                    $src = \Yii::$app->imagemanager->getImagePath($model->imagen_id, 50, 50);
+                    $img = "<img src='" . $src . "'>";
+                    if (!$src) {
+                        $img = "cargar";
+                    }
+                    return "<a href='' data-toggle='modal' data-target='#cambiar-imagen-$model->id_articulo'>$img</a>";
+                    
                 }
             ],
+//            [
+//                'format' => 'raw',
+//                'value' => function ($model) {
+//                    $oldImage = $model->getOldImage();
+//                    if ($oldImage) {
+//                        $image = $oldImage->getUrl('preview');
+//                    } else {
+//                        $image = '';
+//                    }
+//                    /* @var $model  \common\models\Articulo */
+//                    return "<img class='img-thumbnail' src=$image>";
+//                }
+//            ],
 //            'imagen_id',
             'existencia',
             //'estado',

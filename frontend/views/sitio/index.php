@@ -7,9 +7,9 @@ echo $this->render('nav3');
 $categoria_padre = $_SESSION['categoria_padre']??1;
 //$categoria_padre = 1;
 
-$telas = \common\models\base\Vidriera::find()->joinWith(['categoria'])->where(['hogar' => $categoria_padre])
+$telas = \common\models\base\Vidriera::find()->joinWith(['categoria'])->where(['categoria_id' => $categoria_padre])->orWhere(['categoria_padre'=>$categoria_padre])
         ->orderBy([new \yii\db\Expression('orden_vidriera IS NULL, orden_vidriera ASC')])
-//        ->limit(3)
+        ->limit(3)
         ->all();
 
 foreach ($telas as $vidriera){

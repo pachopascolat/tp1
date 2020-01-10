@@ -45,7 +45,7 @@ class TelaController extends Controller {
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['migrar-telas', 'delete-categoria', 'agregar-categoria', 'delete-hijo', 'agregar-hijo', 'pasar-categorias', 'index-todos', 'ver-stock', 'borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
+                        'actions' => ['convertir-en-vidrieras', 'migrar-telas', 'delete-categoria', 'agregar-categoria', 'delete-hijo', 'agregar-hijo', 'pasar-categorias', 'index-todos', 'ver-stock', 'borrar-estampados', 'importar-grupos', 'index', 'create', 'view', 'update', 'index-por-categoria', 'delete', 'guardar-fotos', 'comprimir-fotos'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -57,9 +57,9 @@ class TelaController extends Controller {
      * Lists all Tela models
      * @return mixed
      */
-    public function actionIndex($categoria_padre = 1) {
+    public function actionIndex() {
         $searchModel = new TelaSearch();
-        $searchModel->categoria_padre = $categoria_padre;
+//        $searchModel->categoria_padre = $categoria_padre;
 //        $searchModel->categoria_id = $categoria_id;
 //        $searchModel = new TelaSearch(['categoria_padre' => $categoria_padre,'categoria_id'=>$categoria_id]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -67,13 +67,10 @@ class TelaController extends Controller {
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
-                    'categoria_padre' => $categoria_padre,
+//                    'categoria_padre' => $categoria_padre,
         ]);
     }
 
-      
-    
-    
     public function actionIndexPorCategoria($categoria_id = null) {
 
         $searchModel = new TelaSearch(['categoria_id' => $categoria_id]);
@@ -446,6 +443,50 @@ class TelaController extends Controller {
 //            }
         }
         return $this->redirect(['index-todos']);
+    }
+
+    public function actionConvertirEnVidrieras() {
+        /* @var $tela common\models\Tela */
+        /* @var $itemViejo \common\models\GalleryImage */
+        $telas = Tela::getTelasLlenas();
+        foreach ($telas as $tela) {
+
+            $vidriera = \common\models\base\Vidriera::findOne(['nombre' => $tela->nombre_tela]);
+            if (!$vidriera) {
+                $vidriera = new \common\models\Vidriera();
+                $vidriera->nombre = $tela->nombre_tela;
+                $vidriera->categoria_id = $tela->categoria_id;
+                $vidriera->orden_vidriera = $tela->orden_tela;
+                $vidriera->save();
+            }
+            $searchModel = new \common\models\GalleryImageSearch(['tela_id' => $tela->id_tela]);
+            $dataProvider = $searchModel->searchVisibles(null);
+            $dataProvider->setPagination(false);
+            $itemsViejos = $dataProvider->getModels();
+            $itemsViejos = $tela->getAllDisenios2();
+            foreach ($itemsViejos as $itemViejo) {
+
+                $articulo = $itemViejo->getNewArticulo();
+                if ($articulo) {
+                    $itemNuevo = new \common\models\ItemVidirera(['vidriera_id' => $vidriera->id_vidriera]);
+                    $itemNuevo->articulo_id = $articulo->id_articulo;
+                    $itemNuevo->imagen_id = $articulo->imagen_id;
+                    $itemNuevo->save();
+                }
+                if ($itemViejo->galeriaModelos) {
+                    foreach ($itemViejo->galeriaModelos as $subitem) {
+                        $articulo = $subitem->getNewArticulo();
+                        if ($articulo) {
+                            $itemNuevo = new \common\models\ItemVidirera(['vidriera_id' => $vidriera->id_vidriera]);
+                            $itemNuevo->articulo_id = $articulo->id_articulo;
+                            $itemNuevo->imagen_id = $articulo->imagen_id;
+                            $itemNuevo->save();
+                        }
+                    }
+                }
+            }
+        }
+        return $this->redirect(['/vidriera/index']);
     }
 
 }

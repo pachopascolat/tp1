@@ -4,6 +4,8 @@ namespace common\models;
 
 use Yii;
 use noam148\imagemanager\models\ImageManager;
+use yii\imagine\Image;
+
 
 /**
  * This is the model class for table "articulo".
@@ -84,6 +86,83 @@ class Articulo extends \yii\db\ActiveRecord {
 
     public function agotarStock() {
         return \Yii::$app->db->createCommand("UPDATE articulo SET existencia=0")->execute();
+    }
+
+    public function getOldImage() {
+        $imageList = [];
+        $galleryImage = GalleryImage::find()->joinWith('galeria')->where(['name' => $this->codigo_color,'tela_id'=> $this->tela_id])->all();
+        foreach ($galleryImage as $image) {
+            /* @var $image GalleryImage */
+//            if ($image->getTela() && $image->getTela()->codigo_tela == $this->tela->codigo_tela) {
+                $imageList[] = $image;
+//            }
+        }
+        return $imageList;
+    }
+
+    public function migrarImagen($galleryImage) {
+//        $galleryImage = $this->getOldImage();
+        if(!$galleryImage){
+            return false;
+        }
+        $sTempFile = $galleryImage->getPath();
+        $tela = $galleryImage->getTela();
+
+        $cod_tela = $tela->codigo_tela ?? 'sinTela';
+        $cod_color = $galleryImage->name;
+        $name = $galleryImage->description;
+        $nameFile = "$cod_tela-$cod_color-$name";
+
+
+        $bSuccess = false;
+
+
+        $sMediaPath = \Yii::$app->imagemanager->mediaPath;
+        //create the folder
+        \yii\helpers\BaseFileHelper::createDirectory($sMediaPath);
+
+        //check file isset
+        if (true) {
+            //collect variables
+            $sFileName = dirname($sTempFile);
+            $sFileExtension = pathinfo($sTempFile, PATHINFO_EXTENSION) ?? 'jpg';
+//                $iErrorCode = $sTempFile['error'];
+            //if uploaded file has no error code  than continue;
+            if (file_exists($sTempFile)) {
+                //create a file record
+                $model = new ImageManager();
+//                $model->fileName = str_replace("_", "-", $sFileName);
+                $model->fileName = $nameFile . "." . $sFileExtension;
+                $model->fileHash = Yii::$app->getSecurity()->generateRandomString(32);
+                if ($tela) {
+                    $articulo = $this;
+                    $articulo->codigo_color = intval($galleryImage->name);
+                    $articulo->nombre_color = $galleryImage->description;
+                    $articulo->imagen_id = $model->id;
+                    if ($model->validate() && $articulo->validate()) {
+                        $model->save(false);
+                        $articulo->imagen_id = $model->id;
+                        $articulo->save(false);
+                        //move file to dir
+                        $sSaveFileName = $model->id . "_" . $model->fileHash . "." . $sFileExtension;
+                        //move_uploaded_file($sTempFile, $sMediaPath."/".$sFileName);
+                        //save with Imagine class
+                        Image::getImagine()->open($sTempFile)->save($sMediaPath . "/" . $sSaveFileName);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+
+
+
+
+        //echo return json encoded
+//        return $this->redirect('ver-stock');
     }
 
 }

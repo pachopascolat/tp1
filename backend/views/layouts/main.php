@@ -34,13 +34,35 @@ AppAsset::register($this);
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
+            $categorias_padre = common\models\Categoria::find()->where(['categoria_padre' => null])->all();
+            foreach ($categorias_padre as $cat) {
+                $items_hijo = [];
+                /*                @var $cat common\models\Categoria */
+                foreach ($cat->categorias as $hijo) {
+                    $items_hijo[] = ['label' => $hijo->nombre_categoria,'url'=>['/vidriera/index','categoria_id'=>$hijo->id_categoria]];
+                }
+                $items_padre['items'][] = [
+                    'label' => $cat->nombre_categoria,
+                    'items' =>$items_hijo,
+                    'url' => ['/vidriera/index','categoria_id'=>$cat->id_categoria],
+//                    $items_hijo
+                        ];
+            }
+            $items_padre['label']='Vidrieras';
+
             $menuItems = [
 //                ['label' => 'Home', 'url' => ['/site/index']],
 //                ['label' => 'Ofertas', 'url' => ['/gallery-image/index', 'categoria_padre' => 1]],
-                ['label' => 'Vidrieras', 'url' => ['/vidriera/index']],
+                $items_padre
+//                    , 'items' => [
+//                        ['label' => 'Hogar', 'url' => ['/vidriera/index', 'categoria' => 'Hogar']],
+//                        ['label' => 'Moda', 'url' => ['/vidriera/index', 'categoria' => 'Moda']],
+////                        ['label' => 'PDF', 'url' => ['/vidriera/index','categoria'=>'PDF']],
+//                    ]
+                ,
 //                ['label' => 'Ordenar', 'url' => ['/gallery-image/ordenar-disenios']],
                 ['label' => 'PDF', 'items' => [
-                        ['label' => 'crear', 'url' => ['/pdf-report/create-pdf']],
+                        ['label' => 'crear', 'url' => ['/vidriera/create-pdf']],
                         ['label' => 'descargar', 'url' => ['/pdf-report/index']],
                     ]
                 ],
@@ -50,7 +72,7 @@ AppAsset::register($this);
                         ['label' => 'Telas', 'url' => ['/tela/index']],
                     ]
                 ],
-                ['label' => 'Categorias', 'url' => ['/categoria/index-todos']],
+                ['label' => 'Categorias', 'url' => ['/categoria/index']],
 //                ['label' => 'Hogar', 'url' => ['/categoria/index', 'categoria_padre' => 1]],
 //                ['label' => 'Moda', 'url' => ['/categoria/index', 'categoria_padre' => 2]],
                 ['label' => 'Consultas', 'url' => ['/carrito/index', 'categoria_padre' => 2]],
@@ -92,12 +114,12 @@ AppAsset::register($this);
             ?>
 
             <div class="container">
-<?=
-Breadcrumbs::widget([
-    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-    'homeLink' => false,
-])
-?>
+                <?=
+                Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    'homeLink' => false,
+                ])
+                ?>
                 <?= Alert::widget() ?>
                 <?= $content ?>
             </div>
@@ -111,7 +133,7 @@ Breadcrumbs::widget([
             </div>
         </footer>
 
-<?php $this->endBody() ?>
+        <?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>

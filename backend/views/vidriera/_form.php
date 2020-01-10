@@ -7,10 +7,10 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Vidriera */
 /* @var $form yii\widgets\ActiveForm */
 
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos' => \yii\web\View::POS_END,
     'viewParams' => [
-        'class' => 'ItemVidirera', 
-        'relID' => 'item-vidirera', 
+        'class' => 'ItemVidirera',
+        'relID' => 'item-vidirera',
         'value' => \yii\helpers\Json::encode($model->itemVidireras),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
@@ -29,13 +29,18 @@ use yii\widgets\ActiveForm;
 
     <?php //  $form->field($model, 'estado')->textInput(['placeholder' => 'Estado']) ?>
 
-    <?= $form->field($model, 'categoria_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\common\models\Categoria::find()->orderBy('id_categoria')->asArray()->all(), 'id_categoria', 'nombre_categoria'),
-        'options' => ['placeholder' => 'Choose Categoria'],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]); ?>
+    <?php
+    if ($model->categoria_id != common\models\Categoria::findOne(['nombre_categoria'=>'PDF'])->id_categoria) {
+        echo
+        $form->field($model, 'categoria_id')->widget(\kartik\widgets\Select2::classname(), [
+            'data' => \yii\helpers\ArrayHelper::map(\common\models\Categoria::find()->orderBy('id_categoria')->asArray()->all(), 'id_categoria', 'nombre_categoria'),
+            'options' => ['placeholder' => 'Choose Categoria'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);
+    }
+    ?>
 
     <?php //  $form->field($model, 'orden_vidriera')->textInput(['placeholder' => 'Orden Vidriera']) ?>
 

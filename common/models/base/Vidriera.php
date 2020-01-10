@@ -15,6 +15,7 @@ use mootensai\behaviors\UUIDBehavior;
  * @property integer $orden_vidriera
  *
  * @property \common\models\ItemVidirera[] $itemVidireras
+ * @property \common\models\PdfReport[] $pdfReports
  * @property \common\models\Categoria $categoria
  */
 class Vidriera extends \yii\db\ActiveRecord
@@ -75,6 +76,10 @@ class Vidriera extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\common\models\ItemVidirera::className(), ['vidriera_id' => 'id_vidriera'])->orderBy('orden_item_vidriera');
     }
+    public function getPdfReports()
+    {
+        return $this->hasMany(\common\models\PdfReport::className(), ['vidriera_id' => 'id_vidriera']);
+    }
         
     /**
      * @return \yii\db\ActiveQuery
@@ -107,4 +112,7 @@ class Vidriera extends \yii\db\ActiveRecord
     {
         return new \common\models\VidrieraQuery(get_called_class());
     }
+    
+    
+    
 }

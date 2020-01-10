@@ -20,6 +20,7 @@ use Yii;
  * @property Categoria $categoriaPadre
  * @property Categoria[] $categorias
  * @property Tela[] $telas
+ * @property Vidriera[] $vidrieras
  * @property CategoriaTelas[] $categoriaTelas
  */
 class Categoria extends \yii\db\ActiveRecord
@@ -87,6 +88,10 @@ class Categoria extends \yii\db\ActiveRecord
     public function getTelas()
     {
         return $this->hasMany(Tela::className(), ['categoria_id' => 'id_categoria'])->orderBy('orden_tela');
+    }
+    public function getVidrieras()
+    {
+        return $this->hasMany(Tela::className(), ['categoria_id' => 'id_categoria']);
     }
     
     function getParentCategory(){

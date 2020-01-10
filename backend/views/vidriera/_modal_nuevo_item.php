@@ -1,3 +1,6 @@
+
+
+
 <div id="modal-nuevo-item" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -81,29 +84,29 @@
 
 
 
-                <div class="d-flex">
-<?php
-foreach ($dataProvider->getModels() as $item):
-    $url = Yii::$app->imagemanager->getImagePath($item->imagen_id ?? null, 100, 100);
-    ?>
-                                                                                                                        <!--<div data-id-item="<?= $item->id_articulo ?>" class="">-->
+                <div class="">
+                    <?php
+                    foreach ($dataProvider->getModels() as $item):
+                        $url = Yii::$app->imagemanager->getImagePath($item->imagen_id ?? null, 100, 100);
+                        ?>
+                                                                                                                            <!--<div data-id-item="<?= $item->id_articulo ?>" class="">-->
                         <div data-multiple=1 class="new-item-div">    
                             <input  type="texts" name="selectedItem[]" value="<?= $item->id_articulo ?>" disabled="disabled" class="new-item-checkbox d-none selectable">
-                            <img class="w-100" src="<?= $url ?>">
+                            <img class="img-fluid" src="<?= $url ?? Yii::getAlias("@web") . "/assets/loading.png" ?>" >
                             <i   class="fa fa-check-circle fa-2x"></i>
-                            <span class="image-name <?= $item->existencia?'':'text-danger'?>"><?= "$item->codigo_color $item->nombre_color" ?></span>
+                            <span class="image-name <?= $item->existencia ? '' : 'text-danger' ?>"><?= "$item->codigo_color $item->nombre_color" ?></span>
                             <!--</div>-->
                         </div>
-    <?php
-endforeach;
-?>
+                        <?php
+                    endforeach;
+                    ?>
 
                 </div>
-                    <?php
-                    echo yii\widgets\LinkPager::widget([
-                        'pagination' => $dataProvider->getPagination(),
-                    ]);
-                    ?>
+                <?php
+                echo yii\widgets\LinkPager::widget([
+                    'pagination' => $dataProvider->getPagination(),
+                ]);
+                ?>
                 <?php yii\widgets\Pjax::end() ?>
             </div>
             <div class="modal-footer">
@@ -112,7 +115,7 @@ endforeach;
                 <button type="button" class="btn btn-warning items-todos-btn" >Seleccionar Todo</button>
                 <button type="button" class="btn btn-info items-ninguno-btn" style="display: none" >Deseleccionar Todo</button>
             </div>
-<?php $form = yii\widgets\ActiveForm::end(); ?>
+            <?php $form = yii\widgets\ActiveForm::end(); ?>
 
         </div>
     </div>

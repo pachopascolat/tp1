@@ -83,9 +83,17 @@ d-flex{
 
 
 
+.new-item-div img{
+    min-width: 100px;
+}
 
+.new-item-div{
+    margin: 4px;
+}
 
-
+.dropdown-submenu li{
+    list-style: none;
+}
 
 
 

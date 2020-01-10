@@ -17,7 +17,7 @@ $(document).ready(function () {
         $.pjax.reload({
             push: false,
             replace: false,
-            url: 'delete-all-items',
+            url: '/admin/vidriera/delete-all-items',
             type: 'POST',
             data: {ids: idList},
             container: '#item-vidriera-pjax',
@@ -41,7 +41,7 @@ $(document).ready(function () {
         $.pjax.reload({
             push: false,
             replace: false,
-            url: 'agregar-items?id=' + id,
+            url: '/admin/vidriera/agregar-items?id=' + id,
             type: 'POST',
             data: $('#nuevo-item-form').serialize(),
             container: '#item-vidriera-pjax',
@@ -57,7 +57,7 @@ $(document).ready(function () {
         $.pjax.reload({
             push: false,
             replace: false,
-            url: 'filtrar-articulos',
+            url: '/admin/vidriera/filtrar-articulos',
             type: 'GET',
             data: $('#nuevo-item-form').serialize(),
             container: '#items-pjax',
@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     $('.modal .galery-filter').on('change', function () {
         $.pjax.reload({
-            url: 'filtrar-imagenes',
+            url: '/admin/vidriera/filtrar-imagenes',
             push: false,
             replace: false,
             type: 'GET',
@@ -86,7 +86,7 @@ $(document).ready(function () {
         $.pjax.reload({
             push: false,
             replace: false,
-            url: 'cambiar-imagen?id=' + id,
+            url: '/admin/vidriera/cambiar-imagen?id=' + id,
             type: 'POST',
             data: $('#galeria-form').serialize(),
             container: '#item-vidriera-pjax',

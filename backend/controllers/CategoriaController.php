@@ -88,11 +88,11 @@ class CategoriaController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($categoria_padre = 1) {
-        $model = new Categoria(['categoria_padre' => $categoria_padre]);
+    public function actionCreate() {
+        $model = new Categoria();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'categoria_padre' => $model->categoria_padre]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [

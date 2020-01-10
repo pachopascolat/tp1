@@ -25,6 +25,12 @@ class PdfReport extends \yii\db\ActiveRecord {
     public $imageFile;
     public $guardar;
 
+    function __construct($config = array()) {
+        parent::__construct($config);
+        $this->header = $this->getHeaderName(1);
+        $this->header2 = $this->getHeaderName(2);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -40,9 +46,10 @@ class PdfReport extends \yii\db\ActiveRecord {
             [['imageFile', 'header', 'header2'], 'file', 'skipOnEmpty' => true,
 //                'extensions' => 'png, jpg,jpeg','JPG','JPEG','PNG'
             ],
-            [['timestamp_pdf', 'guardar'], 'safe'],
+            [['timestamp_pdf', 'guardar', 'header', 'header2'], 'safe'],
             [['nombre_pdf'], 'string'],
-            [['tela_id', 'user_id_pdf','vidriera_id'], 'integer'],
+            [['nombre_pdf'], 'required'],
+            [['tela_id', 'user_id_pdf', 'vidriera_id'], 'integer'],
             [['tela_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tela::className(), 'targetAttribute' => ['tela_id' => 'id_tela']],
             [['user_id_pdf'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id_pdf' => 'id']],
         ];
@@ -101,6 +108,7 @@ class PdfReport extends \yii\db\ActiveRecord {
     public function getTela() {
         return $this->hasOne(Tela::className(), ['id_tela' => 'tela_id']);
     }
+
     public function getVidriera() {
         return $this->hasOne(Vidriera::className(), ['id_vidriera' => 'vidriera_id']);
     }
@@ -117,14 +125,13 @@ class PdfReport extends \yii\db\ActiveRecord {
             if ($this->header) {
                 return $this->header->baseName . "." . $this->header->extension;
             }
-        }else{
+            return "header1.jpg";
+        } else {
             if ($this->header2) {
                 return $this->header2->baseName . "." . $this->header2->extension;
             }
+            return "header2.jpg";
         }
-        return "header1.jpg";
     }
-    
-   
 
 }

@@ -348,14 +348,14 @@ class GalleryImage extends \yii\db\ActiveRecord {
 //            foreach ($files AS $key => $sTempFile) {
             //collect variables
             $sFileName = dirname($sTempFile);
-            $sFileExtension = pathinfo($sTempFile, PATHINFO_EXTENSION)??'jpg';
+            $sFileExtension = pathinfo($sTempFile, PATHINFO_EXTENSION) ?? 'jpg';
 //                $iErrorCode = $sTempFile['error'];
             //if uploaded file has no error code  than continue;
             if (file_exists($sTempFile)) {
                 //create a file record
                 $model = new ImageManager();
 //                $model->fileName = str_replace("_", "-", $sFileName);
-                $model->fileName = $nameFile.".".$sFileExtension;
+                $model->fileName = $nameFile . "." . $sFileExtension;
                 $model->fileHash = Yii::$app->getSecurity()->generateRandomString(32);
                 if ($tela) {
                     $articulo = new Articulo(['tela_id' => $tela->id_tela]);
@@ -385,8 +385,20 @@ class GalleryImage extends \yii\db\ActiveRecord {
 
 
 
+
         //echo return json encoded
 //        return $this->redirect('ver-stock');
+    }
+
+    public function getNewArticulo() {
+        $tela = $this->getTela();
+        if ($tela) {
+            $articulo = Articulo::findOne(['tela_id' => $tela->id_tela, 'codigo_color' => $this->name]);
+            if ($articulo) {
+                return $articulo;
+            }
+        }
+        return false;
     }
 
 }

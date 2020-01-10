@@ -6,6 +6,8 @@ use Yii;
 
 class SitioController extends \yii\web\Controller {
 
+
+    
     public function actionIndex() {
         return $this->render('index');
     }
@@ -17,16 +19,17 @@ class SitioController extends \yii\web\Controller {
 
     public function actionHogar() {
         $_SESSION['categoria_padre'] = 1;
-        return $this->render('index');
+        return $this->redirect(['por-categoria','id_categoria'=>$_SESSION['categoria_padre']]);
     }
 
     public function actionModa() {
-        $_SESSION['categoria_padre'] = 0;
-        return $this->render('index');
+        $_SESSION['categoria_padre'] = 2;
+        return $this->redirect(['por-categoria','id_categoria'=>$_SESSION['categoria_padre']]);
     }
 
     public function actionPorCategoria($id_categoria) {
-        $telas = \common\models\Vidriera::find()->where(['categoria_id' => $id_categoria])->all();
+        set_time_limit(12000);
+        $telas = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_id' => $id_categoria])->orWhere(['categoria_padre'=>$id_categoria])->limit(5)->all();
         return $this->render('porCategoria', ['telas' => $telas]);
     }
     

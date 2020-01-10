@@ -29,6 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'tela.nombre_tela',
             'userIdPdf.username',
             [
+                'label' => 'Editar',
+                'format' => 'raw',
+                'value' => function ($model) {
+//                    $path = trim($model->tela->nombre_tela . "-" . $model->id_pdf_report);
+//                    $url = Yii::getAlias("@web/backend/web/../uploads/pdf-report/$path.pdf");
+                    return Html::a('Editar', ['update-pdf','id'=>$model->id_pdf_report], ['class' => 'btn btn-warning']);
+                }
+            ],
+            [
                 'label' => 'Descargar',
                 'format' => 'raw',
                 'value' => function ($model) {

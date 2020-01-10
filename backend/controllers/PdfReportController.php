@@ -36,8 +36,8 @@ class PdfReportController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['create-pdf','descargar-pdf', 'ordenar-disenios', 'export-pdf', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
-                        'roles' => ['stockManager','ventasManager'],
+                        'actions' => ['update-pdf', 'create-pdf', 'descargar-pdf', 'ordenar-disenios', 'export-pdf', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+                        'roles' => ['stockManager', 'ventasManager'],
                     ],
                 ],
             ],
@@ -98,10 +98,10 @@ class PdfReportController extends Controller {
                     'model' => $model,
                     'searchModel' => $searchModel]);
     }
-   
 
     public function report($estampados) {
-        /* @var $estampados \common\models\Vidriera */ 
+        $vidriera = $estampados;
+        /* @var $estampados \common\models\Vidriera */
         foreach ($estampados->itemVidireras as $order => $item) {
 //            $image = GalleryImage::findOne($id);
 //            $image->pdf_rank = $order;
@@ -126,7 +126,7 @@ class PdfReportController extends Controller {
         ];
 
 //        $pdf = new Pdf2(\Yii::getAlias("@backend/views/gallery-image/_report.php"));
-        $model = new PdfReport(['user_id_pdf' => Yii::$app->user->getId()]);
+        $model = new PdfReport(['vidriera_id' => $vidriera->id_vidriera, 'user_id_pdf' => Yii::$app->user->getId()]);
         if ($model->load(Yii::$app->request->post())) {
             $model->header = \yii\web\UploadedFile::getInstance($model, 'header');
             $model->header2 = \yii\web\UploadedFile::getInstance($model, 'header2');
@@ -154,7 +154,7 @@ class PdfReportController extends Controller {
             $model->nombre_pdf = trim($model->tela->nombre_tela . "-" . $date);
         }
         if ($model->guardar && $model->save()) {
-            
+
             $pdf->saveAs(Yii::getAlias("@backend/uploads/pdf-report/" . $model->id_pdf_report . ".pdf"));
         }
         $timestamp = date("Y-m-d-H-m-i");
@@ -207,20 +207,26 @@ class PdfReportController extends Controller {
                     'model' => $model,
         ]);
     }
-    public function actionCreatePdf() {
-        $model = new PdfReport();
 
-        
-        
+    public function actionCreatePdf($vidriera_id) {
+        $vidriera = \common\models\Vidriera::findOne($vidriera_id);
+        $model = new PdfReport([
+            'vidriera_id' => $vidriera_id,
+            'nombre_pdf'=>(count($vidriera->pdfReports)>0)?$vidriera->nombre."-".count($vidriera->pdfReports):$vidriera->nombre
+            ]);
+        $transaction = Yii::$app->db->beginTransaction();
+
         if ($model->load(Yii::$app->request->post())) {
-            $vidriera = \common\models\Vidriera::findOne($model->vidriera_id);
-            $this->report($vidriera);
+            if (TRUE) {
+                $this->report($vidriera);
+                if ($model->guardar) {
+                    $transaction->commit();
+                } else {
+                    $transaction->rollBack();
+                }
+            }
         }
-        
-        if ($model->load(Yii::$app->request->get())) {
-            
-        }
-
+//        $transaction->rollBack();
         return $this->render('createPdf', [
                     'model' => $model,
         ]);
@@ -233,6 +239,18 @@ class PdfReportController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
+    public function actionUpdatePdf($id) {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('updatePdf', [
+                    'model' => $model,
+        ]);
+    }
+
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
@@ -253,7 +271,10 @@ class PdfReportController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $vidriera = $model->vidriera;
+        $model->delete();
+        $vidriera->delete();
 
         return $this->redirect(['index']);
     }
@@ -279,7 +300,7 @@ class PdfReportController extends Controller {
             $path = Yii::getAlias('@backend') . '/uploads/pdf-report';
             $file = $path . "/$pdf->id_pdf_report.pdf";
             if (file_exists($file)) {
-                return Yii::$app->response->sendFile($file, $pdf->nombre_pdf.".pdf");
+                return Yii::$app->response->sendFile($file, $pdf->nombre_pdf . ".pdf");
             }
         }
     }

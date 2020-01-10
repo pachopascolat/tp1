@@ -42,16 +42,17 @@ class ArticuloController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionIndexPorTela() {
         if (isset($_POST['expandRowKey'])) {
-        $searchModel = new ArticuloSearch(['tela_id'=>$_POST['expandRowKey']]);
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $searchModel = new ArticuloSearch(['tela_id' => $_POST['expandRowKey']]);
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->renderPartial('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
-        ]);
-        }else{
+            return $this->renderPartial('index', [
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
+            ]);
+        } else {
             return '<div class="alert alert-danger">No data found</div>';
         }
     }
@@ -96,7 +97,7 @@ class ArticuloController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_articulo]);
+            return $this->redirect(['index', 'ArticuloSearch[nombre_color]' => $model->nombre_color]);
         }
 
         return $this->render('update', [
@@ -148,49 +149,46 @@ class ArticuloController extends Controller {
                     $nombreTela = trim($row['art_nom']);
                     $codigoColor = trim($row['col_cod']);
                     $nombreColor = trim($row['col_nom']);
+
+//                    if ($unidades > 2) {
+                    $tela = \common\models\Tela::findOne(['codigo_tela' => $codigoTela]);
+                    if (!$tela) {
+                        $tela = new \common\models\Tela(['codigo_tela' => $codigoTela, 'nombre_tela' => $nombreTela]);
+                        $tela->save();
+                    }
+//                    }
 //                    $model->tela_id = $codigoTela;
 //                    $model->codigo_color = $codigoColor;
-                    $rollo = $model->find()->joinWith('tela')->where(['codigo_tela'=>$codigoTela,'codigo_color'=>$codigoColor])->all();
-                    foreach ($rollo as $modelo) {
-                        $modelo->nombre_color = $nombreColor;
-                        if ($unidades > 2) {
-                            $modelo->existencia = 1;
+                    $articulo = $model->find()->joinWith('tela')->where(['codigo_tela' => $codigoTela, 'codigo_color' => $codigoColor])->all();
+                    if (count($articulo) > 0) {
+                        foreach ($articulo as $modelo) {
+                            $modelo->nombre_color = $nombreColor;
+                            if ($unidades > 2) {
+                                $modelo->existencia = 1;
+                            }
+                            $modelo->save();
                         }
-                        $modelo->save();
+                    } else {
+                        $articulo = new Articulo(['codigo_color' => $codigoColor, 'nombre_color' => $nombreColor, 'tela_id' => $tela->id_tela]);
+                        $articulo->save();
                     }
-
-//                    if (count($rollo) > 0) {
-//                        $stock[] = $rollo;
-//                    } else {
-//                        $sinCargarModel = new ArticuloSearch();
-//                        $sinCargarModel->tela_id = \common\models\Tela::findOne(['codigo_tela' => $codigoTela])->id_tela ?? null;
-////                        $sinCargarModel->nombre_tela = $nombreTela;
-//                        $sinCargarModel->codigo_color = $codigoColor;
-//                        $sinCargarModel->nombre_color = $nombreColor;
-//                        $sinCargar[] = $sinCargarModel;
-//                    }
                 }
-//                if (count($sinCargar) > 0) {
-//                    $dataProvider = new ArrayDataProvider([
-//                        'allModels' => $sinCargar,
-//                        'pagination' => [
-//                            'pageSize' => false,
-//                        ],
-//                        'sort' => [
-//                            'attributes' => ['codigo_tela', 'name'],
-//                        ],
-//                    ]);
-//                    return $this->render('sinCargar', [
-//                                'searchModel' => $sinCargarModel,
-//                                'dataProvider' => $dataProvider,
-//                    ]);
-//                }
             }
         }
-
         return $this->redirect(['index',
 //            'sinCargar'=>$sinCargar
         ]);
+    }
+
+    public function actionMigrarImagenesViejas() {
+        set_time_limit(12000);
+        $articulos = Articulo::find()->all();
+        foreach ($articulos as $articulo) {
+            foreach ($articulo->getOldImage() as $galleryImage) {
+                $articulo->migrarImagen($galleryImage);
+            }
+        }
+        return $this->redirect(['index']);
     }
 
 }

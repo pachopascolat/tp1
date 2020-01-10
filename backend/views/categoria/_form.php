@@ -12,21 +12,21 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'hogar')->checkbox() ?>
-    <?= $form->field($model, 'moda')->checkbox() ?>
-    <?= $form->field($model, 'orden_hogar')->textInput(['maxlength' => true,'type'=>'number']) ?>
-    <?= $form->field($model, 'orden_moda')->textInput(['maxlength' => true,'type'=>'number']) ?>
+    <?php // $form->field($model, 'hogar')->checkbox() ?>
+    <?php // $form->field($model, 'moda')->checkbox() ?>
+    <?php // $form->field($model, 'orden_hogar')->textInput(['maxlength' => true,'type'=>'number']) ?>
+    <?php // $form->field($model, 'orden_moda')->textInput(['maxlength' => true,'type'=>'number']) ?>
     <?= $form->field($model, 'nombre_categoria')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'descripción')->textarea(['rows' => 5]) ?>
 
     <?php
-    $categorias = [1=>"Hogar",2=>"Moda"];
+    $categorias = common\models\Categoria::find()->all();
     $items = yii\helpers\ArrayHelper::map($categorias, 'id_categoria', 'nombre_categoria');
     ?>
-    <?php // echo $form->field($model, 'categoria_padre')->dropDownList($categorias) ?>
+    <?php echo $form->field($model, 'categoria_padre')->dropDownList($items,['prompt'=>'Seleccionar Categoria Principal']) ?>
 
-    <?php echo $form->field($model, 'orden_categoria')->textInput() ?>
+    <?php // echo $form->field($model, 'orden_categoria')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
