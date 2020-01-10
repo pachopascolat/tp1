@@ -9,11 +9,13 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                     <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/logotexsim-02.svg" alt="Logo Texsim">
                 </a>
             </div>
-            <form method="POST" action="/buscador" class="navbar-link flex-fill d-flex ">
-                <input id="busqueda" name="busqueda" class="texsim-search-input w-100" type="search" placeholder="" aria-label="Search">
-                <!--<i class="fa fa-search text-light"></i>-->
+            <?= \yii\helpers\Html::beginForm(['/sitio/buscar'], 'GET', ['id' => 'busqueda-form','class'=>'navbar-link flex-fill d-flex']);
+?>
+            <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar']) ?>" class="navbar-link flex-fill d-flex ">-->
+                <input value="<?=$_GET['busqueda']??''?>" id="busqueda" name="busqueda" class="texsim-search-input w-100" type="" placeholder="" aria-label="Search">
+                <a href="" onclick="$('#busqueda-form').submit()"> 
                 <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
-                <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+                </a>
             </form>
             <div class="tel nav-item  d-lg-block d-none">
                 <span>(54 11) 2120-0550</span>

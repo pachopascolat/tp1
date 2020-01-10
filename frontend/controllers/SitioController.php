@@ -137,4 +137,18 @@ class SitioController extends \yii\web\Controller {
         return $this->redirect(['crear-consulta']);
     }
     
+    function actionBuscar() {
+        $vidrieras = [];
+        $busqueda = \Yii::$app->request->get('busqueda');
+        if ($busqueda != "") {
+            $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')
+                    ->where(['like', 'nombre', '%'.$busqueda.'%', false])
+                    ->orWhere(['like', 'nombre_categoria', '%'.$busqueda.'%', false])->all();
+        }
+//        $model = new \common\models\CategoriaSearch(['nombre_categoria'=>$busqueda]);
+//        $dataprovider = $model->search(null);
+//        $dataprovider->setPagination(false);
+        return $this->render('busqueda', ['vidrieras' => $vidrieras]);
+    }
+    
 }
