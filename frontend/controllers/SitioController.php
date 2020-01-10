@@ -148,7 +148,7 @@ class SitioController extends \yii\web\Controller {
 //        $model = new \common\models\CategoriaSearch(['nombre_categoria'=>$busqueda]);
 //        $dataprovider = $model->search(null);
 //        $dataprovider->setPagination(false);
-        return $this->render('busqueda', ['vidrieras' => $vidrieras]);
+        return $this->render('busqueda', ['vidrieras' => $vidrieras,'busqueda'=>$busqueda]);
     }
     
 }
