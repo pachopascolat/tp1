@@ -3,15 +3,22 @@
     <!--<img src="./imgHeader2/faja-02.jpg" class="nav2-img">-->
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-01.jpg" alt="First slide">
-            </div>
-            <div class="carousel-item">
+            <?php
+            $hom = $_SESSION['categoria_padre'] ?? 1;
+            $categorias = [null, "hogar", "moda"];
+            $fajas = yii\helpers\FileHelper::findFiles(Yii::getAlias("@frontend")."/web/img2020/" . $categorias[$hom]."/");
+            foreach ($fajas as $key => $img):
+                ?>
+                <div class="carousel-item <?= $key==0?'active':''?>">
+                    <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true)."/img2020/$categorias[$hom]/".basename($img)?>" alt="First slide">
+                </div>
+            <?php endforeach; ?>
+<!--            <div class="carousel-item">
                 <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-02.jpg" alt="Second slide">
             </div>
             <div class="carousel-item">
                 <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-03.jpg" alt="Third slide">
-            </div>
+            </div>-->
         </div>
     </div>
 
@@ -158,12 +165,12 @@
             <div class="modal-body">
 
                 <iframe class="w-100" src="https://player.vimeo.com/video/329154106" 
-                         width="480" 
+                        width="480" 
                         height="360"
                         frameborder="0" 
                         title="Texsim" 
                         webkitallowfullscreen mozallowfullscreen allowfullscreen>
-                            
+
                 </iframe>
 
             </div>

@@ -23,4 +23,10 @@ foreach ($items as $key => $vidriera) {
         echo $this->render('dosFilasRegular', ['vidriera' => $vidriera]);
     }
 }
+
+
 ?>
+
+
+<?= $this->render('dosFilasIconos') ?>
+<?= $this->render('filaImagenRedesDos') ?>

@@ -10,7 +10,7 @@ if ($total < 18) {
 
 <div class="dos-filas-regular mt- mb-2">
     <div class="container">
-        <h3><?= $vidriera[0]->vidriera->nombre ?? '' ?></h3>
+        <a href="<?= yii\helpers\Url::to(['por-vidriera', 'id' => $vidriera[0]->vidriera_id]) ?>"><h3><?= $vidriera[0]->vidriera->nombre ?? '' ?></h3> </a>
         <div class="cuadricula-regular">
             <?php
 //            $i = 0;
