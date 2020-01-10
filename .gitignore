@@ -47,4 +47,5 @@ phpunit.phar
 /common/config/main-local.php
 
 /backend/uploads/pdf-report/*
+/backend/uploads/*
 /backend/web/pdf/headers/*
