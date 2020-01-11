@@ -1,4 +1,4 @@
- <div class="nav3">
+ <div class="nav3 d-none d-md-block">
         <div class="container">
             <div class="d-flex justify-contend-between">
                 <div class="navbar navbar-expand w-100 pl-0">
