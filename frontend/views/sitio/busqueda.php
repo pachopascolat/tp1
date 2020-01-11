@@ -9,23 +9,46 @@ echo $this->render('nav3');
 </div>
 <?php
 $items = [];
-
-foreach ($vidrieras as $vidriera) {
-    $items[] = $vidriera->itemVidireras;
-}
-//array_multisort(array_map('count', $items), SORT_DESC, $items);
-
-foreach ($items as $key => $vidriera) {
-    if ($key < 4) {
-        echo $this->render('dosFilasRegular', ['vidriera' => $vidriera]);
-    }
-}
 ?>
-<div class="text-center">
-    <h5 class="<?= count($vidrieras) > 0 ? 'd-none' : '' ?>"> No se encontraron resultados </h5>
+<div class="dos-filas-regular mt- mb-2">
+    <div class="container">
+
+        <?php
+        foreach ($vidrieras as $vidriera):
+            ?>
+            <a href="<?= yii\helpers\Url::to(['por-vidriera', 'id' => $vidriera->id_vidriera]) ?>"><h3><?= $vidriera->nombre ?? '' ?></h3> </a>
+            <div class="d-sx-block d-md-none">
+                <?php echo $this->render('_fila_no_regular', ['items' => $vidriera->itemVidireras, 'columnas' => 2, 'filas' => 3]); ?>
+            </div>
+            <div class="d-none d-md-block d-lg-none">
+                <?php echo $this->render('_fila_regular', ['items' => $vidriera->itemVidireras, 'columnas' => 7, 'filas' => 2]); ?>
+            </div>
+            <div class="d-none d-lg-block">
+                <?php echo $this->render('_fila_regular', ['items' => $vidriera->itemVidireras, 'columnas' => 9, 'filas' => 2]); ?>
+            </div>
+            <?php echo $this->render('_modalItem', ['items' => $vidriera->itemVidireras]) ?>
+                <div class="d-flex justify-content-end">
+                    <a class="text-dark" href="<?= yii\helpers\Url::to(['por-vidriera', 'id' => $vidriera->id_vidriera]) ?>">
+                        <h5 >ver mas</h5>
+                    </a>
+                </div>
+        <?php endforeach;
+        ?>
+    </div>
 </div>
-<?php
-echo $this->render('dosFilasIconos');
-echo $this->render('filaImagenesRedes');
-?>
-<br>
+
+
+<div class="d-sx-block d-md-none">
+    <?= $this->render('_iconos_sx') ?>
+</div>
+<div class="d-none d-md-block d-lg-none">
+    <?= $this->render('_iconos_md') ?>
+</div>
+<div class="d-none d-lg-block">
+    <?= $this->render('_iconos_lg') ?>
+</div>
+
+
+<div class="d-none d-md-block">
+    <?= $this->render('filaImagenRedesDos') ?>
+</div>

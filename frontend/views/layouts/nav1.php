@@ -3,12 +3,15 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
 ?>
 <nav class="nav1 navbar sticky-top">
     <div class="container">
-        <div class="w-100 d-flex justify-content-around align-items-center">
+        <div class="w-100 d-flex  align-items-center">
             <div class="logo">
                 <a class="navbar-brand d-flex" href="<?= \yii\helpers\Url::base(true) ?>">
                     <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/logotexsim-02.svg" alt="Logo Texsim">
                 </a>
             </div>
+            
+            
+            <div class="flex-fill busqueda-div d-none d-md-block">
             <?= \yii\helpers\Html::beginForm(['/sitio/buscar'], 'GET', ['id' => 'busqueda-form','class'=>'navbar-link flex-fill d-flex']);
 ?>
             <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar']) ?>" class="navbar-link flex-fill d-flex ">-->
@@ -17,6 +20,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                 <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
                 </a>
             </form>
+            </div>
             <div class="tel nav-item  d-lg-block d-none">
                 <span>(54 11) 2120-0550</span>
             </div>

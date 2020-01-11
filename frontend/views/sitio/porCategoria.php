@@ -3,20 +3,11 @@
 
 echo $this->render('nav3');
 
-//$categoria_padre = $_SESSION['categoria_padre']??1;
-//$categoria_padre = 1;
-//$telas = \common\models\base\Vidriera::find()->joinWith(['categoria'])->where(['hogar' => $categoria_padre])
-//        ->orderBy([new \yii\db\Expression('orden_vidriera IS NULL, orden_vidriera ASC')])
-////        ->limit(3)
-//        ->all();
+
 $items = [];
 $vidrieras = $telas;
 
-//foreach ($telas as $vidriera) {
-//    $items[] = common\models\ItemVidirera::find()->where(['vidriera_id' => $vidriera->id_vidriera])->limit(18)->all();
-//}
-//$items = \common\models\Utiles::normalizarGrid($telas,18);
-//array_multisort(array_map('count', $items), SORT_DESC, $items);
+
 ?>
 <div class="dos-filas-regular mt- mb-2">
     <div class="container">

@@ -1,4 +1,5 @@
- <div class="nav3 d-none d-md-block">
+<br class="d-md-none"> 
+<div class="nav3 d-none d-md-block">
     <div class="container">
         <div class="d-flex justify-content-end">
             <div>

@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="absolute-div w-100">
+    <div class="absolute-div w-100 d-none d-md-block">
         <nav class="navbar">
             <div class="container">
                 <div id="sucursales-dir" class="collapse text-light w-100">
