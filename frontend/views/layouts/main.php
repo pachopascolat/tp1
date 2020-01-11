@@ -61,8 +61,9 @@ AppAsset::register($this);
         <!--<div class="">-->
         <?= $content ?>
         <br>
+        <div class="d-none d-lg-block">
         <?php echo $this->render('footer')?>
-
+        </div>
         <!--</div>-->
         <?php $this->endBody() ?>
 

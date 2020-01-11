@@ -6,10 +6,9 @@ use Yii;
 
 class SitioController extends \yii\web\Controller {
 
-
-    
     public function actionIndex() {
-        return $this->render('index');
+//        return $this->render('index');
+        return $this->redirect(['por-categoria', 'id_categoria' => $_SESSION['categoria_padre']??1]);
     }
 
     public function actionCategoriaPadre($valor) {
@@ -19,23 +18,23 @@ class SitioController extends \yii\web\Controller {
 
     public function actionHogar() {
         $_SESSION['categoria_padre'] = 1;
-        return $this->redirect(['por-categoria','id_categoria'=>$_SESSION['categoria_padre']]);
+        return $this->redirect(['por-categoria', 'id_categoria' => $_SESSION['categoria_padre']]);
     }
 
     public function actionModa() {
         $_SESSION['categoria_padre'] = 2;
-        return $this->redirect(['por-categoria','id_categoria'=>$_SESSION['categoria_padre']]);
+        return $this->redirect(['por-categoria', 'id_categoria' => $_SESSION['categoria_padre']]);
     }
 
     public function actionPorCategoria($id_categoria) {
         set_time_limit(12000);
-        $telas = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_id' => $id_categoria])->orWhere(['categoria_padre'=>$id_categoria])->limit(5)->all();
+        $telas = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_id' => $id_categoria])->orWhere(['categoria_padre' => $id_categoria])->limit(5)->all();
         return $this->render('porCategoria', ['telas' => $telas]);
     }
-    
-    public function actionPorVidriera($id){
+
+    public function actionPorVidriera($id) {
         $vidriera = \common\models\Vidriera::findOne($id);
-        return $this->render('porVidriera',['vidriera'=>$vidriera]);
+        return $this->render('porVidriera', ['vidriera' => $vidriera]);
     }
 
     public function beforeAction($action) {
@@ -121,7 +120,7 @@ class SitioController extends \yii\web\Controller {
         }
         return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
     }
-    
+
     function actionFinalizarConsulta($categoria_padre = 1, $id_carrito) {
         $carrito = \common\models\Carrito::findOne($id_carrito);
         $carrito->confirmado = true;
@@ -136,19 +135,19 @@ class SitioController extends \yii\web\Controller {
 
         return $this->redirect(['crear-consulta']);
     }
-    
+
     function actionBuscar() {
         $vidrieras = [];
         $busqueda = \Yii::$app->request->get('busqueda');
         if ($busqueda != "") {
             $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')
-                    ->where(['like', 'nombre', '%'.$busqueda.'%', false])
-                    ->orWhere(['like', 'nombre_categoria', '%'.$busqueda.'%', false])->all();
+                            ->where(['like', 'nombre', '%' . $busqueda . '%', false])
+                            ->orWhere(['like', 'nombre_categoria', '%' . $busqueda . '%', false])->all();
         }
 //        $model = new \common\models\CategoriaSearch(['nombre_categoria'=>$busqueda]);
 //        $dataprovider = $model->search(null);
 //        $dataprovider->setPagination(false);
-        return $this->render('busqueda', ['vidrieras' => $vidrieras,'busqueda'=>$busqueda]);
+        return $this->render('busqueda', ['vidrieras' => $vidrieras, 'busqueda' => $busqueda]);
     }
-    
+
 }

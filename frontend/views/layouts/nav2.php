@@ -1,3 +1,9 @@
+<style>
+    a:hover h3, a:hover h5, .sidebar-menu a:hover{
+        /*color: <?php // echo$_SESSION['categoria_padre']==1?'#ef6285':'#0074ab'?> !important*/
+    }
+</style>
+
 <div class="nav2">
 
     <!--<img src="./imgHeader2/faja-02.jpg" class="nav2-img">-->
