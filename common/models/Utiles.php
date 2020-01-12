@@ -17,28 +17,36 @@ class Utiles {
 
     //put your code here
 
-    public static function armarGridRegular($items, $columnas): array {
+    public static function armarGridRegular($items, $columnas,$filas=2): array {
         $itemsArranged = [];
-        if (count($items) % $columnas != 0) {
-            $resto = $columnas - count($items) % $columnas;
-            for ($i = 0; $i < $resto; $i++) {
-                $items[] = null;
+        $j=0;
+            while (count($items) % ($columnas*$filas) != 0) {   
+                $items[] = $items[$j];
+                $j++;
             }
-        }
+//        if (count($items) % $columnas != 0) {
+//            while(count($items)<$columnas)
+//            for ($i = 0; $i < $resto; $i++) {
+//                $items[] = null;
+//            }
+//        }
         $itemsArranged = array_chunk($items, $columnas);
         return $itemsArranged;
     }
 
-    public function normalizarGrid($items, $columns) {
-        $itemsNormalizados = [];
-        $total = count($items);
-        if ($total < ($columns*2)) {
-            $resto = ($columns*2) - $total;
-            for ($j = 0; $j < $resto; $j++) {
-                $itemsNormalizados[] = null;
-            }
-        }
-        return $itemsNormalizados;
-    }
+//    public function normalizarGrid($items, $columns) {
+//        $itemsNormalizados = [];
+//        $total = count($items);
+//        while($total < ($columns *2)){
+//            $itemsNormalizados[] = null;
+//        }
+//        if ($total < ($columns * 2)) {
+//            $resto = ($columns * 2) - $total;
+//            for ($j = 0; $j < $resto; $j++) {
+//                $itemsNormalizados[] = null;
+//            }
+//        }
+//        return $itemsNormalizados;
+//    }
 
 }

@@ -25,7 +25,7 @@ $items = array_slice($items, 1, ($columnas*2));
         </div>
     </div>
     <div class="" style="flex: <?= $columnas?>">
-        <?php echo $this->render('_fila_regular', ['items' => $items,'columnas'=>$columnas,'filas'=>5]); ?>
+        <?php echo $this->render('_fila_regular', ['items' => $items,'columnas'=>$columnas,'filas'=> 2]); ?>
 
     </div>
 </div>

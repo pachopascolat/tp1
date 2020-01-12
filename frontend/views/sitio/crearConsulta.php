@@ -54,12 +54,12 @@ echo $this->render('cart', ['id_carrito' => $carrito->id_carrito]);
                                             <?= $form->field($model, 'mail_cliente')->textInput(['class' => 'form-control'])->label(false) ?>
 
                                         </div>
-                                        <hr>
-                                        <div class="d-flex justify-content-between flex-column flex-lg-row loading-div">
+                                        <!--<hr>-->
+                                        <div class="d-flex justify-content-between flex-column flex-lg-row loading-div mt-4">
 
                                             <div class="form-group text-center">
                                                 <button type="submit" class="btn-pedido btn btn-outline-secondary">
-                                                    <i class="fal fa-envelope fa-2x"></i>
+                                                    <i class="fal fa-envelope" aria-hidden="true"></i>
                                                      <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                                                     <span class="sr-only">Loading...</span>
                                                     <p>ENVIAR POR MAIL</p> 
@@ -69,7 +69,7 @@ echo $this->render('cart', ['id_carrito' => $carrito->id_carrito]);
                                             </div>
                                             <div class="form-group text-center">
                                                 <button type="submit" formaction="<?php echo \yii\helpers\Url::to(['crear-consulta-whats-app']) ?>" id="consulta-whatsapp" type="" class="btn-pedido btn btn-outline-secondary">
-                                                    <i class="fal fa-envelope fa-2x"></i>
+                                                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                                     <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                                                     <span class="sr-only">Loading...</span>
                                                     <p>ENVIAR POR WHATSAPP</p>

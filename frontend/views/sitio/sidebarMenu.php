@@ -23,7 +23,7 @@
                     <div id="sucLavalle" class="collapse">
                         <span  class="sb-opciones">Lavalle 2571 / 2120 0550</span>
                     </div>
-                    </li>
+                </li>
                 <li>
                     <a class="sb-opciones" href="#sucCelina" data-toggle="collapse" aria-expanded="false">Celina</a>
                     <div id="sucCelina" class="collapse">
@@ -74,17 +74,20 @@
         </li>
     </ul>
 </nav> 
-<div class="row pb-4">
-    <div class="col-12">
-        <a href="#" >
-            <img class="img-fluid"  src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-redes-feria.jpg" alt="">
-        </a>
+<div class="pr-4">
+    <div class="mb-3">
+        <div class="">
+            <a href="#" >
+                <img class="img-fluid w-100"  src="<?= yii\helpers\Url::base(true) ?>/img2020/youtube.jpg" alt="">
+            </a>
+        </div>
+    </div>
+    <div class="">
+        <div class="">
+            <a href="#" >
+                <img class="img-fluid w-100"  src="<?= yii\helpers\Url::base(true) ?>/img2020/banner-texsim-lateral-pdf.jpg" alt="">
+            </a>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-12">
-        <a href="#" >
-            <img class="img-fluid"  src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-redes-feria.jpg" alt="">
-        </a>
-    </div>
-</div>      
+

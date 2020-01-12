@@ -4,7 +4,7 @@
         <div class="row ">
             <div class="col-4">
                 <a href="#!">
-                            <img class="disenio-img img-fluid" src="<?= yii\helpers\Url::base(true)?>/img2020/texsim-redes-feria.jpg">
+                            <img class="disenio-img img-fluid" src="<?= yii\helpers\Url::base(true)?>/img2020/footer-redes'IG.jpg">
                 </a>  
             </div>    
             <div class="col-8"> 

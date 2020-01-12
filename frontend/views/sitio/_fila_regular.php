@@ -3,7 +3,7 @@
 if($filas){
     $items = array_slice($items,0, ($columnas*$filas));
 }
-$items = \common\models\Utiles::armarGridRegular($items, $columnas); 
+$items = \common\models\Utiles::armarGridRegular($items, $columnas,$filas); 
 
 ?>
 <div class="fila-regular">

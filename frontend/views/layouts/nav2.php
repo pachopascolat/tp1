@@ -1,43 +1,40 @@
 <style>
     a:hover h3, a:hover h5, .sidebar-menu a:hover{
-        /*color: <?php // echo$_SESSION['categoria_padre']==1?'#ef6285':'#0074ab'?> !important*/
+        /*color: <?php // echo$_SESSION['categoria_padre']==1?'#ef6285':'#0074ab'  ?> !important*/
     }
 </style>
 
+
+
 <div class="nav2">
+    
 
     <!--<img src="./imgHeader2/faja-02.jpg" class="nav2-img">-->
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
+    <!--<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">-->
+        <!--<div class="carousel-inner">-->
             <?php
             $hom = $_SESSION['categoria_padre'] ?? 1;
             $categorias = [null, "hogar", "moda"];
-            $fajas = yii\helpers\FileHelper::findFiles(Yii::getAlias("@frontend")."/web/img2020/" . $categorias[$hom]."/");
-            foreach ($fajas as $key => $img):
+            $fajas = yii\helpers\FileHelper::findFiles(Yii::getAlias("@frontend") . "/web/img2020/" . $categorias[$hom] . "/");
+//            foreach ($fajas as $key => $img):
                 ?>
-                <div class="carousel-item <?= $key==0?'active':''?>">
-                    <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true)."/img2020/$categorias[$hom]/".basename($img)?>" alt="First slide">
+                <div class="">
+                    <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) . "/img2020/$categorias[$hom]/" . basename($fajas[0]) ?>" alt="First slide">
                 </div>
-            <?php endforeach; ?>
-<!--            <div class="carousel-item">
-                <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-02.jpg" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-                <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-03.jpg" alt="Third slide">
-            </div>-->
-        </div>
-    </div>
+            <?php // endforeach; ?>
+            <!--            <div class="carousel-item">
+                            <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-02.jpg" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-03.jpg" alt="Third slide">
+                        </div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div class="absolute-div w-100 d-none d-md-block">
         <nav class="navbar">
             <div class="container">
-                <div id="sucursales-dir" class="collapse text-light w-100">
-                    <a class="float-right">
-                        <span class="">
-                            Lavalle 2571 - 2120 0550 / Feria: Azcuenaga 580 - 2120 0580 / Feria: Olavarria 2348 Villa Celina - 6072 6831
-                        </span>
-                    </a>
-                </div>
+
                 <div class="w-100 d-flex justify-content-end">
                     <ul class="navbar-nav navbar-expand">
                         <li class="nav-item">
@@ -82,7 +79,6 @@
                     </ul>
                 </div>
             </div>
-
         </nav>
     </div>
 

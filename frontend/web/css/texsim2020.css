@@ -1,156 +1,3 @@
-/*modal css*/
-/*! CSS Used from: https://use.fontawesome.com/releases/v5.8.1/css/all.css 
-.fa{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;}
-.fa-chevron-right:before{content:"\f054";}
-.fa{font-family:"Font Awesome 5 Free";}
-.fa{font-weight:900;}
-! CSS Used from: https://texsim.com.ar/assets/d97d1edb/css/bootstrap.css 
-*,*::before,*::after{box-sizing:border-box;}
-*/
-h2,h3{margin-top:0;margin-bottom:0.5rem;}
-p{margin-top:0;margin-bottom:1rem;}
-ul{margin-top:0;margin-bottom:1rem;}
-label{display:inline-block;margin-bottom:0.5rem;}
-button{border-radius:0;}
-button:focus{outline:1px dotted;outline:5px auto -webkit-focus-ring-color;}
-input,button{margin:0;font-family:inherit;font-size:inherit;line-height:inherit;}
-button,input{overflow:visible;}
-button{text-transform:none;}
-button,[type="button"]{-webkit-appearance:button;}
-button::-moz-focus-inner,[type="button"]::-moz-focus-inner{padding:0;border-style:none;}
-h2,h3{margin-bottom:0.5rem;font-weight:500;line-height:1.2;}
-h2{font-size:2rem;}
-h3{font-size:1.75rem;}
-.list-inline{padding-left:0;list-style:none;}
-.list-inline-item{display:inline-block;}
-.row{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-15px;margin-left:-15px;}
-.col-12{position:relative;width:100%;padding-right:15px;padding-left:15px;}
-.col-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%;}
-.form-control{display:block;width:100%;height:calc(1.5em + 0.75rem + 2px);padding:0.375rem 0.75rem;font-size:1rem;font-weight:400;line-height:1.5;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:0.25rem;transition:border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;}
-@media (prefers-reduced-motion: reduce){
-    .form-control{transition:none;}
-}
-.form-control::-ms-expand{background-color:transparent;border:0;}
-.form-control:focus{color:#495057;background-color:#fff;border-color:#80bdff;outline:0;box-shadow:0 0 0 0.2rem rgba(0, 123, 255, 0.25);}
-.form-control::-webkit-input-placeholder{color:#6c757d;opacity:1;}
-.form-control::-moz-placeholder{color:#6c757d;opacity:1;}
-.form-control:-ms-input-placeholder{color:#6c757d;opacity:1;}
-.form-control::-ms-input-placeholder{color:#6c757d;opacity:1;}
-.form-control::placeholder{color:#6c757d;opacity:1;}
-.form-control:disabled{background-color:#e9ecef;opacity:1;}
-.btn{display:inline-block;font-weight:400;color:#212529;text-align:center;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:0.375rem 0.75rem;font-size:1rem;line-height:1.5;border-radius:0.25rem;transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;}
-@media (prefers-reduced-motion: reduce){
-    .btn{transition:none;}
-}
-.btn:hover{color:#212529;text-decoration:none;}
-.btn:focus{outline:0;box-shadow:0 0 0 0.2rem rgba(0, 123, 255, 0.25);}
-.btn:disabled{opacity:0.65;}
-.btn-dark{color:#fff;background-color:#343a40;border-color:#343a40;}
-.btn-dark:hover{color:#fff;background-color:#23272b;border-color:#1d2124;}
-.btn-dark:focus{box-shadow:0 0 0 0.2rem rgba(82, 88, 93, 0.5);}
-.btn-dark:disabled{color:#fff;background-color:#343a40;border-color:#343a40;}
-.btn-lg{padding:0.5rem 1rem;font-size:1.25rem;line-height:1.5;border-radius:0.3rem;}
-.mb-1{margin-bottom:0.25rem!important;}
-.mt-2{margin-top:0.5rem!important;}
-.mb-2{margin-bottom:0.5rem!important;}
-.mb-3{margin-bottom:1rem!important;}
-.mb-4{margin-bottom:1.5rem!important;}
-@media (min-width: 992px){
-    .mt-lg-1{margin-top:0.25rem!important;}
-}
-.font-weight-bold{font-weight:700!important;}
-.text-muted{color:#6c757d!important;}
-@media print{
-    *,*::before,*::after{text-shadow:none!important;box-shadow:none!important;}
-    p,h2,h3{orphans:3;widows:3;}
-    h2,h3{page-break-after:avoid;}
-}
-/*! CSS Used from: https://texsim.com.ar/css/style.default.css*/ 
-*,*::before,*::after{box-sizing:border-box;}
-h2,h3{margin-top:0;margin-bottom:.5rem;}
-p{margin-top:0;margin-bottom:1rem;}
-ul{margin-top:0;margin-bottom:1rem;}
-label{display:inline-block;margin-bottom:.5rem;}
-button{border-radius:0;}
-button:focus{outline:1px dotted;outline:5px auto -webkit-focus-ring-color;}
-input,button{margin:0;font-family:inherit;font-size:inherit;line-height:inherit;}
-button,input{overflow:visible;}
-button{text-transform:none;}
-button,html [type="button"]{-webkit-appearance:button;}
-button::-moz-focus-inner,[type="button"]::-moz-focus-inner{padding:0;border-style:none;}
-h2,h3{margin-bottom:0rem;padding:.2rem 0;font-family:'dinbold';;      font-weight:700;line-height:1.1;color:inherit;}
-h2{font-size:2.5rem;}
-h3{font-size:1.8rem;}
-.list-inline{padding-left:0;list-style:none;}
-.list-inline-item{display:inline-block;}
-.row{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-15px;margin-left:-15px;}
-.col-12{position:relative;width:100%;min-height:1px;padding-right:15px;padding-left:15px;}
-.col-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%;}
-.form-control{display:block;width:100%;height:calc(2.55rem + 2px);padding:.6rem .75rem;font-size:.9rem;line-height:1.5;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:0;transition:border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;}
-@media screen and (prefers-reduced-motion: reduce){
-    .form-control{transition:none;}
-}
-.form-control::-ms-expand{background-color:transparent;border:0;}
-.form-control:focus{color:#495057;background-color:#fff;border-color:#6d7a86;outline:0;box-shadow:none;}
-.form-control::-webkit-input-placeholder{color:#868e96;opacity:1;}
-.form-control::-moz-placeholder{color:#868e96;opacity:1;}
-.form-control:-ms-input-placeholder{color:#868e96;opacity:1;}
-.form-control::-ms-input-placeholder{color:#868e96;opacity:1;}
-.form-control::placeholder{color:#868e96;opacity:1;}
-.form-control:disabled{background-color:#e9ecef;opacity:1;}
-.btn{display:inline-block;font-weight:700;text-align:center;white-space:nowrap;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;padding:.6rem .75rem;font-size:.9rem;line-height:1.5;border-radius:0;transition:color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;}
-@media screen and (prefers-reduced-motion: reduce){
-    .btn{transition:none;}
-}
-.btn:hover,.btn:focus{text-decoration:none;}
-.btn:focus{outline:0;box-shadow:none;}
-.btn:disabled{opacity:.65;}
-.btn-dark{color:#fff;background-color:#363b41;border-color:#363b41;}
-.btn-dark:hover{color:#fff;background-color:#23272b;border-color:#1d2124;}
-.btn-dark:focus{box-shadow:0 0 0 .2rem rgba(52, 58, 64, 0.5);}
-.btn-dark:disabled{color:#fff;background-color:#343a40;border-color:#343a40;}
-.btn-lg{padding:1.5rem 1.5rem;font-size:1.125rem;line-height:1.5;border-radius:0;}
-.mb-1{margin-bottom:.25rem!important;}
-.mt-2{margin-top:1rem!important;}
-.mb-2{margin-bottom:.5rem!important;}
-.mb-3{margin-bottom:1rem!important;}
-.mb-4{margin-bottom:1rem!important;}
-@media (min-width: 992px){
-    .mt-lg-1{margin-top:.25rem!important;}
-}
-.font-weight-bold{font-weight:700!important;}
-.text-muted{color:#868e96!important;}
-@media print{
-    *,*::before,*::after{text-shadow:none!important;box-shadow:none!important;}
-    p,h2,h3{orphans:3;widows:3;}
-    h2,h3{page-break-after:avoid;}
-}
-.detail-option-heading{text-transform:uppercase;letter-spacing:0.1em;font-size:.9rem;color:#495057;}
-.detail-quantity{max-width:5rem;text-align:center;}
-@media (max-width: 540px){
-    .modal-tela-nombre{font-size:1.8rem;}
-    .modal-disenio-codigo{font-size:1.5rem;}
-    .form-control{display:inline;height:calc(1.8rem + 2px);}
-    .btn-lg{font-size:.65rem!important;}
-}
-.btn{text-transform:uppercase;font-weight:bold;letter-spacing:.3em;line-height:1;padding:.6rem .75rem;font-size:.6875rem;line-height:1.5;border-radius:0;}
-.btn-lg{padding:1.5rem 1.5rem;font-size:.7875rem;line-height:1.5;border-radius:0;}
-@media (max-width: 991.98px){
-    .quickview .detail-quantity{margin-left:auto;margin-right:auto;}
-}
-/*! CSS Used from: https://texsim.com.ar/css/texsim-css.css*/ 
-/*.font-alt{font-family:'dinregular';}*/
-/*.text-tiles{text-transform:uppercase;}*/
-/*! CSS Used from: https://texsim.com.ar/css/all.css*/ 
-/*.fa{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;}*/
-/*.fa{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;}*/
-/*.fa-chevron-right:before{content:"\f054";}*/
-/*.fa{font-family:'Font Awesome 5 Free';font-weight:900;}*/
-/*! CSS Used fontfaces */
-/*@font-face{font-family:"Font Awesome 5 Free";font-style:normal;font-weight:400;font-display:auto;src:url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-regular-400.eot);src:url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-regular-400.eot#iefix) format("embedded-opentype"),url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-regular-400.woff2) format("woff2"),url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-regular-400.woff) format("woff"),url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-regular-400.ttf) format("truetype"),url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-regular-400.svg#fontawesome) format("svg");}*/
-/*@font-face{font-family:"Font Awesome 5 Free";font-style:normal;font-weight:900;font-display:auto;src:url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-solid-900.eot);src:url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-solid-900.eot#iefix) format("embedded-opentype"),url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-solid-900.woff2) format("woff2"),url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-solid-900.woff) format("woff"),url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-solid-900.ttf) format("truetype"),url(https://use.fontawesome.com/releases/v5.8.1/webfonts/fa-solid-900.svg#fontawesome) format("svg");}*/
-/*@font-face{font-family:'Font Awesome 5 Free';font-style:normal;font-weight:400;font-display:auto;src:url("https://texsim.com.ar/webfonts/fa-regular-400.eot");src:url("https://texsim.com.ar/webfonts/fa-regular-400.eot#iefix") format("embedded-opentype"), url("https://texsim.com.ar/webfonts/fa-regular-400.woff2") format("woff2"), url("webfonts/fa-regular-400.woff") format("woff"), url("webfonts/fa-regular-400.ttf") format("truetype"), url("webfonts/fa-regular-400.svg#fontawesome") format("svg");}*/
-/*@font-face{font-family:'Font Awesome 5 Free';font-style:normal;font-weight:900;font-display:auto;src:url("https://texsim.com.ar/webfonts/fa-solid-900.eot");src:url("../webfonts/fa-solid-900.eot#iefix") format("embedded-opentype"), url("webfonts/fa-solid-900.woff2") format("woff2"), url("https://texsim.com.ar/webfonts/fa-solid-900.woff") format("woff"), url("webfonts/fa-solid-900.ttf") format("truetype"), url("https://texsim.com.ar/webfonts/fa-solid-900.svg#fontawesome") format("svg");}*/
 
 @font-face{font-family:'dinbold';
            src:url('din-bold-webfont.woff2') format('woff2'),
@@ -163,15 +10,7 @@ h3{font-size:1.8rem;}
            font-weight:normal;font-style:normal;
 }
 
-/*@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');*/
 
-
-
-
-/*body{
-    font-family: 'helvetica';
-
-}*/
 body {
     margin: 0;
     font-family: 'dinregular';
@@ -382,12 +221,123 @@ a:hover{
 }
 
 .dos-filas-regular .modal-dialog .title{
-    font-family: 'dinbold';
-    font-weight: 700;
+    /*font-family: 'dinbold';*/
+    /*font-weight: 700;*/
+    /*line-height: 1.1;*/
 
     /*max-width: inherit;*/
     /*width: auto;*/
     /*font-family: 'dinregular' !important;*/
+}
+
+.modal-item-div h3{
+    font-size: 1.8rem;
+    font-family: 'dinregular';
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.modal-item-div h2{
+    font-weight: 700;
+    font-family: 'dinbold';
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+
+.modal-item-div p{
+    font-family: 'dinregular';
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.modal-item-div label{
+    font-family: 'dinregular';
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: #495057;
+}
+
+.form-label {
+    color: #868e96;
+    font-size: .7875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em
+}
+
+.btn {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: .3em;
+    line-height: 1;
+    padding: .6rem .75rem;
+    font-size: .6875rem;
+    line-height: 1.5;
+    border-radius: 0;
+    white-space: nowrap;
+}
+
+.btn-lg{
+    padding: 1.5rem 1.5rem;
+    font-size: .7875rem;
+    line-height: 1.5;
+    border-radius: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: .3em;
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #363b41;
+    border-color: #363b41;
+}
+
+
+
+.form-group p {
+    float: right;
+    height: 2px;
+    margin-left: 10px;
+    margin-top: 1px;
+}
+.form-group .fa-envelope, .form-group .fa-whatsapp{
+    font-size: 1.15rem;
+}
+
+.btn-pedido {
+    margin: .5em;
+}
+
+.btn-outline-secondary {
+    color: #868e96;
+    background-color: transparent;
+    background-image: none;
+    border-color: #868e96;
+}
+.btn-title {
+    font-family: 'dinbold';
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0em;
+    line-height: 1;
+    padding: .6rem .75rem;
+    line-height: 1.5;
+    border-radius: 0
+}
+
+.detail-quantity {
+    max-width: 5rem;
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    .modal-lg {
+        max-width: 1000px
+    }
 }
 
 
@@ -466,7 +416,7 @@ a:hover{
 
 .nav1 { 
     background-color: rgb(35, 31, 31);
-    height: 90px;
+    /*height: 90px;*/
 }
 
 .nav1 .logo{
