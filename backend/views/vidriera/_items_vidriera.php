@@ -63,7 +63,7 @@
             ?>
             <div id="<?= $item->id_item_vidriera ?>" class="items-vidrieras">
                 <!--<img class="lazy img-fluid" data-src="<?= $url ?>">-->
-                <img class="img-fluid" src="<?= $url ?? Yii::getAlias("@web") . "/assets/loading.png" ?>" >
+                <img class="w-100 img-fluid" src="<?= $url ?? Yii::getAlias("@web") . "/assets/loading.png" ?>" >
                 <a data-pjax=0 data-id-item="<?= $item->id_item_vidriera ?>" data-confirm="Esta seguro quiere borrar item?" class="delete-item-btn" >
                 <i data-id-item="<?= $item->id_item_vidriera ?>" class="fa fa-times fa-2x"></i>
                 </a>
