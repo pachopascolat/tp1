@@ -104,6 +104,19 @@ class ArticuloController extends Controller {
                     'model' => $model,
         ]);
     }
+    public function actionUpdateImage($id) {
+        $model = $this->findModel($id);
+
+        if ($image = Yii::$app->request->post("imagen$model->id_articulo")){
+            $model->imagen_id = $image;
+            $model->save(); 
+            return $this->redirect(['index', 'ArticuloSearch[nombre_color]' => $model->nombre_color]);
+        }
+
+//        return $this->render('update', [
+//                    'model' => $model,
+//        ]);
+    }
 
     /**
      * Deletes an existing Articulo model.

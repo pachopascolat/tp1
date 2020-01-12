@@ -43,7 +43,7 @@ class Vidriera extends \yii\db\ActiveRecord
         return [
             [['categoria_id', 'orden_vidriera'], 'integer'],
             [['nombre'], 'string', 'max' => 128],
-            [['estado'], 'string', 'max' => 4]
+//            [['estado'], 'string', 'max' => 4]
         ];
     }
 

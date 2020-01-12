@@ -14,7 +14,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
             <div class="flex-fill busqueda-div d-none d-md-block">
                 <?= \yii\helpers\Html::beginForm(['/sitio/buscar'], 'GET', ['id' => 'busqueda-form', 'class' => 'navbar-link flex-fill d-flex align-items-center']);
                 ?>
-            <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])   ?>" class="navbar-link flex-fill d-flex ">-->
+            <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])     ?>" class="navbar-link flex-fill d-flex ">-->
                 <input value="<?= $_GET['busqueda'] ?? '' ?>" id="busqueda" name="busqueda" class="texsim-search-input w-100" type="" placeholder="" aria-label="Search">
                 <a href="" onclick="$('#busqueda-form').submit()"> 
                     <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
@@ -61,9 +61,9 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         </div> 
         <div id="sucursales-dir" class="collapse  text-light w-100">
             <div class="d-flex w-100 justify-content-end">
-            <span class="">
-                Lavalle 2571 - 2120 0550 / Feria: Azcuenaga 580 - 2120 0580 / Feria: Olavarria 2348 Villa Celina - 6072 6831
-            </span>
+                <span class="">
+                    Lavalle 2571 - 2120 0550 / Feria: Azcuenaga 580 - 2120 0580 / Feria: Olavarria 2348 Villa Celina - 6072 6831
+                </span>
             </div>
         </div>
     </div>   

@@ -25,7 +25,7 @@ class Vidriera extends BaseVidriera {
         return array_replace_recursive(parent::rules(), [
             [['categoria_id', 'orden_vidriera','categoria_padre'], 'integer'],
             [['nombre'], 'string', 'max' => 128],
-            [['estado'], 'string', 'max' => 4]
+//            [['estado'], 'string', 'max' => 4]
         ]);
     }
 

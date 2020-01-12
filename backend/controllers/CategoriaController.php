@@ -112,7 +112,7 @@ class CategoriaController extends Controller {
         $categoria_padre = $model->categoria_padre;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index-todos']);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

@@ -8,7 +8,7 @@ class SitioController extends \yii\web\Controller {
 
     public function actionIndex() {
 //        return $this->render('index');
-        return $this->redirect(['por-categoria', 'id_categoria' => $_SESSION['categoria_padre']??1]);
+        return $this->redirect(['por-categoria', 'id_categoria' => 22]);
     }
 
     public function actionCategoriaPadre($valor) {
