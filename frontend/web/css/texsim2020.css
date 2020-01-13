@@ -17,6 +17,29 @@ span{
     text-transform: uppercase;
 }
 
+.carrito-icon-div{
+    position: relative
+}
+
+.carrito-icon-div .navbar-icon-link-badge{
+    top:-12px;
+    margin-right: 0;
+    right: -8px;
+    
+}
+.navbar-movil .fal{
+    font-size: 1.7em;
+}
+
+.movil-logo-div{
+    width: 40%;
+}
+
+.tel-movil{
+    font-size: 1rem;
+}
+
+
 .modal-sidebar .fab{
     font-size: 1.5rem;
 }
