@@ -1,4 +1,49 @@
 
+/*movil nav*/
+.modal-sidebar .logo-texsim-blanco{
+    width: 80%;
+}
+
+.borde-movil-gris{
+    border-bottom: 1px solid #534F50;
+}
+
+span{
+    font-family: 'oswald';
+}
+
+.modal-sidebar .movil-categorias{
+    color: #534F50;
+    text-transform: uppercase;
+}
+
+.modal-sidebar .fab{
+    font-size: 1.5rem;
+}
+
+.text-hogar{
+    color: #ef6285;
+}
+
+.text-moda{
+    color: #2D94C6;
+}
+
+.modal.left.fade.show .modal-dialog {
+    left: 0;
+}
+.modal.left .modal-dialog {
+	position: fixed;
+	margin: auto;
+	width: 70%;
+	height: 100%;
+	-webkit-transform: translate3d(0%, 0, 0);
+	-ms-transform: translate3d(0%, 0, 0);
+	-o-transform: translate3d(0%, 0, 0);
+	transform: translate3d(0%, 0, 0);
+}
+
+
 @font-face{font-family:'dinbold';
            src:url('din-bold-webfont.woff2') format('woff2'),
                url('din-bold-webfont.woff') format('woff');
