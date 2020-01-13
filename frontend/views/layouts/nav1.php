@@ -14,7 +14,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
             <div class="flex-fill busqueda-div d-none d-md-block">
                 <?= \yii\helpers\Html::beginForm(['/sitio/buscar'], 'GET', ['id' => 'busqueda-form', 'class' => 'navbar-link flex-fill d-flex align-items-center']);
                 ?>
-            <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                        ?>" class="navbar-link flex-fill d-flex ">-->
+            <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                         ?>" class="navbar-link flex-fill d-flex ">-->
                 <input value="<?= $_GET['busqueda'] ?? '' ?>" id="busqueda" name="busqueda" class="texsim-search-input w-100" type="" placeholder="" aria-label="Search">
                 <a href="" onclick="$('#busqueda-form').submit()"> 
                     <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
@@ -69,54 +69,54 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
     </div>   
 </nav> 
 
-<div class="d-lg-none">
-    <nav class="navbar-movil navbar navbar-texsim navbar-dark nav1">
+<!--<div class="d-lg-none">-->
+<nav class="navbar-movil navbar navbar-texsim navbar-dark nav1 sticky-top d-lg-none">
+    <!--<div class="">-->
+    <div class="d-flex align-items-center w-100">
+        <!--<div class="movil-logo-div">-->
+        <a class="movil-logo-div navbar-brand" href="/">
+            <img class="img-fluid" src="<?= \yii\helpers\Url::base(true) . "/img/logotexsim-02.svg" ?>">
+        </a>
+        <!--</div>-->
         <!--<div class="">-->
-        <div class="d-flex align-items-center w-100">
-            <!--<div class="movil-logo-div">-->
-                <a class="movil-logo-div navbar-brand" href="/">
-                    <img class="img-fluid" src="<?= \yii\helpers\Url::base(true) . "/img/logotexsim-02.svg" ?>">
-                </a>
-            <!--</div>-->
-            <!--<div class="">-->
-            <!--<div class="d-flex">-->
-            <div class="flex-fill d-flex align-items-center justify-content-center">
-                <div class="nav-item text-light tel-movil">
-                    <span>(54 11) 2120-0550</span>
-                </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-between">
-                <!-- Cart Dropdown-->
-                <?php
-                $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
-                ?>
-                <div class="pl-2 pr-2 carrito-count-div  <?= $carrito && $carrito->itemCarritos ? '' : 'd-none' ?>">
-                    <div class="navbar-icon-link2 carrito-link  ">
-                        <div class="d-flex carrito-icon-div">
-                            <a  data-pjax=0
-                                href="<?= yii\helpers\Url::to(['crear-consulta']) ?>" 
-                                class="">
-                                <i class=" text-light fal fa-shopping-cart fa-2x"></i>
-                            </a>
-                            <div class="navbar-icon-link-badge carrito-count"><?= $carrito ? count($carrito->itemCarritos) : '' ?></div>
-                        </div>
-                        <div class="tooltiptext tooltiptext-link">
-                            Haga click aquí para ver su consulta
-                        </div>
-                        <div class="tooltiptext tooltiptext-notice">
-                            Su consulta se ha guardado aquí
-                        </div>
-                    </div>
-                </div>
-                <a class="" type="button" data-toggle="modal" data-target="#sidebar-left" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <!--<span class="navbar-toggler-icon"></span>-->
-                    <i class="text-light fal fa-bars fa-2x"></i>
-                </a>
-
+        <!--<div class="d-flex">-->
+        <div class="flex-fill d-flex align-items-center justify-content-center">
+            <div class="nav-item text-light tel-movil">
+                <span>(54 11) 2120-0550</span>
             </div>
         </div>
-    </nav>
-</div>
+        <div class="d-flex align-items-center justify-content-between">
+            <!-- Cart Dropdown-->
+            <?php
+            $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+            ?>
+            <div class="pl-2 pr-2 carrito-count-div  <?= $carrito && $carrito->itemCarritos ? '' : 'd-none' ?>">
+                <div class="navbar-icon-link2 carrito-link  ">
+                    <div class="d-flex carrito-icon-div">
+                        <a  data-pjax=0
+                            href="<?= yii\helpers\Url::to(['crear-consulta']) ?>" 
+                            class="">
+                            <i class=" text-light fal fa-shopping-cart fa-2x"></i>
+                        </a>
+                        <div class="navbar-icon-link-badge carrito-count"><?= $carrito ? count($carrito->itemCarritos) : '' ?></div>
+                    </div>
+                    <div class="tooltiptext tooltiptext-link">
+                        Haga click aquí para ver su consulta
+                    </div>
+                    <div class="tooltiptext tooltiptext-notice">
+                        Su consulta se ha guardado aquí
+                    </div>
+                </div>
+            </div>
+            <a class="" type="button" data-toggle="modal" data-target="#sidebar-left" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <!--<span class="navbar-toggler-icon"></span>-->
+                <i class="text-light fal fa-bars fa-2x"></i>
+            </a>
+
+        </div>
+    </div>
+</nav>
+<!--</div>-->
 <div class="modal fade left modal-sidebar" id="sidebar-left" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content nav1">
@@ -186,7 +186,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                         <ul class="navbar-nav">
 
                             <?php
-                            $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_padre'=>[1,2]])->all();
+                            $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_padre' => [1, 2]])->all();
                             foreach ($vidrieras as $vidriera):
                                 ?>
                                 <li class="nav-item item-categoria">
