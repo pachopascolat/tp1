@@ -36,6 +36,10 @@ span{
     font-size: 1.7em;
 }
 
+.movil-iconos span{
+    font-size: 0.6rem;
+}
+
 .movil-logo-div{
     width: 40%;
 }
@@ -61,8 +65,8 @@ span{
 }
 
 .movil-search-bar .texsim-search-input,.movil-search-bar .texsim-search-input:focus,.movil-search-bar .texsim-search-input:before{
-        background:none;
-        width: 70%;
+    background:none;
+    width: 70%;
 }
 
 .modal.left.fade.show .modal-dialog {
@@ -433,6 +437,12 @@ a:hover{
 @media (min-width: 992px) {
     .modal-lg {
         max-width: 1000px
+    }
+}
+
+@media (max-width: 768px) {
+    .nav2-img {
+        height: 60px !important;
     }
 }
 

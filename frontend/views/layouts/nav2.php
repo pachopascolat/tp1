@@ -1,34 +1,34 @@
 <style>
     a:hover h3, a:hover h5, .sidebar-menu a:hover{
-        /*color: <?php // echo$_SESSION['categoria_padre']==1?'#ef6285':'#0074ab'  ?> !important*/
+        /*color: <?php // echo$_SESSION['categoria_padre']==1?'#ef6285':'#0074ab'       ?> !important*/
     }
 </style>
 
 
 
 <div class="nav2">
-    
+
 
     <!--<img src="./imgHeader2/faja-02.jpg" class="nav2-img">-->
     <!--<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">-->
-        <!--<div class="carousel-inner">-->
-            <?php
-            $hom = $_SESSION['categoria_padre'] ?? 1;
-            $categorias = [null, "hogar", "moda"];
-            $fajas = yii\helpers\FileHelper::findFiles(Yii::getAlias("@frontend") . "/web/img2020/" . $categorias[$hom] . "/");
+    <!--<div class="carousel-inner">-->
+    <?php
+    $hom = $_SESSION['categoria_padre'] ?? 1;
+    $categorias = [null, "hogar", "moda"];
+    $fajas = yii\helpers\FileHelper::findFiles(Yii::getAlias("@frontend") . "/web/img2020/" . $categorias[$hom] . "/");
 //            foreach ($fajas as $key => $img):
-                ?>
-                <div class="">
-                    <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) . "/img2020/$categorias[$hom]/" . basename($fajas[0]) ?>" alt="First slide">
+    ?>
+    <div class="">
+        <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) . "/img2020/$categorias[$hom]/" . basename($fajas[0]) ?>" alt="First slide">
+    </div>
+    <?php // endforeach; ?>
+    <!--            <div class="carousel-item">
+                    <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-02.jpg" alt="Second slide">
                 </div>
-            <?php // endforeach; ?>
-            <!--            <div class="carousel-item">
-                            <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-02.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-03.jpg" alt="Third slide">
-                        </div>-->
-        <!--</div>-->
+                <div class="carousel-item">
+                    <img alt="faja categoria" class="d-block w-100 nav2-img lazy" data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/hogar/faja-03.jpg" alt="Third slide">
+                </div>-->
+    <!--</div>-->
     <!--</div>-->
 
     <div class="absolute-div w-100 d-none d-md-block">
@@ -83,6 +83,83 @@
     </div>
 
 </div>
+
+<div class="movil-iconos d-md-none pt-3" >
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div>
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2709]) ?>">
+                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-ketten-01.svg" alt="ketten">
+                    </a>
+                </div>
+                
+            </div>
+            <div class="col">
+                <div>
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2710]) ?>">
+                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-batista-01.svg" alt="ketten">
+                    </a>
+                </div>
+                
+            </div>
+            <div class="col">
+                <div>
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2711]) ?>">
+                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-jean-01.svg" alt="ketten">
+                    </a>
+                </div>
+                
+            </div>
+            <div class="col">
+                <div>
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2712]) ?>">
+                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-cuerina-01.svg" alt="ketten">
+                    </a>
+                </div>
+                
+            </div>
+            <div class="col">
+                <div>
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2713]) ?>">
+                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-tapiceria-01.svg" alt="ketten">
+                    </a>
+                </div>
+                
+            </div>
+            <div class="col">
+                <div>
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2714]) ?>">
+                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-fibrana-01.svg" alt="ketten">
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center text-nowrap">
+                <span >Ketten</span>
+            </div>
+            <div class="col text-center text-nowrap">
+                <span >Batista</span>
+            </div>
+            <div class="col text-center text-nowrap">
+                <span >Jean</span>
+            </div>
+            <div class="col text-center text-nowrap">
+                <span >Cuerina</span>
+            </div>
+            <div class="col text-center text-nowrap">
+                <span >Tapiceria</span>
+            </div>
+            <div class="col text-center text-nowrap">
+                <span >Fibrana</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div id="login-modal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
