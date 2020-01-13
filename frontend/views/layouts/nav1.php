@@ -120,12 +120,12 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
 
     <div class="">
         <!--<div>-->
-        <?= \yii\helpers\Html::beginForm(['/sitio/buscar'], 'GET', ['id' => 'busqueda-form', 'class' => 'navbar-link flex-fill d-flex align-items-center']);
+        <?= \yii\helpers\Html::beginForm(['/sitio/buscar'], 'GET', ['id' => 'movil-busqueda-form', 'class' => 'navbar-link flex-fill d-flex align-items-center']);
         ?>
         <div class="d-flex justify-content-center w-100 align-items-center">
         <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                             ?>" class="navbar-link flex-fill d-flex ">-->
-            <input value="<?= $_GET['busqueda'] ?? '' ?>" id="busqueda" name="busqueda" class="texsim-search-input" type="" placeholder="" aria-label="Search">
-            <a href="" onclick="$('#busqueda-form').submit()"> 
+            <input value="<?= $_GET['busqueda'] ?? '' ?>" id="busqueda-movil" name="busqueda" class="texsim-search-input" type="" placeholder="" aria-label="Search">
+            <a class="lupa-link" href="" onclick=""> 
                 <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
             </a>
         </div>

@@ -8,6 +8,15 @@ $(document).ready(function () {
 });
 
 
+$('.movil-search-bar .lupa-link').on('click',function(event){
+    event.preventDefault();
+    if(!$('#busqueda-movil').val()){
+        $('#busqueda-movil').focus();
+        return;
+    }
+    $('#movil-busqueda-form').submit();
+});
+
 function stopVideo() {
   var $frame = $('#ayuda-modal iframe');
 
