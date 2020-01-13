@@ -1,6 +1,6 @@
 <style>
     a:hover h3, a:hover h5, .sidebar-menu a:hover{
-        /*color: <?php // echo$_SESSION['categoria_padre']==1?'#ef6285':'#0074ab'       ?> !important*/
+        /*color: <?php // echo$_SESSION['categoria_padre']==1?'#ef6285':'#0074ab'         ?> !important*/
     }
 </style>
 
@@ -89,71 +89,74 @@
         <div class="row">
             <div class="col">
                 <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2709]) ?>">
-                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-ketten-01.svg" alt="ketten">
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 1]) ?>">
+                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-texsim-01.svg" alt="ketten">
                     </a>
                 </div>
-                
+
             </div>
             <div class="col">
                 <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2710]) ?>">
-                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-batista-01.svg" alt="ketten">
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 2]) ?>">
+                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-blanco-01.svg" alt="ketten">
                     </a>
                 </div>
-                
+
             </div>
             <div class="col">
                 <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2711]) ?>">
-                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-jean-01.svg" alt="ketten">
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 1]) ?>">
+                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-infantil.png" alt="ketten">
                     </a>
                 </div>
-                
+
             </div>
             <div class="col">
                 <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2712]) ?>">
-                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-cuerina-01.svg" alt="ketten">
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 2]) ?>">
+                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-feria-01.svg" alt="ketten">
+
                     </a>
                 </div>
-                
+
             </div>
             <div class="col">
                 <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2713]) ?>">
-                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-tapiceria-01.svg" alt="ketten">
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 1]) ?>">
+                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-cortinas.png" alt="ketten">
+
                     </a>
                 </div>
-                
+
             </div>
             <div class="col">
                 <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => 2714]) ?>">
-                        <img alt="icono" class="lazy rounded-circle bg-white" data-src="<?= yii\helpers\Url::base(true) ?>/img2020/texsim-fibrana-01.svg" alt="ketten">
+                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 2]) ?>">
+                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-vermas-01.svg" alt="ketten">
+
                     </a>
                 </div>
-                
+
             </div>
         </div>
         <div class="row ">
             <div class="col text-center text-nowrap">
-                <span >Ketten</span>
+                <span >Telas</span>
             </div>
             <div class="col text-center text-nowrap">
-                <span >Batista</span>
+                <span >Sabaneria</span>
             </div>
             <div class="col text-center text-nowrap">
-                <span >Jean</span>
+                <span >Infantil</span>
             </div>
             <div class="col text-center text-nowrap">
-                <span >Cuerina</span>
+                <span >Moda</span>
             </div>
             <div class="col text-center text-nowrap">
-                <span >Tapiceria</span>
+                <span >Cortinas</span>
             </div>
             <div class="col text-center text-nowrap">
-                <span >Fibrana</span>
+                <span >Ver mas</span>
             </div>
         </div>
     </div>
