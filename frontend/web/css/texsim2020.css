@@ -116,7 +116,7 @@ body {
 }
 
 h3{
-    padding-bottom: 15px ;
+    /*padding-bottom: 15px ;*/
 }
 
 .fila-imagen-redes-dos .col {
@@ -452,6 +452,11 @@ a:hover{
     }
 }
 
+@media (max-width: 992px) {
+    .modal-item-div .img-modal-item {
+        width: 75% !important
+    }
+}
 
 /*fila imagen redes*/
 
