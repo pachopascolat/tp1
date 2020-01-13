@@ -14,7 +14,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
             <div class="flex-fill busqueda-div d-none d-md-block">
                 <?= \yii\helpers\Html::beginForm(['/sitio/buscar'], 'GET', ['id' => 'busqueda-form', 'class' => 'navbar-link flex-fill d-flex align-items-center']);
                 ?>
-            <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                         ?>" class="navbar-link flex-fill d-flex ">-->
+            <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                             ?>" class="navbar-link flex-fill d-flex ">-->
                 <input value="<?= $_GET['busqueda'] ?? '' ?>" id="busqueda" name="busqueda" class="texsim-search-input w-100" type="" placeholder="" aria-label="Search">
                 <a href="" onclick="$('#busqueda-form').submit()"> 
                     <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
@@ -116,6 +116,24 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         </div>
     </div>
 </nav>
+<div class="d-lg-none movil-search-bar bg-moda">
+
+    <div class="">
+        <!--<div>-->
+        <?= \yii\helpers\Html::beginForm(['/sitio/buscar'], 'GET', ['id' => 'busqueda-form', 'class' => 'navbar-link flex-fill d-flex align-items-center']);
+        ?>
+        <div class="d-flex justify-content-center w-100 align-items-center">
+        <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                             ?>" class="navbar-link flex-fill d-flex ">-->
+            <input value="<?= $_GET['busqueda'] ?? '' ?>" id="busqueda" name="busqueda" class="texsim-search-input" type="" placeholder="" aria-label="Search">
+            <a href="" onclick="$('#busqueda-form').submit()"> 
+                <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
+            </a>
+        </div>
+        </form>
+        <!--</div>-->
+    </div>
+
+</div>
 <!--</div>-->
 <div class="modal fade left modal-sidebar" id="sidebar-left" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

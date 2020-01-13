@@ -52,6 +52,14 @@ span{
 .text-moda{
     color: #2D94C6;
 }
+.bg-moda{
+    background-color: #35b0ef
+}
+
+.movil-search-bar .texsim-search-input,.movil-search-bar .texsim-search-input:focus,.movil-search-bar .texsim-search-input:before{
+        background:none;
+        width: 70%;
+}
 
 .modal.left.fade.show .modal-dialog {
     left: 0;
