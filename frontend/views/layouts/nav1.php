@@ -90,13 +90,14 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
             <?php
             $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
             ?>
-            <div class="pl-2 pr-2 carrito-count-div  <?= $carrito && $carrito->itemCarritos ? '' : 'd-none' ?>">
+            <div class="pl-3 pr-3 carrito-count-div  <?= $carrito && $carrito->itemCarritos ? '' : 'd-none' ?>">
                 <div class="navbar-icon-link2 carrito-link  ">
                     <div class="d-flex carrito-icon-div">
                         <a  data-pjax=0
                             href="<?= yii\helpers\Url::to(['crear-consulta']) ?>" 
                             class="">
-                            <i class=" text-light fal fa-shopping-cart fa-2x"></i>
+                            <!--<i class=" text-light fal fa-clipboard fa-2x"></i>-->
+                            <i class="text-light fal fa-clipboard-check"></i>
                         </a>
                         <div class="navbar-icon-link-badge carrito-count"><?= $carrito ? count($carrito->itemCarritos) : '' ?></div>
                     </div>
