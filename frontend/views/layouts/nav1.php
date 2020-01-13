@@ -186,7 +186,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                         <ul class="navbar-nav">
 
                             <?php
-                            $vidrieras = \common\models\Vidriera::find()->all();
+                            $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_padre'=>[1,2]])->all();
                             foreach ($vidrieras as $vidriera):
                                 ?>
                                 <li class="nav-item item-categoria">
