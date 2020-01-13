@@ -37,7 +37,13 @@ span{
 }
 
 .movil-iconos span{
-    font-size: 0.6rem;
+    font-size: 0.8rem;
+}
+
+.movil-iconos .col{
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 2px;
 }
 
 .movil-logo-div{

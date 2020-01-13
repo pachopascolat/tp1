@@ -136,7 +136,7 @@
                 
             </div>
         </div>
-        <div class="row">
+        <div class="row ">
             <div class="col text-center text-nowrap">
                 <span >Ketten</span>
             </div>
