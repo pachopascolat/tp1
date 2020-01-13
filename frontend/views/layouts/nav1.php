@@ -146,7 +146,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                     </a>
                 </div>
                 <a href="" class="close p-3" data-dismiss="modal" aria-label="Close">
-                    <i class="text-white fal fa-times fa-1x"></i>
+                    <i class="text-white fal fa-times"></i>
                 </a>
             </div>
             <div class="modal-body">

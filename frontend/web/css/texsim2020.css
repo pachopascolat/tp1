@@ -18,6 +18,10 @@ span{
     text-transform: uppercase;
 }
 
+.modal-sidebar .fa-times{
+    font-size: 0.8em;
+}
+
 .carrito-icon-div{
     position: relative
 }
@@ -108,6 +112,16 @@ h3{
 .fila-imagen-redes-dos .col {
     padding: 6px;
 }
+
+.fila-imagen-redes-dos .col img{
+    width: 100%;
+}
+
+.fila-imagen-redes-dos .row{
+    margin-left: -6px;
+    margin-right:  -6px;
+}
+
 .img-redes-grande{
     padding: 12px;
 }
