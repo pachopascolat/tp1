@@ -27,6 +27,9 @@ class SitioController extends \yii\web\Controller {
     }
 
     public function actionPorCategoria($id_categoria) {
+        if($id_categoria==1 || $id_categoria ==2){
+                    $_SESSION['categoria_padre'] = $id_categoria;
+        }
         set_time_limit(12000);
         $telas = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_id' => $id_categoria])->orWhere(['categoria_padre' => $id_categoria])->limit(5)->all();
         return $this->render('porCategoria', ['telas' => $telas]);

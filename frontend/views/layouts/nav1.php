@@ -116,7 +116,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         </div>
     </div>
 </nav>
-<div class="d-lg-none movil-search-bar bg-moda">
+<div class="d-lg-none movil-search-bar bg-moda pt-1 pb-1">
 
     <div class="">
         <!--<div>-->
@@ -155,7 +155,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                     <ul class="navbar-nav">
 
                         <li class="nav-item item-categoria-padre">
-                            <a class="pb-1 pt-0" href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 1]) ?>" id="" >
+                            <a class="pb-1 pt-0" href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 2]) ?>" id="" >
                                 <h6 class="text-moda">MODA</h6>
                             </a>
                         </li>
@@ -177,7 +177,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                     <ul class="navbar-nav">
 
                         <li class="nav-item item-categoria-padre">
-                            <a class="pb-1 movil-categoria-padre" href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 2]) ?>" id="" >
+                            <a class="pb-1 movil-categoria-padre" href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 1]) ?>" id="" >
                                 <h6 class="text-hogar">HOGAR</h6>
                             </a>
                         </li>
