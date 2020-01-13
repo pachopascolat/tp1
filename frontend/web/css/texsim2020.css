@@ -105,8 +105,11 @@ h3{
     padding-bottom: 15px ;
 }
 
-.fila-imagen-redes-dos .col-3,.fila-imagen-redes-dos .col-4{
+.fila-imagen-redes-dos .col {
     padding: 6px;
+}
+.img-redes-grande{
+    padding: 12px;
 }
 
 .breadcrumb {

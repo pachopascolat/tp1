@@ -49,6 +49,9 @@ $vidrieras = $telas;
 </div>
 
 
-<div class="d-none d-md-block">
-    <?= $this->render('filaImagenRedesDos') ?>
+<div class="d-none d-lg-block">
+    <?= $this->render('fila_redes_lg') ?>
+</div>
+<div class="d-lg-none">
+    <?= $this->render('fila_redes_sx') ?>
 </div>

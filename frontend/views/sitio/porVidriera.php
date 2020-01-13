@@ -9,8 +9,12 @@
 <div class="d-none d-lg-block">
 <?= $this->render('_iconos_lg') ?>
 </div>
-<?= $this->render('filaImagenRedesDos') ?>
-
+<div class="d-none d-lg-block">
+    <?= $this->render('fila_redes_lg') ?>
+</div>
+<div class="d-lg-none">
+    <?= $this->render('fila_redes_sx') ?>
+</div>
 
 
 
@@ -19,8 +23,5 @@
     
   
 
-<br>
-<br>
-<br>
 
 
