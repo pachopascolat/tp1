@@ -536,7 +536,7 @@ class GalleryImageController extends Controller {
         $transaction = Yii::$app->db->beginTransaction();
         $bSuccess = true;
         foreach ($gallerys as $image){
-            if(!$image->migrarImagen()){
+            if(!$image->copiarImagen()){
                 $bSuccess = false;
                 $transaction->rollBack();
                 return $this->redirect(['ver-todos']);
