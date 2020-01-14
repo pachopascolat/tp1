@@ -48,7 +48,7 @@ class GaleriaController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['migrar-imagenes','galleryApi', 'ver-disenios', 'update-galerias', 'borrar-galeria', 'crear-galeria', 'index-todos', 'index', 'create', 'view', 'update', 'delete'],
+                        'actions' => ['migrar-imagenes', 'galleryApi', 'ver-disenios', 'update-galerias', 'borrar-galeria', 'crear-galeria', 'index-todos', 'index', 'create', 'view', 'update', 'delete'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -284,10 +284,22 @@ class GaleriaController extends Controller {
     function actionMigrarImagenes() {
         set_time_limit(12000);
         $galerias = Galeria::find()->all();
+        $transaction = Yii::$app->db->beginTransaction();
+        $bSuccess = true;
         foreach ($galerias as $galeria) {
             foreach ($galeria->getGalleryImages2() as $image) {
-                $image->copiarImagen();
+                if (!$image->copiarImagen()) {
+                    $bSuccess = false;
+                    throw new NotFoundHttpException('error al migrar imagenes');
+                }
             }
+        }
+        if ($bSuccess) {
+            // The upload action went successful, save the transaction
+            $transaction->commit();
+        } else {
+            // There where problems during the upload, kill the transaction
+            $transaction->rollBack();
         }
         return $this->redirect(['/imagemanager']);
     }
