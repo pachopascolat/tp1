@@ -390,6 +390,51 @@ class GalleryImage extends \yii\db\ActiveRecord {
 //        return $this->redirect('ver-stock');
     }
 
+    public function copiarImagen() {
+        $galleryImage = $this;
+        $sTempFile = $galleryImage->getPath();
+        $tela = $galleryImage->getTela();
+
+        $cod_tela = $tela->codigo_tela ?? 'sinTela';
+        $cod_color = $galleryImage->name;
+        $name = $galleryImage->description;
+        $nameFile = "old-$cod_tela-$cod_color-$name";
+
+        //set response header
+        $bSuccess = false;
+
+        $sMediaPath = \Yii::$app->imagemanager->mediaPath;
+
+        //create the folder
+        BaseFileHelper::createDirectory($sMediaPath);
+
+        //check file isset
+        //loop through each uploaded file
+//            foreach ($files AS $key => $sTempFile) {
+        //collect variables
+        $sFileName = dirname($sTempFile);
+        $sFileExtension = pathinfo($sTempFile, PATHINFO_EXTENSION) ?? 'jpg';
+//                $iErrorCode = $sTempFile['error'];
+        //if uploaded file has no error code  than continue;
+        if (file_exists($sTempFile)) {
+            //create a file record
+            $model = new ImageManager();
+//                $model->fileName = str_replace("_", "-", $sFileName);
+            $model->fileName = $nameFile . "." . $sFileExtension;
+            $model->fileHash = Yii::$app->getSecurity()->generateRandomString(32);
+            $model->save();
+            $sSaveFileName = $model->id."_" . $model->fileHash . "." . $sFileExtension;
+            //move_uploaded_file($sTempFile, $sMediaPath."/".$sFileName);
+            //save with Imagine class
+            Image::getImagine()->open($sTempFile)->save($sMediaPath . "/" . $sSaveFileName);
+            if ($tela) {
+             
+            }
+        }
+
+        return true;
+    }
+
     public function getNewArticulo() {
         $tela = $this->getTela();
         if ($tela) {
