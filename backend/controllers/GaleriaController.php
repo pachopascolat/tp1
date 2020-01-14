@@ -48,7 +48,7 @@ class GaleriaController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['galleryApi','ver-disenios','update-galerias','borrar-galeria','crear-galeria','index-todos', 'index', 'create', 'view', 'update', 'delete'],
+                        'actions' => ['migrar-imagenes','galleryApi', 'ver-disenios', 'update-galerias', 'borrar-galeria', 'crear-galeria', 'index-todos', 'index', 'create', 'view', 'update', 'delete'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -279,6 +279,17 @@ class GaleriaController extends Controller {
             }
         }
         closedir($dir);
+    }
+
+    function actionMigrarImagenes() {
+        set_time_limit(12000);
+        $galerias = Galeria::find()->all();
+        foreach ($galerias as $galeria) {
+            foreach ($galeria->getGalleryImages2() as $image) {
+                $image->copiarImagen();
+            }
+        }
+        return $this->redirect(['/imagemanager']);
     }
 
 }

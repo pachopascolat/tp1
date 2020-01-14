@@ -398,7 +398,7 @@ class GalleryImage extends \yii\db\ActiveRecord {
         $cod_tela = $tela->codigo_tela ?? 'sinTela';
         $cod_color = $galleryImage->name;
         $name = $galleryImage->description;
-        $nameFile = "old-$cod_tela-$cod_color-$name";
+        $nameFile = "old_id-$this->id-$cod_tela-$cod_color-$name";
 
         //set response header
         $bSuccess = false;
