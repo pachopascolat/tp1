@@ -417,18 +417,20 @@ class GalleryImage extends \yii\db\ActiveRecord {
 //                $iErrorCode = $sTempFile['error'];
         //if uploaded file has no error code  than continue;
         if (file_exists($sTempFile)) {
-            //create a file record
-            $model = new ImageManager();
+            $model = ImageManager::findOne(['fileName' => $nameFile . "." . $sFileExtension]);
+            if (!$model) {
+                //create a file record
+                $model = new ImageManager();
 //                $model->fileName = str_replace("_", "-", $sFileName);
-            $model->fileName = $nameFile . "." . $sFileExtension;
-            $model->fileHash = Yii::$app->getSecurity()->generateRandomString(32);
-            $model->save();
-            $sSaveFileName = $model->id."_" . $model->fileHash . "." . $sFileExtension;
+                $model->fileName = $nameFile . "." . $sFileExtension;
+                $model->fileHash = Yii::$app->getSecurity()->generateRandomString(32);
+                $model->save();
+            }
+            $sSaveFileName = $model->id . "_" . $model->fileHash . "." . $sFileExtension;
             //move_uploaded_file($sTempFile, $sMediaPath."/".$sFileName);
             //save with Imagine class
-            Image::getImagine()->open($sTempFile)->save($sMediaPath . "/" . $sSaveFileName);
-            if ($tela) {
-             
+            if (!file_exists($sMediaPath . "/" . $sSaveFileName)) {
+                Image::getImagine()->open($sTempFile)->save($sMediaPath . "/" . $sSaveFileName);
             }
         }
 
