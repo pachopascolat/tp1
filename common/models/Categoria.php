@@ -75,7 +75,7 @@ class Categoria extends \yii\db\ActiveRecord
      */
     public function getCategorias()
     {
-        return $this->hasMany(Categoria::className(), ['categoria_padre' => 'id_categoria']);
+        return $this->hasMany(Categoria::className(), ['categoria_padre' => 'id_categoria'])->orderBy('orden_categoria');
     }
     public function getCategoriaTelas()
     {
@@ -91,7 +91,7 @@ class Categoria extends \yii\db\ActiveRecord
     }
     public function getVidrieras()
     {
-        return $this->hasMany(Tela::className(), ['categoria_id' => 'id_categoria']);
+        return $this->hasMany(Vidriera::className(), ['categoria_id' => 'id_categoria'])->orderBy('orden_vidriera');
     }
     
     function getParentCategory(){

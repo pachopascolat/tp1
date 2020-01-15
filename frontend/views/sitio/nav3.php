@@ -58,6 +58,7 @@
                                 <?php
                                 $telas = \common\models\Vidriera::find()->joinWith('categoria')
                                         ->where(['categoria_padre'=>[1,2]])
+                                        ->orderBy('categoria_id, orden_vidriera')
                                         ->all();
                                 foreach ($telas as $tela):
                                     ?>

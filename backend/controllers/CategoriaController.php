@@ -33,7 +33,7 @@ class CategoriaController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['index-todos', 'index', 'create', 'view', 'update', 'delete'],
+                        'actions' => ['ordenar-categorias','ordenar-categorias-padre','ordenar-vidrieras', 'ordenar', 'index-todos', 'index', 'create', 'view', 'update', 'delete'],
                         'roles' => ['stockManager'],
                     ],
                 ],
@@ -56,14 +56,21 @@ class CategoriaController extends Controller {
         ]);
     }
 
-    public function actionIndex() {
-//        if ($categoria_padre == 1) {
-            $searchModel = new CategoriaSearch();
-////        } else {
-//            $searchModel = new CategoriaSearch(['moda' => true]);
-//        }
+    public function actionIndex($categoria_padre = null) {
+
+        $searchModel = new CategoriaSearch([
+            'categoria_padre' => $categoria_padre
+        ]);
+        
+        
+        
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        if($categoria_padre==-1){
+            $dataProvider->query->where(['categoria_padre'=>null])->andWhere(['>','id_categoria',2]);
+        }
+        
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
@@ -148,6 +155,38 @@ class CategoriaController extends Controller {
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionOrdenar($id) {
+        $categoria = Categoria::findOne($id);
+        return $this->render('ordenarVidrieras', ['categoria' => $categoria]);
+    }
+    public function actionOrdenarCategoriasPadre($id) {
+        $categoria = Categoria::findOne($id);
+        return $this->render('ordenarCategorias', ['categoria' => $categoria]);
+    }
+
+    public function actionOrdenarVidrieras() {
+        if ($items = Yii::$app->request->post('items')) {
+            foreach ($items as $order => $id) {
+                $item = \common\models\Vidriera::findOne($id);
+                if ($item) {
+                    $item->orden_vidriera = $order;
+                    $item->save();
+                }
+            }
+        }
+    }
+    public function actionOrdenarCategorias() {
+        if ($items = Yii::$app->request->post('items')) {
+            foreach ($items as $order => $id) {
+                $item = \common\models\Categoria::findOne($id);
+                if ($item) {
+                    $item->orden_categoria = $order;
+                    $item->save();
+                }
+            }
+        }
     }
 
 }

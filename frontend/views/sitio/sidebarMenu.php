@@ -60,9 +60,12 @@
         </li>
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="sb-titulo dropdown-toggle">Telas</a>
-            <ul class="collapse list-unstyled pt-1 " id="homeSubmenu">
+            <ul class="collapse list-unstyled pt-1 overflow-auto" id="homeSubmenu">
                 <?php
-                $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_padre' => [1, 2]])->limit(6)->all();
+                $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')
+                                        ->where(['categoria_padre'=>[1,2]])
+                                        ->orderBy('categoria_id, orden_vidriera')
+                                        ->all();
                 foreach ($vidrieras as $cat):
                     ?>
                     <li>

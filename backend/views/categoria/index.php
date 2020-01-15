@@ -19,6 +19,9 @@ use kartik\grid\GridView;
 
     <p>
         <?= Html::a(Yii::t('app', 'Nueva Categoria'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php if ($searchModel->categoria_padre != -1): ?>
+            <?= Html::a(Yii::t('app', 'Ordenar'), ['ordenar-categorias-padre', 'id' => $searchModel->categoria_padre], ['class' => 'btn btn-info']) ?>
+        <?php endif; ?>
     </p>
 
     <?=

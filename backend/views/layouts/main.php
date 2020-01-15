@@ -39,16 +39,15 @@ AppAsset::register($this);
                 $items_hijo = [];
                 /*                @var $cat common\models\Categoria */
                 foreach ($cat->categorias as $hijo) {
-                    $items_hijo[] = ['label' => $hijo->nombre_categoria,'url'=>['/vidriera/index','categoria_id'=>$hijo->id_categoria]];
+                    $items_hijo[] = ['label' => $hijo->nombre_categoria, 'url' => ['/vidriera/index', 'categoria_id' => $hijo->id_categoria]];
                 }
                 $items_padre['items'][] = [
                     'label' => $cat->nombre_categoria,
-                    'items' =>$items_hijo,
-                    'url' => ['/vidriera/index','categoria_id'=>$cat->id_categoria],
-//                    $items_hijo
-                        ];
+                    'items' => $items_hijo,
+                    'url' => ['/vidriera/index', 'categoria_id' => $cat->id_categoria],
+                ];
             }
-            $items_padre['label']='Vidrieras';
+            $items_padre['label'] = 'Vidrieras';
 
             $menuItems = [
 //                ['label' => 'Home', 'url' => ['/site/index']],
@@ -72,9 +71,12 @@ AppAsset::register($this);
                         ['label' => 'Telas', 'url' => ['/tela/index']],
                     ]
                 ],
-                ['label' => 'Categorias', 'url' => ['/categoria/index']],
-//                ['label' => 'Hogar', 'url' => ['/categoria/index', 'categoria_padre' => 1]],
-//                ['label' => 'Moda', 'url' => ['/categoria/index', 'categoria_padre' => 2]],
+                ['label' => 'Categorias', 'items' => [
+                        ['label' => 'Hogar', 'url' => ['/categoria/index', 'categoria_padre' => 1]],
+                        ['label' => 'Moda', 'url' => ['/categoria/index', 'categoria_padre' => 2]],
+                        ['label' => 'Otras', 'url' => ['/categoria/index', 'categoria_padre' => -1 ]],
+                    ]
+                ],
                 ['label' => 'Consultas', 'url' => ['/carrito/index', 'categoria_padre' => 2]],
 //                ['label' => 'Pedidos', 'url' => ['/carrito/index-pedidos', 'categoria_padre' => 2]],
                 ['label' => 'frontend', 'url' => Yii::$app->urlManagerFrontEnd->baseUrl, 'linkOptions' => ['target' => '_blank'],

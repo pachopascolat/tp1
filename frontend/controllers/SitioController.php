@@ -31,7 +31,7 @@ class SitioController extends \yii\web\Controller {
                     $_SESSION['categoria_padre'] = $id_categoria;
         }
         set_time_limit(12000);
-        $telas = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_id' => $id_categoria])->orWhere(['categoria_padre' => $id_categoria])->limit(5)->all();
+        $telas = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_id' => $id_categoria])->orWhere(['categoria_padre' => $id_categoria])->orderBy('orden_vidriera')->all();
         return $this->render('porCategoria', ['telas' => $telas]);
     }
 
