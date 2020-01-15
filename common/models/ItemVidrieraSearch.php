@@ -9,13 +9,12 @@ use common\models\ItemVidirera;
 /**
  * ItemVidrieraSearch represents the model behind the search form of `common\models\ItemVidirera`.
  */
-class ItemVidrieraSearch extends ItemVidirera
-{
+class ItemVidrieraSearch extends ItemVidirera {
+
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id_item_vidriera', 'articulo_id', 'imagen_id', 'vidriera_id', 'orden_item_vidriera', 'ranking'], 'integer'],
         ];
@@ -24,8 +23,7 @@ class ItemVidrieraSearch extends ItemVidirera
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -37,14 +35,14 @@ class ItemVidrieraSearch extends ItemVidirera
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = ItemVidirera::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder' => ['orden_item_vidriera' => SORT_ASC]]
         ]);
 
         $this->load($params);
@@ -67,4 +65,5 @@ class ItemVidrieraSearch extends ItemVidirera
 
         return $dataProvider;
     }
+
 }

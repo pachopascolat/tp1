@@ -10,15 +10,14 @@ use common\models\Vidriera;
 /**
  * common\models\VidrieraSearch represents the model behind the search form about `common\models\Vidriera`.
  */
- class VidrieraSearch extends Vidriera
-{
+class VidrieraSearch extends Vidriera {
+
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['id_vidriera', 'categoria_id', 'orden_vidriera','categoria_padre'], 'integer'],
+            [['id_vidriera', 'categoria_id', 'orden_vidriera', 'categoria_padre'], 'integer'],
             [['nombre', 'estado'], 'safe'],
         ];
     }
@@ -26,8 +25,7 @@ use common\models\Vidriera;
     /**
      * @inheritdoc
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -39,12 +37,12 @@ use common\models\Vidriera;
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Vidriera::find()->joinWith('categoria');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder' => ['orden_vidriera' => SORT_ASC]]
         ]);
 
         $this->load($params);
@@ -63,14 +61,15 @@ use common\models\Vidriera;
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'estado', $this->estado]);
+                ->andFilterWhere(['like', 'estado', $this->estado]);
 
         $query->orFilterWhere([
 //                        'categoria_id' => $this->categoria_id,
-                        'categoria_padre' => $this->categoria_id
+            'categoria_padre' => $this->categoria_id
         ]);
-        
-        
+
+
         return $dataProvider;
     }
+
 }

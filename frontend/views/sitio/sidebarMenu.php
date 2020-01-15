@@ -64,7 +64,7 @@
                 <?php
                 $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')
                                         ->where(['categoria_padre'=>[1,2]])
-                                        ->orderBy('categoria_id, orden_vidriera')
+                                        ->orderBy('categoria_padre, orden_vidriera')
                                         ->all();
                 foreach ($vidrieras as $cat):
                     ?>
