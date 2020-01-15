@@ -158,8 +158,11 @@ class CategoriaController extends Controller {
     }
 
     public function actionOrdenar($id) {
+        $searchModel = new \common\models\VidrieraSearch(['categoria_id'=>$id]);
+        $dataProvider = $searchModel->search(null);
+        $dataProvider->setPagination(false);
         $categoria = Categoria::findOne($id);
-        return $this->render('ordenarVidrieras', ['categoria' => $categoria]);
+        return $this->render('ordenarVidrieras', ['categoria' => $categoria,'dataProvider'=>$dataProvider]);
     }
     public function actionOrdenarCategoriasPadre($id) {
         $categoria = Categoria::findOne($id);

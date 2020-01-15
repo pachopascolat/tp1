@@ -18,6 +18,17 @@ $this->registerJs($js2);
 $this->params['breadcrumbs'][] = ['url'=>['/vidriera/index'],'label'=>'Vidrieras'];
 $this->params['breadcrumbs'][] = ['url'=>['/vidriera/index','categoria_id'=>$categoria->id_categoria],'label'=>$categoria->nombre_categoria];
 
+//$vidrierasList = [];
+//foreach ($categoria->categorias as $cat){
+//    foreach ($cat->vidrieras as $vid){
+//        $vidrierasList[] = $vid;
+//    }
+//}
+//
+//foreach ($categoria->vidrieras as $vidrieras){
+//    $vidrierasList[] = $vidrieras;
+//}
+//
 
 ?>
 
@@ -28,7 +39,7 @@ $this->params['breadcrumbs'][] = ['url'=>['/vidriera/index','categoria_id'=>$cat
 <div id="" class="">
 
     <ol id="sortable"  class="list-group">
-        <?php foreach ($categoria->vidrieras as $key => $vidriera) : ?>
+        <?php foreach ($dataProvider->getModels() as $key => $vidriera) : ?>
             <li id="<?= $vidriera->id_vidriera ?>" class="list-group-item"><?= $vidriera->nombre ?></li>
             <?php endforeach; ?>
     </ol>
