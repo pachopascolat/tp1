@@ -17,10 +17,10 @@ class Utiles {
 
     //put your code here
 
-    public static function armarGridRegular($items, $columnas,$filas=2): array {
+    public static function armarGridRegular($items, $columnas): array {
         $itemsArranged = [];
         $j=0;
-            while (count($items) % ($columnas*$filas) != 0) {   
+            while (count($items) % ($columnas) != 0) {   
                 $items[] = $items[$j];
                 $j++;
             }

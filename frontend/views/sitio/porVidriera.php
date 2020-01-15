@@ -1,5 +1,5 @@
 <?=$this->render('nav3_sin');?>
-<?= $this->render('7FilasPrincipales',['vidriera'=>$vidriera]) ?>
+<?= $this->render('7FilasPrincipales',['vidriera'=>$vidriera,'dataProvider'=>$dataProvider]) ?>
 <div class="d-sx-block d-md-none">
 <?= $this->render('_iconos_sx') ?>
 </div>

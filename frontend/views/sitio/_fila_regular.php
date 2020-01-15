@@ -1,9 +1,9 @@
 
 <?php
-if($filas){
+if(isset($filas)){
     $items = array_slice($items,0, ($columnas*$filas));
 }
-$items = \common\models\Utiles::armarGridRegular($items, $columnas,$filas); 
+$items = \common\models\Utiles::armarGridRegular($items, $columnas); 
 
 ?>
 <div class="fila-regular">

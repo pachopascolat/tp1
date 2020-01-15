@@ -9,13 +9,13 @@
                 <h1 class="pl-1 pb-3"> <?= $vidriera->nombre ?> </h1>
                            
                <div class="d-sx-block d-md-none">
-                    <?php echo $this->render('GridSieteFilas', ['vidriera' => $vidriera, 'columnas' => 4]) ?>
+                    <?php echo $this->render('GridSieteFilas', ['vidriera' => $vidriera, 'columnas' => 4,'dataProvider'=>$dataProvider]) ?>
                 </div>
                <div class="d-none d-md-block d-lg-none">
-                    <?php echo $this->render('GridSieteFilas', ['vidriera' => $vidriera, 'columnas' => 5]) ?>
+                    <?php echo $this->render('GridSieteFilas', ['vidriera' => $vidriera, 'columnas' => 5,'dataProvider'=>$dataProvider]) ?>
                 </div>
                <div class="d-none d-lg-block">
-                    <?php echo $this->render('GridSieteFilas', ['vidriera' => $vidriera, 'columnas' => 7]) ?>
+                    <?php echo $this->render('GridSieteFilas', ['vidriera' => $vidriera, 'columnas' => 7,'dataProvider'=>$dataProvider]) ?>
                 </div>
             </div><!--right-->          
         </div><!--fin row-->    
