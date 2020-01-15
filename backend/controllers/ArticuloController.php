@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
-
+use yii\filters\AccessControl;
 /**
  * ArticuloController implements the CRUD actions for Articulo model.
  */
@@ -24,6 +24,18 @@ class ArticuloController extends Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+//                'only' => ['login', 'logout', 'signup'],
+                'rules' => [
+                    [
+//                        'allow' => \Yii::$app->user->getId() == 2,
+                        'allow' => true,
+//                        'actions' => ['*'],
+                        'roles' => ['stockManager'],
+                    ],
                 ],
             ],
         ];

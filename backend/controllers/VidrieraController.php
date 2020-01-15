@@ -8,6 +8,7 @@ use common\models\VidrieraSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * VidrieraController implements the CRUD actions for Vidriera model.
@@ -20,6 +21,18 @@ class VidrieraController extends Controller {
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+//                'only' => ['login', 'logout', 'signup'],
+                'rules' => [
+                    [
+//                        'allow' => \Yii::$app->user->getId() == 2,
+                        'allow' => true,
+//                        'actions' => ['*'],
+                        'roles' => ['stockManager'],
+                    ],
                 ],
             ],
         ];
