@@ -22,7 +22,7 @@ $this->registerJs($search);
 
     <p>
         <?= Html::a('Crear Vidriera', ['create','categoria_id'=>$searchModel->categoria_id], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
+        <?= Html::a('Ordenar', ['/categoria/ordenar','id'=>$searchModel->categoria_id], ['class' => 'btn btn-info']) ?>
     </p>
     <div class="search-form" style="display:none">
         <?= $this->render('_search', ['model' => $searchModel]); ?>
