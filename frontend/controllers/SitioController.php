@@ -7,8 +7,11 @@ use Yii;
 class SitioController extends \yii\web\Controller {
 
     public function actionIndex() {
-        $telas = \common\models\Vidriera::find()->where(['categoria_id' => 22])->orderBy('orden_vidriera')->all();
-        return $this->render('porCategoria', ['telas' => $telas]);
+        $searchModel = new \common\models\VidrieraSearch(['categoria_id'=>22]);
+        $dataProvider = $searchModel->search(null);
+        $dataProvider->getPagination()->setPageSize(7);
+//        $telas = \common\models\Vidriera::find()->where(['categoria_id' => 22])->orderBy('orden_vidriera')->all();
+        return $this->render('porCategoria', ['dataProvider' => $dataProvider]);
 //        return $this->render('index');
 //        return $this->redirect(['por-categoria', 'id_categoria' => 22]);
     }
