@@ -21,7 +21,8 @@ class Utiles {
         $itemsArranged = [];
         $j=0;
             while (count($items) % ($columnas) != 0) {   
-                $items[] = $items[$j];
+//                $items[] = $items[$j];
+                $items[] = null;
                 $j++;
             }
 //        if (count($items) % $columnas != 0) {
