@@ -42,7 +42,10 @@ class VidrieraSearch extends Vidriera {
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['orden_vidriera' => SORT_ASC]]
+            'sort' => ['defaultOrder' => [
+                'categoria_id' => SORT_ASC,
+                'orden_vidriera' => SORT_ASC,
+                ]]
         ]);
 
         $this->load($params);

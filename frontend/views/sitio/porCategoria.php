@@ -5,7 +5,7 @@ echo $this->render('nav3');
 
 
 $items = [];
-$vidrieras = $telas;
+$vidrieras = $dataProvider->getModels();
 ?>
 <div class="dos-filas-regular mt- mb-2">
     <div class="container">
@@ -31,9 +31,18 @@ $vidrieras = $telas;
                     </a>
                 </div>
             </div>
-            
+
         <?php endforeach;
         ?>
+        <div class="row">
+            <div class="col">
+                <?php
+                echo yii\widgets\LinkPager::widget([
+                    'pagination' => $dataProvider->getPagination(),
+                ]);
+                ?>
+            </div>
+        </div>
     </div>
 </div>
 

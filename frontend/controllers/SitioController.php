@@ -33,8 +33,11 @@ class SitioController extends \yii\web\Controller {
                     $_SESSION['categoria_padre'] = $id_categoria;
         }
         set_time_limit(12000);
-        $telas = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_id' => $id_categoria])->orWhere(['categoria_padre' => $id_categoria])->orderBy('orden_vidriera')->all();
-        return $this->render('porCategoria', ['telas' => $telas]);
+        $searchModel = new \common\models\VidrieraSearch(['categoria_id'=>$id_categoria,'categoria_padre'=>$id_categoria]);
+        $dataProvider = $searchModel->search(null);
+        $dataProvider->getPagination()->setPageSize(7);
+        $telas = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_id' => $id_categoria])->orWhere(['categoria_padre' => $id_categoria])->limit(7)->orderBy('categoria_id, orden_vidriera')->all();
+        return $this->render('porCategoria', ['dataProvider' => $dataProvider]);
     }
 
     public function actionPorVidriera($id) {
