@@ -14,7 +14,7 @@ $items = array_slice($items, 1, ($columnas*2));
                 <div class="hover-div">
 
                     <a data-toggle="modal" data-target="#item-modal-<?= $portada->id_item_vidriera ?? '' ?>" class="" href="" data-id-item="<?= $portada->id_item_vidriera ?>">
-                        <img src="<?= yii\helpers\Url::base(true) . "/img2020/loading.png" ?>" alt="item tela" class="w-100 lazy" data-src="<?= $url2."?".time() ?>">
+                        <img src="<?= yii\helpers\Url::base(true) . "/img2020/loading.png" ?>" alt="item tela" class="w-100 lazy" data-src="<?= $url2 ?>">
                         <div class="item-vidriera d-flex align-items-center justify-content-center">
                             <img data-src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lazy lupa-item align-self-center">
                             <span class="text-light w-100 text-center"><?= $portada->articulo->nombre_color ?? '' ?></span>
