@@ -56,12 +56,12 @@
                 </a>
             </div>
             <div class="col">                                
-                <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera','id'=>2721])?>">
+                <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera','id'=>2722])?>">
                     <img alt="icono" class="lazy" data-src="<?= yii\helpers\Url::base(true)?>/img2020/texsim-poliester-01.svg" alt="ketten">
                 </a>
             </div>
             <div class="col ">                                
-                <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera','id'=>2722])?>">
+                <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera','id'=>2721])?>">
                     <img alt="icono" class="lazy" data-src="<?= yii\helpers\Url::base(true)?>/img2020/texsim-plastico-01.svg" alt="ketten">
                 </a>
             </div>
