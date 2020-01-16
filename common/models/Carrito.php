@@ -90,7 +90,7 @@ class Carrito extends \yii\db\ActiveRecord {
 
         $message->setFrom('no_reply@texsim.com.ar')
 //                ->setBcc('patriciopascolat@gmail.com')
-                ->setBcc(['dgvizaq@gmail.com,patriciopascolat@gmail.com'])
+                ->setBcc(['dgvizaq@gmail.com','patriciopascolat@gmail.com'])
                 ->setTo('pedidos@texsim.com.ar')
                 ->setSubject('Se ha realizado la consulta nro ' . $this->id_carrito)
 //                ->setTextBody('EL cliente '.$this->cliente->nombre_cliente."\n".
