@@ -39,7 +39,7 @@
 
                                     </p>
                                     <form action="#">
-                                        <input class="modal-disenio-id" name="id" value="<?= $item->articulo_id ?>" type="hidden">
+                                        <input class="modal-disenio-id" name="id" value="<?= $item->id_item_vidriera ?>" type="hidden">
                                         <div class="">
 
                                             <div class=" mb-3 d-flex d-lg-block justify-content-center align-items-center">

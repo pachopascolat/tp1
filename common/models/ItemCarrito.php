@@ -32,7 +32,7 @@ class ItemCarrito extends \yii\db\ActiveRecord {
             [['precio'],'double'],
             [['disenio_id','articulo_id'], 'integer'],
             [['disenio_id'], 'exist', 'skipOnError' => true, 'targetClass' => GalleryImage::className(), 'targetAttribute' => ['disenio_id' => 'id']],
-            [['articulo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articulo::className(), 'targetAttribute' => ['articulo_id' => 'id_articulo']],
+            [['articulo_id'], 'exist', 'skipOnError' => true, 'targetClass' => ItemVidirera::className(), 'targetAttribute' => ['articulo_id' => 'id_item_vidriera']],
         ];
     }
 
@@ -53,7 +53,7 @@ class ItemCarrito extends \yii\db\ActiveRecord {
         return $this->hasOne(GalleryImage::className(), ['id' => 'disenio_id']);
     }
     public function getArticulo() {
-        return $this->hasOne(Articulo::className(), ['id_articulo' => 'articulo_id']);
+        return $this->hasOne(ItemVidirera::className(), ['id_item_vidriera' => 'articulo_id']);
     }
 
     public function getCarrito() {
