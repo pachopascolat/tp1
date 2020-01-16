@@ -20,8 +20,8 @@
         foreach ($carrito->itemCarritos as $item):
             ?>
             <tr>
-                <td><?= $item->articulo->tela->codigo_tela ?></td>
-                <td><?= $item->articulo->codigo_color ?></td>
+                <td><?= $item->articulo->articulo->tela->codigo_tela ?></td>
+                <td><?= $item->articulo->articulo->codigo_color ?></td>
                 <td><?php
                     $web = yii\helpers\Url::base('https');
                     $url = $item->getUrl('preview');
@@ -37,9 +37,9 @@
 
 
                 
-                <td><?= $item->articulo->tela->nombre_tela ?></td>
+                <td><?= $item->articulo->articulo->tela->nombre_tela ?></td>
                 <td>
-                    <?= $item->articulo->nombre_color; ?>
+                    <?= $item->articulo->articulo->nombre_color; ?>
                 </td>
                 <td><?= $item->cantidad ?></td>
 
