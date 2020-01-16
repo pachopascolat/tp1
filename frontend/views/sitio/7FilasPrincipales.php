@@ -3,7 +3,7 @@
         <div class="d-flex">
             <!--left-->
             <div class="flex-2 sidebar-menu d-none d-md-block" id="leftCol">
-                <?= $this->render('sidebarMenu') ?>
+                <?= $this->render('sidebarMenu',['vidriera'=>$vidriera]) ?>
             </div><!--/left-->
             <div class="" style="flex: 9">
                 <h1 class="pl-1 pb-3"> <?= $vidriera->nombre ?> </h1>

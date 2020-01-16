@@ -164,4 +164,16 @@ class SitioController extends \yii\web\Controller {
         return $this->render('busqueda', ['vidrieras' => $vidrieras, 'busqueda' => $busqueda]);
     }
 
+     public function actionDescargarPdf($id,$vidriera_id) {
+        $pdf = \common\models\PdfReport::findOne($id);
+        if ($pdf) {
+            $path = Yii::getAlias('@backend') . '/uploads/pdf-report';
+            $file = $path . "/$pdf->id_pdf_report.pdf";
+            if (file_exists($file)) {
+                return Yii::$app->response->sendFile($file, $pdf->nombre_pdf . ".pdf");
+            }
+        }
+        return $this->redirect(['por-vidriera','id'=>$vidriera_id]);
+    }
+    
 }

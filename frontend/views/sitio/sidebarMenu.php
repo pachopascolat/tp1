@@ -63,9 +63,9 @@
             <ul class="collapse list-unstyled pt-1 overflow-auto" id="homeSubmenu">
                 <?php
                 $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')
-                                        ->where(['categoria_padre'=>[1,2]])
-                                        ->orderBy('categoria_padre, orden_vidriera')
-                                        ->all();
+                        ->where(['categoria_padre' => [1, 2]])
+                        ->orderBy('categoria_padre, orden_vidriera')
+                        ->all();
                 foreach ($vidrieras as $cat):
                     ?>
                     <li>
@@ -87,7 +87,15 @@
     </div>
     <div class="">
         <div class="">
-            <a href="#" >
+            <?php
+            $url = '';
+            $tela = $vidriera->itemVidireras[0]->articulo->tela ?? null;
+            if ($tela) {
+                $pdf = common\models\PdfReport::findOne(['tela_id' => $tela->id_tela ?? null]);
+                $url = yii\helpers\Url::to(['sitio/descargar-pdf', 'id' => $pdf->id_pdf_report ?? null, 'vidriera_id' => $vidriera->id_vidriera]);
+            }
+            ?>
+            <a href="<?= $url ?>" >
                 <img class="img-fluid w-100"  src="<?= yii\helpers\Url::base(true) ?>/img2020/banner-texsim-lateral-pdf.jpg" alt="">
             </a>
         </div>
