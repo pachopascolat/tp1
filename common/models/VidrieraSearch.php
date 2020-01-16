@@ -59,7 +59,7 @@ class VidrieraSearch extends Vidriera {
         $query->andFilterWhere([
             'id_vidriera' => $this->id_vidriera,
             'categoria_id' => $this->categoria_id,
-            'categoria_padre' => $this->categoria_padre,
+//            'categoria_padre' => $this->categoria_padre,
             'orden_vidriera' => $this->orden_vidriera,
         ]);
 
