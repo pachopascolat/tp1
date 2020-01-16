@@ -24,7 +24,7 @@
                 <td><?= $item->articulo->articulo->codigo_color ?></td>
                 <td><?php
                     $web = yii\helpers\Url::base('https');
-                    $url = $item->getUrl('preview');
+                    $url = $item->articulo->getFullUrl();
                     $path = $url;
                     $parts = explode('/', $path);
                     $parts = array_slice($parts, 3);
@@ -32,7 +32,7 @@
                     $urlok = $web . "/" . $newpath;
 //                    echo yii\helpers\Html::img($web.$url, ['class' => 'img-thumbnail']);
                     ?>
-                    <a href="<?php echo $urlok ?>"><img width="80px" src="<?= $urlok ?>"> </a> 
+                    <a href="<?php echo $url ?>"><img width="80px" src="<?= $urlok ?>"> </a> 
                 </td>
 
 
