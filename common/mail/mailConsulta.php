@@ -32,7 +32,7 @@
                     $urlok = $web . "/" . $newpath;
 //                    echo yii\helpers\Html::img($web.$url, ['class' => 'img-thumbnail']);
                     ?>
-                    <a href="<?php echo $url ?>"><img width="80px" src="<?= $urlok ?>"> </a> 
+                    <a href="<?php echo $web.$url ?>"><img width="80px" src="<?= $urlok ?>"> </a> 
                 </td>
 
 
