@@ -81,6 +81,12 @@ class ItemVidirera extends \yii\db\ActiveRecord {
     }
     public function getFullUrl($width=120,$height=120) {
         
+        $url =  \yii\helpers\Url::base(true)."/..".Yii::$app->imagemanager->getImagePath($this->imagen_id, $width, $height);
+        return $url;
+        
+    }
+    public function getFrontFullUrl($width=120,$height=120) {
+        
         $url =  \yii\helpers\Url::base(true).Yii::$app->imagemanager->getImagePath($this->imagen_id, $width, $height);
         return $url;
         

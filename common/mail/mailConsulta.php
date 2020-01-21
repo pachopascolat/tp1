@@ -24,7 +24,7 @@
                 <td><?= $item->articulo->articulo->codigo_color ?></td>
                 <td><?php
                     $web = yii\helpers\Url::base('https');
-                    $url = $item->articulo->getFullUrl();
+                    $url = $item->articulo->getFrontFullUrl();
                     $path = $url;
                     $parts = explode('/', $path);
                     $parts = array_slice($parts, 3);
