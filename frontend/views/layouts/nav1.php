@@ -14,7 +14,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
             <div class="flex-fill busqueda-div d-none d-md-block">
                 <?= \yii\helpers\Html::beginForm(['/sitio/buscar'], 'GET', ['id' => 'busqueda-form', 'class' => 'navbar-link flex-fill d-flex align-items-center']);
                 ?>
-            <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                             ?>" class="navbar-link flex-fill d-flex ">-->
+            <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                              ?>" class="navbar-link flex-fill d-flex ">-->
                 <input value="<?= $_GET['busqueda'] ?? '' ?>" id="busqueda" name="busqueda" class="texsim-search-input w-100" type="" placeholder="" aria-label="Search">
                 <a href="" onclick="$('#busqueda-form').submit()"> 
                     <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
@@ -52,7 +52,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                     </div>
                     <a class="d-flex align-items-center" href="#"><i class="fab fa-instagram "></i></a>
                     <a class="d-flex align-items-center" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="logo-wp d-flex align-items-center">
+                    <a target="_blanc" href="https://api.whatsapp.com/send?phone=541135386219&text=Me%20gustar%C3%ADa%20saber%20mas%20sobre%20sus%20productos.%20Gracias&source=&data=#" class="logo-wp d-flex align-items-center">
                         <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/whatsapp.svg" alt="logo whatsapp">
                     </a>
 
@@ -124,7 +124,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         <?= \yii\helpers\Html::beginForm(['/sitio/buscar'], 'GET', ['id' => 'movil-busqueda-form', 'class' => 'navbar-link flex-fill d-flex align-items-center']);
         ?>
         <div class="d-flex justify-content-center w-100 align-items-center">
-        <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                             ?>" class="navbar-link flex-fill d-flex ">-->
+        <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                              ?>" class="navbar-link flex-fill d-flex ">-->
             <input value="<?= $_GET['busqueda'] ?? '' ?>" id="busqueda-movil" name="busqueda" class="texsim-search-input" type="" placeholder="" aria-label="Search">
             <a class="lupa-link" href="" onclick=""> 
                 <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
