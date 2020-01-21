@@ -25,14 +25,14 @@
                 <td><?php
                     $web = yii\helpers\Url::base('https');
                     $url = $item->articulo->getFrontFullUrl();
-                    $path = $url;
-                    $parts = explode('/', $path);
-                    $parts = array_slice($parts, 3);
-                    $newpath = implode('/', $parts);
-                    $urlok = $web . "/" . $newpath;
+//                    $path = $url;
+//                    $parts = explode('/', $path);
+//                    $parts = array_slice($parts, 3);
+//                    $newpath = implode('/', $parts);
+//                    $urlok = $web . "/" . $newpath;
 //                    echo yii\helpers\Html::img($web.$url, ['class' => 'img-thumbnail']);
                     ?>
-                    <a href="<?php echo $web.$url ?>"><img width="80px" src="<?= $urlok ?>"> </a> 
+                    <a href="<?php echo $url ?>"><img width="80px" src="<?= $urlok ?>"> </a> 
                 </td>
 
 
