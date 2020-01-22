@@ -61,7 +61,7 @@ AppAsset::register($this);
                 ,
 //                ['label' => 'Ordenar', 'url' => ['/gallery-image/ordenar-disenios']],
                 ['label' => 'PDF', 'items' => [
-                        ['label' => 'crear', 'url' => ['/vidriera/create-pdf']],
+                        ['label' => 'crear', 'url' => ['/pdf-report/create-vidriera-pdf']],
                         ['label' => 'descargar', 'url' => ['/pdf-report/index']],
                     ]
                 ],

@@ -26,6 +26,7 @@ use Yii;
 class Categoria extends \yii\db\ActiveRecord
 {
     public $parent_category;
+    const PDF = 20;
     /**
      * {@inheritdoc}
      */

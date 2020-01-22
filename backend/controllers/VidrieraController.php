@@ -106,7 +106,7 @@ class VidrieraController extends Controller {
     }
     public function actionCreatePdf() {
         $catPdf = \common\models\Categoria::findOne(['nombre_categoria'=>'PDF']);
-        $model = new Vidriera(['categoria_id'=>$catPdf->id_categoria]);
+        $model = new Vidriera(['categoria_id'=> \common\models\Categoria::PDF]);
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['ordenar-vidriera', 'id' => $model->id_vidriera]);

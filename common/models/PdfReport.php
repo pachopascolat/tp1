@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use mikehaertl\wkhtmlto\Pdf as Pdf2;
+
 
 /**
  * This is the model class for table "pdf_report".
@@ -16,6 +18,7 @@ use Yii;
  *
  * @property Tela $tela
  * @property Vidriera $vidriera
+ * @property Vidriera $vidrieraPdf
  * @property User $userIdPdf
  */
 class PdfReport extends \yii\db\ActiveRecord {
@@ -49,8 +52,10 @@ class PdfReport extends \yii\db\ActiveRecord {
             [['timestamp_pdf', 'guardar', 'header', 'header2'], 'safe'],
             [['nombre_pdf'], 'string'],
             [['nombre_pdf'], 'required'],
-            [['tela_id', 'user_id_pdf', 'vidriera_id'], 'integer'],
+            [['tela_id', 'user_id_pdf', 'vidriera_id','vidriera_pdf'], 'integer'],
             [['tela_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tela::className(), 'targetAttribute' => ['tela_id' => 'id_tela']],
+            [['vidriera_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vidriera::className(), 'targetAttribute' => ['vidriera_id' => 'id_vidriera']],
+            [['vidriera_pdf'], 'exist', 'skipOnError' => true, 'targetClass' => Vidriera::className(), 'targetAttribute' => ['vidriera_pdf' => 'id_vidriera']],
             [['user_id_pdf'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id_pdf' => 'id']],
         ];
     }
@@ -112,6 +117,9 @@ class PdfReport extends \yii\db\ActiveRecord {
     public function getVidriera() {
         return $this->hasOne(Vidriera::className(), ['id_vidriera' => 'vidriera_id']);
     }
+    public function getVidrieraPdf() {
+        return $this->hasOne(Vidriera::className(), ['id_vidriera' => 'vidriera_pdf']);
+    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -132,6 +140,69 @@ class PdfReport extends \yii\db\ActiveRecord {
             }
             return "header2.jpg";
         }
+    }
+    
+     public function report($estampados) {
+        $vidriera = $estampados;
+        /* @var $estampados \common\models\Vidriera */
+        foreach ($estampados->itemVidireras as $order => $item) {
+            $alldata[] = $item;
+        }
+        $options = [
+            'binary' => Yii::getAlias("@vendor/wkhtmltopdf"),
+            'page-size' => 'A4',
+//            'header-html' => $this->renderPartial('_pdfHeader'),
+//            'footer-html' => $this->renderPartial('_pdfFooter'),
+            'no-outline', // option without argument
+            'encoding' => 'UTF-8', // option with argument
+//            'user-style-sheet' => $cssPath,
+            'margin-top' => 0,
+            'margin-right' => 0,
+            'margin-bottom' => 0,
+            'margin-left' => 0,
+            'disable-smart-shrinking',
+            'user-style-sheet' => Yii::getAlias("@backend/web/css/pdfstyle.css"),
+//            'header-html' => "<h1>Texsim</h1>",
+        ];
+
+//        $pdf = new Pdf2(\Yii::getAlias("@backend/views/gallery-image/_report.php"));
+//        $model = new PdfReport(['vidriera_id' => $vidriera->id_vidriera, 'user_id_pdf' => Yii::$app->user->getId()]);
+        if ($this->load(Yii::$app->request->post())) {
+            $this->header = \yii\web\UploadedFile::getInstance($this, 'header');
+            $this->header2 = \yii\web\UploadedFile::getInstance($this, 'header2');
+            if ($this->header) {
+                $this->uploadHeader();
+            }
+            if ($this->header2) {
+                $this->uploadHeader2();
+            }
+        }
+        $pdf = new Pdf2($options);
+        if ($this->header) {
+            $pages = array_chunk($alldata, 12);
+            $pdf->addPage($this->renderPartial('_reportPrimera', ['data' => $pages[0], 'nro' => 1, 'header' => $this->getHeaderName(1)]));
+            $alldata = array_slice($alldata, 12);
+        }
+        $pages = array_chunk($alldata, 16);
+        foreach ($pages as $nro => $page) {
+            $pdf->addPage($this->renderPartial('_report', ['data' => $page, 'nro' => $nro, 'header2' => $this->getHeaderName(2)]));
+        }
+//        return $this->renderPartial('_report', ['data' => $pages[0]]);
+
+        if (!$this->nombre_pdf) {
+            $date = date("Y-m-d-H-m-i");
+            $this->nombre_pdf = trim($model->tela->nombre_tela . "-" . $date);
+        }
+        if ($this->guardar && $model->save()) {
+
+            $pdf->saveAs(Yii::getAlias("@backend/uploads/pdf-report/" . $this->id_pdf_report . ".pdf"));
+        }
+        $timestamp = date("Y-m-d-H-m-i");
+        if (!$pdf->send("$this->nombre_pdf.pdf")) {
+            throw new \Exception('Could not create PDF: ' . $pdf->getError());
+        }
+
+        return true;
     }
 
 }

@@ -50,12 +50,7 @@ $this->registerJs($js);
 ////        'onChange'=> "",
 //        'onChange' => "filtrarVidriera()",
 //    ]);
-     
-    $vidrieras = common\models\Vidriera::find()->joinWith('categoria')->where(['<>','nombre_categoria','PDF'])->all();
-    $items = yii\helpers\ArrayHelper::map($vidrieras, 'id_vidriera', 'nombre');
-    echo $form->field($model, 'vidriera_pdf')->dropDownList($items,['prompt'=>'Elegir Vidriera']);
-    
-//    echo $form->field($model, 'nombre_pdf')->textInput();
+    echo $form->field($model, 'nombre_pdf')->textInput();
     echo $form->field($model, 'guardar')->checkbox();
 //    echo $form->field($model, 'guardar')->checkbox();
     ?>

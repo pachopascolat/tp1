@@ -36,7 +36,7 @@ class PdfReportController extends Controller {
                     [
 //                        'allow' => \Yii::$app->user->getId() == 2,
                         'allow' => true,
-                        'actions' => ['update-pdf', 'create-pdf', 'descargar-pdf', 'ordenar-disenios', 'export-pdf', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
+//                        'actions' => ['update-pdf', 'create-pdf', 'descargar-pdf', 'ordenar-disenios', 'export-pdf', 'export-index', 'toggle-estado', 'import-diferencias', 'import', 'ver-stock', 'exportar', 'photo-grid', 'report', 'index', 'create', 'view', 'update', 'delete', 'toggle-oferta', 'toggle-agotado', 'index-by-tela'],
                         'roles' => ['stockManager', 'ventasManager'],
                     ],
                 ],
@@ -99,7 +99,7 @@ class PdfReportController extends Controller {
                     'searchModel' => $searchModel]);
     }
 
-    public function report($estampados) {
+    public function report($estampados, $model) {
         $vidriera = $estampados;
         /* @var $estampados \common\models\Vidriera */
         foreach ($estampados->itemVidireras as $order => $item) {
@@ -126,7 +126,6 @@ class PdfReportController extends Controller {
         ];
 
 //        $pdf = new Pdf2(\Yii::getAlias("@backend/views/gallery-image/_report.php"));
-        $model = new PdfReport(['vidriera_id' => $vidriera->id_vidriera, 'user_id_pdf' => Yii::$app->user->getId()]);
         if ($model->load(Yii::$app->request->post())) {
             $model->header = \yii\web\UploadedFile::getInstance($model, 'header');
             $model->header2 = \yii\web\UploadedFile::getInstance($model, 'header2');
@@ -196,37 +195,51 @@ class PdfReportController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
-        $model = new PdfReport();
+//    public function actionCreate() {
+//        $model = new PdfReport();
+//
+//        if ($model->load(Yii::$app->request->post())) {
+//            $model->nombre_pdf = \common\models\Vidriera::findOne($model->vidriera_id)->nombre ?? 'sin nombre PDF';
+//            $vidrieraPdf = new \common\models\Vidriera(['categoria_id' => \common\models\Categoria::PDF]);
+//            $vidriera = \common\models\Vidriera::findOne($vidriera_id);
+//            $vidrieraPdf->nombre = $vidriera->nombre . " - PDF VIDRIERA";
+//            $vidrieraPdf->save();
+////            $model->vidriera_pdf = $vidrieraPdf->id_vidriera;
+////            if ($model->save()) {
+//            return $this->redirect(['/vidriera/ordenar-vidriera', 'id' => $vidrieraPdf->id_vidriera]);
+////            }
+//        }
+//
+//        return $this->render('create', [
+//                    'model' => $model,
+//        ]);
+//    }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_pdf_report]);
-        }
-
-        return $this->render('create', [
-                    'model' => $model,
-        ]);
+    public function actionCreateVidrieraPdf() {
+        $vidrieraPdf = new \common\models\Vidriera(['categoria_id' => \common\models\Categoria::PDF,'nombre'=>'Vidriera PDF']);
+        $vidrieraPdf->save();
+        return $this->redirect(['/vidriera/ordenar-vidriera', 'id' => $vidrieraPdf->id_vidriera]);
     }
 
     public function actionCreatePdf($vidriera_id) {
         $vidriera = \common\models\Vidriera::findOne($vidriera_id);
-        $model = new PdfReport([
-            'vidriera_id' => $vidriera_id,
-            'nombre_pdf'=>(count($vidriera->pdfReports)>0)?$vidriera->nombre."-".count($vidriera->pdfReports):$vidriera->nombre
+        $model = PdfReport::findOne(['vidriera_id' => $vidriera_id]);
+        if (!$model) {
+//            $model = new PdfReport(['vidriera_id' => $vidriera->id_vidriera, ]);
+            $model = new PdfReport([
+                'vidriera_id' => $vidriera_id,
+                'user_id_pdf' => Yii::$app->user->getId(),
+//                'nombre_pdf' => (count($vidriera->pdfReports) > 0) ? $vidriera->nombre . "-" . count($vidriera->pdfReports) : $vidriera->nombre
             ]);
-        $transaction = Yii::$app->db->beginTransaction();
+        }
 
         if ($model->load(Yii::$app->request->post())) {
-            if (TRUE) {
-                $this->report($vidriera);
-                if ($model->guardar) {
-                    $transaction->commit();
-                } else {
-                    $transaction->rollBack();
-                }
+            $model->nombre_pdf = \common\models\Vidriera::findOne($model->vidriera_pdf)->nombre. " - PDF";
+            if ($this->report($vidriera, $model)) {
+                $vidriera->nombre = $model->nombre_pdf;
+                return $this->redirect(['index']);
             }
         }
-//        $transaction->rollBack();
         return $this->render('createPdf', [
                     'model' => $model,
         ]);

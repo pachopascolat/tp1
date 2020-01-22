@@ -12,12 +12,18 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'timestamp_pdf')->textInput() ?>
+    <?php // $form->field($model, 'timestamp_pdf')->textInput() ?>
 
-    <?= $form->field($model, 'tela_id')->textInput() ?>
+    <?php //  $form->field($model, 'tela_id')->textInput() ?>
 
-    <?= $form->field($model, 'user_id_pdf')->textInput() ?>
+    <?php //  $form->field($model, 'user_id_pdf')->textInput() ?>
 
+    <?php 
+    $vidrieras = common\models\Vidriera::find()->joinWith('categoria')->where(['<>','nombre_categoria','PDF'])->all();
+    $items = yii\helpers\ArrayHelper::map($vidrieras, 'id_vidriera', 'nombre');
+    echo $form->field($model, 'vidriera_id')->dropDownList($items,['prompt'=>'Elegir Vidriera']);
+    ?>
+    
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
