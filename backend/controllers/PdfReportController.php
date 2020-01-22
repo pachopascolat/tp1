@@ -244,6 +244,21 @@ class PdfReportController extends Controller {
                     'model' => $model,
         ]);
     }
+    public function actionUpdatePdf($id) {
+//        $vidriera = \common\models\Vidriera::findOne($vidriera_id);
+        $model = PdfReport::findOne($id);
+        $vidriera = $model->vidriera;
+        if ($model->load(Yii::$app->request->post())) {
+            $model->nombre_pdf = \common\models\Vidriera::findOne($model->vidriera_pdf)->nombre. " - PDF";
+            if ($this->report($vidriera, $model)) {
+                $vidriera->nombre = $model->nombre_pdf;
+                return $this->redirect(['index']);
+            }
+        }
+        return $this->render('createPdf', [
+                    'model' => $model,
+        ]);
+    }
 
     /**
      * Updates an existing PdfReport model.
@@ -252,17 +267,17 @@ class PdfReportController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdatePdf($id) {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        }
-
-        return $this->render('updatePdf', [
-                    'model' => $model,
-        ]);
-    }
+//    public function actionUpdatePdf($id) {
+//        $model = $this->findModel($id);
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['index']);
+//        }
+//
+//        return $this->render('createPdf', [
+//                    'model' => $model,
+//        ]);
+//    }
 
     public function actionUpdate($id) {
         $model = $this->findModel($id);
