@@ -88,7 +88,7 @@ echo $this->render('cart', ['id_carrito' => $carrito->id_carrito]);
         </div>
     </div>
 </div>
-<!--<div id="pedido-facturacion" class="modal" tabindex="-1" role="dialog">
+<div id="pedido-facturacion" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
@@ -96,11 +96,11 @@ echo $this->render('cart', ['id_carrito' => $carrito->id_carrito]);
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <?php // echo $this->render('_clientePedido', ['categoria_padre' => $categoria_padre, 'model' => $model, 'carrito' => $carrito]); ?>
+                <?php echo $this->render('_clientePedido', ['model' => $model, 'carrito' => $carrito]); ?>
             </div>
         </div>
     </div>
-</div>-->
+</div>
 
 
 

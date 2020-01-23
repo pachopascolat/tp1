@@ -2,7 +2,7 @@
 <?php foreach ($items as $item): ?>
     <?php if ($item): ?>
         <?php 
-        $url = Yii::$app->imagemanager->getImagePath($item->imagen_id ?? null) 
+        $url = Yii::$app->imagemanager->getImagePath($item->imagen_id ?? null,500,500); 
                 ?>
 
         <div id="item-modal-<?= $item->id_item_vidriera ?? '' ?>" class="modal p-3" tabindex="-1" role="dialog">
