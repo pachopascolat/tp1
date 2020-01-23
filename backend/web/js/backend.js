@@ -4,36 +4,35 @@ $(document).ready(function () {
                 // ... more custom settings?
     });
     lazyLoadInstance.update();
-
-
 //borrar todo
 
     $('.items-borrar-todo').click(function () {
-        var idList = [];
-        var delbtn = $('.items-vidrieras .delete-item-btn');
-        delbtn.each(function(){
-            idList.push($(this).data('id-item'));
-        });
-        $.pjax.reload({
-            push: false,
-            replace: false,
-            url: '/admin/vidriera/delete-all-items',
-            type: 'POST',
-            data: {ids: idList},
-            container: '#item-vidriera-pjax',
-            timeout: false,
-            async: false,
+        bootbox.confirm("Esta seguro de borrar todos los items?", function (result) {
+            if (result) {
+                var idList = [];
+                var delbtn = $('.items-vidrieras .delete-item-btn');
+                delbtn.each(function () {
+                    idList.push($(this).data('id-item'));
+                });
+                $.pjax.reload({
+                    push: false,
+                    replace: false,
+                    url: '/admin/vidriera/delete-all-items',
+                    type: 'POST',
+                    data: {ids: idList},
+                    container: '#item-vidriera-pjax',
+                    timeout: false,
+                    async: false,
+                })
+            }
         })
     });
-
-
 // deseleccionar todo
 
     $(".items-vidrieras-div .modal").on('hidden.bs.modal', function () {
         $('.selectable').prop('disabled', true);
         $('.selected').removeClass('selected');
     });
-
 //agregar items
 
     $('.items-vidrieras-div .agregar-item-btn').click(function () {
@@ -50,7 +49,6 @@ $(document).ready(function () {
         })
         $('.modal').modal('hide');
     });
-
 //filtrar por tela y articulo
 
     $('.modal .filters').on('change', function () {
@@ -64,7 +62,6 @@ $(document).ready(function () {
             timeout: false,
         })
     });
-
 //filtrar imagenes de galeria
 
     $('.modal .galery-filter').on('change', function () {
@@ -78,7 +75,6 @@ $(document).ready(function () {
             timeout: false,
         })
     });
-
     //cambiar la imagen del item
 
     $('.items-vidrieras-div .cambiar-imagen-btn').on('click', function () {
@@ -94,7 +90,6 @@ $(document).ready(function () {
         })
         $('.modal').modal('hide');
     });
-
     //seleccionar los items nuevos
 
 
@@ -110,8 +105,6 @@ $(document).on('pjax:success', function () {
                 // ... more custom settings?
     });
     lazyLoadInstance.update();
-
-
 // seleccionar items nuevos
 
 

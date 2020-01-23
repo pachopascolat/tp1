@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = ['label' => $vidriera->nombre, 'url' => ['orden
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-nuevo-item">
             Agregar Item
         </button>
-        <button data-confirm="Esta seguro que desea borrar todos los items?"  type="button" class="btn btn-danger items-borrar-todo">
+        <button type="button" class="btn btn-danger items-borrar-todo">
             Borrar Todo
         </button>
 

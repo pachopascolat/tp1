@@ -49,6 +49,7 @@ class PdfReport extends \yii\db\ActiveRecord {
             [['imageFile', 'header', 'header2'], 'file', 'skipOnEmpty' => true,
 //                'extensions' => 'png, jpg,jpeg','JPG','JPEG','PNG'
             ],
+            [['vidriera_pdf'],'required'],
             [['timestamp_pdf', 'guardar', 'header', 'header2'], 'safe'],
             [['nombre_pdf'], 'string'],
             [['nombre_pdf'], 'required'],
