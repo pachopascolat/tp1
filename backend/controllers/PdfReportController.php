@@ -139,12 +139,12 @@ class PdfReportController extends Controller {
         $pdf = new Pdf2($options);
         if ($model->header) {
             $pages = array_chunk($alldata, 12);
-            $pdf->addPage($this->renderPartial('_reportPrimera', ['model'=>$model,'data' => $pages[0], 'nro' => 1, 'header' => $model->getHeaderName(1)]));
+            $pdf->addPage($this->renderPartial('_reportPrimera', ['model' => $model, 'data' => $pages[0], 'nro' => 1, 'header' => $model->getHeaderName(1)]));
             $alldata = array_slice($alldata, 12);
         }
         $pages = array_chunk($alldata, 16);
         foreach ($pages as $nro => $page) {
-            $pdf->addPage($this->renderPartial('_report', ['model'=>$model,'data' => $page, 'nro' => $nro, 'header2' => $model->getHeaderName(2)]));
+            $pdf->addPage($this->renderPartial('_report', ['model' => $model, 'data' => $page, 'nro' => $nro, 'header2' => $model->getHeaderName(2)]));
         }
 //        return $this->renderPartial('_report', ['data' => $pages[0]]);
 
@@ -216,7 +216,7 @@ class PdfReportController extends Controller {
 //    }
 
     public function actionCreateVidrieraPdf() {
-        $vidrieraPdf = new \common\models\Vidriera(['categoria_id' => \common\models\Categoria::PDF,'nombre'=>'Vidriera PDF']);
+        $vidrieraPdf = new \common\models\Vidriera(['categoria_id' => \common\models\Categoria::PDF, 'nombre' => 'Vidriera PDF']);
         $vidrieraPdf->save();
         return $this->redirect(['/vidriera/ordenar-vidriera', 'id' => $vidrieraPdf->id_vidriera]);
     }
@@ -234,7 +234,7 @@ class PdfReportController extends Controller {
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->nombre_pdf = \common\models\Vidriera::findOne($model->vidriera_pdf)->nombre. " - PDF";
+            $model->nombre_pdf = \common\models\Vidriera::findOne($model->vidriera_pdf)->nombre . " - PDF";
             if ($this->report($vidriera, $model)) {
                 $vidriera->nombre = $model->nombre_pdf;
                 return $this->redirect(['index']);
@@ -244,12 +244,13 @@ class PdfReportController extends Controller {
                     'model' => $model,
         ]);
     }
+
     public function actionUpdatePdf($id) {
 //        $vidriera = \common\models\Vidriera::findOne($vidriera_id);
         $model = PdfReport::findOne($id);
         $vidriera = $model->vidriera;
         if ($model->load(Yii::$app->request->post())) {
-            $model->nombre_pdf = \common\models\Vidriera::findOne($model->vidriera_pdf)->nombre. " - PDF";
+            $model->nombre_pdf = \common\models\Vidriera::findOne($model->vidriera_pdf)->nombre . " - PDF";
             if ($this->report($vidriera, $model)) {
                 $vidriera->nombre = $model->nombre_pdf;
                 return $this->redirect(['index']);
@@ -301,8 +302,10 @@ class PdfReportController extends Controller {
     public function actionDelete($id) {
         $model = $this->findModel($id);
         $vidriera = $model->vidriera;
-        $model->delete();
-        $vidriera->delete();
+        if ($model)
+            $model->delete();
+        if ($vidriera)
+            $vidriera->delete();
 
         return $this->redirect(['index']);
     }
