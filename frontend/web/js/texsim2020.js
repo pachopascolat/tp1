@@ -8,9 +8,17 @@ $(document).ready(function () {
 });
 
 
-$('.movil-search-bar .lupa-link').on('click',function(event){
+//$('.descargar-pdf-btn').click(function () {
+//    var id = $('#pdf-report-id option:selected').val();
+//    $.get({
+//        url: '/sitio/descargar-pdf?id='+id,
+//        data: {id: id},
+//    })
+//});
+
+$('.movil-search-bar .lupa-link').on('click', function (event) {
     event.preventDefault();
-    if(!$('#busqueda-movil').val()){
+    if (!$('#busqueda-movil').val()) {
         $('#busqueda-movil').focus();
         return;
     }
@@ -18,20 +26,20 @@ $('.movil-search-bar .lupa-link').on('click',function(event){
 });
 
 function stopVideo() {
-  var $frame = $('#ayuda-modal iframe');
+    var $frame = $('#ayuda-modal iframe');
 
-  // saves the current iframe source
-  var vidsrc = $frame.attr('src');
+    // saves the current iframe source
+    var vidsrc = $frame.attr('src');
 
-  // sets the source to nothing, stopping the video
-  $frame.attr('src', '');
+    // sets the source to nothing, stopping the video
+    $frame.attr('src', '');
 
-  // sets it back to the correct link so that it reloads immediately on the next window open
-  $frame.attr('src', vidsrc);
+    // sets it back to the correct link so that it reloads immediately on the next window open
+    $frame.attr('src', vidsrc);
 }
 
-$('#ayuda-modal').on('hidden.bs.modal', function(e) {
-  stopVideo();
+$('#ayuda-modal').on('hidden.bs.modal', function (e) {
+    stopVideo();
 })
 
 

@@ -26,6 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'id_pdf_report',
             'timestamp_pdf',
             'nombre_pdf',
+            [
+                'label'=>'Vidriera',
+                'attribute' => 'vidriera_pdf',
+                'value'=> 'vidrieraPdf.nombre'
+            ],
 //            'tela.nombre_tela',
             'userIdPdf.username',
             [

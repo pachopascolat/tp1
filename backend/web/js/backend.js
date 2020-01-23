@@ -6,6 +6,9 @@ $(document).ready(function () {
     lazyLoadInstance.update();
 //borrar todo
 
+
+    
+
     $('.items-borrar-todo').click(function () {
         bootbox.confirm("Esta seguro de borrar todos los items?", function (result) {
             if (result) {

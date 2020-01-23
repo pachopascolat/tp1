@@ -284,7 +284,7 @@ class PdfReportController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_pdf_report]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -335,5 +335,6 @@ class PdfReportController extends Controller {
             }
         }
     }
+    
 
 }

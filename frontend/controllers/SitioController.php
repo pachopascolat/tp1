@@ -7,7 +7,7 @@ use Yii;
 class SitioController extends \yii\web\Controller {
 
     public function actionIndex() {
-        $searchModel = new \common\models\VidrieraSearch(['categoria_id'=>22]);
+        $searchModel = new \common\models\VidrieraSearch(['categoria_id' => 22]);
         $dataProvider = $searchModel->search(null);
         $dataProvider->getPagination()->setPageSize(7);
 //        $telas = \common\models\Vidriera::find()->where(['categoria_id' => 22])->orderBy('orden_vidriera')->all();
@@ -32,11 +32,11 @@ class SitioController extends \yii\web\Controller {
     }
 
     public function actionPorCategoria($id_categoria) {
-        if($id_categoria==1 || $id_categoria ==2){
-                    $_SESSION['categoria_padre'] = $id_categoria;
+        if ($id_categoria == 1 || $id_categoria == 2) {
+            $_SESSION['categoria_padre'] = $id_categoria;
         }
         set_time_limit(12000);
-        $searchModel = new \common\models\VidrieraSearch(['categoria_id'=>$id_categoria,'categoria_padre'=>$id_categoria]);
+        $searchModel = new \common\models\VidrieraSearch(['categoria_id' => $id_categoria, 'categoria_padre' => $id_categoria]);
         $dataProvider = $searchModel->search(null);
         $dataProvider->getPagination()->setPageSize(7);
         $telas = \common\models\Vidriera::find()->joinWith('categoria')->where(['categoria_id' => $id_categoria])->orWhere(['categoria_padre' => $id_categoria])->limit(7)->orderBy('categoria_id, orden_vidriera')->all();
@@ -44,11 +44,11 @@ class SitioController extends \yii\web\Controller {
     }
 
     public function actionPorVidriera($id) {
-        $searchModel = new \common\models\ItemVidrieraSearch(['vidriera_id'=>$id]);
+        $searchModel = new \common\models\ItemVidrieraSearch(['vidriera_id' => $id]);
         $dataProvider = $searchModel->search(null);
         $dataProvider->getPagination()->setPageSize(50);
         $vidriera = \common\models\Vidriera::findOne($id);
-        return $this->render('porVidriera', ['vidriera' => $vidriera,'dataProvider'=>$dataProvider,'searchModel'=>$searchModel]);
+        return $this->render('porVidriera', ['vidriera' => $vidriera, 'dataProvider' => $dataProvider, 'searchModel' => $searchModel]);
     }
 
     public function beforeAction($action) {
@@ -164,8 +164,8 @@ class SitioController extends \yii\web\Controller {
         return $this->render('busqueda', ['vidrieras' => $vidrieras, 'busqueda' => $busqueda]);
     }
 
-     public function actionDescargarPdf($id,$vidriera_id) {
-        $pdf = \common\models\PdfReport::findOne($id);
+    public function actionDescargarPdf() {
+        $pdf = \common\models\PdfReport::findOne(Yii::$app->request->post("PdfReport")['id_pdf_report']);
         if ($pdf) {
             $path = Yii::getAlias('@backend') . '/uploads/pdf-report';
             $file = $path . "/$pdf->id_pdf_report.pdf";
@@ -173,7 +173,11 @@ class SitioController extends \yii\web\Controller {
                 return Yii::$app->response->sendFile($file, $pdf->nombre_pdf . ".pdf");
             }
         }
-        return $this->redirect(['por-vidriera','id'=>$vidriera_id]);
+        if (Yii::$app->request->referrer) {
+            return $this->redirect(Yii::$app->request->referrer);
+        } else {
+            return $this->goHome();
+        }
     }
-    
+
 }
