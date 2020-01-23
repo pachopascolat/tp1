@@ -4,7 +4,7 @@ use yii\widgets\ActiveForm;
 ?>
 <div id="cambiar-imagen-<?= $model->id_articulo ?>" class="modal" tabindex="-1" role="dialog">
     <?php $form = ActiveForm::begin(['id' => 'image-form-' . $model->id_articulo, 'action' => ['update-image', 'id' => $model->id_articulo]]) ?>
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content ">
             <div class="modal-header">
                 <h3 class="modal-title">Cambiar Imagen</h3>

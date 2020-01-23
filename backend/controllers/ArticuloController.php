@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use yii\filters\AccessControl;
+
 /**
  * ArticuloController implements the CRUD actions for Articulo model.
  */
@@ -116,13 +117,18 @@ class ArticuloController extends Controller {
                     'model' => $model,
         ]);
     }
+
     public function actionUpdateImage($id) {
         $model = $this->findModel($id);
 
-        if ($image = Yii::$app->request->post("imagen$model->id_articulo")){
+        if ($image = Yii::$app->request->post("imagen$model->id_articulo")) {
             $model->imagen_id = $image;
-            $model->save(); 
-            return $this->redirect(['index', 'ArticuloSearch[nombre_color]' => $model->nombre_color]);
+            $model->save();
+            if (Yii::$app->request->referrer) {
+                return $this->redirect(Yii::$app->request->referrer);
+            } else {
+                return $this->redirect(['index', 'ArticuloSearch[nombre_color]' => $model->nombre_color]);
+            }
         }
 
 //        return $this->render('update', [
