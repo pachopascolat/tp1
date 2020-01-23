@@ -38,11 +38,11 @@
                 <div class="w-100 d-flex justify-content-end">
                     <ul class="navbar-nav navbar-expand">
                         <li class="nav-item">
-                            <a class="" href="#">Novedades</a>
+                            <a class="" href="<?= \yii\helpers\Url::to(['/sitio/por-categoria','id_categoria'=> common\models\Categoria::NOVEDADES])?>">Novedades</a>
                         </li>
-                        <li class="nav-item">
+<!--                        <li class="nav-item">
                             <a class="" href="#">Mis Consultas</a>
-                        </li>
+                        </li>-->
                         <li class="nav-item">
                             <a class="" href="#" data-toggle="modal" data-target="#ayuda-modal">Ayuda</a>
                         </li>
@@ -52,7 +52,7 @@
                         <li class="nav-item navbar-icon-link">
                             <div class="">
                                 <?php if (Yii::$app->user->isGuest) : ?>
-                                    <a class="text-white" data-toggle="modal" data-target="#login-modal">
+                                <a class="text-white" data-toggle="modal" data-target="#login-modal">
                                         <i style="" class="fas fa-lock"></i>
                                         <span class="d-xs-block d-sm-none">Login</span>
                                     </a>

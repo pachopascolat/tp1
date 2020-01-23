@@ -18,11 +18,11 @@
                 <table align="center">
                     <tr>
                         <td colspan="3">
-                            <h1 style="text-align: left;"><?= strtoupper($data[0]->vidriera->nombre) ?></h1>
+                            <h1 style="text-align: left;"><?= strtoupper($model->vidrieraPdf->nombre) ?></h1>
                         </td>
                         <td>
                             <h2 style="text-align: right;">
-                                <a target="_blank" class="titulo-1" href="<?= yii\helpers\Url::base(true) . "/../sitio/por-vidriera?id=" . $data[0]->vidriera_id ?>">
+                                <a target="_blank" class="titulo-1" href="<?= yii\helpers\Url::base(true) . "/../sitio/por-vidriera?id=" . $model->vidriera_pdf ?>">
                                     VER EN LA WEB
                                 </a>
                             </h2>
