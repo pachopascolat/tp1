@@ -40,9 +40,9 @@
                         <li class="nav-item">
                             <a class="" href="<?= \yii\helpers\Url::to(['/sitio/por-categoria','id_categoria'=> common\models\Categoria::NOVEDADES])?>">Novedades</a>
                         </li>
-<!--                        <li class="nav-item">
-                            <a class="" href="#">Mis Consultas</a>
-                        </li>-->
+                        <li class="nav-item">
+                            <a class="" href="#" data-toggle="modal" data-target="#pdf-report-modal">Catalogo</a>
+                        </li>
                         <li class="nav-item">
                             <a class="" href="#" data-toggle="modal" data-target="#ayuda-modal">Ayuda</a>
                         </li>
@@ -84,83 +84,8 @@
 
 </div>
 
-<div class="movil-iconos d-md-none pt-3" >
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 1]) ?>">
-                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-texsim-01.svg" alt="ketten">
-                    </a>
-                </div>
-
-            </div>
-            <div class="col">
-                <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 2]) ?>">
-                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-blanco-01.svg" alt="ketten">
-                    </a>
-                </div>
-
-            </div>
-            <div class="col">
-                <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 1]) ?>">
-                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-infantil.png" alt="ketten">
-                    </a>
-                </div>
-
-            </div>
-            <div class="col">
-                <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 2]) ?>">
-                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-feria-01.svg" alt="ketten">
-
-                    </a>
-                </div>
-
-            </div>
-            <div class="col">
-                <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 1]) ?>">
-                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-cortinas.png" alt="ketten">
-
-                    </a>
-                </div>
-
-            </div>
-            <div class="col">
-                <div>
-                    <a href="<?= \yii\helpers\Url::to(['/sitio/por-categoria', 'id_categoria' => 2]) ?>">
-                        <img alt="icono" class="w-100" src="<?= yii\helpers\Url::base(true) ?>/img2020/categorias-movil-vermas-01.svg" alt="ketten">
-
-                    </a>
-                </div>
-
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col text-center text-nowrap">
-                <span >Telas</span>
-            </div>
-            <div class="col text-center text-nowrap">
-                <span >Sabaneria</span>
-            </div>
-            <div class="col text-center text-nowrap">
-                <span >Infantil</span>
-            </div>
-            <div class="col text-center text-nowrap">
-                <span >Moda</span>
-            </div>
-            <div class="col text-center text-nowrap">
-                <span >Cortinas</span>
-            </div>
-            <div class="col text-center text-nowrap">
-                <span >Ver mas</span>
-            </div>
-        </div>
-    </div>
-</div>
+<?= $this->render('_movil_iconos')?>
+<?= $this->render('_modal_pdf')?>
 
 
 <div id="login-modal" class="modal" tabindex="-1" role="dialog">
