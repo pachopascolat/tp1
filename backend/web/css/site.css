@@ -2,8 +2,8 @@
     background: rgb(255,0,0,0.9) !important;
 }
 
-.modal-body {
-    /*max-height: calc(100vh - 212px);*/
+#modal-nuevo-item .modal-body {
+    max-height: calc(100vh - 212px);
     overflow-y: auto;
 }
 

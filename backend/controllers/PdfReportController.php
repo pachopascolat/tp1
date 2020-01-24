@@ -234,9 +234,10 @@ class PdfReportController extends Controller {
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->nombre_pdf = \common\models\Vidriera::findOne($model->vidriera_pdf)->nombre . " - PDF";
+            $model->nombre_pdf = \common\models\Vidriera::findOne($model->vidriera_pdf)->nombre;
             if ($this->report($vidriera, $model)) {
-                $vidriera->nombre = $model->nombre_pdf;
+                $vidriera->nombre = $model->nombre_pdf . " - VIDRIERA PDF";
+                $vidriera->save();
                 return $this->redirect(['index']);
             }
         }
@@ -335,6 +336,5 @@ class PdfReportController extends Controller {
             }
         }
     }
-    
 
 }

@@ -29,6 +29,15 @@ use yii\widgets\ActiveForm;
 
     <?php //  $form->field($model, 'estado')->textInput(['placeholder' => 'Estado']) ?>
 
+     <?php
+                echo $form->field($model, "imagen_id")->widget(\noam148\imagemanager\components\ImageManagerInputWidget::className(), [
+//                            'aspectRatio' => (16 / 9), //set the aspect ratio
+                    'cropViewMode' => 1, //crop mode, option info: https://github.com/fengyuanchen/cropper/#viewmode
+                    'showPreview' => true, //false to hide the preview
+                    'showDeletePickedImageConfirm' => false, //on true show warning before detach image
+                    
+                ]);
+                ?>
     <?php
     if ($model->categoria_id != common\models\Categoria::findOne(['nombre_categoria'=>'PDF'])->id_categoria) {
         echo
@@ -42,6 +51,8 @@ use yii\widgets\ActiveForm;
     }
     ?>
 
+    
+    
     <?php //  $form->field($model, 'orden_vidriera')->textInput(['placeholder' => 'Orden Vidriera']) ?>
 
     <?php
