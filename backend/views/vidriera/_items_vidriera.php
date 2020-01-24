@@ -7,12 +7,23 @@
 //        'enableReplaceState' => false,
     ])
     ?>
-    <script>
-
-    </script>
+   
 
     <?php
     $js = "
+            $('.items-vidrieras .text-danger, .items-vidrieras .text-warning').dblclick(function(){
+                var id = $(this).data('id-item');
+                $.pjax.reload({
+                            push: false,
+                            replace: false,
+                            url: '/admin/vidriera/toggle-visible?id='+id,
+                            type: 'POST',
+                            data: {id: id},
+                            container: '#item-vidriera-pjax',
+                            timeout: false,
+                            async: false,
+                        })
+            }),
             
                 
       
@@ -75,7 +86,15 @@
                     <i class="fa fa-image fa-2x"></i>
                 </a>
                 </button>
-                <span class="<?= $item->articulo->existencia ? '' : 'text-danger' ?>"><?= "{$item->articulo->codigo_color} {$item->articulo->nombre_color}" ?></span>
+                <?php
+                    $textClass = "";
+                    if($item->visible){
+                        $textClass = 'text-warning';
+                    }else if(!$item->articulo->existencia){
+                        $textClass = 'text-danger';
+                    }
+                ?>
+                <span data-id-item="<?= $item->id_item_vidriera ?>" class="<?= $textClass ?>"><?= "{$item->articulo->codigo_color} {$item->articulo->nombre_color}" ?></span>
             </div>
 
         <?php endforeach; ?>    

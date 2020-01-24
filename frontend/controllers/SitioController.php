@@ -45,7 +45,7 @@ class SitioController extends \yii\web\Controller {
 
     public function actionPorVidriera($id) {
         $searchModel = new \common\models\ItemVidrieraSearch(['vidriera_id' => $id]);
-        $dataProvider = $searchModel->search(null);
+        $dataProvider = $searchModel->searchConStock(null);
         $dataProvider->getPagination()->setPageSize(50);
         $vidriera = \common\models\Vidriera::findOne($id);
         return $this->render('porVidriera', ['vidriera' => $vidriera, 'dataProvider' => $dataProvider, 'searchModel' => $searchModel]);

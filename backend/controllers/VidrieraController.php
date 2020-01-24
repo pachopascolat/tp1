@@ -42,14 +42,14 @@ class VidrieraController extends Controller {
      * Lists all Vidriera models.
      * @return mixed
      */
-    public function actionIndex($categoria_id=1) {
+    public function actionIndex($categoria_id = 1) {
         $categoria_padre = \common\models\Categoria::findOne($categoria_id);
         $categoria = $categoria_padre->id_categoria;
 //        $categoria = \yii\helpers\ArrayHelper::getColumn($categorias, 'id_categoria');
         $searchModel = new VidrieraSearch([
-            'categoria_id'=>$categoria_id,
+            'categoria_id' => $categoria_id,
 //            'categoria_id'=>$categoria
-                ]);
+        ]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -57,17 +57,17 @@ class VidrieraController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
-    
+
     public function actionIndexPorCategoria() {
         if (isset($_POST['expandRowKey'])) {
-        $searchModel = new VidrieraSearch(['categoria_id'=>$_POST['expandRowKey']]);
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $searchModel = new VidrieraSearch(['categoria_id' => $_POST['expandRowKey']]);
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->renderPartial('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
-        ]);
-        }else{
+            return $this->renderPartial('index', [
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
+            ]);
+        } else {
             return '<div class="alert alert-danger">No data found</div>';
         }
     }
@@ -93,8 +93,8 @@ class VidrieraController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($categoria_id=null) {
-        $model = new Vidriera(['categoria_id'=>$categoria_id]);
+    public function actionCreate($categoria_id = null) {
+        $model = new Vidriera(['categoria_id' => $categoria_id]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['ordenar-vidriera', 'id' => $model->id_vidriera]);
@@ -104,9 +104,10 @@ class VidrieraController extends Controller {
             ]);
         }
     }
+
     public function actionCreatePdf() {
-        $catPdf = \common\models\Categoria::findOne(['nombre_categoria'=>'PDF']);
-        $model = new Vidriera(['categoria_id'=> \common\models\Categoria::PDF]);
+        $catPdf = \common\models\Categoria::findOne(['nombre_categoria' => 'PDF']);
+        $model = new Vidriera(['categoria_id' => \common\models\Categoria::PDF]);
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['ordenar-vidriera', 'id' => $model->id_vidriera]);
@@ -243,6 +244,18 @@ class VidrieraController extends Controller {
         ]);
     }
 
+    public function actionToggleVisible($id) {
+        $item = \common\models\ItemVidirera::findOne($id);
+        $vidriera = $item->vidriera ?? null;
+        if ($item) {
+            $item->visible = !$item->visible;
+            $item->save();
+        }
+        return $this->renderAjax('_items_vidriera', [
+                    'vidriera' => $vidriera,
+        ]);
+    }
+
     public function actionDeleteAllItems() {
         $vidriera = new Vidriera();
         if ($ids = \Yii::$app->request->post('ids')) {
@@ -305,8 +318,5 @@ class VidrieraController extends Controller {
 //                    'vidriera' => $vidriera,
 //        ]);
     }
-    
-    
-    
 
 }

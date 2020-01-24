@@ -1,5 +1,11 @@
 .text-danger{
     background: rgb(255,0,0,0.9) !important;
+    cursor: pointer;
+}
+
+.text-warning{
+    background: rgb(255,165,0,0.9) !important;
+    cursor: pointer;
 }
 
 #modal-nuevo-item .modal-body {

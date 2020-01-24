@@ -74,5 +74,6 @@ class VidrieraSearch extends Vidriera {
 
         return $dataProvider;
     }
+    
 
 }

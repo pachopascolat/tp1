@@ -33,6 +33,7 @@ class ItemVidirera extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
+            [['visible'],'boolean'],
             [['articulo_id', 'imagen_id', 'vidriera_id', 'orden_item_vidriera', 'ranking'], 'integer'],
             [['imagen_id'], 'exist', 'skipOnError' => true, 'targetClass' => ImageManager::className(), 'targetAttribute' => ['imagen_id' => 'id']],
             [['articulo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articulo::className(), 'targetAttribute' => ['articulo_id' => 'id_articulo']],

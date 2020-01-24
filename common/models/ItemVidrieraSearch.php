@@ -65,5 +65,37 @@ class ItemVidrieraSearch extends ItemVidirera {
 
         return $dataProvider;
     }
+    public function searchConStock($params) {
+        $query = ItemVidirera::find()->joinWith('articulo');
+        $query->where(['existencia'=>1]);
+        $query->orWhere(['visible'=>true]);
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => ['defaultOrder' => ['orden_item_vidriera' => SORT_ASC]]
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id_item_vidriera' => $this->id_item_vidriera,
+            'articulo_id' => $this->articulo_id,
+            'imagen_id' => $this->imagen_id,
+            'vidriera_id' => $this->vidriera_id,
+            'orden_item_vidriera' => $this->orden_item_vidriera,
+            'ranking' => $this->ranking,
+        ]);
+
+        return $dataProvider;
+    }
 
 }
