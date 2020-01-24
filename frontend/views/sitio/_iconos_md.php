@@ -1,5 +1,5 @@
 <?php
-$iconos = common\models\Vidriera::find()->where(['categoria_id' => common\models\Categoria::ICONOS])->limit(12)->all();
+$iconos = common\models\Vidriera::find()->where(['categoria_id' => common\models\Categoria::ICONOS])->limit(12)->orderBy('orden_vidriera')->all();
 $iconosFilas = array_chunk($iconos, 6);
 ?>
 
