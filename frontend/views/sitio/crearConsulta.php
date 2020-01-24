@@ -37,7 +37,7 @@ echo $this->render('cart', ['id_carrito' => $carrito->id_carrito]);
 
                                         <?php
                                         $form = \yii\widgets\ActiveForm::begin([
-                                                    'enableAjaxValidation' => true,
+//                                                    'enableAjaxValidation' => true,
                                         ]);
                                         ?>
                                         <div class="form-group">

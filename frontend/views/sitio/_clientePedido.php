@@ -19,8 +19,8 @@
                         <!--<form action="customer-orders.html" method="get">-->
                         <?php
                         $form = \yii\widgets\ActiveForm::begin([
-                                    'enableAjaxValidation' => true,
-//                                    'action' => ['pedido-facturacion', 'categoria_padre' => $categoria_padre]
+//                                    'enableAjaxValidation' => true,
+                                    'action' => ['pedido-facturacion']
                         ]);
                         ?>
                         <!--                            <div class="form-group">

@@ -180,4 +180,38 @@ class SitioController extends \yii\web\Controller {
         }
     }
 
+    function actionCrearConsultaWhatsApp() {
+        $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+        if ($carrito == null) {
+            if (Yii::$app->request->referrer) {
+                return $this->redirect(Yii::$app->request->referrer);
+            } else {
+                return $this->goHome();
+            }
+        }
+        if ($carrito->cliente_id == null) {
+            $model = new \common\models\Cliente();
+        } else {
+            $model = \common\models\Cliente::findOne($carrito->cliente_id);
+        }
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $carrito->cliente_id = $model->id_cliente;
+            $carrito->confirmado = true;
+            $carrito->save();
+            $carrito->sendMail();
+            $_SESSION['carrito'] = '';
+            $mensaje = rawurlencode($carrito->getConsultaWhatsApp());
+            $url = "https://api.whatsapp.com/send?phone=541135386219&text=" . $mensaje . "&source=&data=#";
+            return $this->redirect(['ir-whats-app', 'url' => $url]);
+        }
+
+        return $this->render('crearConsulta', ['categoria_padre' => $categoria_padre, 'model' => $model, 'carrito' => $carrito]);
+    }
+
+    function actionIrWhatsApp($url) {
+        return $this->render('irWhatsapp', ['url' => $url]);
+    }
+
 }
