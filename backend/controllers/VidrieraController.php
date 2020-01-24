@@ -96,7 +96,7 @@ class VidrieraController extends Controller {
     public function actionCreate($categoria_id=null) {
         $model = new Vidriera(['categoria_id'=>$categoria_id]);
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['ordenar-vidriera', 'id' => $model->id_vidriera]);
         } else {
             return $this->render('create', [
@@ -126,8 +126,8 @@ class VidrieraController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->id_vidriera]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index', 'categoria_id' => $model->categoria_id]);
         } else {
             return $this->render('update', [
                         'model' => $model,
