@@ -14,7 +14,7 @@ $iconosFilas = array_chunk($iconos, 8);
                         <a href="<?= \yii\helpers\Url::to(['/sitio/por-vidriera', 'id' => $vidriera->id_vidriera]) ?>">
                             <div class="icono-div">
                                 <img alt="icono" class="lazy w-100" data-src="<?= \Yii::$app->imagemanager->getImagePath($vidriera->imagen_id) ?>" alt="<?=$vidriera->nombre?>">
-                                <!--<span class="w-100 icono-nombre text-center"><?= $vidriera->nombre ?></span>-->
+                                <span class="w-100 icono-nombre text-center"><?= $vidriera->nombre ?></span>
                             </div>
                         </a>
                     </div>
