@@ -20,11 +20,12 @@
         foreach ($carrito->itemCarritos as $item):
             ?>
             <tr>
-                <td><?= $item->articulo->articulo->tela->codigo_tela ?></td>
-                <td><?= $item->articulo->articulo->codigo_color ?></td>
+                <td><?= $item->articulo->tela->codigo_tela ?? 'vacio' ?></td>
+                <td><?= $item->articulo->codigo_color ?? 'vacio' ?></td>
                 <td><?php
                     $web = yii\helpers\Url::base('https');
-                    $url = $item->articulo->getFrontFullUrl();
+                    $url = \yii\helpers\Url::base(true) . Yii::$app->imagemanager->getImagePath($item->imagen_id, 80, 80);
+//                    $url = $item->articulo->getFrontFullUrl();
 //                    $path = $url;
 //                    $parts = explode('/', $path);
 //                    $parts = array_slice($parts, 3);
@@ -36,10 +37,10 @@
                 </td>
 
 
-                
-                <td><?= $item->articulo->articulo->tela->nombre_tela ?></td>
+
+                <td><?= $item->articulo->tela->nombre_tela??'vacio' ?></td>
                 <td>
-                    <?= $item->articulo->articulo->nombre_color; ?>
+                    <?= $item->articulo->nombre_color??'vacio'; ?>
                 </td>
                 <td><?= $item->cantidad ?></td>
 

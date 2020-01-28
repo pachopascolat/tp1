@@ -50,36 +50,26 @@ if ($_SESSION['carrito'] != ''):
                         foreach ($carrito->itemCarritos as $key => $item):
                             
                             ?>
-
-<!--                            <tr class="d-sm-none">
-                                <td colspan="5">
-                                    <div class="cart-title text-left">
-                                        <a  class="text-uppercase text-dark">
-                                            <strong> <?= $item->articulo->articulo->tela->nombre_tela ?></strong>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>-->
                         <tr id="<?=$item->id_item_carrito?>" class="cart-item text-center">
                                 <td class="align-middle d-none d-md-table-cell">
-                                    <strong> <?= $item->articulo->articulo->tela->codigo_tela  ?></strong>
+                                    <strong> <?= $item->articulo->tela->codigo_tela??''  ?></strong>
                                 </td>
                                 <td class="align-middle d-none d-md-table-cell">
-                                    <strong> <?= $item->articulo->articulo->codigo_color  ?></strong>
+                                    <strong> <?= $item->articulo->codigo_color??''  ?></strong>
                                 </td>
                                 <td class="align-middle">
                                     <div class="imagen-carrito">
                                         <div class="codigo-centrado d-md-none">
-                                            <strong > <?= $item->articulo->articulo->codigo_color ?></strong>
+                                            <strong > <?= $item->articulo->codigo_color??'' ?></strong>
                                         </div>
-                                        <img src="<?=Yii::$app->imagemanager->getImagePath($item->articulo->imagen_id, 120, 120); ?>" alt="..." class="cart-item-img lazy">
+                                        <img src="<?=Yii::$app->imagemanager->getImagePath($item->imagen_id, 120, 120)??''; ?>" alt="..." class="cart-item-img lazy">
                                     </div>
                                 </td>
                                 <td class="align-middle d-none d-sm-table-cell ">
                                     <div class="cart-title text-left">
                                         <a  class="text-uppercase text-dark">
-                                            <strong> <?= $item->articulo->articulo->tela->nombre_tela ?></strong>
-                                            <strong> <?= $item->articulo->articulo->nombre_color ?></strong>
+                                            <strong> <?= $item->articulo->tela->nombre_tela??'' ?></strong>
+                                            <strong> <?= $item->articulo->nombre_color??'' ?></strong>
                                         </a>
                                     </div>
                                 </td>

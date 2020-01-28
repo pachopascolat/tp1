@@ -73,9 +73,9 @@ class Carrito extends \yii\db\ActiveRecord {
                 foreach ($this->itemCarritos as $item) {
                     $cant = $item->cantidad;
 //                    $img = GalleryImage::findOne($item->disenio_id);
-                    $codigo_diseño = $item->articulo->articulo->codigo_color;
-                    $nombre_color = $item->articulo->articulo->nombre_color;
-                    $tela = $item->articulo->articulo->tela;
+                    $codigo_diseño = $item->articulo->codigo_color;
+                    $nombre_color = $item->articulo->nombre_color;
+                    $tela = $item->articulo->tela;
 //                    $tipo = $item->getTipoTela();
                     $mensaje .= "$cant rollos de $tela->nombre_tela $nombre_color / cod_tela:$tela->codigo_tela cod_color:$codigo_diseño \n";
                 }

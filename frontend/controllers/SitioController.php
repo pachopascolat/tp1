@@ -78,10 +78,12 @@ class SitioController extends \yii\web\Controller {
         $session = Yii::$app->session;
         $data = \Yii::$app->request->post();
         $id = $data['id'];
+        $imagen_id = $data['imagen_id'];
         $cantidad = $data['cantidad'];
         $item = new \common\models\ItemCarrito([
             'carrito_id' => $session['carrito'],
             'cantidad' => $cantidad,
+            'imagen_id' => $imagen_id,
             'articulo_id' => $id]);
         $item->save();
 

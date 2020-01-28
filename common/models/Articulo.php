@@ -165,4 +165,11 @@ class Articulo extends \yii\db\ActiveRecord {
 //        return $this->redirect('ver-stock');
     }
 
+    public function getFrontFullUrl($width=120,$height=120) {
+        
+        $url =  \yii\helpers\Url::base(true).Yii::$app->imagemanager->getImagePath($this->imagen_id, $width, $height);
+        return $url;
+        
+    }
+    
 }
