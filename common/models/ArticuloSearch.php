@@ -75,7 +75,7 @@ class ArticuloSearch extends Articulo {
         $query->andFilterWhere([
             'id_articulo' => $this->id_articulo,
             'tela_id' => $this->tela_id,
-            
+            'codigo_color'=> $this->codigo_color,
             'imagen_id' => $this->imagen_id,
             'existencia' => $this->existencia,
             'estado' => $this->estado,

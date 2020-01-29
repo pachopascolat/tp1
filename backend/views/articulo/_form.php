@@ -35,6 +35,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'existencia')->textInput() ?>
 
     <?= $form->field($model, 'estado')->textInput() ?>
+    <?= $form->field($model, 'ranking')->textInput() ?>
 
     <?= $form->field($model, 'nombre_articulo')->textInput(['maxlength' => true]) ?>
 
