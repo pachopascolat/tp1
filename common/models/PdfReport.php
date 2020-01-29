@@ -14,6 +14,7 @@ use mikehaertl\wkhtmlto\Pdf as Pdf2;
  * @property int $tela_id
  * @property int $user_id_pdf
  * @property string $nombre_pdf
+ * @property boolean $publicado
  * 
  *
  * @property Tela $tela
@@ -46,10 +47,11 @@ class PdfReport extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
+            [['publicado'],'boolean'],
             [['imageFile', 'header', 'header2'], 'file', 'skipOnEmpty' => true,
 //                'extensions' => 'png, jpg,jpeg','JPG','JPEG','PNG'
             ],
-            [['vidriera_pdf'],'required'],
+//            [['vidriera_pdf'],'required'],
             [['timestamp_pdf', 'guardar', 'header', 'header2'], 'safe'],
             [['nombre_pdf'], 'string'],
             [['nombre_pdf'], 'required'],

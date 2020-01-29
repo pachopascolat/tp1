@@ -1,6 +1,8 @@
 
+
+
 .icono-div{
-  position: relative;  
+    position: relative;  
 }
 
 .icono-nombre{
@@ -496,6 +498,15 @@ a:hover{
         width: 85% !important
     }
 }
+
+@media (max-height: 550px){
+    .modal-sidebar .modal-content{
+        height: 450px !important;
+        overflow: auto;
+    }
+}
+
+
 
 /*fila imagen redes*/
 

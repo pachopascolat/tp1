@@ -42,6 +42,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a('Editar', ['update-pdf','id'=>$model->id_pdf_report], ['class' => 'btn btn-warning']);
                 }
             ],
+                    [
+                        'attribute'=>'publicado',
+                        'format'=>'raw',
+                        'value'=>function($model){
+                            $texto = $model->publicado?'no publicar':'Publicar';
+                            $color = $model->publicado?'btn-danger':'btn-primary';
+                            
+                            return Html::a($texto, ['toggle-publicar','id'=>$model->id_pdf_report], ['class'=>"btn $color"]);
+                        }
+                    ],
             [
                 'label' => 'Descargar',
                 'format' => 'raw',

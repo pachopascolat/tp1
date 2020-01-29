@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <?php
-                $pdfs = \common\models\PdfReport::find()->orderBy('nombre_pdf')->all();
+                $pdfs = \common\models\PdfReport::find()->where(['publicado'=>true])->orderBy('nombre_pdf')->all();
                 $items = yii\helpers\ArrayHelper::map($pdfs, 'id_pdf_report', 'nombre_pdf');
 //                echo yii\helpers\Html::dropDownList('pdf-report-id', null, $items,['prompt' => 'Elegí un catalogo para descargar','class'=>'form-control','id'=>'pdf-report-id']);
                 echo $form->field(new \common\models\PdfReport(), 'id_pdf_report')->dropDownList($items, ['prompt' => 'Elegí un catalogo para descargar'])->label(false);

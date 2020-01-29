@@ -336,5 +336,14 @@ class PdfReportController extends Controller {
             }
         }
     }
+    
+    public function actionTogglePublicar($id){
+        $pdf = $this->findModel($id);
+        if($pdf){
+            $pdf->publicado = !$pdf->publicado;
+            $pdf->save();
+        }
+        return $this->redirect(['index']);
+    }
 
 }

@@ -6,6 +6,11 @@
 
 
 
+.modal-sidebar .modal-body{
+    height: 400px;
+    overflow: auto;
+}
+
 .more-less-link{
     color: white;
     text-decoration: none ;
