@@ -14,7 +14,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nombre_color')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tela_id')->textInput() ?>
+    <?php 
+    $telas = \common\models\Tela::find()->orderBy('nombre_tela')->all();
+    $items = yii\helpers\ArrayHelper::map($telas, 'id_tela', 'nombre_tela');
+    ?>
+    
+    <?= $form->field($model, 'tela_id')->dropDownList($items,['prompt'=>'seleccione el tipo de tela']) ?>
 
     <?= $form->field($model, 'codigo_color')->textInput() ?>
 
