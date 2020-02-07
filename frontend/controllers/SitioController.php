@@ -209,7 +209,7 @@ class SitioController extends \yii\web\Controller {
             return $this->redirect(['ir-whats-app', 'url' => $url]);
         }
 
-        return $this->render('crearConsulta', ['categoria_padre' => $categoria_padre, 'model' => $model, 'carrito' => $carrito]);
+        return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
     }
 
     function actionIrWhatsApp($url) {
