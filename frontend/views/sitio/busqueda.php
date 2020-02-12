@@ -15,24 +15,27 @@ $items = [];
 
         <?php
         foreach ($vidrieras as $vidriera):
-            ?>
-            <a href="<?= yii\helpers\Url::to(['por-vidriera', 'id' => $vidriera->id_vidriera]) ?>"><h3><?= $vidriera->nombre ?? '' ?></h3> </a>
-            <div class="d-sx-block d-md-none">
-                <?php echo $this->render('_fila_no_regular', ['items' => $vidriera->itemVidireras, 'columnas' => 2, 'filas' => 3]); ?>
-            </div>
-            <div class="d-none d-md-block d-lg-none">
-                <?php echo $this->render('_fila_regular', ['items' => $vidriera->itemVidireras, 'columnas' => 7, 'filas' => 2]); ?>
-            </div>
-            <div class="d-none d-lg-block">
-                <?php echo $this->render('_fila_regular', ['items' => $vidriera->itemVidireras, 'columnas' => 9, 'filas' => 2]); ?>
-            </div>
-            <?php echo $this->render('_modalItem', ['items' => $vidriera->itemVidireras]) ?>
+            if ($vidriera->itemsStock):
+                ?>
+                <a href="<?= yii\helpers\Url::to(['por-vidriera', 'id' => $vidriera->id_vidriera]) ?>"><h3><?= $vidriera->nombre ?? '' ?></h3> </a>
+                <div class="d-sx-block d-md-none">
+                    <?php echo $this->render('_fila_no_regular', ['items' => $vidriera->itemsStock, 'columnas' => 2, 'filas' => 3]); ?>
+                </div>
+                <div class="d-none d-md-block d-lg-none">
+                    <?php echo $this->render('_fila_regular', ['items' => $vidriera->itemsStock, 'columnas' => 7, 'filas' => 2]); ?>
+                </div>
+                <div class="d-none d-lg-block">
+                    <?php echo $this->render('_fila_regular', ['items' => $vidriera->itemsStock, 'columnas' => 9, 'filas' => 2]); ?>
+                </div>
+                <?php echo $this->render('_modalItem', ['items' => $vidriera->itemsStock]) ?>
                 <div class="d-flex justify-content-end">
                     <a class="text-dark" href="<?= yii\helpers\Url::to(['por-vidriera', 'id' => $vidriera->id_vidriera]) ?>">
                         <h5 >ver mas</h5>
                     </a>
                 </div>
-        <?php endforeach;
+                <?php
+            endif;
+        endforeach;
         ?>
     </div>
 </div>

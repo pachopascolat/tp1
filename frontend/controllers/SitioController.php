@@ -157,8 +157,10 @@ class SitioController extends \yii\web\Controller {
         $busqueda = \Yii::$app->request->get('busqueda');
         if ($busqueda != "") {
             $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')
-                            ->where(['like', 'nombre', '%' . $busqueda . '%', false])
-                            ->orWhere(['like', 'nombre_categoria', '%' . $busqueda . '%', false])->all();
+                    ->where(['like', 'nombre', '%' . $busqueda . '%', false])
+                    ->orWhere(['like', 'nombre_categoria', '%' . $busqueda . '%', false])
+                    ->andWhere(['<>', 'categoria_id', \common\models\Categoria::PDF])
+                    ->all();
         }
 //        $model = new \common\models\CategoriaSearch(['nombre_categoria'=>$busqueda]);
 //        $dataprovider = $model->search(null);
