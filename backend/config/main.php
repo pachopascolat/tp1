@@ -39,9 +39,13 @@ return [
         'imagemanager' => [
             'class' => 'noam148\imagemanager\Module',
             //set accces rules ()
-            'canUploadImage' => true,
+            'controllerMap' => [
+                'manager' => 'backend\controllers\ManagerController'
+            ],
+            'canUploadImage' => !Yii::$app->user->isGuest,
+//            'canCropImage' => !Yii::$app->user->isGuest,
             'canRemoveImage' => function() {
-                return true;
+                return !Yii::$app->user->isGuest;
             },
             'deleteOriginalAfterEdit' => false, // false: keep original image after edit. true: delete original image after edit
             // Set if blameable behavior is used, if it is, callable function can also be used
@@ -59,7 +63,7 @@ return [
     'components' => [
         'assetsAutoCompress' =>
         [
-            'class'         => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+            'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
         ],
         'imagemanager' => [
             'class' => 'noam148\imagemanager\components\ImageManagerGetPath',
