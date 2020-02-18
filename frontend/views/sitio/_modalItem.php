@@ -3,6 +3,7 @@
     <?php if ($item): ?>
         <?php 
         $url = Yii::$app->imagemanager->getImagePath($item->imagen_id ?? null,500,500); 
+        $urlBaja = Yii::$app->imagemanager->getImagePath($item->imagen_id ?? null,200,200); 
                 ?>
 
         <div id="item-modal-<?= $item->id_item_vidriera ?? '' ?>" class="modal p-3" tabindex="-1" role="dialog">
@@ -21,7 +22,7 @@
                         <div class="row">
                             <div class="col-lg-6 p-0">
                                 <div class="d-flex justify-content-center">
-                                    <img class="img-modal-item img-fluid w-100 h-100 lazy_load" data-src="<?= $url ?>">
+                                    <img src="<?=$urlBaja?>" class="img-modal-item img-fluid w-100 h-100 lazy_load" data-src="<?= $url ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6 d-flex align-items-center pl-lg-5 text-center text-lg-left">
