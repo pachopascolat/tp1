@@ -491,6 +491,12 @@ a:hover{
     .nav2-img {
         height: 60px !important;
     }
+    .icono-nombre{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0.3rem;
+    }
 }
 
 @media (max-width: 992px) {
@@ -504,6 +510,8 @@ a:hover{
         height: 450px !important;
         overflow: auto;
     }
+
+    
 }
 
 

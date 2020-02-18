@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-lg-6 p-0">
                                 <div class="d-flex justify-content-center">
-                                    <img class="img-modal-item img-fluid w-100 lazy_load" data-src="<?= $url ?>">
+                                    <img class="img-modal-item img-fluid w-100 h-100 lazy_load" data-src="<?= $url ?>">
                                 </div>
                             </div>
                             <div class="col-lg-6 d-flex align-items-center pl-lg-5 text-center text-lg-left">
