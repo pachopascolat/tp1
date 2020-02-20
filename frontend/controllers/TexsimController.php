@@ -298,5 +298,7 @@ class TexsimController extends \yii\web\Controller {
 //        $dataprovider->setPagination(false);
         return $this->render('buscar', ['telas' => $telas]);
     }
-
+    
+    
+    
 }

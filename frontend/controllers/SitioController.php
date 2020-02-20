@@ -92,6 +92,47 @@ class SitioController extends \yii\web\Controller {
 //        return $items;
     }
 
+    public function actionDatosCodigo() {
+        $session = Yii::$app->session;
+        $data = \Yii::$app->request->post();
+        $code = $data['code'];
+
+        $client = new \yii\httpclient\Client();
+        $response = $client->createRequest()
+                ->setMethod('GET')
+                ->setUrl("http://7633081eb66a.sn.mynetname.net:8000/rollo/$code")
+//                ->setData(['name' => 'John Doe', 'email' => 'johndoe@example.com'])
+                ->send();
+        if ($response->isOk) {
+            $tela_id = $response->data['articulo'];
+            $color_id = $response->data['variante'];
+            return $this->agregarDesdeCodigo($tela_id, $color_id);
+        }
+
+
+//        echo $output;
+    }
+
+    public function agregarDesdeCodigo($tela_id, $color_id) {
+        $session = Yii::$app->session;
+//        $data = \Yii::$app->request->post();
+//        $tela_id = $data['tela_id'];
+//        $color_id = intval($data['color_id']);
+        $articulo = \common\models\Articulo::find()->joinWith('tela')->where(['codigo_color' => $color_id, 'codigo_tela' => $tela_id])->one();
+//        $cantidad = $data['cantidad'];
+        if ($articulo) {
+            $item = new \common\models\ItemCarrito([
+                'carrito_id' => $session['carrito'],
+                'cantidad' => 1,
+                'imagen_id' => $articulo->imagen_id ?? null,
+                'articulo_id' => $articulo->id_articulo]);
+            $item->save();
+
+            return count($item->carrito->itemCarritos);
+        }
+        return false;
+    }
+
     function actionAumentarCantidad() {
         $key = \Yii::$app->request->post('id');
         $itemCarrito = \common\models\ItemCarrito::findOne($key);
@@ -216,6 +257,10 @@ class SitioController extends \yii\web\Controller {
 
     function actionIrWhatsApp($url) {
         return $this->render('irWhatsapp', ['url' => $url]);
+    }
+
+    function actionLeerCodigo() {
+        return $this->render('leerMatrixCode');
     }
 
 }

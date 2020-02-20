@@ -78,59 +78,59 @@ consultaguardada = function () {
     });
 }
 
-$('.cart-remove').on('click', function (event) {
-    event.preventDefault();
-    var cart = $('#cart-pjax');
-    var id = $(this).data('item-id');
-    $.ajax({
-        url: '/sitio/delete-item',
-        type: 'POST',
-        data: {id: id},
-        success: function (e) {
-            var count = $('#item-carrito-count');
-            var oldcant = count.text();
-            var newcant = parseInt(oldcant) - 1;
-            if (newcant == 0) {
-                $('.carrito-count-div').remove();
-            } else {
-                count.text(newcant);
-            }
-            $('#' + e).remove();
-        }
-    });
-});
-
-$('.btn-items-decrease').click(function () {
-    var id = $(this).data('id');
-    var input = $(this).siblings('.input-items');
-    $.post({
-        url: '/sitio/disminuir-cantidad',
-        data: {id: id},
-        success: function (e) {
-            input.val(e)
-
-        }
-    });
-});
-$('.btn-items-increase').click(function () {
-    var id = $(this).data('id');
-    var input = $(this).siblings('.input-items');
-    $.post({
-        url: '/sitio/aumentar-cantidad',
-        data: {id: id},
-        success: function (e) {
-            input.val(e)
-
-        }
-    });
-});
+//$('.cart-remove').on('click', function (event) {
+//    event.preventDefault();
+//    var cart = $('#cart-pjax');
+//    var id = $(this).data('item-id');
+//    $.ajax({
+//        url: '/sitio/delete-item',
+//        type: 'POST',
+//        data: {id: id},
+//        success: function (e) {
+//            var count = $('#item-carrito-count');
+//            var oldcant = count.text();
+//            var newcant = parseInt(oldcant) - 1;
+//            if (newcant == 0) {
+//                $('.carrito-count-div').remove();
+//            } else {
+//                count.text(newcant);
+//            }
+//            $('#' + e).remove();
+//        }
+//    });
+//});
+//
+//$('.btn-items-decrease').click(function () {
+//    var id = $(this).data('id');
+//    var input = $(this).siblings('.input-items');
+//    $.post({
+//        url: '/sitio/disminuir-cantidad',
+//        data: {id: id},
+//        success: function (e) {
+//            input.val(e)
+//
+//        }
+//    });
+//});
+//$('.btn-items-increase').click(function () {
+//    var id = $(this).data('id');
+//    var input = $(this).siblings('.input-items');
+//    $.post({
+//        url: '/sitio/aumentar-cantidad',
+//        data: {id: id},
+//        success: function (e) {
+//            input.val(e)
+//
+//        }
+//    });
+//});
 //$('.btn-items-decrease').on('click', function () {
 //    var input = $(this).siblings('.input-items');
 //    if (parseInt(input.val(), 10) >= 1) {
 //        input.val(parseInt(input.val(), 10) - 1);
 //    }
 //});
-$('.btn-items-increase').on('click', function () {
-    var input = $(this).siblings('.input-items');
-    input.val(parseInt(input.val(), 10) + 1);
-});
+//$('.btn-items-increase').on('click', function () {
+//    var input = $(this).siblings('.input-items');
+//    input.val(parseInt(input.val(), 10) + 1);
+//});
