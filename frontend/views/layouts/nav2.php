@@ -37,7 +37,7 @@
 
                 <div class="w-100 d-flex justify-content-end">
                     <ul class="navbar-nav navbar-expand">
-                        <li class="nav-item">
+                        <li class="nav-item <?= Yii::$app->user->isGuest?'d-none':'' ?>">
                             <a class="" href="<?= yii\helpers\Url::to(['sitio/crear-consulta']) ?>">Pedidos</a>
                         </li>
                         <li class="nav-item">
