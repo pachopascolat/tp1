@@ -28,6 +28,7 @@
             type: 'POST',
             data: {code: code},
             success: function (e) {
+                console.log(e);
                 $('.carrito-count-div').each(function () {
                     $(this).removeClass('d-none');
                 });
