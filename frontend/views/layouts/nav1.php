@@ -109,7 +109,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                     </div>
                 </div>
             </div>
-            <a class="" type="button" data-toggle="modal" data-target="#sidebar-left" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="" data-toggle="modal" data-target="#sidebar-left" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <!--<span class="navbar-toggler-icon"></span>-->
                 <i class="text-light fal fa-bars fa-2x"></i>
             </a>
