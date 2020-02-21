@@ -108,7 +108,7 @@ class SitioController extends \yii\web\Controller {
             $color_id = $response->data['variante'];
             return $this->agregarDesdeCodigo($tela_id, $color_id);
         }
-
+        return json_encode($response);
 
 //        echo $output;
     }
