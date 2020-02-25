@@ -53,19 +53,26 @@ $this->params['breadcrumbs'] = [];
             'cliente.nombre_cliente',
             'cliente.telefono',
             'cliente.mail_cliente',
-            'cliente.direccion_envio',
+            'direccion_envio',
 //            'observaciones',
-            [
-                'label' => 'Cantidad Diseños',
-                'value' => function($model) {
-                    return count($model->itemCarritos);
-                }
-            ],
+//            [
+//                'label' => 'Cantidad Diseños',
+//                'value' => function($model) {
+//                    return count($model->itemCarritos);
+//                }
+//            ],
             [
                 'label' => 'Editar Pedido',
                 'format'=>'raw',
                 'value' => function($model) {
-                    return Html::a(Yii::t('app', 'Pedido'),  "/../texsim/update-consulta?categoria_padre=1&id_carrito=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-warning', 'target' => '_blank']);
+                    return Html::a(Yii::t('app', 'Pedido'),  "/../sitio/update-consulta?categoria_padre=1&id_carrito=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-warning', 'target' => '_blank']);
+                }
+            ],
+            [
+                'label' => 'Imprimir',
+                'format'=>'raw',
+                'value' => function($model) {
+                    return Html::a(Yii::t('app', 'PDF'),  "/../sitio/imprimir-desde-backend?carrito_id=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-primary', 'target' => '_blank']);
                 }
             ],
 //            [

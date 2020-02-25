@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\httpclient\Client;
-
+use mikehaertl\wkhtmlto\Pdf as Pdf2;
 
 class SitioController extends \yii\web\Controller {
 
@@ -71,6 +71,10 @@ class SitioController extends \yii\web\Controller {
         $item = \common\models\ItemCarrito::findOne($id);
         if ($item != null) {
             $item->delete();
+            if (!$item->carrito->itemCarritos) {
+                $item->carrito->delete();
+                unset($_SESSION['carrito']);
+            }
             return $id;
         }
 //        return count($item->carrito->itemCarritos);
@@ -98,35 +102,33 @@ class SitioController extends \yii\web\Controller {
 //        $session = Yii::$app->session;
         $data = \Yii::$app->request->post();
         $code = $data['code'];
-        
+
 
         $curl = new \linslin\yii2\curl\Curl();
 //get http://example.com/
         $response = $curl->get("http://7633081eb66a.sn.mynetname.net:8000/rollo/$code");
         // $response = $curl->get("http://jsonplaceholder.typicode.com/todos/1");
-
         // return json_encode($curl);
         $response = json_decode($response);
         if ($curl->errorCode === null) {
-           $tela_id = $response->articulo;
-           $color_id = $response->variante;
-           return $this->agregarDesdeCodigo($tela_id, $color_id);
-       } else {
-     // List of curl error codes here https://curl.haxx.se/libcurl/c/libcurl-errors.html
-        switch ($curl->errorCode) {
+            $tela_id = $response->articulo;
+            $color_id = $response->variante;
+            return $this->agregarDesdeCodigo($tela_id, $color_id);
+        } else {
+            // List of curl error codes here https://curl.haxx.se/libcurl/c/libcurl-errors.html
+            switch ($curl->errorCode) {
 
-            case 6:
-            //host unknown example
-            break;
+                case 6:
+                    //host unknown example
+                    break;
+            }
         }
-    } 
 
 //     $client = new Client();
 //     $response = $client->createRequest()
 //     ->setMethod('GET')
 //     ->setUrl("http://7633081eb66a.sn.mynetname.net:8000/rollo/$code")
 //         // ->setUrl("https://jsonplaceholder.typicode.com/todos/1")
-
 // //                ->setData(['name' => 'John Doe', 'email' => 'johndoe@example.com'])
 //     ->send()
 //     ;
@@ -136,59 +138,59 @@ class SitioController extends \yii\web\Controller {
 //         $color_id = $response->data['variante'];
 //         return $this->agregarDesdeCodigo($tela_id, $color_id);
 //     }
-    return json_encode($response);
+        return json_encode($response);
 
 //        echo $output;
-}
+    }
 
-public function agregarDesdeCodigo($tela_id, $color_id) {
-    $session = Yii::$app->session;
+    public function agregarDesdeCodigo($tela_id, $color_id) {
+        $session = Yii::$app->session;
 //        $data = \Yii::$app->request->post();
 //        $tela_id = $data['tela_id'];
 //        $color_id = intval($data['color_id']);
-    $articulo = \common\models\Articulo::find()->joinWith('tela')->where(['codigo_color' => $color_id, 'codigo_tela' => $tela_id])->one();
+        $articulo = \common\models\Articulo::find()->joinWith('tela')->where(['codigo_color' => $color_id, 'codigo_tela' => $tela_id])->one();
 //        $cantidad = $data['cantidad'];
-    if ($articulo) {
-        $item = new \common\models\ItemCarrito([
-            'carrito_id' => $session['carrito'],
-            'cantidad' => 1,
-            'imagen_id' => $articulo->imagen_id ?? null,
-            'articulo_id' => $articulo->id_articulo]);
-        $item->save();
+        if ($articulo) {
+            $item = new \common\models\ItemCarrito([
+                'carrito_id' => $session['carrito'],
+                'cantidad' => 1,
+                'imagen_id' => $articulo->imagen_id ?? null,
+                'articulo_id' => $articulo->id_articulo]);
+            $item->save();
 
-        return count($item->carrito->itemCarritos);
+            return count($item->carrito->itemCarritos);
+        }
+        return false;
     }
-    return false;
-}
 
-function actionAumentarCantidad() {
-    $key = \Yii::$app->request->post('id');
-    $itemCarrito = \common\models\ItemCarrito::findOne($key);
-    $itemCarrito->cantidad += 1;
-    $itemCarrito->save();
-    return $itemCarrito->cantidad;
-}
-
-function actionDisminuirCantidad() {
-    $key = \Yii::$app->request->post('id');
-    $itemCarrito = \common\models\ItemCarrito::findOne($key);
-    if ($itemCarrito->cantidad > 0) {
-        $itemCarrito->cantidad -= 1;
+    function actionAumentarCantidad() {
+        $key = \Yii::$app->request->post('id');
+        $itemCarrito = \common\models\ItemCarrito::findOne($key);
+        $itemCarrito->cantidad += 1;
         $itemCarrito->save();
+        return $itemCarrito->cantidad;
     }
-    return $itemCarrito->cantidad;
-}
 
-function actionCrearConsulta() {
-    $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
-    if ($carrito == null) {
-        return $this->goBack();
+    function actionDisminuirCantidad() {
+        $key = \Yii::$app->request->post('id');
+        $itemCarrito = \common\models\ItemCarrito::findOne($key);
+        if ($itemCarrito->cantidad > 0) {
+            $itemCarrito->cantidad -= 1;
+            $itemCarrito->save();
+        }
+        return $itemCarrito->cantidad;
     }
-    if ($carrito->cliente_id == null) {
-        $model = new \common\models\Cliente();
-    } else {
-        $model = \common\models\Cliente::findOne($carrito->cliente_id);
-    }
+
+    function actionCrearConsulta() {
+        $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+        if ($carrito == null) {
+            return $this->goBack();
+        }
+        if ($carrito->cliente_id == null) {
+            $model = new \common\models\Cliente();
+        } else {
+            $model = \common\models\Cliente::findOne($carrito->cliente_id);
+        }
 
 
 //        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
@@ -197,98 +199,205 @@ function actionCrearConsulta() {
 //        }
 
 
-    if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        $carrito->cliente_id = $model->id_cliente;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $carrito->cliente_id = $model->id_cliente;
+            $carrito->save();
+            $carrito->sendMail();
+            return $this->redirect(['finalizar-consulta', 'id_carrito' => $carrito->id_carrito]);
+        }
+        return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
+    }
+
+    function actionFinalizarConsulta($categoria_padre = 1, $id_carrito) {
+        $carrito = \common\models\Carrito::findOne($id_carrito);
+        $carrito->confirmado = true;
+        $carrito->timestamp = date("Y-m-d H:i:s");
         $carrito->save();
-        $carrito->sendMail();
-        return $this->redirect(['finalizar-consulta', 'id_carrito' => $carrito->id_carrito]);
+        $_SESSION['carrito'] = '';
+        return $this->render('finalizarConsulta', ['id_carrito' => $id_carrito]);
     }
-    return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
-}
 
-function actionFinalizarConsulta($categoria_padre = 1, $id_carrito) {
-    $carrito = \common\models\Carrito::findOne($id_carrito);
-    $carrito->confirmado = true;
-    $carrito->timestamp = date("Y-m-d H:i:s");
-    $carrito->save();
-    $_SESSION['carrito'] = '';
-    return $this->render('finalizarConsulta', ['id_carrito' => $id_carrito]);
-}
-
-function actionUpdateConsulta($id_carrito) {
-    $_SESSION['carrito'] = $id_carrito;
-
-    return $this->redirect(['crear-consulta']);
-}
-
-function actionBuscar() {
-    $vidrieras = [];
-    $busqueda = \Yii::$app->request->get('busqueda');
-    if ($busqueda != "") {
-        $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')
-        ->where(['like', 'nombre', '%' . $busqueda . '%', false])
-        ->orWhere(['like', 'nombre_categoria', '%' . $busqueda . '%', false])
-        ->andWhere(['<>', 'categoria_id', \common\models\Categoria::PDF])
-        ->all();
+    function actionTerminar() {
+        $_SESSION['carrito'] = '';
+        return $this->redirect('index');
     }
+
+    function actionUpdateConsulta($id_carrito) {
+        $_SESSION['carrito'] = $id_carrito;
+
+        return $this->redirect(['crear-consulta']);
+    }
+
+    function actionBuscar() {
+        $vidrieras = [];
+        $busqueda = \Yii::$app->request->get('busqueda');
+        if ($busqueda != "") {
+            $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')
+                    ->where(['like', 'nombre', '%' . $busqueda . '%', false])
+                    ->orWhere(['like', 'nombre_categoria', '%' . $busqueda . '%', false])
+                    ->andWhere(['<>', 'categoria_id', \common\models\Categoria::PDF])
+                    ->all();
+        }
 //        $model = new \common\models\CategoriaSearch(['nombre_categoria'=>$busqueda]);
 //        $dataprovider = $model->search(null);
 //        $dataprovider->setPagination(false);
-    return $this->render('busqueda', ['vidrieras' => $vidrieras, 'busqueda' => $busqueda]);
-}
+        return $this->render('busqueda', ['vidrieras' => $vidrieras, 'busqueda' => $busqueda]);
+    }
 
-public function actionDescargarPdf() {
-    $pdf = \common\models\PdfReport::findOne(Yii::$app->request->post("PdfReport")['id_pdf_report']);
-    if ($pdf) {
-        $path = Yii::getAlias('@backend') . '/uploads/pdf-report';
-        $file = $path . "/$pdf->id_pdf_report.pdf";
-        if (file_exists($file)) {
-            return Yii::$app->response->sendFile($file, $pdf->nombre_pdf . ".pdf");
+    public function actionDescargarPdf() {
+        $pdf = \common\models\PdfReport::findOne(Yii::$app->request->post("PdfReport")['id_pdf_report']);
+        if ($pdf) {
+            $path = Yii::getAlias('@backend') . '/uploads/pdf-report';
+            $file = $path . "/$pdf->id_pdf_report.pdf";
+            if (file_exists($file)) {
+                return Yii::$app->response->sendFile($file, $pdf->nombre_pdf . ".pdf");
+            }
         }
-    }
-    if (Yii::$app->request->referrer) {
-        return $this->redirect(Yii::$app->request->referrer);
-    } else {
-        return $this->goHome();
-    }
-}
-
-function actionCrearConsultaWhatsApp() {
-    $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
-    if ($carrito == null) {
         if (Yii::$app->request->referrer) {
             return $this->redirect(Yii::$app->request->referrer);
         } else {
             return $this->goHome();
         }
     }
-    if ($carrito->cliente_id == null) {
-        $model = new \common\models\Cliente();
-    } else {
-        $model = \common\models\Cliente::findOne($carrito->cliente_id);
+
+    function actionCrearConsultaWhatsApp() {
+        $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+        if ($carrito == null) {
+            if (Yii::$app->request->referrer) {
+                return $this->redirect(Yii::$app->request->referrer);
+            } else {
+                return $this->goHome();
+            }
+        }
+        if ($carrito->cliente_id == null) {
+            $model = new \common\models\Cliente();
+        } else {
+            $model = \common\models\Cliente::findOne($carrito->cliente_id);
+        }
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $carrito->cliente_id = $model->id_cliente;
+            $carrito->confirmado = true;
+            $carrito->save();
+            $carrito->sendMail();
+            $_SESSION['carrito'] = '';
+            $mensaje = rawurlencode($carrito->getConsultaWhatsApp());
+            $url = "https://api.whatsapp.com/send?phone=541135386219&text=" . $mensaje . "&source=&data=#";
+            return $this->redirect(['ir-whats-app', 'url' => $url]);
+        }
+
+        return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
     }
 
+    function actionIrWhatsApp($url) {
+        return $this->render('irWhatsapp', ['url' => $url]);
+    }
 
-    if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    function actionLeerCodigo() {
+        return $this->render('leerMatrixCode');
+    }
+
+    function actionBuscarCliente() {
+        $data = Yii::$app->request->post();
+        $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+        $model = \common\models\Cliente::findOne([$data['buscador-cliente']]);
         $carrito->cliente_id = $model->id_cliente;
-        $carrito->confirmado = true;
-        $carrito->save();
-        $carrito->sendMail();
-        $_SESSION['carrito'] = '';
-        $mensaje = rawurlencode($carrito->getConsultaWhatsApp());
-        $url = "https://api.whatsapp.com/send?phone=541135386219&text=" . $mensaje . "&source=&data=#";
-        return $this->redirect(['ir-whats-app', 'url' => $url]);
+        $carrito->direccion_envio = $model->direccion_envio;
+        echo $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
     }
 
-    return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
-}
+    function actionPedidoFacturacion() {
+        $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+        if ($carrito == null) {
+            return $this->goBack();
+        }
 
-function actionIrWhatsApp($url) {
-    return $this->render('irWhatsapp', ['url' => $url]);
-}
+        if ($carrito->cliente_id == null) {
+            $model = new \common\models\Cliente(['agendado' => 1]);
+        } else {
+            $model = \common\models\Cliente::findOne($carrito->cliente_id);
+        }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $carrito->load(\Yii::$app->request->post());
+            $carrito->para_facturar = true;
+            if ($carrito->vendedor_id == null) {
+                $carrito->vendedor_id = \Yii::$app->user->getId();
+            }
+            $carrito->cliente_id = $model->id_cliente;
+            $carrito->save();
+            $carrito->sendMailFacturacion();
+            return $this->redirect(['finalizar-consulta', 'id_carrito' => $carrito->id_carrito]);
+        }
+        return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
+    }
 
-function actionLeerCodigo() {
-    return $this->render('leerMatrixCode');
-}
+    function actionImprimirDesdeBackend($carrito_id) {
+        $carrito = \common\models\Carrito::findOne($carrito_id);
+        $this->imprimirCarrito($carrito);
+    }
+
+    function imprimirCarrito(\common\models\Carrito $carrito, $cliente = null) {
+
+        if ($cliente == null) {
+            $cliente = \common\models\Cliente::findOne($carrito->cliente_id);
+        }
+        $carrito->para_facturar = true;
+        $carrito->confirmado = true;
+
+        if ($carrito->vendedor_id == null) {
+            $carrito->vendedor_id = \Yii::$app->user->getId();
+        }
+        $carrito->cliente_id = $cliente->id_cliente;
+        $carrito->save();
+
+        $options = [
+            'binary' => Yii::getAlias("@vendor/wkhtmltopdf"),
+            'page-size' => 'A4',
+//            'header-html' => $this->renderPartial('_pdfHeader'),
+//            'footer-html' => $this->renderPartial('_pdfFooter'),
+            'no-outline', // option without argument
+            'encoding' => 'UTF-8', // option with argument
+//            'user-style-sheet' => $cssPath,
+            'margin-top' => 0,
+            'margin-right' => 0,
+            'margin-bottom' => 0,
+            'margin-left' => 0,
+            'disable-smart-shrinking',
+            'user-style-sheet' => Yii::getAlias("@backend/web/css/pdfstyle.css"),
+//            'header-html' => "<h1>Texsim</h1>",
+        ];
+
+        $pdf = new Pdf2($options);
+
+        $pdf->addPage($this->renderPartial('_reportPedido', ['carrito' => $carrito]));
+
+
+        if (!$pdf->send("Pedido-$carrito->id_carrito.pdf")) {
+            throw new \Exception('Could not create PDF: ' . $pdf->getError());
+        }
+    }
+
+    function actionImprimirPedido() {
+
+        $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+
+        if ($carrito == null) {
+            return $this->goBack();
+        }
+
+        if ($carrito->cliente_id == null) {
+            $model = new \common\models\Cliente(['agendado' => 1]);
+        } else {
+            $model = \common\models\Cliente::findOne($carrito->cliente_id);
+        }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $carrito->load(\Yii::$app->request->post());
+            $this->imprimirCarrito($carrito, $model);
+            return $this->redirect(['finalizar-consulta', 'id_carrito' => $carrito->id_carrito]);
+        }
+
+        return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
+    }
 
 }

@@ -82,7 +82,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         <!--<div class="d-flex">-->
         <div class="flex-fill d-flex align-items-center justify-content-center">
             <div class="nav-item text-light tel-movil">
-                <span>(54 11) 2120-0550</span>
+                <a href="tel:+541121200550" class="text-light"><span>(54 11) 2120-0550</span></a>
             </div>
         </div>
         <div class="d-flex align-items-center justify-content-between">
@@ -109,7 +109,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                     </div>
                 </div>
             </div>
-            <a class="" data-toggle="modal" data-target="#sidebar-left" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a href="#sidebar-left" class="cursor-pointer" data-toggle="modal" data-target="#sidebar-left" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <!--<span class="navbar-toggler-icon"></span>-->
                 <i class="text-light fal fa-bars fa-2x"></i>
             </a>

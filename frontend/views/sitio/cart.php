@@ -216,6 +216,9 @@ if ($_SESSION['carrito'] != ''):
                         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#pedido-facturacion">
                             Pedido Facturación
                         </button>
+                    <a href="<?= yii\helpers\Url::to(['terminar'])?>" class="btn btn-link text-muted" >
+                            Finalizar
+                        </button>
                     <?php else: ?>
                         <a class="btn btn-dark"  data-toggle="modal" href="#pedido-simple" role="button" aria-expanded="false" aria-controls="collapseContacto">
 

@@ -264,4 +264,8 @@ class SitioController extends \yii\web\Controller {
         return $this->render('leerMatrixCode');
     }
 
+    
+    function actionBuscarCliente(){
+        
+    }
 }

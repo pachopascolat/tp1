@@ -1,22 +1,19 @@
 
-<h3>Se ha realizado el pedido para facturar nro <?= $carrito->id_carrito ?></h3>
-<p>Vendedor: <?= $carrito->vendedor->username ?></p>
+<h3>Se ha realizado la consulta nro <?= $carrito->id_carrito ?></h3>
 <p>EL cliente <?= $carrito->cliente->nombre_cliente ?></p>
-<p>Cuit: <?= $carrito->cliente->cuit ?></p>
 <p>Telefono: <?= $carrito->cliente->telefono ?></p>
 <p>email: <?= $carrito->cliente->mail_cliente ?></p>
-<p>Direccion Envio: <?= $carrito->cliente->direccion_envio ?></p>
 
 <table width="80%" border="1" bordercolor="#0000FF" cellpadding="10">
     <thead>
         <tr>
-            <th>codigo disenio</th>
-            <th>imagen</th>
-            <th>codigo tela</th>
-            <th>tela</th>
-            <th>Tipo</th>
-            <th>cantidad</th>
-            <th>precio</th>
+            <th>Codigo Tela</th>
+            <th>Codigo Color</th>
+            <th>Imagen</th>
+            <th>Tela</th>
+            <th>Color</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
         </tr>
     </thead>
     <tbody>
@@ -24,25 +21,27 @@
         foreach ($carrito->itemCarritos as $item):
             ?>
             <tr>
-                <td><?= $item->disenio->name ?></td>
+                <td><?= $item->articulo->tela->codigo_tela ?? 'vacio' ?></td>
+                <td><?= $item->articulo->codigo_color ?? 'vacio' ?></td>
                 <td><?php
-                    $web = yii\helpers\Url::base('http');
-                    $url = $item->getUrl('preview');
-                    $path = $url;
-                    $parts = explode('/', $path);
-                    $parts = array_slice($parts, 3);
-                    $newpath = implode('/', $parts);
-                    $urlok = $web . "/" . $newpath;
+                    $web = yii\helpers\Url::base('https');
+                    $url = \yii\helpers\Url::base(true) . Yii::$app->imagemanager->getImagePath($item->imagen_id, 80, 80);
+//                    $url = $item->articulo->getFrontFullUrl();
+//                    $path = $url;
+//                    $parts = explode('/', $path);
+//                    $parts = array_slice($parts, 3);
+//                    $newpath = implode('/', $parts);
+//                    $urlok = $web . "/" . $newpath;
 //                    echo yii\helpers\Html::img($web.$url, ['class' => 'img-thumbnail']);
                     ?>
-                    <a href="<?php echo $urlok ?>"><img width="80px" src="<?= $urlok ?>"> </a> 
+                    <a href="<?php echo $url ?>"><img width="80px" src="<?= $url ?>"> </a> 
                 </td>
 
 
-                <td><?= $item->getCodigoTela() ?></td>
-                <td><?= $item->getNombreTela() ?></td>
+
+                <td><?= $item->articulo->tela->nombre_tela??'vacio' ?></td>
                 <td>
-                    <?= $item->getTipoTela(); ?>
+                    <?= $item->articulo->nombre_color??'vacio'; ?>
                 </td>
                 <td><?= $item->cantidad ?></td>
                 <td><?= $item->precio ?></td>
@@ -52,12 +51,7 @@
         endforeach;
         ?>
     </tbody>
-
 </table>
-<p>
-    <label>Observaciones:</label>
-    <?= $carrito->observaciones ?>
-</p>
 
 
 
