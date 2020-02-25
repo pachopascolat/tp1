@@ -22,7 +22,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                 </form>
             </div>
             <div class="tel nav-item  d-lg-block d-none">
-                <span>(54 11) 2120-0550</span>
+                <a href="tel:+541121200550" class="text-light"><span>(54 11) 2120-0550</span></a>
             </div>
             <div class="d-none d-md-block">
                 <div class="contenedor-logos justify-content-between d-flex">
