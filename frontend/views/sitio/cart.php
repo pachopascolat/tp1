@@ -3,19 +3,24 @@
 <!-- Hero Section-->
 <section class="hero">
     <div class="container">
-        <!--Breadcrumbs--> 
+        Breadcrumbs 
         <ol class="breadcrumb justify-content-left pl-0">
             <li class="breadcrumb-item">
                 <a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
             <li class="breadcrumb-item active">Lista de consultas        </li>
         </ol>
-        <!-- Hero Content-->
+        Hero Content
         <div class="hero-content pb-5 text-center">
-            <h1 class="hero-heading">Consulta<div class="<?= Yii::$app->user->isGuest ? 'd-none' : '' ?>"><a class="text-dark show-lector" href="#" ><i class="p-2 fal fa-camera-retro" ></i></a><input type="text" class="code-lector-input"></div></h1>
-            <div></div>
-            <!--            <div class="row">   
-                          <div class="col-xl-8 offset-xl-2"><p class="lead text-muted">You have 3 items in your shopping cart</p></div>
-                        </div>-->
+            <h1 class="hero-heading">
+                Consulta
+                <div class="<?= Yii::$app->user->isGuest ? 'd-none' : '' ?>">
+                    <a class="text-dark show-lector" href="#" >
+                        <i class="p-2 fal fa-camera-retro" ></i>
+                    </a>
+                    <input type="text" class="code-lector-input w-100">
+            </h1>
+
+
         </div>
     </div>
 </section>
@@ -144,7 +149,7 @@ if ($_SESSION['carrito'] != ''):
                             <th class="d-none d-sm-table-cell ">Item</th>
                             <!--<th class="d-none d-md-table-cell ">Tipo Tela</th>-->
                             <th>Cantidad</th>
-                            <?= Yii::$app->user->isGuest ? '' : '<th>Precio</th>' ?>
+                            <?= Yii::$app->user->isGuest ? '' : '<th class="d-none d-md-block">Precio</th>' ?>
                             <th>Eliminar</th>
                         </tr>
                     </thead>
@@ -184,7 +189,7 @@ if ($_SESSION['carrito'] != ''):
                                     </div>
                                 </td>
                                 <?php if (!Yii::$app->user->isGuest): ?>
-                                    <td class="align-middle">
+                                    <td class="align-middle d-none d-md-block">
                                         <input data-id="<?= $item->id_item_carrito ?>" type="text" value="<?= $item->precio ?>" class="form-control text-center cambiar-precio">
                                     </td>
                                 <?php endif; ?>
@@ -216,17 +221,17 @@ if ($_SESSION['carrito'] != ''):
                         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#pedido-facturacion">
                             Pedido Facturación
                         </button>
-                    <a href="<?= yii\helpers\Url::to(['terminar'])?>" class="btn btn-link text-muted" >
+                        <a href="<?= yii\helpers\Url::to(['terminar']) ?>" class="btn btn-link text-muted" >
                             Finalizar
-                        </button>
-                    <?php else: ?>
-                        <a class="btn btn-dark"  data-toggle="modal" href="#pedido-simple" role="button" aria-expanded="false" aria-controls="collapseContacto">
+                            </button>
+                        <?php else: ?>
+                            <a class="btn btn-dark"  data-toggle="modal" href="#pedido-simple" role="button" aria-expanded="false" aria-controls="collapseContacto">
 
-                            Realizar Consultar 
-                            <i class="fa fa-chevron-right">
-                            </i>                           
-                        </a>
-                    <?php endif; ?>
+                                Realizar Consultar 
+                                <i class="fa fa-chevron-right">
+                                </i>                           
+                            </a>
+                        <?php endif; ?>
                 </div>
             </div>
         </section>
