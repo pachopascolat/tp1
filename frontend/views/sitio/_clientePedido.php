@@ -109,12 +109,12 @@ use kartik\select2\Select2;
                                                             <button type="submit" class="btn btn-outline-secondary"><svg class="svg-icon"><use xlink:href="#envelope-1"> </use></svg><p>ENVIAR POR MAIL</p> </button>
                                                         </div>-->
                             <div class="form-group text-center">
-                                <button type="submit" formaction="<?= \yii\helpers\Url::to(['pedido-facturacion']) ?>" id="" type="" class="btn btn-outline-secondary">
+                                <button type="submit" formaction="<?= \yii\helpers\Url::to(['pedido-facturacion']) ?>" id="" type="" class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
                                     <p>ENVIAR POR MAIL</p> 
 
                                 </button>
-                                <button type="submit" formaction="<?= \yii\helpers\Url::to(['imprimir-pedido']) ?>" id="" type="" class="btn btn-outline-secondary">
+                                <button type="submit" formaction="<?= \yii\helpers\Url::to(['imprimir-pedido']) ?>" id="" type="" class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
                                     <p>Crear PDF</p> 
 
