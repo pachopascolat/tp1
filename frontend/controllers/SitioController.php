@@ -98,6 +98,26 @@ class SitioController extends \yii\web\Controller {
 //        return $items;
     }
 
+    public function actionAgregarItemDesdeBuscador() {
+        $session = Yii::$app->session;
+        $data = \Yii::$app->request->post();
+        $id = $data['id'];
+        $imagen_id = \common\models\Articulo::findOne($id)->imagen_id ?? null;
+        $cantidad = 1;
+        $item = new \common\models\ItemCarrito([
+            'carrito_id' => $session['carrito'],
+            'cantidad' => $cantidad,
+            'imagen_id' => $imagen_id,
+            'articulo_id' => $id]);
+        $item->save();
+        
+        return $this->renderAjax('cart', ['id_carrito' => $session['carrito']]);
+
+//        return count($item->carrito->itemCarritos);
+
+//        return $items;
+    }
+
     public function actionDatosCodigo() {
 //        $session = Yii::$app->session;
         $data = \Yii::$app->request->post();

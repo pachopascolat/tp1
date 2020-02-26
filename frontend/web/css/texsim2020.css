@@ -1,3 +1,10 @@
+.code-lector-input::placeholder {
+    font-family: 'oswald';
+    text-align: center;
+    font-size: 15px;
+    color: #999;
+}
+
 .codigo-centrado{
     position: absolute;
     color: white;

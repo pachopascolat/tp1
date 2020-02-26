@@ -1,4 +1,7 @@
+<?php
 
+use kartik\select2\Select2;
+?>
 
 <!-- Hero Section-->
 <section class="hero">
@@ -9,19 +12,62 @@
                 <a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
             <li class="breadcrumb-item active">Lista de consultas        </li>
         </ol>
-        <div class="hero-content pb-5 text-center">
+        <div class="hero-content pb-3 text-center">
             <h1 class="hero-heading">
-                Consulta
-                <div class="<?= Yii::$app->user->isGuest ? 'd-none' : '' ?>">
-                    <a class="text-dark show-lector" href="#" >
-                        <i class="p-2 fal fa-camera-retro" ></i>
-                    </a>
-                    <input type="text" class="code-lector-input w-100">
+                Consulta<a class="text-dark show-lector" href="#" >
+                    <i class="p-2 fal fa-camera-retro" ></i>
+                </a>
             </h1>
+
+            <div class="col-md-8 m-auto <?= Yii::$app->user->isGuest ? 'd-none' : '' ?>">
+
+                <input type="text" class="code-lector-input w-100 form-control" placeholder="Escanear Codigo">
+            </div>
+
+            <div class="col-md-8 m-auto pt-2 buscar-por-tela-variante w-100 m-auto">
+                <?php
+                $data = [];
+                $articulos = common\models\Articulo::find()->where(['existencia' => 1])->all();
+                foreach ($articulos as $articulo) {
+                    $data[$articulo->id_articulo] = "{$articulo->tela->codigo_tela} - {$articulo->codigo_color} - {$articulo->tela->nombre_tela} - {$articulo->nombre_color}";
+                }
+//                        echo '<label for="buscador-cliente" class="form-label">Buscar</label>';
+                echo Select2::widget([
+                    'name' => 'buscador-tela-variante',
+                    'data' => $data,
+                    'options' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Buscar por Tela y variante',
+//                                'multiple' => true
+                    ],
+                    'pluginEvents' => [
+                        "select2:select" => "function(data) {
+                                    var id = $(this).val();
+//                                    $(this).select2().reset();
+                                     $.pjax.reload({
+                                        push: false,
+                                        replace: false,
+                                        url: '/sitio/agregar-item-desde-buscador',
+                                        type: 'POST',
+                                        data: {id:id},
+                                        container: '#cart-pjax',
+                                        timeout: false,
+                                        async: false,
+                                    })
+                                  }",
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]);
+                ?>
+            </div>
 
 
         </div>
+
     </div>
+
 </section>
 <!-- Shopping Cart Section-->
 
