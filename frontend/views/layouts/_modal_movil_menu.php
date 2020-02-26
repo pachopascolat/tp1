@@ -134,12 +134,12 @@
 
                         <?php
                     } else {
-                        echo '<i style="" class="fa fa-lock header-icon d-xs-block d-sm-none "></i>';
-                        echo \yii\helpers\Html::beginForm(['/user/logout'], 'post');
+//                        echo '<i style="" class="fa fa-lock header-icon d-xs-block d-sm-none "></i>';
+                        echo \yii\helpers\Html::beginForm(['/user/logout'], 'post',['id'=>'movil-logout-form','class'=>'m-0']);
                         ?>
-                        <button name="logout" class="btn text-light logout-btn" onclick="$('form').submit()">
-                            <span>Logout(<?= Yii::$app->user->identity->username ?>)</span>
-                        </button>
+                        <div  class="text-light logout-btn" onclick="$('#movil-logout-form').submit()">
+                            <span class="movil-categorias">Logout(<?= Yii::$app->user->identity->username ?>)</span>
+                        </div>
                         <?php
 //                                echo \yii\helpers\Html::submitButton(
 ////                                        'Logout (' . Yii::$app->user->identity->username . ')', ['class' => 'btn text-white word-break', 'name' => 'logout']

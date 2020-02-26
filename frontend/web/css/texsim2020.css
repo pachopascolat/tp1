@@ -1,4 +1,17 @@
+.codigo-centrado{
+    position: absolute;
+    color: white;
+    background: rgb(0,0,0,0.2);
+    right: 0;
+    left: 0;
+}
 
+.codigo-centrado strong{
+    font-size: 0.7rem;
+}
+.imagen-carrito{
+    position: relative;
+}
 
 
 .icono-div{
@@ -489,6 +502,7 @@ a:hover{
 }
 
 @media (max-width: 768px) {
+    
     .nav2-img {
         height: 60px !important;
     }
@@ -511,6 +525,7 @@ a:hover{
         height: 450px !important;
         overflow: auto;
     }
+    
 
     
 }

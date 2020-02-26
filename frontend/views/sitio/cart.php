@@ -9,7 +9,6 @@
                 <a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
             <li class="breadcrumb-item active">Lista de consultas        </li>
         </ol>
-        Hero Content
         <div class="hero-content pb-5 text-center">
             <h1 class="hero-heading">
                 Consulta
@@ -149,8 +148,8 @@ if ($_SESSION['carrito'] != ''):
                             <th class="d-none d-sm-table-cell ">Item</th>
                             <!--<th class="d-none d-md-table-cell ">Tipo Tela</th>-->
                             <th>Cantidad</th>
-                            <?= Yii::$app->user->isGuest ? '' : '<th class="d-none d-md-block">Precio</th>' ?>
-                            <th>Eliminar</th>
+                            <?= Yii::$app->user->isGuest ? '' : '<th class="">Precio</th>' ?>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody class="cart-body">
@@ -166,10 +165,11 @@ if ($_SESSION['carrito'] != ''):
                                 </td>
                                 <td class="align-middle">
                                     <div class="imagen-carrito">
-                                        <div class="codigo-centrado d-md-none">
-                                            <strong > <?= $item->articulo->codigo_color ?? '' ?></strong>
+                                        <div class="codigo-centrado     d-md-none">
+                                            <div><strong > <?= $item->articulo->tela->codigo_tela ?? '' ?></strong></div>
+                                            <div><strong > <?= $item->articulo->codigo_color ?? '' ?></strong></div>
                                         </div>
-                                        <img src="<?= Yii::$app->imagemanager->getImagePath($item->imagen_id, 120, 120) ?? ''; ?>" alt="..." class="cart-item-img lazy">
+                                        <img src="<?= Yii::$app->imagemanager->getImagePath($item->imagen_id, 120, 120) ?? ''; ?>" alt="..." class="cart-item-img w-100 lazy">
                                     </div>
                                 </td>
                                 <td class="align-middle d-none d-sm-table-cell ">
@@ -189,7 +189,7 @@ if ($_SESSION['carrito'] != ''):
                                     </div>
                                 </td>
                                 <?php if (!Yii::$app->user->isGuest): ?>
-                                    <td class="align-middle d-none d-md-block">
+                                    <td class="align-middle">
                                         <input data-id="<?= $item->id_item_carrito ?>" type="text" value="<?= $item->precio ?>" class="form-control text-center cambiar-precio">
                                     </td>
                                 <?php endif; ?>
