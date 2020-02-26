@@ -117,4 +117,14 @@ class Carrito extends \yii\db\ActiveRecord {
                 ->send();
     }
 
+    
+    function getPresupuesto(){
+        $presupuesto = 0;
+        foreach ($this->itemCarritos as $item){
+            $presupuesto += $item->precio*$item->cantidad;
+        }
+        return $presupuesto;
+                
+    }
+    
 }

@@ -1,3 +1,6 @@
+
+
+
 <?php
 
 use kartik\select2\Select2;
@@ -43,7 +46,6 @@ use kartik\select2\Select2;
                     'pluginEvents' => [
                         "select2:select" => "function(data) {
                                     var id = $(this).val();
-//                                    $(this).select2().reset();
                                      $.pjax.reload({
                                         push: false,
                                         replace: false,
@@ -52,7 +54,7 @@ use kartik\select2\Select2;
                                         data: {id:id},
                                         container: '#cart-pjax',
                                         timeout: false,
-                                        async: false,
+//                                        async: false,
                                     })
                                   }",
                     ],
@@ -71,7 +73,7 @@ use kartik\select2\Select2;
 </section>
 <!-- Shopping Cart Section-->
 
-<script>
+<!--<script>
     let agregarDesdeCodigo = function (code) {
         $.ajax({
             url: '/sitio/datos-codigo',
@@ -91,16 +93,29 @@ use kartik\select2\Select2;
             }
         });
     }
-</script>
-
+</script>-->
 <?php
 \yii\widgets\Pjax::begin(['id' => 'cart-pjax']);
 ?>
 
+
+
+
 <?php
 $js = " 
                     
-                    
+                    $('.cambiar-precio').on('change',function () {
+                        var id = $(this).data('id');
+                        var precio = $(this).val();
+                        var input = $(this);
+                        $.post({
+                            url: '/sitio/cambiar-precio',
+                            data: {precio: precio,id:id},
+                            success: function (e) {
+                                input.val(e)
+                            }
+                        });
+                    });
 
                     
 
@@ -293,8 +308,8 @@ if ($_SESSION['carrito'] != ''):
 
 <?php endif; ?>
 
-
-
 <?php
 \yii\widgets\Pjax::end();
 ?>
+
+

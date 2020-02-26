@@ -89,6 +89,14 @@
 
                 </div>
                  <div class="nav-item text-white pt-3">
+                     <a href="<?= yii\helpers\Url::to(['/sitio/crear-consulta'])?>">
+                        <span class="movil-categorias">
+                            Pedidos  
+                        </span>
+                       
+                    </a>
+                </div>
+                 <div class="nav-item text-white">
                      <a href="" data-toggle="modal" data-target="#pdf-report-modal">
                         <span class="movil-categorias">
                             CATALOGO  

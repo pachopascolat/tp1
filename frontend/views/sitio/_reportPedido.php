@@ -71,7 +71,14 @@
                     <label>Email: </label>
                     <span><?= $carrito->mail_cliente ?? '' ?></span>
                 </div>
-                
+                <div class="">
+
+                    <label>Total Presupuesto: </label>
+
+                    <span>$<?= $carrito->getPresupuesto() ?? '' ?></span>
+
+                </div>
+
                 <hr>
                 <table class="table table-bordered">
                     <thead>
@@ -120,7 +127,7 @@
                                 </td>
                                 <?php if (!Yii::$app->user->isGuest): ?>
                                     <td class="align-middle">
-                                        <strong> <?= $item->precio ?? '' ?></strong>
+                                        <strong>$ <?= $item->precio ?? '' ?></strong>
                                     </td>
                                 <?php endif; ?>
                                 <td></td>

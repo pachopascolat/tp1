@@ -110,11 +110,10 @@ class SitioController extends \yii\web\Controller {
             'imagen_id' => $imagen_id,
             'articulo_id' => $id]);
         $item->save();
-        
+
         return $this->renderAjax('cart', ['id_carrito' => $session['carrito']]);
 
 //        return count($item->carrito->itemCarritos);
-
 //        return $items;
     }
 
@@ -199,6 +198,17 @@ class SitioController extends \yii\web\Controller {
             $itemCarrito->save();
         }
         return $itemCarrito->cantidad;
+    }
+
+    function actionCambiarPrecio() {
+        $key = \Yii::$app->request->post('id');
+        $precio = \Yii::$app->request->post('precio');
+        $itemCarrito = \common\models\ItemCarrito::findOne($key);
+
+        $itemCarrito->precio = $precio;
+        if ($itemCarrito->save())
+            return $itemCarrito->precio;
+        return 0;
     }
 
     function actionCrearConsulta() {
