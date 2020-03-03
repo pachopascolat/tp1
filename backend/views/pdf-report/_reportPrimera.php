@@ -51,7 +51,7 @@
                                         <label style="text-align: center" class="pdf-img-container">
                                             <img style="width: 100%" src="<?= $estampado->getFullUrl(300,300) ?>" class="">
                                             <div>
-                                                <span class="codigo-estampado-pdf"><?= intval($estampado->articulo->codigo_color)<150?$estampado->articulo->nombre_color:$estampado->articulo->codigo_color ?></span>
+                                                <span class="codigo-estampado-pdf"><?= (intval($estampado->articulo->codigo_color)<150 || intval($estampado->articulo->codigo_color)==9999 )?$estampado->articulo->nombre_color:$estampado->articulo->codigo_color ?></span>
                                             </div>
                                         </label>
                                     </div>
