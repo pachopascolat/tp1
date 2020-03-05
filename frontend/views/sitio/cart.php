@@ -252,8 +252,8 @@ if ($_SESSION['carrito'] != ''):
                                     </div>
                                 </td>
                                 <?php if (!Yii::$app->user->isGuest): ?>
-                                    <td>
-                                        <?= $item->unidad ?>
+                                    <td class="align-middle">
+                                        <strong> <?= $item->unidad ?></strong>
                                     </td>
                                     <td class="align-middle">
                                         <input data-id="<?= $item->id_item_carrito ?>" type="text" value="<?= $item->precio ?>" class="form-control text-center cambiar-precio">
