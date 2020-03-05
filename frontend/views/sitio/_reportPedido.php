@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script type="text/javascript" src="js/bwip-js-min.js"></script>
-
+        <!--<script type="text/javascript" src="js/bwip-js-min.js"></script>-->
     </head>
     <body>
 
@@ -117,14 +116,14 @@
                                         <strong> <?= $item->precio ?? '' ?></strong>
                                     </td>
                                     <td class="align-middle">
-                                        <!--<strong> <?php // echo $item->serie ?? ''     ?></strong>-->
-                                        <div id="serie-<?= $item->id_item ?>"></div>
+                                        <strong> <?php echo $item->serie ?? ''     ?></strong>
+<!--                                        <div id="serie-<?= $item->id_item ?>"></div>
                                         <script>
                                             try {
                                                 // The return value is the canvas element
-                                                let canvas = bwipjs.toCanvas('serie-<?= $item->id_item ?>', {
+                                                let canvas = bwipjs.toCanvas('serie-<?php // echo $item->id_item ?>', {
                                                     bcid: 'datamatrix', // Barcode type
-                                                    text: '<?= $item->serie ?>', // Text to encode
+                                                    text: '<?php // echo $item->serie ?>', // Text to encode
                                                     scale: 3, // 3x scaling factor
                                                     height: 10, // Bar height, in millimeters
                                                     includetext: true, // Show human-readable text
@@ -133,7 +132,7 @@
                                             } catch (e) {
                                                 // `e` may be a string or Error object
                                             }
-                                        </script>
+                                        </script>-->
                                     </td>
                                 <?php endif; ?>
         <!--<td></td>-->
