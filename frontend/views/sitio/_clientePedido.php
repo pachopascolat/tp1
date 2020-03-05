@@ -168,7 +168,7 @@
                             </button>
                             <div  data-pjax="0"    class="mt-2 mt-sm-0 btn btn-outline-secondary limpiar-cliente">
 
-                                <p>Borrar</p> 
+                                <p>Nuevo</p> 
 
                             </div>
 
