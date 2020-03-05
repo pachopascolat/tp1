@@ -1,3 +1,7 @@
+.cursor-pointer{
+    cursor: pointer;
+}
+
 .code-lector-input::placeholder {
     font-family: 'oswald';
     text-align: center;

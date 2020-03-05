@@ -55,7 +55,7 @@
                         <li class="nav-item navbar-icon-link">
                             <div class="">
                                 <?php if (Yii::$app->user->isGuest) : ?>
-                                <a class="text-white" data-toggle="modal" data-target="#login-modal">
+                                <a class="text-white cursor-pointer" data-toggle="modal" data-target="#login-modal">
                                         <i style="" class="fas fa-lock"></i>
                                         <span class="d-xs-block d-sm-none">Login</span>
                                     </a>

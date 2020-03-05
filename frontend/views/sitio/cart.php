@@ -6,6 +6,7 @@
 use kartik\select2\Select2;
 ?>
 
+
 <!-- Hero Section-->
 <section class="hero">
     <div class="container">
@@ -94,12 +95,15 @@ use kartik\select2\Select2;
         });
     }
 </script>
+
+
+
+
+
+
 <?php
 \yii\widgets\Pjax::begin(['id' => 'cart-pjax']);
 ?>
-
-
-
 
 <?php
 $js = " 
@@ -189,14 +193,12 @@ $js = "
 $this->registerJs($js);
 ?>
 
-
-
-
 <?php
 if ($_SESSION['carrito'] != ''):
     $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
     if ($carrito->itemCarritos != null):
         ?>
+
         <section>
             <div class="container"> 
 
@@ -279,20 +281,20 @@ if ($_SESSION['carrito'] != ''):
                         </i> Continuar agregando
                     </a>
                     <?php if (!Yii::$app->user->isGuest): ?>
-                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#pedido-facturacion">
+                        <button data-pjax=0  type="button" class="btn btn-dark" data-toggle="modal" data-target="#pedido-facturacion">
                             Pedido Facturación
                         </button>
-                        <a href="<?= yii\helpers\Url::to(['terminar']) ?>" class="btn btn-link text-muted" >
+                        <a data-pjax=0 href="<?= yii\helpers\Url::to(['terminar']) ?>" class="btn btn-link text-muted" >
                             Finalizar
-                            </button>
-                        <?php else: ?>
-                            <a class="btn btn-dark"  data-toggle="modal" href="#pedido-simple" role="button" aria-expanded="false" aria-controls="collapseContacto">
+                        </a>
+                    <?php else: ?>
+                        <a class="btn btn-dark"  data-toggle="modal" href="#pedido-simple" role="button" aria-expanded="false" aria-controls="collapseContacto">
 
-                                Realizar Consultar 
-                                <i class="fa fa-chevron-right">
-                                </i>                           
-                            </a>
-                        <?php endif; ?>
+                            Realizar Consultar 
+                            <i class="fa fa-chevron-right">
+                            </i>                           
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>
@@ -304,6 +306,7 @@ if ($_SESSION['carrito'] != ''):
                 </i> Continuar agregando
             </a>
         </div>
+
     <?php endif; ?>
 
 <?php endif; ?>
