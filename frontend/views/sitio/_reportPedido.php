@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script type="text/javascript" src="js/bwip-js-min.js"></script>
+
     </head>
     <body>
 
         <div id="print-area">
             <div id="header">
                 <div>
-                    <h1><img class="img-titulo-pdf" src="<?= yii\helpers\Url::base(true) . "/img/favicon-32x32.png" ?>">   Texsim Pedido nro: <?= $carrito->id_carrito?> <span class="hoja-pdf"><?=" HOJA: $nro_hoja" ?></span></h1>
+                    <h1><img class="img-titulo-pdf" src="<?= yii\helpers\Url::base(true) . "/img/favicon-32x32.png" ?>">   Texsim Pedido nro: <?= $carrito->id_carrito ?> <span class="hoja-pdf"><?= " HOJA: $nro_hoja" ?></span></h1>
                 </div>
-                        
+
             </div>
             <div id="content">
                 <hr>
@@ -115,20 +117,37 @@
                                         <strong> <?= $item->precio ?? '' ?></strong>
                                     </td>
                                     <td class="align-middle">
-                                        <strong> <?= $item->serie ?? '' ?></strong>
+                                        <!--<strong> <?php // echo $item->serie ?? ''     ?></strong>-->
+                                        <div id="serie-<?= $item->id_item ?>"></div>
+                                        <script>
+                                            try {
+                                                // The return value is the canvas element
+                                                let canvas = bwipjs.toCanvas('serie-<?= $item->id_item ?>', {
+                                                    bcid: 'datamatrix', // Barcode type
+                                                    text: '<?= $item->serie ?>', // Text to encode
+                                                    scale: 3, // 3x scaling factor
+                                                    height: 10, // Bar height, in millimeters
+                                                    includetext: true, // Show human-readable text
+                                                    textxalign: 'center', // Always good to set this
+                                                });
+                                            } catch (e) {
+                                                // `e` may be a string or Error object
+                                            }
+                                        </script>
                                     </td>
                                 <?php endif; ?>
-                                <!--<td></td>-->
+        <!--<td></td>-->
                             </tr>
 
                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
-<!--            <div id="footer">
-                This is an example footer.
-            </div>-->
+            <!--            <div id="footer">
+                            This is an example footer.
+                        </div>-->
         </div>
+
 
     </body>
 </html>
@@ -194,7 +213,7 @@
         <div>
             <label>Observaciones:</label>
             <p>
-                <?= $carrito->observaciones ?>
+<?= $carrito->observaciones ?>
             </p>
         </div>
         <hr>
@@ -242,45 +261,45 @@
             <tbody>
 
 
-                <?php
-                foreach ($carrito->itemCarritos as $item):
-                    ?>
-                    <tr id="<?= $item->id_item_carrito ?>" class="cart-item text-center">
-                        <td class="align-middle d-none d-md-table-cell">
-                            <strong> <?= $item->articulo->tela->codigo_tela ?? '' ?></strong>
-                        </td>
-                        <td class="align-middle d-none d-md-table-cell">
-                            <strong> <?= $item->articulo->codigo_color ?? '' ?></strong>
-                        </td>
-                        <td class="align-middle">
-                            <div class="imagen-carrito">
+<?php
+foreach ($carrito->itemCarritos as $item):
+    ?>
+                                            <tr id="<?= $item->id_item_carrito ?>" class="cart-item text-center">
+                                                <td class="align-middle d-none d-md-table-cell">
+                                                    <strong> <?= $item->articulo->tela->codigo_tela ?? '' ?></strong>
+                                                </td>
+                                                <td class="align-middle d-none d-md-table-cell">
+                                                    <strong> <?= $item->articulo->codigo_color ?? '' ?></strong>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <div class="imagen-carrito">
 
-                                <img style="" src="<?= $item->articulo->getFrontFullUrl(50, 50) ?>" class="">
-                            </div>
-                        </td>
-                        <td class="align-middle d-none d-sm-table-cell ">
-                            <div class="cart-title text-left">
-                                <a  class="text-uppercase text-dark">
-                                    <strong> <?= $item->articulo->tela->nombre_tela ?? '' ?></strong>
-                                    <strong> <?= $item->articulo->nombre_color ?? '' ?></strong>
-                                </a>
-                            </div>
-                        </td>
+                                                        <img style="" src="<?= $item->articulo->getFrontFullUrl(50, 50) ?>" class="">
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle d-none d-sm-table-cell ">
+                                                    <div class="cart-title text-left">
+                                                        <a  class="text-uppercase text-dark">
+                                                            <strong> <?= $item->articulo->tela->nombre_tela ?? '' ?></strong>
+                                                            <strong> <?= $item->articulo->nombre_color ?? '' ?></strong>
+                                                        </a>
+                                                    </div>
+                                                </td>
 
-                        <td class="align-middle">
-                            <div class="d-flex align-items-center">
-                                <strong> <?= $item->cantidad ?? '' ?></strong>
-                            </div>
-                        </td>
-                        <?php if (!Yii::$app->user->isGuest): ?>
-                            <td class="align-middle">
-                                <strong> <?= $item->precio ?? '' ?></strong>
-                            </td>
-                        <?php endif; ?>
-                        <td></td>
-                    </tr>
+                                                <td class="align-middle">
+                                                    <div class="d-flex align-items-center">
+                                                        <strong> <?= $item->cantidad ?? '' ?></strong>
+                                                    </div>
+                                                </td>
+    <?php if (!Yii::$app->user->isGuest): ?>
+                                                                            <td class="align-middle">
+                                                                                <strong> <?= $item->precio ?? '' ?></strong>
+                                                                            </td>
+    <?php endif; ?>
+                                                <td></td>
+                                            </tr>
 
-                <?php endforeach; ?>
+<?php endforeach; ?>
             </tbody>
         </table>
     </div>
