@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use yii\httpclient\Client;
 use mikehaertl\wkhtmlto\Pdf as Pdf2;
+use mikehaertl\tmp\File;
 
 class SitioController extends \yii\web\Controller {
 
@@ -125,7 +126,7 @@ class SitioController extends \yii\web\Controller {
 
         $curl = new \linslin\yii2\curl\Curl();
 //get http://example.com/
-        $response = $curl->get("http://7633081eb66a.sn.mynetname.net:8000/rollo/$code");
+        $response = $curl->get("http://7633081eb66a.sn.mynetname.net/rollo/$code");
         // $response = $curl->get("http://jsonplaceholder.typicode.com/todos/1");
         // return json_encode($curl);
         $response = json_decode($response);
@@ -216,6 +217,7 @@ class SitioController extends \yii\web\Controller {
         if ($carrito == null) {
             return $this->goBack();
         }
+
         if ($carrito->cliente_id == null) {
             $model = new \common\models\Cliente();
         } else {
@@ -342,11 +344,13 @@ class SitioController extends \yii\web\Controller {
         if ($carrito == null) {
             return $this->goBack();
         }
-
-        if ($carrito->cliente_id == null) {
-            $model = new \common\models\Cliente(['agendado' => 1]);
-        } else {
+        if ($carrito->cliente_id) {
             $model = \common\models\Cliente::findOne($carrito->cliente_id);
+        } else {
+            $model = \common\models\Cliente::findOne(Yii::$app->request->post("Cliente")["id_cliente"]);
+        }
+        if (!$model) {
+            $model = new \common\models\Cliente(['agendado' => 1]);
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $carrito->load(\Yii::$app->request->post());
@@ -380,28 +384,27 @@ class SitioController extends \yii\web\Controller {
         }
         $carrito->cliente_id = $cliente->id_cliente;
         $carrito->save();
-
+        $header = $this->renderPartial('_pdfHeader',['carrito'=>$carrito]);
+        $header = "hola";
         $options = [
             'binary' => Yii::getAlias("@vendor/wkhtmltopdf"),
-            'page-size' => 'A4',
-//            'header-html' => $this->renderPartial('_pdfHeader'),
-//            'footer-html' => $this->renderPartial('_pdfFooter'),
-            'no-outline', // option without argument
-            'encoding' => 'UTF-8', // option with argument
-//            'user-style-sheet' => $cssPath,
+            'no-outline', // Make Chrome not complain
             'margin-top' => 0,
             'margin-right' => 0,
             'margin-bottom' => 0,
             'margin-left' => 0,
+            'encoding' => 'UTF-8',
+            // Default page options
             'disable-smart-shrinking',
-            'user-style-sheet' => Yii::getAlias("@backend/web/css/pdfstyle.css"),
-//            'header-html' => "<h1>Texsim</h1>",
+            'user-style-sheet' => Yii::getAlias("@frontend/web/css/pdfStyle.css"),
+            'header-html' => $header,
         ];
 
         $pdf = new Pdf2($options);
-
-        $pdf->addPage($this->renderPartial('_reportPedido', ['carrito' => $carrito]));
-
+        $paginas = array_chunk($carrito->itemCarritos, 12);
+        foreach ($paginas as $nro_hoja => $items){
+        $pdf->addPage($this->renderPartial('_reportPedido', ['carrito'=>$carrito,'items' => $items, 'nro_hoja'=>$nro_hoja+1]));
+        }
 
         if (!$pdf->send("Pedido-$carrito->id_carrito.pdf")) {
             throw new \Exception('Could not create PDF: ' . $pdf->getError());
@@ -415,12 +418,15 @@ class SitioController extends \yii\web\Controller {
         if ($carrito == null) {
             return $this->goBack();
         }
-
-        if ($carrito->cliente_id == null) {
-            $model = new \common\models\Cliente(['agendado' => 1]);
-        } else {
+        if ($carrito->cliente_id) {
             $model = \common\models\Cliente::findOne($carrito->cliente_id);
+        } else {
+            $model = \common\models\Cliente::findOne(Yii::$app->request->post("Cliente")["id_cliente"]);
         }
+        if ($model == null) {
+            $model = new \common\models\Cliente(['agendado' => 1]);
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $carrito->load(\Yii::$app->request->post());
             $this->imprimirCarrito($carrito, $model);
@@ -428,6 +434,14 @@ class SitioController extends \yii\web\Controller {
         }
 
         return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
+    }
+
+    function actionLimpiarCliente() {
+        $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+        $model = new \common\models\Cliente(['agendado' => 1]);
+        $carrito->cliente_id = $model;
+//        $carrito->direccion_envio = $model->direccion_envio;
+        echo $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
     }
 
 }
