@@ -73,7 +73,7 @@ use kartik\select2\Select2;
 </section>
 <!-- Shopping Cart Section-->
 
-<!--<script>
+<script>
     let agregarDesdeCodigo = function (code) {
         $.ajax({
             url: '/sitio/datos-codigo',
@@ -93,7 +93,7 @@ use kartik\select2\Select2;
             }
         });
     }
-</script>-->
+</script>
 <?php
 \yii\widgets\Pjax::begin(['id' => 'cart-pjax']);
 ?>
@@ -124,22 +124,7 @@ $js = "
                     $('.code-lector-input').change(function(){
                         var code = $('.code-lector-input').val();
                         if (code != '') {
-                            $.ajax({
-                                url: '/sitio/datos-codigo',
-                                type: 'POST',
-                                data: {code: code},
-                                success: function (e) {
-                                    console.log(e);
-                                    $('.carrito-count-div').each(function () {
-                                        $(this).removeClass('d-none');
-                                    });
-
-                                    $('.carrito-count').each(function () {
-                                        $(this).text(e);
-                                    });
-                                    $.pjax.reload('#cart-pjax');
-                                }
-                            });
+                            agregarDesdeCodigo(code);
                         }
                         $(this).val('');
                     });
