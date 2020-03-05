@@ -1,8 +1,4 @@
-<style>
-    a:hover h3, a:hover h5, .sidebar-menu a:hover{
-        /*color: <?php // echo$_SESSION['categoria_padre']==1?'#ef6285':'#0074ab'         ?> !important*/
-    }
-</style>
+
 
 
 
@@ -55,7 +51,7 @@
                         <li class="nav-item navbar-icon-link">
                             <div class="">
                                 <?php if (Yii::$app->user->isGuest) : ?>
-                                <a class="text-white cursor-pointer" data-toggle="modal" data-target="#login-modal">
+                                <a href="#" class="text-white" data-toggle="modal" data-target="#login-modal">
                                         <i style="" class="fas fa-lock"></i>
                                         <span class="d-xs-block d-sm-none">Login</span>
                                     </a>
@@ -89,81 +85,11 @@
 
 <?= $this->render('_movil_iconos')?>
 <?= $this->render('_modal_pdf')?>
-
-
-<div id="login-modal" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <?php
-            $user = Yii::createObject(dektrium\user\models\LoginForm::className());
-
-//            echo  Html::beginForm(['/user/login'], 'post');
-            $form = \yii\widgets\ActiveForm::begin([
-                        'id' => 'login-form',
-                        'action' => ['/user/login']
-            ]);
-            ?>
-            <div class="modal-header">
-                <h5 class="modal-title">Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <div class="">
-                    <div class="">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"></h3>
-                            </div>
-                            <div class="panel-body">
+<?= $this->render('_login_modal')?>
 
 
 
-
-                                <?=
-                                $form->field($user, 'login', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1', 'autocomplete' => "username"]]
-                                );
-                                ?>
-
-
-
-                                <?=
-                                        $form->field(
-                                                $user, 'password', ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2', 'autocomplete' => "current-password"]])
-                                        ->passwordInput()
-                                        ->label()
-                                ?>
-
-
-                                <?= $form->field($user, 'rememberMe')->checkbox(['tabindex' => '3']) ?>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <!--</div>-->
-
-
-                </div>
-                <div class="modal-footer">
-                    <div class="form-group">
-                        <?= \yii\helpers\Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                    </div>
-                </div>
-                <?php
-                yii\widgets\ActiveForm::end();
-                ?>
-
-            </div>
-        </div>
-    </div>
-</div>
-<div id="ayuda-modal" class="modal" tabindex="-1" role="dialog">
+<div id="ayuda-modal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">

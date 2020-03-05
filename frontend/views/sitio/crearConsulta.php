@@ -12,40 +12,39 @@
 
 
 echo $this->render('cart', ['id_carrito' => $carrito->id_carrito]);
-echo $this->render('lector_codigo');
+if (!Yii::$app->user->isGuest) {
+    echo $this->render('lector_codigo');
+}
 ?>
 
 
 
 
 
-<?php if(Yii::$app->user->isGuest):?>
+<?php if (Yii::$app->user->isGuest): ?>
 
-<?php 
-echo $this->render('_consulta_normal', ['model' => $model, 'carrito' => $carrito]);
-?>
+    <?php
+    echo $this->render('_consulta_normal', ['model' => $model, 'carrito' => $carrito]);
+    ?>
 
-<?php else:?>
+<?php else: ?>
 
-<?php
+    <?php
+    echo $this->render('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
+    ?>
+    <!--<div id="pedido-facturacion" class="modal"  role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-
-echo $this->render('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
-
-?>
-<!--<div id="pedido-facturacion" class="modal"  role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-<?php // echo $this->render('_clientePedido', ['model' => $model, 'carrito' => $carrito]);  ?>
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+    <?php // echo $this->render('_clientePedido', ['model' => $model, 'carrito' => $carrito]);   ?>
+                </div>
             </div>
         </div>
-    </div>
-</div>-->
+    </div>-->
 <?php endif; ?>
 
 

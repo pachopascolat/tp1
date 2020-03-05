@@ -18,7 +18,7 @@ use kartik\select2\Select2;
         </ol>
         <div class="hero-content pb-3 text-center">
             <h1 class="hero-heading">
-                Consulta<a class="text-dark show-lector" href="#" >
+                Consulta<a class="text-dark show-lector <?= Yii::$app->user->isGuest?'d-none':'' ?>" href="#" >
                     <i class="p-2 fal fa-camera-retro" ></i>
                 </a>
             </h1>
