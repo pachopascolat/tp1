@@ -218,13 +218,10 @@ class SitioController extends \yii\web\Controller {
             return $this->goBack();
         }
 
-        if ($carrito->cliente_id) {
-            $model = \common\models\Cliente::findOne($carrito->cliente_id);
+        if ($carrito->cliente_id == null) {
+            $model = new \common\models\Cliente();
         } else {
-            $model = \common\models\Cliente::findOne(Yii::$app->request->post("Cliente")["id_cliente"]);
-        }
-        if (!$model) {
-            $model = new \common\models\Cliente(['agendado' => 1]);
+            $model = \common\models\Cliente::findOne($carrito->cliente_id);
         }
 
 

@@ -9,7 +9,7 @@ use kartik\select2\Select2;
 <!-- Hero Section-->
 <section class="hero">
     <div class="container">
-        Breadcrumbs 
+        <!--Breadcrumbs--> 
         <ol class="breadcrumb justify-content-left pl-0">
             <li class="breadcrumb-item">
                 <a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
