@@ -101,7 +101,7 @@ class SitioController extends \yii\web\Controller {
         $client = new Client();
         $response = $client->createRequest()
                 ->setMethod('GET')
-                ->setUrl("http://7633081eb66a.sn.mynetname.net:8000/rollo/$code")
+                ->setUrl("http://7633081eb66a.sn.mynetname.net/rollo/$code")
 //                ->setData(['name' => 'John Doe', 'email' => 'johndoe@example.com'])
                 ->send();
         if ($response->isOk) {

@@ -33,6 +33,7 @@ class Cliente extends \yii\db\ActiveRecord {
             ],
             [['mail_cliente'], 'email'],
             [['cuit', 'nro_cliente'], 'integer'],
+            [['nro_cliente'],'unique'],
             [['direccion_envio', 'agendado'], 'safe'],
 //            ['telefono', 'either', 'skipOnEmpty' => false, 'params' => ['other' => 'mail_cliente']],
             ['telefono', 'filledContacts','skipOnError'=>true,'skipOnEmpty'=>false],

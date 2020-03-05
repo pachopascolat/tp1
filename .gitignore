@@ -37,6 +37,7 @@ phpunit.phar
 #imagenes de estampados
 /backend/web/images
 /frontend/web/index.php
+/backend/web/index.php
 
 #archivos de stock
 /backend/stock

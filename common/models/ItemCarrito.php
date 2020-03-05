@@ -30,8 +30,8 @@ class ItemCarrito extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-//            [['precio'],'number'],
-            [['disenio_id','articulo_id','imagen_id','precio'], 'integer'],
+            [['precio'],'number'],
+            [['disenio_id','articulo_id','imagen_id'], 'integer'],
             [['disenio_id'], 'exist', 'skipOnError' => true, 'targetClass' => GalleryImage::className(), 'targetAttribute' => ['disenio_id' => 'id']],
             [['articulo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articulo::className(), 'targetAttribute' => ['articulo_id' => 'id_articulo']],
         ];

@@ -28,13 +28,19 @@
                   <p class="text-muted">Si tiene alguna pregunta, no dude en <a href="#">contactarnos</a>, nuestro centro de servicio al cliente se comunicará a la brevedad.</p>
                   <hr>-->
                     <!--<form action="customer-orders.html" method="get">-->
+                    
 
+                    
                     <?php
                     $data = [];
-                    $clientes = $model->find()->all();
+                    $clientes = $model->find()->where(['not', ['nro_cliente' => null]])->all();
                     foreach ($clientes as $cliente) {
-                        $data[$cliente->id_cliente] = "$cliente->cuit - $cliente->nombre_cliente";
+                        $data[$cliente->id_cliente] = "nro: $cliente->nro_cliente - cuit: $cliente->cuit - nombre: $cliente->nombre_cliente";
                     }
+                    
+                    ?>
+                    
+                    <?php
                     echo '<label for="buscador-cliente" class="form-label">Buscar</label>';
                     echo Select2::widget([
                         'name' => 'buscador-cliente',
@@ -59,19 +65,43 @@
                                   }",
                         ],
                         'pluginOptions' => [
+                            'changeOnReset'=>true,
                             'allowClear' => true
                         ],
                     ]);
                     ?>
+                    <?php $js= " 
+                        $('.limpiar-cliente').on('click',function(){
+                                $.pjax.reload({
+                                        push: false,
+                                        replace: false,
+                                        url: '/sitio/limpiar-cliente',
+                                        type: 'POST',
+                                        container: '#pjax-pedido-cliente',
+                                        timeout: false,
+                                        async: false,
+                                    })
+                        })
+                            ";
+                    $this->registerJs($js);        
+                            ?>
+
+                    
                     <?php \yii\widgets\Pjax::begin(['id' => 'pjax-pedido-cliente']) ?>
+                    
 
-
+                    <?= $form->field($model, 'id_cliente')->hiddenInput()->label(false) ?>
 
 
                     <div class="form-group">
                         <label for="name" class="form-label">Cuit</label>
                         <!--<input id="name" type="text" class="form-control">-->
                         <?= $form->field($model, 'cuit')->textInput(['class' => 'form-control'])->label(false) ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nro Cliente</label>
+                        <!--<input id="name" type="text" class="form-control">-->
+                        <?= $form->field($model, 'nro_cliente')->textInput(['class' => 'form-control'])->label(false) ?>
                     </div>
                     <div class="form-group">
                         <label for="name" class="form-label">Nombre o Razón Social</label>
@@ -112,21 +142,23 @@
                                                         <button type="submit" class="btn btn-outline-secondary"><svg class="svg-icon"><use xlink:href="#envelope-1"> </use></svg><p>ENVIAR POR MAIL</p> </button>
                                                     </div>-->
                         <div class="form-group text-center">
-                            <button type="submit" formaction="<?= \yii\helpers\Url::to(['pedido-facturacion']) ?>"  type="" class="mt-2 mt-sm-0 btn btn-outline-secondary">
+                            <button type="submit" formaction="<?= \yii\helpers\Url::to(['pedido-facturacion']) ?>" class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
                                 <p>ENVIAR POR MAIL</p> 
 
                             </button>
-                            <button type="submit" formaction="<?= \yii\helpers\Url::to(['imprimir-pedido']) ?>"  type="" class="mt-2 mt-sm-0 btn btn-outline-secondary">
+                            <button type="submit" formaction="<?= \yii\helpers\Url::to(['imprimir-pedido']) ?>"  class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
                                 <p>Crear PDF</p> 
 
                             </button>
-<!--                                <a data-pjax=0 href="<?= yii\helpers\Url::to(['/sitio/imprimir-pedido']) ?>"  id="" type="" class="btn btn-outline-secondary">
+                            <div  data-pjax="0"    class="mt-2 mt-sm-0 btn btn-outline-secondary limpiar-cliente">
 
-                                <p>Crear PDF</p> 
+                                <p>Borrar</p> 
 
-                            </a>-->
+                            </div>
+                            
+
                         </div>
                     </div>
 
