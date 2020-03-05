@@ -177,11 +177,11 @@ yii\bootstrap4\Modal::begin([
                             <p>Crear PDF</p> 
 
                         </button>
-                        <!--                            <div  data-pjax="0"    class="mt-2 mt-sm-0 btn btn-outline-secondary limpiar-cliente">
-                        
-                                                        <p>Nuevo</p> 
-                        
-                                                    </div>-->
+                        <div  data-pjax="0"    class="mt-2 mt-sm-0 btn btn-outline-secondary limpiar-cliente">
+
+                            <p>Nuevo</p> 
+
+                        </div>
 
 
                     </div>

@@ -35,10 +35,10 @@ class Cliente extends \yii\db\ActiveRecord {
                 'message' => "Por favor complete su Nombre"
             ],
             [['mail_cliente'], 'email'],
-            [['cuit', 'nro_cliente'], 'integer'],
+            [['nro_cliente'], 'integer'],
             ['nro_cliente', 'unique'],
 //            [['cuit','nro_cliente'],'unique'],
-            [['direccion_envio', 'agendado'], 'safe'],
+            [['direccion_envio', 'agendado','cuit'], 'safe'],
             ['telefono', AtLeastValidator::className(), 'in' => ['telefono', 'mail_cliente']],
 //            ['telefono', 'either', 'skipOnEmpty' => false, 'params' => ['other' => 'mail_cliente']],
 //            [['telefono'], 'filledContacts', 'skipOnError' => true, 'skipOnEmpty' => false],

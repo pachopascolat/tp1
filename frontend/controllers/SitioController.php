@@ -136,7 +136,7 @@ class SitioController extends \yii\web\Controller {
             $tela_id = $response->articulo;
             $color_id = $response->variante;
             $unidad = "$response->cantidad $response->unidad";
-            return $this->agregarDesdeCodigo($tela_id, $color_id,$unidad,$code);
+            return $this->agregarDesdeCodigo($tela_id, $color_id, $unidad, $code);
         } else {
             // List of curl error codes here https://curl.haxx.se/libcurl/c/libcurl-errors.html
             switch ($curl->errorCode) {
@@ -166,7 +166,7 @@ class SitioController extends \yii\web\Controller {
 //        echo $output;
     }
 
-    public function agregarDesdeCodigo($tela_id, $color_id,$unidad,$code) {
+    public function agregarDesdeCodigo($tela_id, $color_id, $unidad, $code) {
         $session = Yii::$app->session;
 //        $data = \Yii::$app->request->post();
 //        $tela_id = $data['tela_id'];
@@ -341,6 +341,7 @@ class SitioController extends \yii\web\Controller {
         $model = \common\models\Cliente::findOne([$data['id_cliente']]);
         $carrito->cliente_id = $model->id_cliente;
         $carrito->direccion_envio = $model->direccion_envio;
+        $carrito->save();
         echo $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
     }
 
@@ -374,7 +375,7 @@ class SitioController extends \yii\web\Controller {
     function actionImprimirDesdeBackend($carrito_id) {
         $carrito = \common\models\Carrito::findOne($carrito_id);
         $this->imprimirCarrito($carrito);
-        return $this->redirect(['finalizar-consulta','id_carrito'=>$carrito->id_carrito]);
+        return $this->redirect(['finalizar-consulta', 'id_carrito' => $carrito->id_carrito]);
     }
 
     function imprimirCarrito(\common\models\Carrito $carrito, $cliente = null) {
@@ -390,7 +391,7 @@ class SitioController extends \yii\web\Controller {
         }
         $carrito->cliente_id = $cliente->id_cliente;
         $carrito->save();
-        $header = $this->renderPartial('_pdfHeader',['carrito'=>$carrito]);
+        $header = $this->renderPartial('_pdfHeader', ['carrito' => $carrito]);
         $header = "hola";
         $options = [
             'binary' => Yii::getAlias("@vendor/wkhtmltopdf"),
@@ -408,8 +409,8 @@ class SitioController extends \yii\web\Controller {
 
         $pdf = new Pdf2($options);
         $paginas = array_chunk($carrito->itemCarritos, 12);
-        foreach ($paginas as $nro_hoja => $items){
-        $pdf->addPage($this->renderPartial('_reportPedido', ['carrito'=>$carrito,'items' => $items, 'nro_hoja'=>$nro_hoja+1]));
+        foreach ($paginas as $nro_hoja => $items) {
+            $pdf->addPage($this->renderPartial('_reportPedido', ['carrito' => $carrito, 'items' => $items, 'nro_hoja' => $nro_hoja + 1]));
         }
 
         if (!$pdf->send("Pedido-$carrito->id_carrito.pdf")) {
@@ -424,22 +425,21 @@ class SitioController extends \yii\web\Controller {
         if ($carrito == null) {
             return $this->goBack();
         }
+//        
+        $model = new \common\models\Cliente(['agendado' => 1]);
+
         if ($carrito->cliente_id) {
             $model = \common\models\Cliente::findOne($carrito->cliente_id);
-        } else {
-            $model = \common\models\Cliente::findOne(Yii::$app->request->post("Cliente")["id_cliente"]);
-        }
-        if ($model == null) {
-            $model = new \common\models\Cliente(['agendado' => 1]);
-        }
-       
+        } 
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $carrito->load(\Yii::$app->request->post());
-            $carrito->cliente_id = $model->id_cliente;
-            $carrito->save();
+                $carrito->load(\Yii::$app->request->post());
+                $carrito->cliente_id = $model->id_cliente;
+                $carrito->save();
 //            $this->imprimirCarrito($carrito, $model);
-            return $this->redirect(['imprimir-desde-backend', 'carrito_id' => $carrito->id_carrito]);
+                return $this->redirect(['imprimir-desde-backend', 'carrito_id' => $carrito->id_carrito]);
+            
         }
 
         return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
