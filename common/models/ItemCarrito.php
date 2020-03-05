@@ -12,7 +12,7 @@ use Yii;
  * @property int $imagen_id
  * @property int $articulo_id
  * @property string  $unidad
- * @property int  $series
+ * @property string  $series
  *
  * @property GalleryImage $disenio
  * @property Articulo $articulo
@@ -33,8 +33,8 @@ class ItemCarrito extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['precio'],'number'],
-            [['unidad'],'string'],
-            [['disenio_id','articulo_id','imagen_id','serie'], 'integer'],
+            [['unidad','series'],'string'],
+            [['disenio_id','articulo_id','imagen_id'], 'integer'],
             [['disenio_id'], 'exist', 'skipOnError' => true, 'targetClass' => GalleryImage::className(), 'targetAttribute' => ['disenio_id' => 'id']],
             [['articulo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articulo::className(), 'targetAttribute' => ['articulo_id' => 'id_articulo']],
         ];
