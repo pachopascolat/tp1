@@ -12,7 +12,7 @@
 
 
 echo $this->render('cart', ['id_carrito' => $carrito->id_carrito]);
-//echo $this->render('lector_codigo');
+echo $this->render('lector_codigo');
 ?>
 
 
