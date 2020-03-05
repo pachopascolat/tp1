@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use codeonyii\yii2validators\AtLeastValidator;
 
 /**
  * This is the model class for table "cliente".
@@ -33,11 +34,12 @@ class Cliente extends \yii\db\ActiveRecord {
             ],
             [['mail_cliente'], 'email'],
             [['cuit', 'nro_cliente'], 'integer'],
-            [['nro_cliente'],'unique'],
+            [['nro_cliente', 'cuit'], 'unique'],
             [['direccion_envio', 'agendado'], 'safe'],
+            ['telefono', AtLeastValidator::className(), 'in' => ['telefono', 'mail_cliente']],
 //            ['telefono', 'either', 'skipOnEmpty' => false, 'params' => ['other' => 'mail_cliente']],
-            ['telefono', 'filledContacts','skipOnError'=>true,'skipOnEmpty'=>false],
-//            ['telefono', 'integer'],
+//            [['telefono'], 'filledContacts', 'skipOnError' => true, 'skipOnEmpty' => false],
+//            [['telefono'], 'required'],
             [['nombre_cliente', 'telefono', 'mail_cliente'], 'string', 'max' => 128],
         ];
     }
@@ -45,9 +47,8 @@ class Cliente extends \yii\db\ActiveRecord {
     public function filledContacts($attribute, $params, $validator) {
 
         if (!$this->hasErrors('mail_cliente') && !$this->hasErrors('telefono')) { // If any contact field has validation errors, then don't show a message.
-
             if (empty($this->mail_cliente) && empty($this->telefono))
-                $validator->addError($this,$attribute,"Uno de los campos Telefono o Email debe ser completado.");
+                $validator->addError($this, $attribute, "Uno de los campos Telefono o Email debe ser completado.");
 //                $this->addError('mail_cliente', "Uno de los campos Telefono o Email debe ser completado.");
         }
     }

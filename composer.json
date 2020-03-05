@@ -35,7 +35,8 @@
         "skeeks/yii2-assets-auto-compress": "*",
         "yiisoft/yii2-httpclient": "*",
         "linslin/yii2-curl": "*",
-        "kartik-v/yii2-widget-select2": "@dev"
+        "kartik-v/yii2-widget-select2": "@dev",
+        "codeonyii/yii2-at-least-validator": "dev-master"
 
 
     },

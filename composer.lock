@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73ebb418526d137c9274aeabec94e0ab",
+    "content-hash": "bf84667ac3ff9e1e45c2613edab75959",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -33,7 +33,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "url": "https://github.com/RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -55,7 +55,7 @@
             "version": "3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
             "dist": {
@@ -96,7 +96,7 @@
             "version": "v1.3.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bestiejs/punycode.js.git",
+                "url": "git@github.com:bestiejs/punycode.js.git",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "dist": {
@@ -188,6 +188,53 @@
                 "markdown-extra"
             ],
             "time": "2018-12-10T09:41:35+00:00"
+        },
+        {
+            "name": "codeonyii/yii2-at-least-validator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sdlins/yii2-at-least-validator.git",
+                "reference": "52d6ceff42d12f2e7823291d8c6d6f4ac10d17af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sdlins/yii2-at-least-validator/zipball/52d6ceff42d12f2e7823291d8c6d6f4ac10d17af",
+                "reference": "52d6ceff42d12f2e7823291d8c6d6f4ac10d17af",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "yiisoft/yii2": "~2.0.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "6.5.8"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "codeonyii\\yii2validators\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Sidney Lins",
+                    "email": "slinstj@gmail.com"
+                }
+            ],
+            "description": "Validates at least one (or more) attributes.",
+            "homepage": "https://github.com/code-on-yii/yii2-at-least-validator",
+            "keywords": [
+                "at least",
+                "validation",
+                "validator",
+                "yii2"
+            ],
+            "time": "2019-06-22T02:31:40+00:00"
         },
         {
             "name": "creocoder/yii2-nested-sets",
@@ -8218,7 +8265,8 @@
         "mootensai/yii2-enhanced-gii": 20,
         "kartik-v/yii2-mpdf": 20,
         "kartik-v/yii2-tree-manager": 20,
-        "kartik-v/yii2-widget-select2": 20
+        "kartik-v/yii2-widget-select2": 20,
+        "codeonyii/yii2-at-least-validator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
