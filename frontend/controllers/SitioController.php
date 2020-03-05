@@ -6,6 +6,8 @@ use Yii;
 use yii\httpclient\Client;
 use mikehaertl\wkhtmlto\Pdf as Pdf2;
 use mikehaertl\tmp\File;
+use yii\widgets\ActiveForm;
+use yii\web\Response;
 
 class SitioController extends \yii\web\Controller {
 
@@ -336,7 +338,7 @@ class SitioController extends \yii\web\Controller {
     function actionBuscarCliente() {
         $data = Yii::$app->request->post();
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
-        $model = \common\models\Cliente::findOne([$data['buscador-cliente']]);
+        $model = \common\models\Cliente::findOne([$data['id_cliente']]);
         $carrito->cliente_id = $model->id_cliente;
         $carrito->direccion_envio = $model->direccion_envio;
         echo $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
@@ -372,6 +374,7 @@ class SitioController extends \yii\web\Controller {
     function actionImprimirDesdeBackend($carrito_id) {
         $carrito = \common\models\Carrito::findOne($carrito_id);
         $this->imprimirCarrito($carrito);
+        return $this->redirect(['finalizar-consulta','id_carrito'=>$carrito->id_carrito]);
     }
 
     function imprimirCarrito(\common\models\Carrito $carrito, $cliente = null) {
@@ -429,11 +432,14 @@ class SitioController extends \yii\web\Controller {
         if ($model == null) {
             $model = new \common\models\Cliente(['agendado' => 1]);
         }
+       
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $carrito->load(\Yii::$app->request->post());
-            $this->imprimirCarrito($carrito, $model);
-            return $this->redirect(['finalizar-consulta', 'id_carrito' => $carrito->id_carrito]);
+            $carrito->cliente_id = $model->id_cliente;
+            $carrito->save();
+//            $this->imprimirCarrito($carrito, $model);
+            return $this->redirect(['imprimir-desde-backend', 'carrito_id' => $carrito->id_carrito]);
         }
 
         return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);

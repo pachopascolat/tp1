@@ -10,6 +10,8 @@ use codeonyii\yii2validators\AtLeastValidator;
  *
  * @property int $id_cliente
  * @property string $nombre_cliente
+ * @property int $nro_cliente
+ * @property int $cuit
  * @property string $telefono
  * @property string $mail_cliente
  *
@@ -34,7 +36,8 @@ class Cliente extends \yii\db\ActiveRecord {
             ],
             [['mail_cliente'], 'email'],
             [['cuit', 'nro_cliente'], 'integer'],
-            [['nro_cliente', 'cuit'], 'unique'],
+            ['nro_cliente', 'unique'],
+//            [['cuit','nro_cliente'],'unique'],
             [['direccion_envio', 'agendado'], 'safe'],
             ['telefono', AtLeastValidator::className(), 'in' => ['telefono', 'mail_cliente']],
 //            ['telefono', 'either', 'skipOnEmpty' => false, 'params' => ['other' => 'mail_cliente']],
@@ -44,48 +47,7 @@ class Cliente extends \yii\db\ActiveRecord {
         ];
     }
 
-    public function filledContacts($attribute, $params, $validator) {
-
-        if (!$this->hasErrors('mail_cliente') && !$this->hasErrors('telefono')) { // If any contact field has validation errors, then don't show a message.
-            if (empty($this->mail_cliente) && empty($this->telefono))
-                $validator->addError($this, $attribute, "Uno de los campos Telefono o Email debe ser completado.");
-//                $this->addError('mail_cliente', "Uno de los campos Telefono o Email debe ser completado.");
-        }
-    }
-
-    public function either($attribute_name, $params) {
-        /**
-         * validate actula attribute
-         */
-        if (!empty($this->$attribute_name)) {
-            return;
-        }
-
-        if (!is_array($params['other'])) {
-            $params['other'] = [$params['other']];
-        }
-
-        /**
-         * validate other attributes
-         */
-        foreach ($params['other'] as $field) {
-            if (!empty($this->$field)) {
-                return;
-            }
-        }
-
-        /**
-         * get attributes labels
-         */
-        $fieldsLabels = [$this->getAttributeLabel($attribute_name)];
-        foreach ($params['other'] as $field) {
-            $fieldsLabels[] = $this->getAttributeLabel($field);
-        }
-
-        $this->addError($attribute_name, Yii::t('user', "Uno de los campos Telefono o Email debe ser completado."));
-        return;
-    }
-
+    
     /**
      * {@inheritdoc}
      */
@@ -93,6 +55,9 @@ class Cliente extends \yii\db\ActiveRecord {
         return [
             'id_cliente' => Yii::t('app', 'Id Cliente'),
             'nombre_cliente' => Yii::t('app', 'Nombre o Razón Social'),
+            'cuit' => Yii::t('app', 'Cuit'),
+            'nro_cliente' => Yii::t('app', 'Numero Cliente'),
+            
             'telefono' => Yii::t('app', 'Telefono'),
             'mail_cliente' => Yii::t('app', 'Email'),
         ];
