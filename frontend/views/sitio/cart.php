@@ -90,7 +90,7 @@ use kartik\select2\Select2;
                     $(this).text(e);
                 });
 //                                consultaguardada();
-                $.pjax.reload('#cart-pjax');
+                $.pjax.reload({container:'#cart-pjax',timeout:false});
             }
         });
     }
