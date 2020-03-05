@@ -67,6 +67,7 @@
                             <th>Diseño</th>
                             <th>Item</th>
                             <th>Cantidad</th>
+                            <th>Unidad</th>
                             <th>Precio</th>
                             <th>Codigo</th>
                         </tr>
@@ -104,12 +105,20 @@
                                         <strong> <?= $item->cantidad ?? '' ?></strong>
                                     </div>
                                 </td>
+                                <td class="align-middle">
+                                    <div class="d-flex align-items-center">
+                                        <strong> <?= $item->unidad ?? '' ?></strong>
+                                    </div>
+                                </td>
                                 <?php if (!Yii::$app->user->isGuest): ?>
                                     <td class="align-middle">
                                         <strong> <?= $item->precio ?? '' ?></strong>
                                     </td>
+                                    <td class="align-middle">
+                                        <strong> <?= $item->serie ?? '' ?></strong>
+                                    </td>
                                 <?php endif; ?>
-                                <td></td>
+                                <!--<td></td>-->
                             </tr>
 
                         <?php endforeach; ?>
