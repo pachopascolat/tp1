@@ -211,7 +211,7 @@ if ($_SESSION['carrito'] != ''):
                             <th class="d-none d-sm-table-cell ">Item</th>
                             <!--<th class="d-none d-md-table-cell ">Tipo Tela</th>-->
                             <th>Cantidad</th>
-                            <?= Yii::$app->user->isGuest ? '' : '<th class="">Precio</th>' ?>
+                            <?= Yii::$app->user->isGuest ? '' : '<th>unidad</th><th class="">Precio</th>' ?>
                             <th></th>
                         </tr>
                     </thead>
@@ -252,6 +252,9 @@ if ($_SESSION['carrito'] != ''):
                                     </div>
                                 </td>
                                 <?php if (!Yii::$app->user->isGuest): ?>
+                                    <td>
+                                        <?= $item->unidad ?>
+                                    </td>
                                     <td class="align-middle">
                                         <input data-id="<?= $item->id_item_carrito ?>" type="text" value="<?= $item->precio ?>" class="form-control text-center cambiar-precio">
                                     </td>

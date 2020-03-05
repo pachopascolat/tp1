@@ -133,7 +133,8 @@ class SitioController extends \yii\web\Controller {
         if ($curl->errorCode === null) {
             $tela_id = $response->articulo;
             $color_id = $response->variante;
-            return $this->agregarDesdeCodigo($tela_id, $color_id);
+            $unidad = "$response->cantidad $response->unidad";
+            return $this->agregarDesdeCodigo($tela_id, $color_id,$unidad);
         } else {
             // List of curl error codes here https://curl.haxx.se/libcurl/c/libcurl-errors.html
             switch ($curl->errorCode) {
@@ -163,7 +164,7 @@ class SitioController extends \yii\web\Controller {
 //        echo $output;
     }
 
-    public function agregarDesdeCodigo($tela_id, $color_id) {
+    public function agregarDesdeCodigo($tela_id, $color_id,$unidad) {
         $session = Yii::$app->session;
 //        $data = \Yii::$app->request->post();
 //        $tela_id = $data['tela_id'];
@@ -175,6 +176,7 @@ class SitioController extends \yii\web\Controller {
                 'carrito_id' => $session['carrito'],
                 'cantidad' => 1,
                 'imagen_id' => $articulo->imagen_id ?? null,
+                'unidad' => $unidad,
                 'articulo_id' => $articulo->id_articulo]);
             $item->save();
 
