@@ -1,3 +1,11 @@
+<?php
+
+//use barcode\barcode\BarcodeGenerator;
+use \Milon\Barcode\DNS2D;
+
+$d = new DNS2D();
+$d->setStorPath(__DIR__ . "/cache/");
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -67,6 +75,7 @@
                             <th>Color</th>
                             <th>Diseño</th>
                             <th>Item</th>
+                            <th>Piezas</th>
                             <th>Cantidad</th>
                             <th>Unidad</th>
                             <th>Precio</th>
@@ -103,6 +112,11 @@
 
                                 <td class="align-middle">
                                     <div class="d-flex align-items-center">
+                                        <strong> <?= $item->piezas ?? '' ?></strong>
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <div class="d-flex align-items-center">
                                         <strong> <?= $item->cantidad ?? '' ?></strong>
                                     </div>
                                 </td>
@@ -116,23 +130,13 @@
                                         <strong> <?= $item->precio ?? '' ?></strong>
                                     </td>
                                     <td class="align-middle">
-                                        <strong> <?php echo $item->serie ?? ''     ?></strong>
-<!--                                        <div id="serie-<?php // echo $item->id_item ?>"></div>
-                                        <script>
-                                            try {
-                                                // The return value is the canvas element
-                                                let canvas = bwipjs.toCanvas('serie-<?php // echo $item->id_item ?>', {
-                                                    bcid: 'datamatrix', // Barcode type
-                                                    text: '<?php // echo $item->serie ?>', // Text to encode
-                                                    scale: 3, // 3x scaling factor
-                                                    height: 10, // Bar height, in millimeters
-                                                    includetext: true, // Show human-readable text
-                                                    textxalign: 'center', // Always good to set this
-                                                });
-                                            } catch (e) {
-                                                // `e` may be a string or Error object
-                                            }
-                                        </script>-->
+                                        <div style="padding: 10px">
+                                        <!--<strong> <?php // echo $item->serie ?? ''         ?></strong>-->
+                                        <!--<div id="serie-<?php // echo $item->id_item_carrito   ?>"></div>-->
+                                            <?php
+                                            echo $d->getBarcodeHTML($item->serie, "DATAMATRIX", 5, 5);
+                                            ?>
+                                        </div>
                                     </td>
                                 <?php endif; ?>
                             </tr>

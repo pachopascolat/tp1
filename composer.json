@@ -36,7 +36,8 @@
         "yiisoft/yii2-httpclient": "*",
         "linslin/yii2-curl": "*",
         "kartik-v/yii2-widget-select2": "@dev",
-        "codeonyii/yii2-at-least-validator": "dev-master"
+        "codeonyii/yii2-at-least-validator": "dev-master",
+        "milon/barcode": "dev-master"
 
 
     },

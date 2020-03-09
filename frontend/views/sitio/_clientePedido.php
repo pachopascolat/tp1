@@ -1,4 +1,19 @@
+<script>
 
+    let imprimirPedido = function () {
+        let form = $('#cliente-pedido-form');
+        form.attr('action','imprimir-pedido');
+        form.submit();
+//        $.post({
+//            url: '/sitio/imprimir-pedido',
+//            data: $('#cliente-pedido-form').serialize(),
+//            success: function (res) {
+////            alert(res);
+//            }
+//        })
+    }
+
+</script>
 
 
 <?php
@@ -65,7 +80,7 @@ yii\bootstrap4\Modal::begin([
                         "select2:select" => "function() {
                             var id = $(this).val();
                                      $.pjax.reload({
-                                        push: false,
+                                        //push: false,
                                         replace: false,
                                         url: '/sitio/buscar-cliente',
                                         type: 'POST',
@@ -82,6 +97,8 @@ yii\bootstrap4\Modal::begin([
                     ],
                 ]);
                 ?>
+                
+
                 <?php \yii\widgets\Pjax::begin(['id' => 'pjax-pedido-cliente']) ?>
 
                 <?php
@@ -94,12 +111,11 @@ yii\bootstrap4\Modal::begin([
 //                        'enableAjaxValidation' => true,
                 ]);
                 ?>
-
                 <?php
                 $js = " 
                         $('.limpiar-cliente').on('click',function(){
                                 $.pjax.reload({
-                                        push: false,
+                                        //push: false,
                                         replace: false,
                                         url: '/sitio/limpiar-cliente',
                                         type: 'POST',
@@ -111,6 +127,7 @@ yii\bootstrap4\Modal::begin([
                             ";
                 $this->registerJs($js);
                 ?>
+
 
 
 
@@ -162,22 +179,24 @@ yii\bootstrap4\Modal::begin([
                 <hr>
 
 
+
+
                 <div class="loading-div d-flex justify-content-center flex-column flex-lg-row">
                     <!--                            <div class="form-group text-center">
                                                     <button type="submit" class="btn btn-outline-secondary"><svg class="svg-icon"><use xlink:href="#envelope-1"> </use></svg><p>ENVIAR POR MAIL</p> </button>
                                                 </div>-->
                     <div class="form-group text-center">
-                        <button type="submit" formaction="<?= \yii\helpers\Url::to(['pedido-facturacion']) ?>" class="mt-2 mt-sm-0 btn btn-outline-secondary">
+                        <button data-pjax=0 type="submit" formaction="<?= \yii\helpers\Url::to(['pedido-facturacion']) ?>" class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
                             <p>ENVIAR POR MAIL</p> 
 
                         </button>
-                        <button type="submit" formaction="<?= \yii\helpers\Url::to(['imprimir-pedido']) ?>"  class="mt-2 mt-sm-0 btn btn-outline-secondary">
+                        <div id="crear-pdf-btn" data-pjax=false onclick="imprimirPedido()"    class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
                             <p>Crear PDF</p> 
 
-                        </button>
-                        <div  data-pjax="0"    class="mt-2 mt-sm-0 btn btn-outline-secondary limpiar-cliente">
+                        </div>
+                        <div  data-pjax=0    class="mt-2 mt-sm-0 btn btn-outline-secondary limpiar-cliente">
 
                             <p>Nuevo</p> 
 
@@ -187,9 +206,9 @@ yii\bootstrap4\Modal::begin([
                     </div>
                 </div>
 
-
                 <?php \yii\widgets\ActiveForm::end(); ?>
                 <?php \yii\widgets\Pjax::end() ?>
+
 
 
             </div>

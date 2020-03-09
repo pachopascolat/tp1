@@ -18,7 +18,7 @@ use kartik\select2\Select2;
         </ol>
         <div class="hero-content pb-3 text-center">
             <h1 class="hero-heading">
-                Consulta<a class="text-dark show-lector <?= Yii::$app->user->isGuest?'d-none':'' ?>" href="#" >
+                Consulta<a class="text-dark show-lector <?= Yii::$app->user->isGuest ? 'd-none' : '' ?>" href="#" >
                     <i class="p-2 fal fa-camera-retro" ></i>
                 </a>
             </h1>
@@ -90,7 +90,7 @@ use kartik\select2\Select2;
                     $(this).text(e);
                 });
 //                                consultaguardada();
-                $.pjax.reload({container:'#cart-pjax',timeout:false});
+                $.pjax.reload({container: '#cart-pjax', timeout: false});
             }
         });
     }
@@ -210,8 +210,8 @@ if ($_SESSION['carrito'] != ''):
                             <th>Diseño</th>
                             <th class="d-none d-sm-table-cell ">Item</th>
                             <!--<th class="d-none d-md-table-cell ">Tipo Tela</th>-->
-                            <th>Cantidad</th>
-                            <?= Yii::$app->user->isGuest ? '' : '<th>unidad</th><th class="">Precio</th>' ?>
+                            <th>Piezas</th>
+                            <?= Yii::$app->user->isGuest ? '' : '<th>cantidad</th><th>Unidad</th><th class="">Precio</th>' ?>
                             <th></th>
                         </tr>
                     </thead>
@@ -230,7 +230,7 @@ if ($_SESSION['carrito'] != ''):
                                     <div class="imagen-carrito">
                                         <div class="codigo-centrado     d-md-none">
                                             <div><strong > <?= $item->articulo->tela->codigo_tela ?? '' ?></strong></div>
-                                            <div><strong > <?= $item->articulo->codigo_color ?? '' ?></strong></div>
+                                            <!--<div><strong > <?= $item->articulo->codigo_color ?? '' ?></strong></div>-->
                                         </div>
                                         <img src="<?= Yii::$app->imagemanager->getImagePath($item->imagen_id, 120, 120) ?? ''; ?>" alt="..." class="cart-item-img w-100 lazy">
                                     </div>
@@ -247,11 +247,18 @@ if ($_SESSION['carrito'] != ''):
                                 <td class="align-middle">
                                     <div class="d-flex align-items-center">
                                         <div data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-decrease cambiar-cantidad">-</div>
-                                        <input type="text" value="<?= $item->cantidad ?>" class="form-control text-center input-items input-cant">
+                                        <input type="text" value="<?= $item->piezas ?>" class="form-control text-center input-items input-cant">
                                         <div  data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-increase cambiar-cantidad">+</div>
                                     </div>
                                 </td>
                                 <?php if (!Yii::$app->user->isGuest): ?>
+                                    <td class="align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <!--<div data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-decrease cambiar-cantidad">-</div>-->
+                                            <input type="text" value="<?= $item->cantidad ?>" class="form-control text-center input-items input-cant">
+                                            <!--<div  data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-increase cambiar-cantidad">+</div>-->
+                                        </div>
+                                    </td>
                                     <td class="align-middle">
                                         <strong> <?= $item->unidad ?></strong>
                                     </td>

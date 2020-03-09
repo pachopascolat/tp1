@@ -11,6 +11,8 @@ use Yii;
  * @property int $disenio_id
  * @property int $imagen_id
  * @property int $articulo_id
+ * @property int $piezas
+ * @property int $cantidad
  * @property string  $unidad
  * @property string  $serie
  *
@@ -34,7 +36,7 @@ class ItemCarrito extends \yii\db\ActiveRecord {
         return [
             [['precio'],'number'],
             [['unidad','serie'],'string'],
-            [['disenio_id','articulo_id','imagen_id'], 'integer'],
+            [['disenio_id','articulo_id','imagen_id','piezas','cantidad'], 'integer'],
             [['disenio_id'], 'exist', 'skipOnError' => true, 'targetClass' => GalleryImage::className(), 'targetAttribute' => ['disenio_id' => 'id']],
             [['articulo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articulo::className(), 'targetAttribute' => ['articulo_id' => 'id_articulo']],
         ];

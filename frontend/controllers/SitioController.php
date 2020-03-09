@@ -75,8 +75,8 @@ class SitioController extends \yii\web\Controller {
         if ($item != null) {
             $item->delete();
             if (!$item->carrito->itemCarritos) {
-                $item->carrito->delete();
-                unset($_SESSION['carrito']);
+//                $item->carrito->delete();
+//                unset($_SESSION['carrito']);
             }
             return $id;
         }
@@ -135,9 +135,15 @@ class SitioController extends \yii\web\Controller {
         if ($curl->errorCode === null) {
             $tela_id = $response->articulo;
             $color_id = $response->variante;
-            $unidad = "$response->cantidad $response->unidad";
-            return $this->agregarDesdeCodigo($tela_id, $color_id, $unidad, $code);
+            $unidad = $response->cantidad;
+            $cantidad = $response->unidad;
+            return $this->agregarDesdeCodigo($tela_id, $color_id, $unidad, $code, $cantidad);
         } else {
+//            $tela_id = 'MFES1500';
+//            $color_id = 260;
+//            $cantidad = 50;
+//            $unidad = 'MTS';
+//            return $this->agregarDesdeCodigo($tela_id, $color_id, $unidad, $code, $cantidad);
             // List of curl error codes here https://curl.haxx.se/libcurl/c/libcurl-errors.html
             switch ($curl->errorCode) {
 
@@ -147,26 +153,12 @@ class SitioController extends \yii\web\Controller {
             }
         }
 
-//     $client = new Client();
-//     $response = $client->createRequest()
-//     ->setMethod('GET')
-//     ->setUrl("http://7633081eb66a.sn.mynetname.net:8000/rollo/$code")
-//         // ->setUrl("https://jsonplaceholder.typicode.com/todos/1")
-// //                ->setData(['name' => 'John Doe', 'email' => 'johndoe@example.com'])
-//     ->send()
-//     ;
-//     return "hola";
-//     if ($response->isOk) {
-//         $tela_id = $response->data['articulo'];
-//         $color_id = $response->data['variante'];
-//         return $this->agregarDesdeCodigo($tela_id, $color_id);
-//     }
         return json_encode($response);
 
 //        echo $output;
     }
 
-    public function agregarDesdeCodigo($tela_id, $color_id, $unidad, $code) {
+    public function agregarDesdeCodigo($tela_id, $color_id, $unidad, $code, $cantidad) {
         $session = Yii::$app->session;
 //        $data = \Yii::$app->request->post();
 //        $tela_id = $data['tela_id'];
@@ -176,7 +168,8 @@ class SitioController extends \yii\web\Controller {
         if ($articulo) {
             $item = new \common\models\ItemCarrito([
                 'carrito_id' => $session['carrito'],
-                'cantidad' => 1,
+                'cantidad' => $cantidad,
+                'piezas' => 1,
                 'imagen_id' => $articulo->imagen_id ?? null,
                 'unidad' => $unidad,
                 'serie' => $code,
@@ -191,16 +184,16 @@ class SitioController extends \yii\web\Controller {
     function actionAumentarCantidad() {
         $key = \Yii::$app->request->post('id');
         $itemCarrito = \common\models\ItemCarrito::findOne($key);
-        $itemCarrito->cantidad += 1;
+        $itemCarrito->piezas += 1;
         $itemCarrito->save();
-        return $itemCarrito->cantidad;
+        return $itemCarrito->piezas;
     }
 
     function actionDisminuirCantidad() {
         $key = \Yii::$app->request->post('id');
         $itemCarrito = \common\models\ItemCarrito::findOne($key);
-        if ($itemCarrito->cantidad > 0) {
-            $itemCarrito->cantidad -= 1;
+        if ($itemCarrito->piezas > 0) {
+            $itemCarrito->piezas -= 1;
             $itemCarrito->save();
         }
         return $itemCarrito->cantidad;
@@ -336,13 +329,17 @@ class SitioController extends \yii\web\Controller {
     }
 
     function actionBuscarCliente() {
-        $data = Yii::$app->request->post();
+//        $data = Yii::$app->request->post();
+        $model = new \common\models\Cliente();
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
-        $model = \common\models\Cliente::findOne([$data['id_cliente']]);
-        $carrito->cliente_id = $model->id_cliente;
-        $carrito->direccion_envio = $model->direccion_envio;
-        $carrito->save();
-        echo $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
+        if ($data = \Yii::$app->request->post(  )) {
+            $model = \common\models\Cliente::findOne([$data['id_cliente']]);
+            $carrito->cliente_id = $model->id_cliente;
+            $carrito->direccion_envio = $model->direccion_envio;
+            $carrito->save();
+        }
+//        return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
+        return $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
     }
 
     function actionPedidoFacturacion() {
@@ -350,14 +347,13 @@ class SitioController extends \yii\web\Controller {
         if ($carrito == null) {
             return $this->goBack();
         }
+
+        $model = new \common\models\Cliente(['agendado' => 1]);
+
         if ($carrito->cliente_id) {
             $model = \common\models\Cliente::findOne($carrito->cliente_id);
-        } else {
-            $model = \common\models\Cliente::findOne(Yii::$app->request->post("Cliente")["id_cliente"]);
         }
-        if (!$model) {
-            $model = new \common\models\Cliente(['agendado' => 1]);
-        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $carrito->load(\Yii::$app->request->post());
             $carrito->para_facturar = true;
@@ -375,7 +371,7 @@ class SitioController extends \yii\web\Controller {
     function actionImprimirDesdeBackend($carrito_id) {
         $carrito = \common\models\Carrito::findOne($carrito_id);
         $this->imprimirCarrito($carrito);
-        return $this->redirect(['finalizar-consulta', 'id_carrito' => $carrito->id_carrito]);
+        return $this->render('finalizar-consulta', ['id_carrito' => $carrito->id_carrito]);
     }
 
     function imprimirCarrito(\common\models\Carrito $carrito, $cliente = null) {
@@ -408,7 +404,7 @@ class SitioController extends \yii\web\Controller {
         ];
 
         $pdf = new Pdf2($options);
-        $paginas = array_chunk($carrito->itemCarritos, 12);
+        $paginas = array_chunk($carrito->itemCarritos, 8);
         foreach ($paginas as $nro_hoja => $items) {
             $pdf->addPage($this->renderPartial('_reportPedido', ['carrito' => $carrito, 'items' => $items, 'nro_hoja' => $nro_hoja + 1]));
         }
@@ -422,24 +418,23 @@ class SitioController extends \yii\web\Controller {
 
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
 
-        if ($carrito == null) {
-            return $this->goBack();
-        }
+//        if ($carrito == null) {
+//            return $this->goBack();
+//        }
 //        
         $model = new \common\models\Cliente(['agendado' => 1]);
 
         if ($carrito->cliente_id) {
             $model = \common\models\Cliente::findOne($carrito->cliente_id);
-        } 
+        }
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                $carrito->load(\Yii::$app->request->post());
-                $carrito->cliente_id = $model->id_cliente;
-                $carrito->save();
+            $carrito->load(\Yii::$app->request->post());
+            $carrito->cliente_id = $model->id_cliente;
+            $carrito->save();
 //            $this->imprimirCarrito($carrito, $model);
-                return $this->redirect(['imprimir-desde-backend', 'carrito_id' => $carrito->id_carrito]);
-            
+            return $this->redirect(['imprimir-desde-backend', 'carrito_id' => $carrito->id_carrito]);
         }
 
         return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
@@ -449,8 +444,9 @@ class SitioController extends \yii\web\Controller {
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         $model = new \common\models\Cliente(['agendado' => 1]);
         $carrito->cliente_id = $model;
+//        $carrito->save();
 //        $carrito->direccion_envio = $model->direccion_envio;
-        echo $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
+        return $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
     }
 
 }
