@@ -136,7 +136,7 @@ class SitioController extends \yii\web\Controller {
             $tela_id = $response->articulo;
             $color_id = $response->variante;
             $unidad = $response->unidad;
-            $cantidad = $response->cantidad;
+            $cantidad = intval($response->cantidad);
             return $this->agregarDesdeCodigo($tela_id, $color_id, $unidad, $code, $cantidad);
         } else {
 
@@ -178,7 +178,7 @@ class SitioController extends \yii\web\Controller {
             if ($item->save()) {
                 return count($item->carrito->itemCarritos);
             }
-            return json_encode($item->errors);
+            return json_encode($item->toArray());
         }
         return false;
     }
