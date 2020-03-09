@@ -190,6 +190,14 @@ class SitioController extends \yii\web\Controller {
         $itemCarrito->save();
         return $itemCarrito->piezas;
     }
+    
+    function actionActualizarCantidad() {
+        $key = \Yii::$app->request->post('id');
+        $itemCarrito = \common\models\ItemCarrito::findOne($key);
+        $itemCarrito->cantidad = \Yii::$app->request->post('cantidad');
+        $itemCarrito->save();
+        return $itemCarrito->cantidad;
+    }
 
     function actionDisminuirCantidad() {
         $key = \Yii::$app->request->post('id');

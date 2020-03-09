@@ -1,4 +1,15 @@
 
+<?php
+
+use \Milon\Barcode\DNS2D;
+use barcode\barcode\BarcodeGeneratorAssets;
+
+BarcodeGeneratorAssets::register($this);
+
+$d = new DNS2D();
+$d->setStorPath(__DIR__ . "/cache/");
+?>
+
 <h3>Se ha realizado la consulta nro <?= $carrito->id_carrito ?></h3>
 <p>EL cliente <?= $carrito->cliente->nombre_cliente ?></p>
 <p>Telefono: <?= $carrito->cliente->telefono ?></p>
@@ -16,6 +27,7 @@
             <th>Cantidad</th>
             <th>Unidad</th>
             <th>Precio</th>
+            <th>Codigo</th>
         </tr>
     </thead>
     <tbody>
@@ -41,14 +53,23 @@
 
 
 
-                <td><?= $item->articulo->tela->nombre_tela??'vacio' ?></td>
+                <td><?= $item->articulo->tela->nombre_tela ?? 'vacio' ?></td>
                 <td>
-                    <?= $item->articulo->nombre_color??'vacio'; ?>
+    <?= $item->articulo->nombre_color ?? 'vacio'; ?>
                 </td>
                 <td><?= $item->piezas ?></td>
                 <td><?= $item->cantidad ?></td>
                 <td><?= $item->unidad ?></td>
                 <td><?= $item->precio ?></td>
+                <td> 
+                    <div>
+                        <?php
+//                        if ($item->serie) {
+//                            echo $d->getBarcodeHTML($item->serie, "DATAMATRIX", 5, 5);
+//                        }
+                        ?>
+                    </div>
+                </td>
 
             </tr>
             <?php

@@ -164,7 +164,21 @@ $js = "
                         });
                     });
    
+                    
 
+                    $('.input-cantidad').change(function () {
+                        var id = $(this).data('id');
+                        var cantidad = $(this).val();
+                        var input = $(this);
+                        $.post({
+                            url: '/sitio/actualizar-cantidad',
+                            data: {id: id,cantidad:cantidad},
+                            success: function (e) {
+                                input.val(e)
+
+                            }
+                        });
+                    });
                     $('.btn-items-decrease').click(function () {
                         var id = $(this).data('id');
                         var input = $(this).siblings('.input-items');
@@ -247,7 +261,7 @@ if ($_SESSION['carrito'] != ''):
                                 <td class="align-middle">
                                     <div class="d-flex align-items-center">
                                         <div data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-decrease cambiar-cantidad">-</div>
-                                        <input type="text" value="<?= $item->piezas ?>" class="form-control text-center input-items input-cant">
+                                        <input type="text" value="<?= $item->piezas ?>" class="form-control text-center input-items input-piezas">
                                         <div  data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-increase cambiar-cantidad">+</div>
                                     </div>
                                 </td>
@@ -255,7 +269,7 @@ if ($_SESSION['carrito'] != ''):
                                     <td class="align-middle">
                                         <div class="d-flex align-items-center">
                                             <!--<div data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-decrease cambiar-cantidad">-</div>-->
-                                            <input type="text" value="<?= $item->cantidad ?>" class="form-control text-center input-items input-cant">
+                                            <input data-id="<?= $item->id_item_carrito ?>" type="text" value="<?= $item->cantidad ?>" class="form-control text-center input-items input-cantidad">
                                             <!--<div  data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-increase cambiar-cantidad">+</div>-->
                                         </div>
                                     </td>
