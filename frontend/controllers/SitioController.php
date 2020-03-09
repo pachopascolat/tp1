@@ -139,6 +139,7 @@ class SitioController extends \yii\web\Controller {
             $cantidad = $response->unidad;
             return $this->agregarDesdeCodigo($tela_id, $color_id, $unidad, $code, $cantidad);
         } else {
+
 //            $tela_id = 'MFES1500';
 //            $color_id = 260;
 //            $cantidad = 50;
@@ -174,9 +175,10 @@ class SitioController extends \yii\web\Controller {
                 'unidad' => $unidad,
                 'serie' => $code,
                 'articulo_id' => $articulo->id_articulo]);
-            $item->save();
-
-            return count($item->carrito->itemCarritos);
+            if ($item->save()) {
+                return count($item->carrito->itemCarritos);
+            }
+            return json_encode($item->toArray());
         }
         return false;
     }
@@ -332,7 +334,7 @@ class SitioController extends \yii\web\Controller {
 //        $data = Yii::$app->request->post();
         $model = new \common\models\Cliente();
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
-        if ($data = \Yii::$app->request->post(  )) {
+        if ($data = \Yii::$app->request->post()) {
             $model = \common\models\Cliente::findOne([$data['id_cliente']]);
             $carrito->cliente_id = $model->id_cliente;
             $carrito->direccion_envio = $model->direccion_envio;
