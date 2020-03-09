@@ -135,8 +135,8 @@ class SitioController extends \yii\web\Controller {
         if ($curl->errorCode === null) {
             $tela_id = $response->articulo;
             $color_id = $response->variante;
-            $unidad = $response->cantidad;
-            $cantidad = $response->unidad;
+            $unidad = $response->unidad;
+            $cantidad = $response->cantidad;
             return $this->agregarDesdeCodigo($tela_id, $color_id, $unidad, $code, $cantidad);
         } else {
 
