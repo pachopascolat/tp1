@@ -178,7 +178,7 @@ class SitioController extends \yii\web\Controller {
             if ($item->save()) {
                 return count($item->carrito->itemCarritos);
             }
-            return json_encode($item->toArray());
+            return json_encode($item->errors);
         }
         return false;
     }
