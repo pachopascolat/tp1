@@ -12,7 +12,9 @@
             <th>Imagen</th>
             <th>Tela</th>
             <th>Color</th>
+            <th>Piezas</th>
             <th>Cantidad</th>
+            <th>Unidad</th>
             <th>Precio</th>
         </tr>
     </thead>
@@ -43,7 +45,9 @@
                 <td>
                     <?= $item->articulo->nombre_color??'vacio'; ?>
                 </td>
+                <td><?= $item->piezas ?></td>
                 <td><?= $item->cantidad ?></td>
+                <td><?= $item->unidad ?></td>
                 <td><?= $item->precio ?></td>
 
             </tr>

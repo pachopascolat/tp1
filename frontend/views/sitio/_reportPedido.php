@@ -131,10 +131,12 @@ $d->setStorPath(__DIR__ . "/cache/");
                                     </td>
                                     <td class="align-middle">
                                         <div style="padding: 10px">
-                                        <!--<strong> <?php // echo $item->serie ?? ''         ?></strong>-->
-                                        <!--<div id="serie-<?php // echo $item->id_item_carrito   ?>"></div>-->
+                                        <!--<strong> <?php // echo $item->serie ?? ''          ?></strong>-->
+                                        <!--<div id="serie-<?php // echo $item->id_item_carrito    ?>"></div>-->
                                             <?php
-                                            echo $d->getBarcodeHTML($item->serie, "DATAMATRIX", 5, 5);
+                                            if ($item->serie) {
+                                                echo $d->getBarcodeHTML($item->serie, "DATAMATRIX", 5, 5);
+                                            }
                                             ?>
                                         </div>
                                     </td>
