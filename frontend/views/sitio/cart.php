@@ -179,6 +179,21 @@ $js = "
                             }
                         });
                     });
+                    
+                    $('.input-piezas').change(function () {
+                        var id = $(this).data('id');
+                        var piezas = $(this).val();
+                        var input = $(this);
+                        $.post({
+                            url: '/sitio/actualizar-piezas',
+                            data: {id: id,piezas:piezas},
+                            success: function (e) {
+                                input.val(e)
+
+                            }
+                        });
+                    });
+                    
                     $('.btn-items-decrease').click(function () {
                         var id = $(this).data('id');
                         var input = $(this).siblings('.input-items');
@@ -261,7 +276,7 @@ if ($_SESSION['carrito'] != ''):
                                 <td class="align-middle">
                                     <div class="d-flex align-items-center">
                                         <div data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-decrease cambiar-cantidad">-</div>
-                                        <input type="text" value="<?= $item->piezas ?>" class="form-control text-center input-items input-piezas">
+                                        <input data-id="<?= $item->id_item_carrito ?>" type="text" value="<?= $item->piezas ?>" class="form-control text-center input-items input-piezas">
                                         <div  data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-increase cambiar-cantidad">+</div>
                                     </div>
                                 </td>

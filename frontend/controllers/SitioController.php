@@ -198,6 +198,22 @@ class SitioController extends \yii\web\Controller {
         $itemCarrito->save();
         return $itemCarrito->cantidad;
     }
+    function actionActualizarPiezas() {
+        $key = \Yii::$app->request->post('id');
+        $itemCarrito = \common\models\ItemCarrito::findOne($key);
+        $itemCarrito->piezas = \Yii::$app->request->post('piezas');
+        $itemCarrito->save();
+        return $itemCarrito->piezas;
+    }
+    
+//    function actionActualizarItem() {
+//        $model = new \common\models\ItemCarrito();
+//        if($model->load(\Yii::$app->request->post())){
+//            $item = $model->findOne($model->id_item_carrito);
+//            $item->save();
+//            return json_encode($item);
+//        }
+//    }
 
     function actionDisminuirCantidad() {
         $key = \Yii::$app->request->post('id');
