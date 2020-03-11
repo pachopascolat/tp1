@@ -274,10 +274,16 @@ if ($_SESSION['carrito'] != ''):
                                 </td>
 
                                 <td class="align-middle">
-                                    <div class="d-flex align-items-center">
-                                        <div data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-decrease cambiar-cantidad">-</div>
-                                        <input data-id="<?= $item->id_item_carrito ?>" type="text" value="<?= $item->piezas ?>" class="form-control text-center input-items input-piezas">
-                                        <div  data-id="<?= $item->id_item_carrito ?>" class="btn btn-items btn-items-increase cambiar-cantidad">+</div>
+                                    <div class="d-flex">
+                                        <div class="d-none d-lg-block">
+                                            <button data-id="<?= $item->id_item_carrito ?>" class=" btn btn-items btn-items-decrease cambiar-cantidad">-</button>
+                                        </div>
+                                        <div class="">
+                                            <input data-id="<?= $item->id_item_carrito ?>" type="text" value="<?= $item->piezas ?>" class="form-control text-center input-items input-piezas">
+                                        </div>
+                                        <div class="d-none d-lg-block">
+                                            <button  data-id="<?= $item->id_item_carrito ?>" class=" btn btn-items btn-items-increase cambiar-cantidad">+</button>
+                                        </div>
                                     </div>
                                 </td>
                                 <?php if (!Yii::$app->user->isGuest): ?>
