@@ -249,9 +249,9 @@ class SitioController extends \yii\web\Controller {
             $model = \common\models\Cliente::findOne($carrito->cliente_id);
         }
 
-        if (\Yii::$app->request->isPjax) {
-            return $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
-        }
+//        if (\Yii::$app->request->isPjax) {
+//            return $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
+//        }
 
 
 
