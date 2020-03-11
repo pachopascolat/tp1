@@ -68,7 +68,7 @@ $d->setStorPath(__DIR__ . "/cache/");
                 </div>
 
                 <hr>
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="width: 100%">
                     <thead>
                         <tr>
                             <th>Tela</th>
