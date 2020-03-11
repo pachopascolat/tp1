@@ -1,44 +1,6 @@
 <script>
 
-    let imprimirPedido = function (event) {
-        let form = $('#cliente-pedido-form');
-        form.attr('action', 'imprimir-pedido');
-        form.submit();
-//        form.attr('action','imprimir-pedido');
-//        $.post({
-//            url: '/sitio/imprimir-pedido',
-//            data: $('#cliente-pedido-form').serialize(),
-//            success: function (res) {
-////            alert(res);
-//            }
-//        })
-    }
-
-    let buscarCliente = function (id) {
-        $.post({
-            url: '/sitio/buscar-cliente',
-            data: {id: id},
-            success: function () {
-                $.pjax.reload({
-                    container: '#pjax-pedido-cliente',
-                    timeout: false,
-                });
-            }
-        })
-    }
-
-    let limpiarCliente = function () {
-        $.post({
-            url: '/sitio/limpiar-cliente',
-            success: function () {
-                $.pjax.reload({
-                    container: '#pjax-pedido-cliente',
-                    timeout: false,
-                })
-            }
-        });
-
-    }
+    
 
 </script>
 
@@ -48,7 +10,7 @@
 use kartik\select2\Select2;
 use kartik\select2\Select2Asset;
 
-Select2Asset::register($this);
+//Select2Asset::register($this);
 ?>
 
 <?php
