@@ -1,9 +1,10 @@
 <script>
 
-    let imprimirPedido = function () {
+    let imprimirPedido = function (event) {
         let form = $('#cliente-pedido-form');
-        form.attr('action','imprimir-pedido');
+        form.attr('action', 'imprimir-pedido');
         form.submit();
+//        form.attr('action','imprimir-pedido');
 //        $.post({
 //            url: '/sitio/imprimir-pedido',
 //            data: $('#cliente-pedido-form').serialize(),
@@ -11,6 +12,32 @@
 ////            alert(res);
 //            }
 //        })
+    }
+
+    let buscarCliente = function (id) {
+        $.post({
+            url: '/sitio/buscar-cliente',
+            data: {id: id},
+            success: function () {
+                $.pjax.reload({
+                    container: '#pjax-pedido-cliente',
+                    timeout: false,
+                });
+            }
+        })
+    }
+
+    let limpiarCliente = function () {
+        $.post({
+            url: '/sitio/limpiar-cliente',
+            success: function () {
+                $.pjax.reload({
+                    container: '#pjax-pedido-cliente',
+                    timeout: false,
+                })
+            }
+        });
+
     }
 
 </script>
@@ -78,17 +105,10 @@ yii\bootstrap4\Modal::begin([
                     ],
                     'pluginEvents' => [
                         "select2:select" => "function() {
+                            
                             var id = $(this).val();
-                                     $.pjax.reload({
-                                        //push: false,
-                                        replace: false,
-                                        url: '/sitio/buscar-cliente',
-                                        type: 'POST',
-                                        data: {id_cliente:id},
-                                        container: '#pjax-pedido-cliente',
-                                        timeout: false,
-                                        async: false,
-                                    })
+//                            $('#cliente-id_cliente').val(id);
+                              buscarCliente(id);
                                   }",
                     ],
                     'pluginOptions' => [
@@ -97,7 +117,7 @@ yii\bootstrap4\Modal::begin([
                     ],
                 ]);
                 ?>
-                
+
 
                 <?php \yii\widgets\Pjax::begin(['id' => 'pjax-pedido-cliente']) ?>
 
@@ -105,7 +125,7 @@ yii\bootstrap4\Modal::begin([
                 $form = \yii\widgets\ActiveForm::begin([
                             'options' => ['data-pjax' => true],
                             'id' => 'cliente-pedido-form',
-                            'action' => ['pedido-facturacion'],
+                            'action' => ['crear-consulta'],
 //                        'enableAjaxValidation' => true,
 //                        'enableClientValidation' => true,
 //                        'enableAjaxValidation' => true,
@@ -113,16 +133,22 @@ yii\bootstrap4\Modal::begin([
                 ?>
                 <?php
                 $js = " 
+//                        $('#buscador-cliente-select').on('change',function(){
+//                                    var id = $(this).val();
+//                                     $.pjax.reload({
+//                                        push: false,
+//                                        replace: false,
+//                                        url: '/sitio/buscar-cliente',
+//                                        type: 'POST',
+//                                        data: {id_cliente:id},
+//                                        container: '#pjax-pedido-cliente',
+//                                        timeout: false,
+//                                        async: false,
+//                                    })
+//                        });
+
                         $('.limpiar-cliente').on('click',function(){
-                                $.pjax.reload({
-                                        //push: false,
-                                        replace: false,
-                                        url: '/sitio/limpiar-cliente',
-                                        type: 'POST',
-                                        container: '#pjax-pedido-cliente',
-                                        timeout: false,
-                                        async: false,
-                                    })
+                                limpiarCliente();
                         })
                             ";
                 $this->registerJs($js);

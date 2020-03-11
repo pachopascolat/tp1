@@ -190,7 +190,7 @@ class SitioController extends \yii\web\Controller {
         $itemCarrito->save();
         return $itemCarrito->piezas;
     }
-    
+
     function actionActualizarCantidad() {
         $key = \Yii::$app->request->post('id');
         $itemCarrito = \common\models\ItemCarrito::findOne($key);
@@ -198,6 +198,7 @@ class SitioController extends \yii\web\Controller {
         $itemCarrito->save();
         return $itemCarrito->cantidad;
     }
+
     function actionActualizarPiezas() {
         $key = \Yii::$app->request->post('id');
         $itemCarrito = \common\models\ItemCarrito::findOne($key);
@@ -205,7 +206,7 @@ class SitioController extends \yii\web\Controller {
         $itemCarrito->save();
         return $itemCarrito->piezas;
     }
-    
+
 //    function actionActualizarItem() {
 //        $model = new \common\models\ItemCarrito();
 //        if($model->load(\Yii::$app->request->post())){
@@ -248,11 +249,10 @@ class SitioController extends \yii\web\Controller {
             $model = \common\models\Cliente::findOne($carrito->cliente_id);
         }
 
+        if (\Yii::$app->request->isPjax) {
+            return $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
+        }
 
-//        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-//            Yii::$app->response->format = Response::FORMAT_JSON;
-//            return ActiveForm::validate($model);
-//        }
 
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -359,13 +359,14 @@ class SitioController extends \yii\web\Controller {
         $model = new \common\models\Cliente();
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         if ($data = \Yii::$app->request->post()) {
-            $model = \common\models\Cliente::findOne([$data['id_cliente']]);
+            $model = \common\models\Cliente::findOne([$data['id']]);
             $carrito->cliente_id = $model->id_cliente;
             $carrito->direccion_envio = $model->direccion_envio;
             $carrito->save();
         }
-//        return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
-        return $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
+        return;
+//        return $this->renderAjax('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
+//        return $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
     }
 
     function actionPedidoFacturacion() {
@@ -468,11 +469,12 @@ class SitioController extends \yii\web\Controller {
 
     function actionLimpiarCliente() {
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
-        $model = new \common\models\Cliente(['agendado' => 1]);
-        $carrito->cliente_id = $model;
-//        $carrito->save();
+//        $model = new \common\models\Cliente(['agendado' => 1]);
+        $carrito->cliente_id = null;
+        $carrito->save();
+        return;
 //        $carrito->direccion_envio = $model->direccion_envio;
-        return $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
+//        return $this->renderAjax('_clientePedido', ['model' => $model, 'carrito' => $carrito]);
     }
 
 }
