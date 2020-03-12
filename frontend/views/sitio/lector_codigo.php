@@ -40,7 +40,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+<script type="text/javascript" src="https://unpkg.com/@zxing/library@0.15.2/umd/index.min.js"></script>
 <script type="text/javascript">
 
 
