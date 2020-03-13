@@ -14,28 +14,51 @@ let imprimirPedido = function (event) {
 }
 
 let buscarCliente = function (id) {
-    $.post({
-        url: '/sitio/buscar-cliente',
-        data: {id: id},
-        success: function () {
-            $.pjax.reload({
-                container: '#pjax-pedido-cliente',
-                timeout: false,
-            });
-        }
-    })
+    $('.help-block').html('');
+    $('#cliente-id_cliente').val(id);
+    $('#cliente-cuit').val(clientes[id].cuit);
+    $('#cliente-nro_cliente').val(clientes[id].nro_cliente);
+    $('#cliente-nombre_cliente').val(clientes[id].nombre_cliente);
+    $('#cliente-telefono').val(clientes[id].telefono);
+    $('#cliente-mail_cliente').val(clientes[id].mail_cliente);
+    $('#carrito-direccion_envio').val(clientes[id].direccion_envio);
+    $('#cliente-pedido-form input').prop('readonly', true);
+//    $.post({
+//        url: '/sitio/buscar-cliente',
+//        data: {id: id},
+//        success: function () {
+//            $.pjax.reload({
+//                container: '#pjax-pedido-cliente',
+//                timeout: false,
+//            });
+//        }
+//    })
+}
+
+let editarCliente = function(){
+    $('#cliente-pedido-form input').prop('readonly', false);
 }
 
 let limpiarCliente = function () {
-    $.post({
-        url: '/sitio/limpiar-cliente',
-        success: function () {
-            $.pjax.reload({
-                container: '#pjax-pedido-cliente',
-                timeout: false,
-            })
-        }
-    });
+    $('.help-block').html('');
+    $('#cliente-id_cliente').val('');
+    $('#cliente-cuit').val('');
+    $('#cliente-nro_cliente').val('');
+    $('#cliente-nombre_cliente').val('');
+    $('#cliente-telefono').val('');
+    $('#cliente-mail_cliente').val('');
+    $('#carrito-direccion_envio').val('');
+    $('#cliente-pedido-form input').prop('readonly', false);
+
+//    $.post({
+//        url: '/sitio/limpiar-cliente',
+//        success: function () {
+//            $.pjax.reload({
+//                container: '#pjax-pedido-cliente',
+//                timeout: false,
+//            })
+//        }
+//    });
 
 }
 

@@ -376,13 +376,12 @@ class SitioController extends \yii\web\Controller {
         }
 
         $model = new \common\models\Cliente(['agendado' => 1]);
-
-        if ($carrito->cliente_id) {
-            $model = \common\models\Cliente::findOne($carrito->cliente_id);
-        }
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $carrito->load(\Yii::$app->request->post());
+        if ($model->load(Yii::$app->request->post())) {
+            if ($id_cliente = Yii::$app->request->post("Cliente")['id_cliente']) {
+                $model = $model->findOne($id_cliente);
+            } else {
+                $model->save();
+            }
             $carrito->para_facturar = true;
             if ($carrito->vendedor_id == null) {
                 $carrito->vendedor_id = \Yii::$app->user->getId();
@@ -401,18 +400,16 @@ class SitioController extends \yii\web\Controller {
         return $this->render('finalizar-consulta', ['id_carrito' => $carrito->id_carrito]);
     }
 
-    function imprimirCarrito(\common\models\Carrito $carrito, $cliente = null) {
+    function imprimirCarrito(\common\models\Carrito $carrito) {
 
-        if ($cliente == null) {
-            $cliente = \common\models\Cliente::findOne($carrito->cliente_id);
-        }
+
         $carrito->para_facturar = true;
         $carrito->confirmado = true;
 
         if ($carrito->vendedor_id == null) {
             $carrito->vendedor_id = \Yii::$app->user->getId();
         }
-        $carrito->cliente_id = $cliente->id_cliente;
+//        $carrito->cliente_id = $cliente->id_cliente;
         $carrito->save();
         $header = $this->renderPartial('_pdfHeader', ['carrito' => $carrito]);
         $header = "hola";
@@ -441,27 +438,46 @@ class SitioController extends \yii\web\Controller {
         }
     }
 
+    function actionValidarPedido() {
+        $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+
+        $model = $carrito->cliente;
+        if (!$model) {
+            $model = new \common\models\Cliente(['agendado' => 1]);
+        }
+        if ($id_cliente = Yii::$app->request->post("Cliente")['id_cliente']) {
+            $model = $model->findOne($id_cliente);
+        }
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                
+            }
+        }
+        return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
+    }
+
     function actionImprimirPedido() {
 
         $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
 
-//        if ($carrito == null) {
-//            return $this->goBack();
-//        }
-//        
-        $model = new \common\models\Cliente(['agendado' => 1]);
-
-        if ($carrito->cliente_id) {
-            $model = \common\models\Cliente::findOne($carrito->cliente_id);
+        if ($carrito == null) {
+            return $this->goBack();
         }
-
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $carrito->load(\Yii::$app->request->post());
-            $carrito->cliente_id = $model->id_cliente;
-            $carrito->save();
-//            $this->imprimirCarrito($carrito, $model);
-            return $this->redirect(['imprimir-desde-backend', 'carrito_id' => $carrito->id_carrito]);
+        $model = $carrito->cliente;
+        if (!$model) {
+            $model = new \common\models\Cliente(['agendado' => 1]);
+        }
+        if ($id_cliente = Yii::$app->request->post("Cliente")['id_cliente']) {
+            $model = $model->findOne($id_cliente);
+        }
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                $carrito->load(\Yii::$app->request->post());
+                $carrito->cliente_id = $model->id_cliente;
+                $carrito->save();
+//                $this->imprimirCarrito($carrito);
+                return $this->redirect(['imprimir-desde-backend', 'carrito_id' => $carrito->id_carrito]);
+            }
         }
 
         return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);

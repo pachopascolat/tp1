@@ -1,6 +1,6 @@
 <script>
 
-    
+
 
 </script>
 
@@ -51,9 +51,12 @@ yii\bootstrap4\Modal::begin([
                 $clientes = $model->find()->where(['not', ['nro_cliente' => null]])->all();
                 foreach ($clientes as $cliente) {
                     $data[$cliente->id_cliente] = "nro: $cliente->nro_cliente - cuit: $cliente->cuit - nombre: $cliente->nombre_cliente";
+                    $clientesJson[$cliente->id_cliente] = $cliente->toArray();
                 }
                 ?>
-
+                <script>
+                    let clientes = <?= json_encode($clientesJson) ?>
+                </script>
                 <?php
                 echo '<label for="buscador-cliente" class="form-label">Buscar</label>';
                 echo Select2::widget([
@@ -66,6 +69,7 @@ yii\bootstrap4\Modal::begin([
 //                                'multiple' => true
                     ],
                     'pluginEvents' => [
+                        "select2:close" => "function() { limpiarCliente() }",
                         "select2:select" => "function() {
                             
                             var id = $(this).val();
@@ -88,8 +92,9 @@ yii\bootstrap4\Modal::begin([
                             'options' => ['data-pjax' => true],
                             'id' => 'cliente-pedido-form',
                             'action' => ['crear-consulta'],
-//                        'enableAjaxValidation' => true,
-//                        'enableClientValidation' => true,
+//                            'validationUrl' => yii\helpers\Url::to('imprimir-pedido'),
+//                            'enableAjaxValidation' => true,
+                            'enableClientValidation' => true,
 //                        'enableAjaxValidation' => true,
                 ]);
                 ?>
@@ -126,34 +131,46 @@ yii\bootstrap4\Modal::begin([
                 <div class="form-group">
                     <label for="name" class="form-label">Cuit</label>
                     <!--<input id="name" type="text" class="form-control">-->
-                    <?= $form->field($model, 'cuit')->textInput(['class' => 'form-control', 'enableAjaxValidation' => true,])->label(false) ?>
+                    <?= $form->field($model, 'cuit')->textInput(['readonly' => true,'class' => 'form-control', 'enableAjaxValidation' => true,])->label(false) ?>
                 </div>
                 <div class="form-group">
                     <label for="name" class="form-label">Nro Cliente</label>
                     <!--<input id="name" type="text" class="form-control">-->
-                    <?= $form->field($model, 'nro_cliente')->textInput(['class' => 'form-control', 'enableAjaxValidation' => true,])->label(false) ?>
+                    <?= $form->field($model, 'nro_cliente')->textInput(['readonly' => true,'class' => 'form-control', 'enableAjaxValidation' => true,])->label(false) ?>
                 </div>
                 <div class="form-group">
                     <label for="name" class="form-label">Nombre o Razón Social</label>
                     <!--<input id="name" type="text" class="form-control">-->
-                    <?= $form->field($model, 'nombre_cliente')->textInput(['class' => 'form-control', 'id' => 'nombre-cliente-input'])->label(false) ?>
+                    <?=
+                    $form->field($model, 'nombre_cliente')->textInput(['readonly' => true,'class' => 'form-control',
+//                        'id' => 'nombre-cliente-input'
+                    ])->label(false)
+                    ?>
                 </div>
                 <div class="form-group">
                     <label for="telefono" class="form-label">Teléfono</label>
                     <!--<input id="email" type="text" class="form-control">-->
-                    <?= $form->field($model, 'telefono')->textInput(['class' => 'form-control', 'id' => 'telefono-cliente-input'])->label(false) ?>
+                    <?=
+                    $form->field($model, 'telefono')->textInput(['readonly' => true,'class' => 'form-control',
+//                        'id' => 'telefono-cliente-input'
+                    ])->label(false)
+                    ?>
 
                 </div>
                 <div class="form-group">
                     <label for="mail_cliente" class="form-label">Mail</label>
                     <!--<input id="Usuario" type="Usuario" class="form-control">-->
-                    <?= $form->field($model, 'mail_cliente')->textInput(['type' => 'email', 'class' => 'form-control', 'id' => 'email-cliente-input'])->label(false) ?>
+                    <?=
+                    $form->field($model, 'mail_cliente')->textInput(['readonly' => true,'type' => 'email', 'class' => 'form-control',
+//                        'id' => 'email-cliente-input'
+                    ])->label(false)
+                    ?>
 
                 </div>
                 <div class="form-group">
                     <label for="name" class="form-label">Direccion Envio</label>
                     <!--<input id="name" type="text" class="form-control">-->
-                    <?= $form->field($carrito, 'direccion_envio')->textInput(['class' => 'form-control'])->label(false) ?>
+                    <?= $form->field($carrito, 'direccion_envio')->textInput(['readonly' => true,'class' => 'form-control'])->label(false) ?>
                 </div>
                 <div class="form-group">
                     <label for="name" class="form-label">Observaciones</label>
@@ -179,17 +196,23 @@ yii\bootstrap4\Modal::begin([
                             <p>ENVIAR POR MAIL</p> 
 
                         </button>
-                        <div id="crear-pdf-btn" data-pjax=false onclick="imprimirPedido()"    class="mt-2 mt-sm-0 btn btn-outline-secondary">
+                        <button data-pjax=0  type="submit" formaction="<?= \yii\helpers\Url::to(['imprimir-pedido']) ?>"    class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
                             <p>Crear PDF</p> 
 
+                        </button>
+                        <div class="pt-1">
+                            <div  data-pjax=0 onclick="editarCliente()"    class="mt-2 mt-sm-0 btn btn-outline-secondary">
+
+                                <p>Editar</p> 
+
+                            </div>
+                            <div  data-pjax=0 onclick="limpiarCliente()"   class="mt-2 mt-sm-0 btn btn-outline-secondary">
+
+                                <p>Nuevo</p> 
+
+                            </div>
                         </div>
-                        <div  data-pjax=0    class="mt-2 mt-sm-0 btn btn-outline-secondary limpiar-cliente">
-
-                            <p>Nuevo</p> 
-
-                        </div>
-
 
                     </div>
                 </div>

@@ -3,9 +3,10 @@
         <div class="modal-content">
             <?php
             $user = Yii::createObject(dektrium\user\models\LoginForm::className());
-
+            yii\widgets\Pjax::begin();
 //            echo  Html::beginForm(['/user/login'], 'post');
             $form = \yii\widgets\ActiveForm::begin([
+                        'enableAjaxValidation' => true,
                         'id' => 'login-form',
                         'action' => ['/user/login']
             ]);
@@ -64,6 +65,7 @@
                 </div>
                 <?php
                 yii\widgets\ActiveForm::end();
+                yii\widgets\Pjax::end();
                 ?>
 
             </div>
