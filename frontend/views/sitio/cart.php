@@ -10,7 +10,7 @@ use kartik\select2\Select2;
 <!-- Hero Section-->
 <section class="hero">
     <div class="container">
-        <!--Breadcrumbs--> 
+        <!--Breadcrumbs-->
         <ol class="breadcrumb justify-content-left pl-0">
             <li class="breadcrumb-item">
                 <a href="<?= yii\helpers\Url::to(['index']) ?>">Inicio</a></li>
@@ -31,7 +31,7 @@ use kartik\select2\Select2;
             <div class="col-md-8 m-auto pt-2 buscar-por-tela-variante w-100 m-auto">
                 <?php
                 $data = [];
-                $articulos = common\models\Articulo::find()->where(['existencia' => 1])->all();
+                $articulos = common\models\Articulo::find()->joinWith('tela')->where(['existencia' => 1])->orderBy('codigo_tela, codigo_color')->all();
                 foreach ($articulos as $articulo) {
                     $data[$articulo->id_articulo] = "{$articulo->tela->codigo_tela} - {$articulo->codigo_color} - {$articulo->tela->nombre_tela} - {$articulo->nombre_color}";
                 }
@@ -229,7 +229,7 @@ if ($_SESSION['carrito'] != ''):
         ?>
 
         <section>
-            <div class="container"> 
+            <div class="container">
 
                 <table class="cart table table-striped">
                     <thead class="cart-header text-center btn-title  btn-dark">
@@ -322,7 +322,7 @@ if ($_SESSION['carrito'] != ''):
 
                 <div class="my-5 d-flex justify-content-between flex-column flex-lg-row">
                     <a href="<?= \yii\helpers\Url::to(['hogar']) ?>" class="btn btn-link text-muted">
-                        <i class="fa fa-chevron-left">            
+                        <i class="fa fa-chevron-left">
                         </i> Continuar agregando
                     </a>
                     <?php if (!Yii::$app->user->isGuest): ?>
@@ -335,9 +335,9 @@ if ($_SESSION['carrito'] != ''):
                     <?php else: ?>
                         <a class="btn btn-dark"  data-toggle="modal" href="#pedido-simple" role="button" aria-expanded="false" aria-controls="collapseContacto">
 
-                            Realizar Consultar 
+                            Realizar Consultar
                             <i class="fa fa-chevron-right">
-                            </i>                           
+                            </i>
                         </a>
                     <?php endif; ?>
                 </div>
@@ -347,7 +347,7 @@ if ($_SESSION['carrito'] != ''):
     <?php else : ?>
         <div class="text-center">
             <a href="<?= \yii\helpers\Url::to(['hogar']) ?>" class="btn btn-link text-muted">
-                <i class="fa fa-chevron-left">            
+                <i class="fa fa-chevron-left">
                 </i> Continuar agregando
             </a>
         </div>
