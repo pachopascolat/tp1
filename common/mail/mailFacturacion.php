@@ -4,10 +4,10 @@
 use \Milon\Barcode\DNS2D;
 use barcode\barcode\BarcodeGeneratorAssets;
 
-BarcodeGeneratorAssets::register($this);
+//BarcodeGeneratorAssets::register($this);
 
-$d = new DNS2D();
-$d->setStorPath(Yii::getAlias('@web') . "/cache/");
+//$d = new DNS2D();
+//$d->setStorPath(Yii::getAlias('@web') . "/cache/");
 ?>
 
 <h3>Se ha realizado la consulta nro <?= $carrito->id_carrito ?></h3>
@@ -40,22 +40,15 @@ $d->setStorPath(Yii::getAlias('@web') . "/cache/");
                 <td><?php
                     $web = yii\helpers\Url::base('https');
                     $url = \yii\helpers\Url::base(true) . Yii::$app->imagemanager->getImagePath($item->imagen_id, 80, 80);
-//                    $url = $item->articulo->getFrontFullUrl();
-//                    $path = $url;
-//                    $parts = explode('/', $path);
-//                    $parts = array_slice($parts, 3);
-//                    $newpath = implode('/', $parts);
-//                    $urlok = $web . "/" . $newpath;
-//                    echo yii\helpers\Html::img($web.$url, ['class' => 'img-thumbnail']);
                     ?>
                     <a href="<?php echo $url ?>"><img width="80px" src="<?= $url ?>"> </a>
                 </td>
 
 
 
-                <td><?= $item->articulo->tela->nombre_tela ?? 'vacio' ?></td>
+                <td><?= $item->articulo->tela->nombre_tela?? 'vacio' ?></td>
                 <td>
-    <?= $item->articulo->nombre_color ?? 'vacio'; ?>
+                   <?= $item->articulo->nombre_color??'vacio'; ?>
                 </td>
                 <td><?= $item->piezas ?></td>
                 <td><?= $item->cantidad ?></td>
