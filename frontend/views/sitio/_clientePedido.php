@@ -191,7 +191,7 @@ yii\bootstrap4\Modal::begin([
                                                     <button type="submit" class="btn btn-outline-secondary"><svg class="svg-icon"><use xlink:href="#envelope-1"> </use></svg><p>ENVIAR POR MAIL</p> </button>
                                                 </div>-->
                     <div class="form-group text-center">
-                        <button data-pjax=0 type="submit" formaction="<?= \yii\helpers\Url::to(['pedido-facturacion']) ?>" class="mt-2 mt-sm-0 btn btn-outline-secondary">
+                        <button data-pjax=0 type="submit" class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
                             <p>ENVIAR POR MAIL</p>
 
