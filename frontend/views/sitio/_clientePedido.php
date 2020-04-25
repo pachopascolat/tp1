@@ -37,7 +37,7 @@ yii\bootstrap4\Modal::begin([
             <h6 class="btn-title  btn-dark " >Tus Datos</h6>
 
 
-            <div class="block-body"> 
+            <div class="block-body">
               <!--<p class="lead">¿Aún no es nuestro cliente registrado?</p>
               <p class="text-muted">Con el registro con nuestro portal, podrá realizar sus pedidos mas rápido. ¡Todo el proceso no llevará más de unos minutos!</p>
               <p class="text-muted">Si tiene alguna pregunta, no dude en <a href="#">contactarnos</a>, nuestro centro de servicio al cliente se comunicará a la brevedad.</p>
@@ -91,7 +91,7 @@ yii\bootstrap4\Modal::begin([
                 $form = \yii\widgets\ActiveForm::begin([
                             'options' => ['data-pjax' => true],
                             'id' => 'cliente-pedido-form',
-                            'action' => ['crear-consulta'],
+//                            'action' => ['crear-consulta'],
 //                            'validationUrl' => yii\helpers\Url::to('imprimir-pedido'),
 //                            'enableAjaxValidation' => true,
                             'enableClientValidation' => true,
@@ -193,23 +193,23 @@ yii\bootstrap4\Modal::begin([
                     <div class="form-group text-center">
                         <button data-pjax=0 type="submit" formaction="<?= \yii\helpers\Url::to(['pedido-facturacion']) ?>" class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
-                            <p>ENVIAR POR MAIL</p> 
+                            <p>ENVIAR POR MAIL</p>
 
                         </button>
                         <button data-pjax=0  type="submit" formaction="<?= \yii\helpers\Url::to(['imprimir-pedido']) ?>"    class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
-                            <p>Crear PDF</p> 
+                            <p>Crear PDF</p>
 
                         </button>
                         <div class="pt-1">
                             <div  data-pjax=0 onclick="editarCliente()"    class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
-                                <p>Editar</p> 
+                                <p>Editar</p>
 
                             </div>
                             <div  data-pjax=0 onclick="limpiarCliente()"   class="mt-2 mt-sm-0 btn btn-outline-secondary">
 
-                                <p>Nuevo</p> 
+                                <p>Nuevo</p>
 
                             </div>
                         </div>
