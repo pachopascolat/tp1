@@ -28,7 +28,8 @@ class AppAsset extends AssetBundle {
         "fontawesome/css/all.css",
 //        "css/oldweb.css",
 //        '//fonts.googleapis.com/css?family=Oswald:400,700',
-        '//fonts.googleapis.com/css?family=Oswald&display=swap'
+        '//fonts.googleapis.com/css?family=Oswald&display=swap',
+        'css/bootstrap-modal-ios.css'
     ];
     public $js = [
 //        "js/jquery-3.3.1.min.js",
@@ -47,6 +48,7 @@ class AppAsset extends AssetBundle {
 //        "js/texsim.js",
         "js/texsim2020.js",
         "https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.4.0/dist/lazyload.min.js",
+        "bootstrap-modal-ios.js"
     ];
     public $depends = [
         'yii\web\YiiAsset',

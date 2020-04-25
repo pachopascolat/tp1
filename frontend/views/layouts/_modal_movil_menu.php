@@ -1,7 +1,7 @@
 <div class="modal fade left modal-sidebar" id="sidebar-left" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content nav1">
-            <div class="modal-header sticky-top border-0 pb-2">
+            <div class="modal-header sticky-top  border-0 pb-2">
                 <div class="pb-2 ">
                     <a class="navbar-brand" href="">
                         <img class="w-100  p-0 " src="<?= \yii\helpers\Url::base(true) . "/img/logotexsim-02.svg" ?>">
