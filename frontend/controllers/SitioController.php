@@ -395,7 +395,7 @@ class SitioController extends \yii\web\Controller {
             }
             $carrito->cliente_id = $model->id_cliente;
             $carrito->save();
-            $carrito->sendMailFacturacion();
+            $carrito->sendMail();
             return $this->redirect(['finalizar-consulta', 'id_carrito' => $carrito->id_carrito]);
         }
         return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
