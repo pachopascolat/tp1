@@ -26,7 +26,7 @@
 
 
 .icono-div{
-    position: relative;  
+    position: relative;
 }
 
 .icono-nombre{
@@ -513,7 +513,7 @@ a:hover{
 }
 
 @media (max-width: 768px) {
-    
+
     .nav2-img {
         height: 60px !important;
     }
@@ -534,11 +534,14 @@ a:hover{
 @media (max-height: 550px){
     .modal-sidebar .modal-content{
         height: 450px !important;
-        overflow: auto;
     }
-    
 
-    
+
+
+}
+
+.modal-sidebar .modal-content{
+    overflow: auto;
 }
 
 
@@ -616,7 +619,7 @@ a:hover{
 }
 
 
-.nav1 { 
+.nav1 {
     background-color: rgb(35, 31, 31);
     /*height: 90px;*/
 }
@@ -703,7 +706,7 @@ a:hover{
 .absolute-div{
     position: absolute;
     top:0;
-    right: 0; 
+    right: 0;
 
 }
 
@@ -824,7 +827,7 @@ a:hover{
 }
 .links-footer {
     color:  rgb(100, 100, 100);
-    font-size: 11px;    
+    font-size: 11px;
 }
 
 .copyright {
