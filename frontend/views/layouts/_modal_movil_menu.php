@@ -1,7 +1,7 @@
 <div class="modal fade left modal-sidebar" id="sidebar-left" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content nav1">
-            <div class="modal-header border-0 pb-2">
+            <div class="modal-header sticky-top border-0 pb-2">
                 <div class="pb-2 ">
                     <a class="navbar-brand" href="">
                         <img class="w-100  p-0 " src="<?= \yii\helpers\Url::base(true) . "/img/logotexsim-02.svg" ?>">
@@ -91,28 +91,28 @@
                  <div class="nav-item text-white pt-3">
                      <a href="<?= yii\helpers\Url::to(['/sitio/crear-consulta'])?>">
                         <span class="movil-categorias">
-                            Pedidos  
+                            Pedidos
                         </span>
-                       
+
                     </a>
                 </div>
                  <div class="nav-item text-white">
                      <a href="" data-toggle="modal" data-target="#pdf-report-modal">
                         <span class="movil-categorias">
-                            CATALOGO  
+                            CATALOGO
                         </span>
-                       
+
                     </a>
                 </div>
                 <div class="nav-item text-white">
                     <a>
                         <span class="movil-categorias">
-                            CONSULTAS  
+                            CONSULTAS
                         </span>
                         <span class="text-light">2120 0550</span>
                     </a>
                 </div>
-               
+
                 <div class="nav-item side-menu-sucursales ">
                     <a href="" class="w-100 d-flex justify-content-between align-items-center side-menu-link cursor-pointer text-blue d-inline" data-target="#side-menu-suc-dir" id="" role="button" data-toggle="collapse" >
                         <span class="movil-categorias">sucursales</span>

@@ -533,12 +533,7 @@ a:hover{
 
 @media (max-height: 570px){
     .modal-sidebar .modal-content{
-        max-height: 540px !important;
-        overflow: auto;
-    }
-    @media (max-height: 480px){
-    .modal-sidebar .modal-content{
-        max-height: 450px !important;
+        max-height: 570px !important;
         overflow: auto;
     }
 
