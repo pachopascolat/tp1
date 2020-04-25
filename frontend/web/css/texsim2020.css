@@ -531,17 +531,15 @@ a:hover{
     }
 }
 
-/*@media (max-height: 570px){*/
-/*    .modal-sidebar .modal-content{*/
-/*        max-height: 480px !important;*/
-/*        overflow: auto;*/
-/*    }*/
-/*}*/
-
-.modal-sidebar .modal-content{
-    /*max-height: 480px !important;*/
-    overflow: scroll;
+@media (max-height: 570px){
+    .modal-sidebar .modal-body{
+        max-height: 480px !important;
+        width: 100%;
+        overflow-y: auto;
+    }
 }
+
+
 
 
 /*fila imagen redes*/
