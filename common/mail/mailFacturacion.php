@@ -7,7 +7,7 @@ use barcode\barcode\BarcodeGeneratorAssets;
 BarcodeGeneratorAssets::register($this);
 
 $d = new DNS2D();
-$d->setStorPath(__DIR__ . "/cache/");
+$d->setStorPath(Yii::getAlias('@web') . "/cache/");
 ?>
 
 <h3>Se ha realizado la consulta nro <?= $carrito->id_carrito ?></h3>
@@ -48,7 +48,7 @@ $d->setStorPath(__DIR__ . "/cache/");
 //                    $urlok = $web . "/" . $newpath;
 //                    echo yii\helpers\Html::img($web.$url, ['class' => 'img-thumbnail']);
                     ?>
-                    <a href="<?php echo $url ?>"><img width="80px" src="<?= $url ?>"> </a> 
+                    <a href="<?php echo $url ?>"><img width="80px" src="<?= $url ?>"> </a>
                 </td>
 
 
@@ -61,7 +61,7 @@ $d->setStorPath(__DIR__ . "/cache/");
                 <td><?= $item->cantidad ?></td>
                 <td><?= $item->unidad ?></td>
                 <td><?= $item->precio ?></td>
-                <td> 
+                <td>
                     <div>
                         <?php
 //                        if ($item->serie) {
