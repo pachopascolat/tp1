@@ -11,6 +11,10 @@ use yii\web\Response;
 
 class SitioController extends \yii\web\Controller {
 
+
+
+
+
     public function actionIndex() {
         $searchModel = new \common\models\VidrieraSearch(['categoria_id' => 22]);
         $dataProvider = $searchModel->search(null);
@@ -63,6 +67,9 @@ class SitioController extends \yii\web\Controller {
             $carrito = new \common\models\Carrito();
             $carrito->save();
             $session['carrito'] = $carrito->id_carrito;
+        }
+        if($action->id==="crear-consulta" && !Yii::$app->user->isGuest){
+            $this->redirect('pedido-facturacion');
         }
 //        }
 
@@ -450,7 +457,7 @@ class SitioController extends \yii\web\Controller {
         }
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
-                
+
             }
         }
         return $this->render('crearConsulta', ['model' => $model, 'carrito' => $carrito]);
