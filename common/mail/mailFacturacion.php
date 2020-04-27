@@ -14,6 +14,11 @@ use barcode\barcode\BarcodeGeneratorAssets;
 <p>EL cliente <?= $carrito->cliente->nombre_cliente ?></p>
 <p>Telefono: <?= $carrito->cliente->telefono ?></p>
 <p>email: <?= $carrito->cliente->mail_cliente ?></p>
+<p>cuit: <?= $carrito->cliente->cuit ?></p>
+<p>nro cliente: <?= $carrito->cliente->nro_cliente ?></p>
+<p>direccion de envio: <?= $carrito->direccion_envio?></p>
+<p>presupuesto: <?= $carrito->getPresupuesto()?></p>
+<p>Observaciones: <?= $carrito->observaciones ?></p>
 
 <table width="80%" border="1" bordercolor="#0000FF" cellpadding="10">
     <thead>
