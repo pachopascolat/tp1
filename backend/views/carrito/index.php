@@ -21,6 +21,7 @@ $this->params['breadcrumbs'] = [];
 
     <?=
     GridView::widget([
+        'options' => [ 'style' => 'table-layout:fixed;' ],
         'export' => false,
         'id' => 'carrito-grid',
         'dataProvider' => $dataProvider,
@@ -44,6 +45,20 @@ $this->params['breadcrumbs'] = [];
                 'value' => function($model) {
                     $time = date('H:i:s', strtotime($model->timestamp));
                     return $time;
+                }
+            ],
+            [
+                'label' => 'Editar Pedido',
+                'format'=>'raw',
+                'value' => function($model) {
+                    return Html::a(Yii::t('app', 'Pedido'),  "/../sitio/update-consulta?categoria_padre=1&id_carrito=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-warning', 'target' => '_blank']);
+                }
+            ],
+            [
+                'label' => 'Imprimir',
+                'format'=>'raw',
+                'value' => function($model) {
+                    return Html::a(Yii::t('app', 'PDF'),  "/../sitio/imprimir-desde-backend?carrito_id=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-primary', 'target' => '_blank']);
                 }
             ],
             'cliente.nombre_cliente',
@@ -77,20 +92,7 @@ $this->params['breadcrumbs'] = [];
 //                'expandTitle' => 'Consulta',
 //                'expandIcon' => "Ver Consulta " . GridView::ICON_EXPAND,
 //            ],
-            [
-                'label' => 'Editar Pedido',
-                'format'=>'raw',
-                'value' => function($model) {
-                    return Html::a(Yii::t('app', 'Pedido'),  "/../sitio/update-consulta?categoria_padre=1&id_carrito=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-warning', 'target' => '_blank']);
-                }
-            ],
-            [
-                'label' => 'Imprimir',
-                'format'=>'raw',
-                'value' => function($model) {
-                    return Html::a(Yii::t('app', 'PDF'),  "/../sitio/imprimir-desde-backend?carrito_id=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-primary', 'target' => '_blank']);
-                }
-            ],
+
 //            'timestamp',
 //            'confirmado',
             ['class' => 'yii\grid\ActionColumn'],

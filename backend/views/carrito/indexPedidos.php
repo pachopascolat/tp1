@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $searchModel common\models\CarritoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Consultas');
+$this->title = Yii::t('app', 'Pedidos');
 $this->params['breadcrumbs'] = [];
 ?>
 <div class="carrito-index">
@@ -25,6 +25,7 @@ $this->params['breadcrumbs'] = [];
         'id' => 'carrito-grid',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'options' => [ 'style' => 'table-layout:fixed;' ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
@@ -34,6 +35,20 @@ $this->params['breadcrumbs'] = [];
             [
                 'attribute' => 'id_carrito',
                 'width' => '80px',
+            ],
+            [
+                'label' => 'Editar Pedido',
+                'format'=>'raw',
+                'value' => function($model) {
+                    return Html::a(Yii::t('app', 'Pedido'),  "/../sitio/update-consulta?categoria_padre=1&id_carrito=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-warning', 'target' => '_blank']);
+                }
+            ],
+            [
+                'label' => 'Imprimir',
+                'format'=>'raw',
+                'value' => function($model) {
+                    return Html::a(Yii::t('app', 'PDF'),  "/../sitio/imprimir-desde-backend?carrito_id=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-primary', 'target' => '_blank']);
+                }
             ],
 //            'id_carrito',
             [
@@ -50,10 +65,26 @@ $this->params['breadcrumbs'] = [];
                     return $time;
                 }
             ],
-            'cliente.nombre_cliente',
-            'cliente.telefono',
-            'cliente.mail_cliente',
-            'direccion_envio',
+//            'cliente.nombre_cliente',
+            [
+                'attribute'=>'cliente.nombre_cliente',
+//                'contentOptions' => ['style' => 'width:80px; white-space: normal;'],
+            ],
+            [
+                'attribute'=>'cliente.telefono',
+//                'contentOptions' => ['style' => 'width:80px; white-space: normal;'],
+            ],
+            [
+                'attribute'=>'cliente.mail_cliente',
+//                'contentOptions' => ['style' => 'width:80px; white-space: normal;'],
+            ],
+            [
+                'attribute'=>'cliente.direccion_envio',
+//                'contentOptions' => ['style' => 'width:80px; white-space: normal;'],
+            ],
+
+//            'cliente.mail_cliente',
+//            'direccion_envio',
 //            'observaciones',
 //            [
 //                'label' => 'Cantidad Diseños',
@@ -61,20 +92,7 @@ $this->params['breadcrumbs'] = [];
 //                    return count($model->itemCarritos);
 //                }
 //            ],
-            [
-                'label' => 'Editar Pedido',
-                'format'=>'raw',
-                'value' => function($model) {
-                    return Html::a(Yii::t('app', 'Pedido'),  "/../sitio/update-consulta?categoria_padre=1&id_carrito=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-warning', 'target' => '_blank']);
-                }
-            ],
-            [
-                'label' => 'Imprimir',
-                'format'=>'raw',
-                'value' => function($model) {
-                    return Html::a(Yii::t('app', 'PDF'),  "/../sitio/imprimir-desde-backend?carrito_id=$model->id_carrito", ['data-pjax'=>0 ,'class' => 'btn btn-primary', 'target' => '_blank']);
-                }
-            ],
+
 //            [
 ////                'label' => 'Diseños',
 //                'class' => 'kartik\grid\ExpandRowColumn',
