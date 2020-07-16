@@ -48,7 +48,5 @@ phpunit.phar
 /www/admin/uploads/pdf-report/*
 /www/admin/uploads/*
 /www/admin/pdf/headers/*
-/www/admin/images/
 /www/fontawesome/
-/www/admin/images/galeria/
-/www/admin/images/galeria/gallery/
+/www/admin/images/
