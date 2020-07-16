@@ -77,8 +77,8 @@ AppAsset::register($this);
                         ['label' => 'Otras', 'url' => ['/categoria/index', 'categoria_padre' => -1 ]],
                     ]
                 ],
-                ['label' => 'Consultas', 'url' => ['/carrito/index', 'categoria_padre' => 2]],
-                ['label' => 'Pedidos', 'url' => ['/carrito/index-pedidos', 'categoria_padre' => 2]],
+//                ['label' => 'Consultas', 'url' => ['/carrito/index', 'categoria_padre' => 2]],
+                ['label' => 'Pedidos', 'url' => ['/estado-pedido/index']],
                 ['label' => 'frontend', 'url' => Yii::$app->urlManagerFrontEnd->baseUrl, 'linkOptions' => ['target' => '_blank'],
                 ],
 //                ['label' => 'Hogar', 'items' => [

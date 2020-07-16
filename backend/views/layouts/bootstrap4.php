@@ -102,7 +102,7 @@ BootstrapVueAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container">
+    <div class="container-fluid">
 
         <?= $content ?>
     </div>
@@ -110,7 +110,7 @@ BootstrapVueAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Desarrollado por Patricio Pascolat para Colegio Nueva Generación <?= date('Y') ?></p>
+<!--        <p class="pull-left">&copy; Desarrollado por Patricio Pascolat para Colegio Nueva Generación --><?//= date('Y') ?><!--</p>-->
 
 <!--        <p class="pull-right">--><?//= Yii::powered() ?><!--</p>-->
     </div>
