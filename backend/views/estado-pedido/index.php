@@ -88,5 +88,10 @@
         padding-left: 0;
         padding-right: 0;
     }
+    #estado-pedido-table th{
+        font-size: 14px;
+        padding-left: 0;
+        padding-right: 0;
+    }
 
 </style>
