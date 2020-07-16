@@ -35,18 +35,20 @@ phpunit.phar
 /.vagrant
 
 #imagenes de estampados
-/backend/web/images
-/frontend/web/index.php
-/backend/web/index.php
+
 
 #archivos de stock
-/backend/stock
-/backend/uploads/*
+/www/admin/stock
+/www/admin/uploads/*
 
 /.htaccess
 
 /common/config/main-local.php
 
-/backend/uploads/pdf-report/*
-/backend/uploads/*
-/backend/web/pdf/headers/*
+/www/admin/uploads/pdf-report/*
+/www/admin/uploads/*
+/www/admin/pdf/headers/*
+/www/admin/images/
+/www/fontawesome/
+/www/admin/images/galeria/
+/www/admin/images/galeria/gallery/

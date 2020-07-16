@@ -1,0 +1,586 @@
+2020-07-01 20:16:33 [127.0.0.1][-][38oufbrdqu25qo8nceu66bbi9k][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "imagegallery". in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Module.php:537
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('imagegallery', Array)
+#1 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/pacho/public_html/texsim.com.ar/frontend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Página no encontrada. in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /home/pacho/public_html/texsim.com.ar/frontend/web/index.php(17): yii\base\Application->run()
+#2 {main}
+2020-07-01 20:16:33 [127.0.0.1][-][38oufbrdqu25qo8nceu66bbi9k][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-frontend' => '38oufbrdqu25qo8nceu66bbi9k'
+    '_csrf-frontend' => '348500a237c714f482db38753b0944b91c0a8ff383c69466ca3ae7aba90ceafca:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"mTOQspiJhWOUES9uypfwAcNL5Hs43tWY\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'carrito' => 24131
+]
+
+$_SERVER = [
+    'REDIRECT_REDIRECT_STATUS' => '200'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'texsim.local'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9,en;q=0.8'
+    'HTTP_COOKIE' => 'advanced-frontend=38oufbrdqu25qo8nceu66bbi9k; _csrf-frontend=348500a237c714f482db38753b0944b91c0a8ff383c69466ca3ae7aba90ceafca%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22mTOQspiJhWOUES9uypfwAcNL5Hs43tWY%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.29 (Ubuntu) Server at texsim.local Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.29 (Ubuntu)'
+    'SERVER_NAME' => 'texsim.local'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/home/pacho/public_html/texsim.com.ar/frontend/web/index.php'
+    'REMOTE_PORT' => '36268'
+    'REDIRECT_URL' => '/frontend/web/imagegallery'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/imagegallery'
+    'SCRIPT_NAME' => '/frontend/web/index.php'
+    'PHP_SELF' => '/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1593634593.791
+    'REQUEST_TIME' => 1593634593
+]
+2020-07-01 20:16:42 [127.0.0.1][-][38oufbrdqu25qo8nceu66bbi9k][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "galleryimage". in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Module.php:537
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('galleryimage', Array)
+#1 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/pacho/public_html/texsim.com.ar/frontend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Página no encontrada. in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /home/pacho/public_html/texsim.com.ar/frontend/web/index.php(17): yii\base\Application->run()
+#2 {main}
+2020-07-01 20:16:42 [127.0.0.1][-][38oufbrdqu25qo8nceu66bbi9k][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-frontend' => '38oufbrdqu25qo8nceu66bbi9k'
+    '_csrf-frontend' => '348500a237c714f482db38753b0944b91c0a8ff383c69466ca3ae7aba90ceafca:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"mTOQspiJhWOUES9uypfwAcNL5Hs43tWY\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'carrito' => 24131
+]
+
+$_SERVER = [
+    'REDIRECT_REDIRECT_STATUS' => '200'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'texsim.local'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9,en;q=0.8'
+    'HTTP_COOKIE' => 'advanced-frontend=38oufbrdqu25qo8nceu66bbi9k; _csrf-frontend=348500a237c714f482db38753b0944b91c0a8ff383c69466ca3ae7aba90ceafca%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22mTOQspiJhWOUES9uypfwAcNL5Hs43tWY%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.29 (Ubuntu) Server at texsim.local Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.29 (Ubuntu)'
+    'SERVER_NAME' => 'texsim.local'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/home/pacho/public_html/texsim.com.ar/frontend/web/index.php'
+    'REMOTE_PORT' => '36290'
+    'REDIRECT_URL' => '/frontend/web/galleryimage'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/galleryimage'
+    'SCRIPT_NAME' => '/frontend/web/index.php'
+    'PHP_SELF' => '/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1593634602.32
+    'REQUEST_TIME' => 1593634602
+]
+2020-07-01 20:17:10 [127.0.0.1][-][38oufbrdqu25qo8nceu66bbi9k][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "imagemanager". in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Module.php:537
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('imagemanager', Array)
+#1 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/pacho/public_html/texsim.com.ar/frontend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Página no encontrada. in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /home/pacho/public_html/texsim.com.ar/frontend/web/index.php(17): yii\base\Application->run()
+#2 {main}
+2020-07-01 20:17:10 [127.0.0.1][-][38oufbrdqu25qo8nceu66bbi9k][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-frontend' => '38oufbrdqu25qo8nceu66bbi9k'
+    '_csrf-frontend' => '348500a237c714f482db38753b0944b91c0a8ff383c69466ca3ae7aba90ceafca:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"mTOQspiJhWOUES9uypfwAcNL5Hs43tWY\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'carrito' => 24131
+]
+
+$_SERVER = [
+    'REDIRECT_REDIRECT_STATUS' => '200'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'texsim.local'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9,en;q=0.8'
+    'HTTP_COOKIE' => 'advanced-frontend=38oufbrdqu25qo8nceu66bbi9k; _csrf-frontend=348500a237c714f482db38753b0944b91c0a8ff383c69466ca3ae7aba90ceafca%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22mTOQspiJhWOUES9uypfwAcNL5Hs43tWY%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.29 (Ubuntu) Server at texsim.local Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.29 (Ubuntu)'
+    'SERVER_NAME' => 'texsim.local'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/home/pacho/public_html/texsim.com.ar/frontend/web/index.php'
+    'REMOTE_PORT' => '36308'
+    'REDIRECT_URL' => '/frontend/web/imagemanager'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/imagemanager'
+    'SCRIPT_NAME' => '/frontend/web/index.php'
+    'PHP_SELF' => '/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1593634630.312
+    'REQUEST_TIME' => 1593634630
+]
+2020-07-01 20:17:32 [127.0.0.1][-][38oufbrdqu25qo8nceu66bbi9k][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "imagemanager". in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Module.php:537
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('imagemanager', Array)
+#1 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/pacho/public_html/texsim.com.ar/frontend/web/index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Página no encontrada. in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /home/pacho/public_html/texsim.com.ar/frontend/web/index.php(17): yii\base\Application->run()
+#2 {main}
+2020-07-01 20:17:32 [127.0.0.1][-][38oufbrdqu25qo8nceu66bbi9k][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-frontend' => '38oufbrdqu25qo8nceu66bbi9k'
+    '_csrf-frontend' => '348500a237c714f482db38753b0944b91c0a8ff383c69466ca3ae7aba90ceafca:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"mTOQspiJhWOUES9uypfwAcNL5Hs43tWY\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'carrito' => 24131
+]
+
+$_SERVER = [
+    'REDIRECT_REDIRECT_STATUS' => '200'
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'texsim.local'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9,en;q=0.8'
+    'HTTP_COOKIE' => 'advanced-frontend=38oufbrdqu25qo8nceu66bbi9k; _csrf-frontend=348500a237c714f482db38753b0944b91c0a8ff383c69466ca3ae7aba90ceafca%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22mTOQspiJhWOUES9uypfwAcNL5Hs43tWY%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.29 (Ubuntu) Server at texsim.local Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.29 (Ubuntu)'
+    'SERVER_NAME' => 'texsim.local'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/home/pacho/public_html/texsim.com.ar/frontend/web/index.php'
+    'REMOTE_PORT' => '36378'
+    'REDIRECT_URL' => '/frontend/web/imagemanager'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/imagemanager'
+    'SCRIPT_NAME' => '/frontend/web/index.php'
+    'PHP_SELF' => '/frontend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1593634652.447
+    'REQUEST_TIME' => 1593634652
+]
+2020-07-15 20:31:39 [127.0.0.1][-][haov0h62sl060nu6upls0d2can][error][yii\base\InvalidArgumentException] yii\base\InvalidArgumentException: The dir argument must be a directory: /home/pacho/public_html/texsim.com.ar/frontend/web/img2020/hogar/ in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/helpers/BaseFileHelper.php:571
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/helpers/BaseFileHelper.php(477): yii\helpers\BaseFileHelper::clearDir('/home/pacho/pub...')
+#1 /home/pacho/public_html/texsim.com.ar/frontend/views/layouts/nav2.php(14): yii\helpers\BaseFileHelper::findFiles('/home/pacho/pub...')
+#2 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/View.php(348): require('/home/pacho/pub...')
+#3 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/home/pacho/pub...', Array)
+#4 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/View.php(156): yii\base\View->renderFile('/home/pacho/pub...', Array, NULL)
+#5 /home/pacho/public_html/texsim.com.ar/frontend/views/layouts/main.php(62): yii\base\View->render('nav2')
+#6 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/View.php(348): require('/home/pacho/pub...')
+#7 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/home/pacho/pub...', Array)
+#8 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Controller.php(401): yii\base\View->renderFile('/home/pacho/pub...', Array, Object(frontend\controllers\SitioController))
+#9 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Controller.php(387): yii\base\Controller->renderContent('<br class="d-md...')
+#10 /home/pacho/public_html/texsim.com.ar/frontend/controllers/SitioController.php(23): yii\base\Controller->render('porCategoria', Array)
+#11 [internal function]: frontend\controllers\SitioController->actionIndex()
+#12 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#13 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#14 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('index', Array)
+#15 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('', Array)
+#16 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#17 /home/pacho/public_html/texsim.com.ar/www/index.php(17): yii\base\Application->run()
+#18 {main}
+2020-07-15 20:31:37 [127.0.0.1][-][haov0h62sl060nu6upls0d2can][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SESSION = [
+    '__flash' => []
+    'carrito' => 24133
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'texsim.local'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9,en;q=0.8'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.29 (Ubuntu) Server at texsim.local Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.29 (Ubuntu)'
+    'SERVER_NAME' => 'texsim.local'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/home/pacho/public_html/texsim.com.ar/www/index.php'
+    'REMOTE_PORT' => '33386'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1594845097.408
+    'REQUEST_TIME' => 1594845097
+]
+2020-07-15 20:33:29 [127.0.0.1][-][haov0h62sl060nu6upls0d2can][error][yii\base\InvalidArgumentException] yii\base\InvalidArgumentException: The dir argument must be a directory: /img2020/hogar/ in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/helpers/BaseFileHelper.php:571
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/helpers/BaseFileHelper.php(477): yii\helpers\BaseFileHelper::clearDir('/img2020/hogar/')
+#1 /home/pacho/public_html/texsim.com.ar/frontend/views/layouts/nav2.php(14): yii\helpers\BaseFileHelper::findFiles('/img2020/hogar/')
+#2 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/View.php(348): require('/home/pacho/pub...')
+#3 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/home/pacho/pub...', Array)
+#4 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/View.php(156): yii\base\View->renderFile('/home/pacho/pub...', Array, NULL)
+#5 /home/pacho/public_html/texsim.com.ar/frontend/views/layouts/main.php(62): yii\base\View->render('nav2')
+#6 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/View.php(348): require('/home/pacho/pub...')
+#7 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/View.php(257): yii\base\View->renderPhpFile('/home/pacho/pub...', Array)
+#8 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Controller.php(401): yii\base\View->renderFile('/home/pacho/pub...', Array, Object(frontend\controllers\SitioController))
+#9 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Controller.php(387): yii\base\Controller->renderContent('<br class="d-md...')
+#10 /home/pacho/public_html/texsim.com.ar/frontend/controllers/SitioController.php(23): yii\base\Controller->render('porCategoria', Array)
+#11 [internal function]: frontend\controllers\SitioController->actionIndex()
+#12 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array(Array, Array)
+#13 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Controller.php(157): yii\base\InlineAction->runWithParams(Array)
+#14 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Module.php(528): yii\base\Controller->runAction('index', Array)
+#15 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('', Array)
+#16 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#17 /home/pacho/public_html/texsim.com.ar/www/index.php(17): yii\base\Application->run()
+#18 {main}
+2020-07-15 20:33:28 [127.0.0.1][-][haov0h62sl060nu6upls0d2can][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-frontend' => 'haov0h62sl060nu6upls0d2can'
+    '_csrf-frontend' => 'b0c017adf5d03204ccc09e2f66bd2897eac1d2cc5d89cdd6aa9ecd4b884ed7daa:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"F0DjeOBN0QBqw6W5CucsfbZ61toAlu6L\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'carrito' => 24133
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'texsim.local'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9,en;q=0.8'
+    'HTTP_COOKIE' => 'advanced-frontend=haov0h62sl060nu6upls0d2can; _csrf-frontend=b0c017adf5d03204ccc09e2f66bd2897eac1d2cc5d89cdd6aa9ecd4b884ed7daa%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22F0DjeOBN0QBqw6W5CucsfbZ61toAlu6L%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.29 (Ubuntu) Server at texsim.local Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.29 (Ubuntu)'
+    'SERVER_NAME' => 'texsim.local'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/home/pacho/public_html/texsim.com.ar/www/index.php'
+    'REMOTE_PORT' => '33410'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1594845208.241
+    'REQUEST_TIME' => 1594845208
+]
+2020-07-15 20:35:29 [127.0.0.1][-][haov0h62sl060nu6upls0d2can][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "frontend/web/fontawesome/css/all.css". in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Module.php:537
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction('frontend/web/fo...', Array)
+#1 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 /home/pacho/public_html/texsim.com.ar/www/index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Página no encontrada. in /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /home/pacho/public_html/texsim.com.ar/vendor/yiisoft/yii2/base/Application.php(386): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 /home/pacho/public_html/texsim.com.ar/www/index.php(17): yii\base\Application->run()
+#2 {main}
+2020-07-15 20:35:29 [127.0.0.1][-][haov0h62sl060nu6upls0d2can][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-frontend' => 'haov0h62sl060nu6upls0d2can'
+    '_csrf-frontend' => 'b0c017adf5d03204ccc09e2f66bd2897eac1d2cc5d89cdd6aa9ecd4b884ed7daa:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"F0DjeOBN0QBqw6W5CucsfbZ61toAlu6L\";}'
+    'advanced-backend' => 'sd1f19qgaj8dqbn330drh9uddf'
+    '_csrf-backend' => '19a7bf3bc6c2e7541d206bb06e00621acecb5772d86f81c73595f6321d6abae0a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"gobmgoZvXk9q7LSUQOgkR8eGGKbG9Mbi\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'carrito' => 24133
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'texsim.local'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/css,*/*;q=0.1'
+    'HTTP_REFERER' => 'http://texsim.local/admin/user/login'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9,en;q=0.8'
+    'HTTP_COOKIE' => 'advanced-frontend=haov0h62sl060nu6upls0d2can; _csrf-frontend=b0c017adf5d03204ccc09e2f66bd2897eac1d2cc5d89cdd6aa9ecd4b884ed7daa%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22F0DjeOBN0QBqw6W5CucsfbZ61toAlu6L%22%3B%7D; advanced-backend=sd1f19qgaj8dqbn330drh9uddf; _csrf-backend=19a7bf3bc6c2e7541d206bb06e00621acecb5772d86f81c73595f6321d6abae0a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22gobmgoZvXk9q7LSUQOgkR8eGGKbG9Mbi%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.29 (Ubuntu) Server at texsim.local Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.29 (Ubuntu)'
+    'SERVER_NAME' => 'texsim.local'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/home/pacho/public_html/texsim.com.ar/www/index.php'
+    'REMOTE_PORT' => '34230'
+    'REDIRECT_URL' => '/frontend/web/fontawesome/css/all.css'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/frontend/web/fontawesome/css/all.css'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1594845329.899
+    'REQUEST_TIME' => 1594845329
+]
+2020-07-15 20:39:31 [127.0.0.1][2][-][warning][yii\i18n\PhpMessageSource::loadMessages] The message file for category 'app' does not exist: /home/pacho/public_html/texsim.com.ar/frontend/messages/es/app.php
+    in /home/pacho/public_html/texsim.com.ar/common/models/Cliente.php:56
+    in /home/pacho/public_html/texsim.com.ar/frontend/views/sitio/_clientePedido.php:139
+    in /home/pacho/public_html/texsim.com.ar/frontend/views/sitio/crearConsulta.php:33
+2020-07-15 20:39:29 [127.0.0.1][2][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_csrf-backend' => '889d95e2723a898e3663c6fe8ab1958734171f39241f5765e1f435dee5cd8f0ca:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"CgFuEsBRHeJv0Nd0bquw_RppRsNFm7o3\";}'
+    'advanced-backend' => 'hfeokamh17rvqo3guk5gm6cdga'
+    'advanced-frontend' => 'abcdiukt90r6gqpet9mlk8rh6t'
+    '_csrf-frontend' => '4db0fcf664e9828638a5cdd8f2a468f25a7843347394b1105b8bb76446f5fe50a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"bgSczC3gtH4EVMsZWWs-8wmulkhdqNte\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'carrito' => 24133
+    '__id' => 2
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'texsim.local'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_REFERER' => 'http://texsim.local/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9,en;q=0.8'
+    'HTTP_COOKIE' => '_csrf-backend=889d95e2723a898e3663c6fe8ab1958734171f39241f5765e1f435dee5cd8f0ca%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22CgFuEsBRHeJv0Nd0bquw_RppRsNFm7o3%22%3B%7D; advanced-backend=hfeokamh17rvqo3guk5gm6cdga; advanced-frontend=abcdiukt90r6gqpet9mlk8rh6t; _csrf-frontend=4db0fcf664e9828638a5cdd8f2a468f25a7843347394b1105b8bb76446f5fe50a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22bgSczC3gtH4EVMsZWWs-8wmulkhdqNte%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.29 (Ubuntu) Server at texsim.local Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.29 (Ubuntu)'
+    'SERVER_NAME' => 'texsim.local'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/home/pacho/public_html/texsim.com.ar/www/index.php'
+    'REMOTE_PORT' => '36082'
+    'REDIRECT_URL' => '/sitio/crear-consulta'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/sitio/crear-consulta'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1594845569.916
+    'REQUEST_TIME' => 1594845569
+]
+2020-07-15 20:39:33 [127.0.0.1][2][-][warning][yii\i18n\PhpMessageSource::loadMessages] The message file for category 'app' does not exist: /home/pacho/public_html/texsim.com.ar/frontend/messages/es/app.php
+    in /home/pacho/public_html/texsim.com.ar/common/models/Cliente.php:56
+    in /home/pacho/public_html/texsim.com.ar/frontend/views/sitio/_clientePedido.php:139
+    in /home/pacho/public_html/texsim.com.ar/frontend/views/sitio/crearConsulta.php:33
+2020-07-15 20:39:31 [127.0.0.1][2][-][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    '_csrf-backend' => '889d95e2723a898e3663c6fe8ab1958734171f39241f5765e1f435dee5cd8f0ca:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"CgFuEsBRHeJv0Nd0bquw_RppRsNFm7o3\";}'
+    'advanced-backend' => 'hfeokamh17rvqo3guk5gm6cdga'
+    'advanced-frontend' => 'abcdiukt90r6gqpet9mlk8rh6t'
+    '_csrf-frontend' => '4db0fcf664e9828638a5cdd8f2a468f25a7843347394b1105b8bb76446f5fe50a:2:{i:0;s:14:\"_csrf-frontend\";i:1;s:32:\"bgSczC3gtH4EVMsZWWs-8wmulkhdqNte\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    'carrito' => 24133
+    '__id' => 2
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'texsim.local'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
+    'HTTP_REFERER' => 'http://texsim.local/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_ACCEPT_LANGUAGE' => 'es-ES,es;q=0.9,en;q=0.8'
+    'HTTP_COOKIE' => '_csrf-backend=889d95e2723a898e3663c6fe8ab1958734171f39241f5765e1f435dee5cd8f0ca%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22CgFuEsBRHeJv0Nd0bquw_RppRsNFm7o3%22%3B%7D; advanced-backend=hfeokamh17rvqo3guk5gm6cdga; advanced-frontend=abcdiukt90r6gqpet9mlk8rh6t; _csrf-frontend=4db0fcf664e9828638a5cdd8f2a468f25a7843347394b1105b8bb76446f5fe50a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_csrf-frontend%22%3Bi%3A1%3Bs%3A32%3A%22bgSczC3gtH4EVMsZWWs-8wmulkhdqNte%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.29 (Ubuntu) Server at texsim.local Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.29 (Ubuntu)'
+    'SERVER_NAME' => 'texsim.local'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/www'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/home/pacho/public_html/texsim.com.ar/www'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/home/pacho/public_html/texsim.com.ar/www/index.php'
+    'REMOTE_PORT' => '36184'
+    'REDIRECT_URL' => '/sitio/pedido-facturacion'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/sitio/pedido-facturacion'
+    'SCRIPT_NAME' => '/index.php'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1594845571.861
+    'REQUEST_TIME' => 1594845571
+]

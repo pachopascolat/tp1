@@ -11,7 +11,7 @@
     <?php
     $hom = $_SESSION['categoria_padre'] ?? 1;
     $categorias = [null, "hogar", "moda"];
-    $fajas = yii\helpers\FileHelper::findFiles(Yii::getAlias("@frontend") . "/web/img2020/" . $categorias[$hom] . "/");
+    $fajas = yii\helpers\FileHelper::findFiles(Yii::getAlias("@webroot") . "/img2020/" . $categorias[$hom] . "/");
 //            foreach ($fajas as $key => $img):
     ?>
     <div class="">
@@ -100,11 +100,11 @@
             </div>
             <div class="modal-body">
 
-                <iframe class="w-100" src="https://player.vimeo.com/video/329154106" 
-                        width="480" 
+                <iframe class="w-100" src="https://player.vimeo.com/video/329154106"
+                        width="480"
                         height="360"
-                        frameborder="0" 
-                        title="Texsim" 
+                        frameborder="0"
+                        title="Texsim"
                         webkitallowfullscreen mozallowfullscreen allowfullscreen>
 
                 </iframe>
