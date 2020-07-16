@@ -47,7 +47,7 @@
         methods:{
             getPedidos(){
                 var self = this;
-                axios.get('http://10.10.1.51:8000/pedidosEnCurso')
+                axios.get('http://10.10.1.51:8000/pedidosEnCurso', { crossdomain: true })
                     .then(function (response) {
                         self.pedidos = response.data;
                     })
