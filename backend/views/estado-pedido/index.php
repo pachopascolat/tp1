@@ -9,7 +9,7 @@
 <div id="app" class="pt-3">
 
     <h2>Estado Pedidos</h2>
-    <table id="estado-pedido-table"  v-if="pedidos" class="table table-striped table-inverse table-bordered table-responsive">
+    <table id="estado-pedido-table"  v-if="pedidos" class="table table-striped table-inverse table-bordered">
         <thead class="thead-inverse">
         <tr>
 <!--            <th>#</th>-->
@@ -84,8 +84,9 @@
 <style>
 
     #estado-pedido-table td{
-        font-size: 14px;
-        padding: 1em;
+        font-size: 12px;
+        padding-left: 0;
+        padding-right: 0;
     }
 
 </style>
