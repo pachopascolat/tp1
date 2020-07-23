@@ -176,7 +176,7 @@ $this->registerJsFile("https://unpkg.com/vue-lazyload/vue-lazyload.js",['positio
                 axios.get('estado-pedido/get-photo',{params:{codigo:item.articulo,variante:item.variante}})
                     .then(function (response) {
                         self.$refs.imagen[key].src = response.data;
-
+                        console.log(response.data);
                         // return response.data;
                     })
                     .catch(function (error) {
