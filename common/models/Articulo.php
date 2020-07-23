@@ -25,6 +25,7 @@ use yii\imagine\Image;
 class Articulo extends \yii\db\ActiveRecord {
 
     public $imageFile;
+    public $_codigo_tela;
 
     /**
      * {@inheritdoc}
@@ -166,10 +167,14 @@ class Articulo extends \yii\db\ActiveRecord {
     }
 
     public function getFrontFullUrl($width=120,$height=120) {
-        
+
         $url =  \yii\helpers\Url::base(true).Yii::$app->imagemanager->getImagePath($this->imagen_id, $width, $height);
         return $url;
-        
+
     }
-    
+
+    public function getCodigoTela(){
+        return $this->tela->codigo_tela;
+    }
+
 }

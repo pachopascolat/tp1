@@ -11,7 +11,7 @@ use yii\bootstrap4\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
-BootstrapVueAsset::register($this);
+//BootstrapVueAsset::register($this);
 
 ?>
 <?php $this->beginPage() ?>

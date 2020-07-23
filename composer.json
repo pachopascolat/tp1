@@ -14,7 +14,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.5",
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
@@ -39,7 +39,7 @@
         "codeonyii/yii2-at-least-validator": "dev-master",
         "milon/barcode": "dev-master",
         "npm-asset/vue": ">=2.6.11",
-        "npm-asset/bootstrap-vue": "~2.15.0",
+        "npm-asset/bootstrap-vue": "*",
         "npm-asset/axios": "*",
         "npm-asset/vue-router":"~2.0"
     },

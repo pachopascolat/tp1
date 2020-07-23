@@ -22,7 +22,7 @@ class BootstrapVueAsset extends AssetBundle
     public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
     public $depends = [
         BootstrapAsset::class,
+//        BootstrapPluginAsset::class,
         VueAsset::class,
-        BootstrapPluginAsset::class,
     ];
 }
