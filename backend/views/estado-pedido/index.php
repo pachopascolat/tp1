@@ -193,13 +193,13 @@ $this->registerJsFile("https://unpkg.com/vue-lazyload/vue-lazyload.js",['positio
                 var self = this;
                 this.pedido = Object.create(this.pedidos[key]);
 
-                for(var i = 0 ; i < self.items.length; i++){
-                    self.getPhoto(self.items[i],i)
-                }
-                self.pedido['items'] = self.items;
-                self.modalShow = true;
-
-                return;
+                // for(var i = 0 ; i < self.items.length; i++){
+                //     self.getPhoto(self.items[i],i)
+                // }
+                // self.pedido['items'] = self.items;
+                // self.modalShow = true;
+                //
+                // return;
 
                 axios.get('http://10.10.1.51:8000/pedidosItems/'+id)
                     .then(function (response) {
