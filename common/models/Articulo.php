@@ -173,6 +173,11 @@ class Articulo extends \yii\db\ActiveRecord {
 
     }
 
+    public function getUrl($width=120,$height=120){
+        $url = Yii::$app->imagemanager->getImagePath($this->imagen_id, $width, $height);
+        return $url;
+    }
+
     public function getCodigoTela(){
         return $this->tela->codigo_tela;
     }
