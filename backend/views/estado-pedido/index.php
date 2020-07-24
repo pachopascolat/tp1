@@ -174,7 +174,7 @@ $this->registerJsFile("https://unpkg.com/vue-lazyload/vue-lazyload.js",['positio
         methods:{
             getPhoto(item,key){
                 var self = this;
-                axios.get('http://texsim.local/admin/estado-pedido/get-photo',{params:{codigo:item.articulo,variante:item.variante}})
+                axios.get('/admin/estado-pedido/get-photo',{params:{codigo:item.articulo,variante:item.variante}})
                     .then(function (response) {
                         self.$refs.imagen[key].src = response.data;
                         console.log(response.data);
@@ -193,13 +193,13 @@ $this->registerJsFile("https://unpkg.com/vue-lazyload/vue-lazyload.js",['positio
                 var self = this;
                 this.pedido = Object.create(this.pedidos[key]);
 
-                // for(var i = 0 ; i < self.items.length; i++){
-                //     self.getPhoto(self.items[i],i)
-                // }
-                // self.pedido['items'] = self.items;
-                // self.modalShow = true;
-                //
-                // return;
+                for(var i = 0 ; i < self.items.length; i++){
+                    self.getPhoto(self.items[i],i)
+                }
+                self.pedido['items'] = self.items;
+                self.modalShow = true;
+
+                return;
 
                 axios.get('http://10.10.1.51:8000/pedidosItems/'+id)
                     .then(function (response) {

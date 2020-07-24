@@ -7,7 +7,7 @@ $params = array_merge(
 return [
     'language' => 'es', // spanish
     'name' => 'Texsim',
-    'defaultRoute' => 'user/index',
+    'defaultRoute' => 'estado-pedido/index',
     'id' => 'app-backend',
 //    'homeUrl' => '/admin',
     'basePath' => dirname(__DIR__),
@@ -21,8 +21,8 @@ return [
 //        ],
         'gridview' => [
             'class' => '\kartik\grid\Module'
-        // enter optional module parameters below - only if you need to  
-        // use your own export download action or custom translation 
+        // enter optional module parameters below - only if you need to
+        // use your own export download action or custom translation
         // message source
         // 'downloadAction' => 'gridview/export/download',
         // 'i18n' => []
@@ -69,7 +69,7 @@ return [
             'class' => 'noam148\imagemanager\components\ImageManagerGetPath',
             //set media path (outside the web folder is possible)
             'mediaPath' => Yii::getAlias('@backend/uploads'),
-            //path relative web folder. In case of multiple environments (frontend, backend) add more paths 
+            //path relative web folder. In case of multiple environments (frontend, backend) add more paths
             'cachePath' => ['assets/images', '../../frontend/web/assets/images'],
             //use filename (seo friendly) for resized images else use a hash
             'useFilename' => true,
@@ -81,7 +81,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '' => 'carrito/index',
+//                '' => 'carrito/index',
+                'usuarios' => 'user/admin/index',
                 'usuarios' => 'user/admin/index',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
