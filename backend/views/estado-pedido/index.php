@@ -195,7 +195,7 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
                 //
                 // return;
 
-                axios.get('/admin/estado-pedido/pedidos-items/'+id)
+                axios.get('/admin/estado-pedido/pedidos-items/?id='+id)
                 // axios.get('http://10.10.1.51:8000/pedidosItems/'+id)
                     .then(function (response) {
                         self.items = response.data;
