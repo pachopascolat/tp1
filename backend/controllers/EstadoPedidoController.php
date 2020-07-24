@@ -35,9 +35,10 @@ class EstadoPedidoController extends Controller {
         $client = new Client();
 
         $response = $client->createRequest()
-            ->setMethod('POST')
+            ->setMethod('GET')
             ->setUrl('http://10.10.1.51:8000/pedidosEnCurso')
-//            ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+            ->setFormat(Client::FORMAT_JSON)
+            //            ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
 //            ->setOptions([
 //                'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
 //                'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
