@@ -44,7 +44,7 @@ class EstadoPedidoController extends Controller {
 //                'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
 //            ])
             ->send();
-        return $response->data;
+        return $response->getData();
     }
 
 }
