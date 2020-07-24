@@ -46,5 +46,20 @@ class EstadoPedidoController extends Controller {
             ->send();
         return Json::encode($response->getData());
     }
+    public function actionPedidosItems($id){
+        $client = new Client();
+
+        $response = $client->createRequest()
+            ->setMethod('GET')
+            ->setUrl("http://10.10.1.51:8000/pedidosItems/$id")
+//            ->setFormat(Client::FORMAT_JSON)
+            //            ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+//            ->setOptions([
+//                'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
+//                'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
+//            ])
+            ->send();
+        return Json::encode($response->getData());
+    }
 
 }
