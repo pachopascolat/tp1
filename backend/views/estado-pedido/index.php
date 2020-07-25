@@ -21,7 +21,7 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
 <div id="app" class="pt-3">
 
 
-    <div v-if="pedido">
+    <div v-if="pedido" class="items">
 
         <b-modal size="lg" v-model="modalShow" id="modal-1" :title="'Pedido '+ pedido.id ">
             <div class="row">
@@ -65,13 +65,13 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
                     </div>
                 </div>
             </div>
-            <table class="table table-striped table-inverse table-bordered">
+            <table class="table table-striped table-inverse table-bordered items-table">
                 <thead class="thead-inverse">
                 <tr>
-                    <th>Item Data</th>
-                    <th>Codigo Articulo</th>
+                    <th class="d-none d-md-table-cell">Item Data</th>
+                    <th class="d-none d-md-table-cell">Codigo Articulo</th>
                     <th>Descripción Tela</th>
-                    <th>Código Variante</th>
+                    <th class="d-none d-md-table-cell">Código Variante</th>
                     <th>Nombre Variante</th>
                     <th>Piezas pedidas</th>
                     <th>Precio</th>
@@ -84,19 +84,19 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
                 <tbody>
                 <template v-for="item,j in items">
                     <tr>
-                        <td>
+                        <td class="d-none d-md-table-cell">
                             {{item.itemdata}}
                         </td>
-                        <td>
+                        <td class="d-none d-md-table-cell">
                             {{item.articulo}}
                         </td>
                         <td>
                             {{item.art_desc}}
                         </td>
-                        <td>
+                        <td class="d-none d-md-table-cell">
                             {{item.variante}}
                         </td>
-                        <td>
+                        <td class="">
                             {{item.var_desc}}
                         </td>
                         <td>
@@ -107,8 +107,8 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
                         </td>
                         <td>
                             <div>
-                                <img ref="imagen"
-                                >
+                                <img class="d-none d-md-block" ref="imagen">
+                                <img style="width: 60px" class="d-md-none" ref="imagen">
                             </div>
                         </td>
 
@@ -303,6 +303,14 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
         padding-left: 2px;
         padding-right: 4px;
     }
+
+    .items-table td, .items-table th{
+        font-size: 3vmin !important;
+        padding-left: 2px;
+        padding-right: 4px;
+        vertical-align:middle;
+    }
+
 
     .progressbar-wrapper {
         /*background: #fff;*/
