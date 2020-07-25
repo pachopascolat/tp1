@@ -68,10 +68,10 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
             <table class="table table-striped table-inverse table-bordered items-table">
                 <thead class="thead-inverse">
                 <tr>
-                    <th class="d-none d-md-table-cell">Item Data</th>
-                    <th class="d-none d-md-table-cell">Codigo Articulo</th>
+                    <th class="d-none d-lg-table-cell">Item Data</th>
+                    <th class="d-none d-lg-table-cell">Codigo Articulo</th>
                     <th>Descripción Tela</th>
-                    <th class="d-none d-md-table-cell">Código Variante</th>
+                    <th class="d-none d-lg-table-cell">Código Variante</th>
                     <th>Nombre Variante</th>
                     <th>Piezas pedidas</th>
                     <th>Precio</th>
@@ -84,16 +84,16 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
                 <tbody>
                 <template v-for="item,j in items">
                     <tr>
-                        <td class="d-none d-md-table-cell">
+                        <td class="d-none d-lg-table-cell">
                             {{item.itemdata}}
                         </td>
-                        <td class="d-none d-md-table-cell">
+                        <td class="d-none d-lg-table-cell">
                             {{item.articulo}}
                         </td>
                         <td>
                             {{item.art_desc}}
                         </td>
-                        <td class="d-none d-md-table-cell">
+                        <td class="d-none d-lg-table-cell">
                             {{item.variante}}
                         </td>
                         <td class="">
@@ -107,8 +107,8 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
                         </td>
                         <td>
                             <div>
-                                <img class="d-none d-md-block" ref="imagen">
-                                <img style="width: 60px" class="d-md-none" ref="imagen">
+<!--                                <img class="d-none d-md-block" ref="imagen">-->
+                                <img  class="item-image" ref="imagen">
                             </div>
                         </td>
 
@@ -293,19 +293,19 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
 <style>
 
     #app td{
-        font-size: 12px;
+        font-size: 3vmin;
         padding-left: 2px;
         padding-right: 4px;
         vertical-align: middle;
     }
     #app th{
-        font-size: 14px;
+        font-size: 3vmin;
         padding-left: 2px;
         padding-right: 4px;
     }
 
     .items-table td, .items-table th{
-        font-size: 3vmin !important;
+        font-size: 2.5vmin !important;
         padding-left: 2px;
         padding-right: 4px;
         vertical-align:middle;
@@ -410,7 +410,44 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
     }
 
 
+    .item-image{
+        width:60px;
+    }
 
+
+    /* Small devices (landscape phones, 576px and up) */
+    @media (min-width: 576px) {
+
+    }
+
+    /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+    @media (min-width: 768px) {
+
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+        .item-image{
+            width:100%;
+        }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {
+
+    }
+
+
+
+    /*
+    ::::::::::::::::::::::::::::::::::::::::::::::::::::
+    Custom media queries
+    */
+
+    /* Set width to make card deck cards 100% width */
+    @media (max-width: 950px) {
+
+    }
 
 
 </style>
