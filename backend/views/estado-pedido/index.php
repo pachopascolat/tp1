@@ -24,20 +24,46 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
     <div v-if="pedido">
 
         <b-modal size="lg" v-model="modalShow" id="modal-1" :title="'Pedido '+ pedido.id ">
-            <div>
-                <label>Estado: {{pedido.estado}}</label>
-            </div>
-            <div>
-                <label>Deposito: {{pedido.des}}</label>
-            </div>
-            <div>
-                <label>Fecha Emisión: {{pedido.fem}}</label>
-            </div>
-            <div>
-                <label>Cliente: {{pedido.nombre}}</label>
-            </div>
-            <div>
-                <label>Observaciones: {{pedido.obs}}</label>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div >
+                        <label>Estado: {{pedido.estado}}</label>
+                    </div>
+                    <div >
+                        <label>Deposito: {{pedido.lugar}}</label>
+                    </div>
+                    <div >
+                        <label>Origen: {{pedido.ori}}</label>
+                    </div>
+                    <div>
+                        <label>Destino: {{pedido.des}}</label>
+                    </div>
+                    <div>
+                        <label>Fecha Emisión: {{pedido.fem}}</label>
+                    </div>
+                    <div>
+                        <label>Cliente: {{pedido.nombre}}</label>
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+
+                    <div>
+                        <label>Numero: {{pedido.nro}}</label>
+                    </div>
+                    <div>
+                        <label>Fecha Facturación: {{pedido.ffactura}}</label>
+                    </div>
+                    <div>
+                        <label>Fecha Despacho: {{pedido.fdespacho}}</label>
+                    </div>
+                    <div>
+                        <label>Fecha Cierre: {{pedido.fcierre}}</label>
+                    </div>
+                    <div>
+                        <label>Observaciones: {{pedido.obs}}</label>
+                    </div>
+                </div>
             </div>
             <table class="table table-striped table-inverse table-bordered">
                 <thead class="thead-inverse">
@@ -106,20 +132,26 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
         <thead class="thead-inverse">
         <tr>
             <!--            <th>#</th>-->
+            <!--            <th>-->
+            <!--                Estados-->
+            <!--            </th>-->
+            <!--            <th>Nro Estado</th>-->
 
-            <th>Nro Estado</th>
-            <th>Estado</th>
-            <th>Deposito</th>
-            <th>Cliente</th>
-            <th>Fecha Emisión</th>
-            <th>Nro</th>
-            <th>Id</th>
-            <th>Origen</th>
-            <th>Destino</th>
-            <th>Fecha Cierre</th>
-            <th>Fecha Factura</th>
-            <th>Fecha Despacho</th>
-            <th>Observaciones</th>
+            <!--            <th>Deposito</th>-->
+            <!--            <th>Cliente</th>-->
+            <th class="fem">Fecha Emisión</th>
+            <th class="pedido d-none d-lg-table-cell">Pedido</th>
+            <th class="cliente d-none d-lg-table-cell">Cliente</th>
+            <th class="estado">Estado</th>
+            <!---->
+            <!--            <th>Nro</th>-->
+            <!--            <th>Id</th>-->
+            <!--            <th>Origen</th>-->
+            <!--            <th>Destino</th>-->
+            <!--            <th>Fecha Cierre</th>-->
+            <!--            <th>Fecha Factura</th>-->
+            <!--            <th>Fecha Despacho</th>-->
+            <th class="obs d-none d-lg-table-cell">Observaciones</th>
             <!--            <template v-for="(header,i) in pedidos[0]">-->
             <!--            <th>{{i}}</th>-->
             <!--            </template>-->
@@ -128,11 +160,33 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
         <tbody>
         <template v-for="(pedido,i) in pedidos">
             <tr v-on:click="getItems(i,pedido.id)" >
-                <template v-for="(data,i) in pedido">
-                    <td>
-                        {{data}}
-                    </td>
-                </template>
+                <td class="fem ">
+                    {{pedido.fem}}
+                </td>
+                <td class="pedido d-none d-lg-table-cell">
+                    {{pedido.id}}
+                </td>
+                <td class="cliente d-none d-lg-table-cell">
+                    {{pedido.nombre}}
+                </td>
+                <td class="progressbar-wrapper estado">
+                    <!--                    <div class="progressbar-wrapper">-->
+                    <ul class="progressbar pl-1">
+                        <li :class="pedido.est>=5?'active':''">Preparación</li>
+                        <li :class="pedido.est>=6?'active':''" >Facturación</li>
+                        <li :class="pedido.est>=7?'active':''">Autorización/Pago</li>
+                        <li :class="pedido.est>=8?'active':''">Entrega</li>
+                    </ul>
+                    <!--                    </div>-->
+                </td>
+                <td class="obs d-none d-lg-table-cell">
+                    {{pedido.obs}}
+                </td>
+                <!--                <template v-for="(data,i) in pedido">-->
+                <!--                    <td>-->
+                <!--                        {{data}}-->
+                <!--                    </td>-->
+                <!--                </template>-->
             </tr>
 
         </template>
@@ -155,8 +209,8 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
             pedido:{},
             photos:[],
             items:
-                null
-                // [{"itemdata":3834,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4003            ","var_desc":"Flor de Lis f. natural                            ","pza_ped":1,"precio":"0.00"},{"itemdata":4478,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4037            ","var_desc":"ZigZag coral                                      ","pza_ped":1,"precio":"0.00"},{"itemdata":4480,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4039            ","var_desc":"ZigZag ladrillo                                   ","pza_ped":1,"precio":"0.00"},{"itemdata":4482,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4041            ","var_desc":"Guarda Pampa verde                                ","pza_ped":1,"precio":"0.00"},{"itemdata":5121,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4050            ","var_desc":"Rombos Malva                                      ","pza_ped":1,"precio":"0.00"},{"itemdata":5125,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4054            ","var_desc":"Chevron Lacre                                     ","pza_ped":1,"precio":"0.00"},{"itemdata":5127,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4056            ","var_desc":"Chevron Maiz                                      ","pza_ped":1,"precio":"0.00"}]
+            null
+            //     [{"itemdata":3834,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4003            ","var_desc":"Flor de Lis f. natural                            ","pza_ped":1,"precio":"0.00"},{"itemdata":4478,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4037            ","var_desc":"ZigZag coral                                      ","pza_ped":1,"precio":"0.00"},{"itemdata":4480,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4039            ","var_desc":"ZigZag ladrillo                                   ","pza_ped":1,"precio":"0.00"},{"itemdata":4482,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4041            ","var_desc":"Guarda Pampa verde                                ","pza_ped":1,"precio":"0.00"},{"itemdata":5121,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4050            ","var_desc":"Rombos Malva                                      ","pza_ped":1,"precio":"0.00"},{"itemdata":5125,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4054            ","var_desc":"Chevron Lacre                                     ","pza_ped":1,"precio":"0.00"},{"itemdata":5127,"articulo":"GOB3000         ","art_desc":"Gobelino                                          ","variante":"4056            ","var_desc":"Chevron Maiz                                      ","pza_ped":1,"precio":"0.00"}]
             ,
             pedidos:
             null
@@ -196,7 +250,7 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
                 // return;
 
                 axios.get('/admin/estado-pedido/pedidos-items/?id='+id)
-                // axios.get('http://10.10.1.51:8000/pedidosItems/'+id)
+                    // axios.get('http://10.10.1.51:8000/pedidosItems/'+id)
                     .then(function (response) {
                         self.items = response.data;
                         console.log(response.data);
@@ -217,7 +271,7 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
             getPedidos(){
                 var self = this;
                 axios.get('/admin/estado-pedido/pedidos-en-curso')
-                // axios.get('http://10.10.1.51:8000/pedidosEnCurso')
+                    // axios.get('http://10.10.1.51:8000/pedidosEnCurso')
                     .then(function (response) {
                         console.log(response);
                         self.pedidos = response.data;
@@ -242,11 +296,113 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
         font-size: 12px;
         padding-left: 2px;
         padding-right: 4px;
+        vertical-align: middle;
     }
     #app th{
         font-size: 14px;
         padding-left: 2px;
         padding-right: 4px;
     }
+
+    .progressbar-wrapper {
+        /*background: #fff;*/
+        /*width: 100%;*/
+        padding-top: 4px;
+        padding-bottom: 2px;
+    }
+
+
+
+    .progressbar li {
+        overflow-wrap: break-word;
+        list-style-type: none;
+        width: 25%;
+        float: left;
+        font-size: 2vmin;
+        position: relative;
+        text-align: center;
+        text-transform: uppercase;
+        color: #7d7d7d;
+    }
+
+    .progressbar li:before {
+        width: 30px;
+        height: 30px;
+        /*content: '';*/
+        line-height: 30px;
+        border: 2px solid #7d7d7d;
+        display: block;
+        text-align: center;
+        margin: 0 auto 3px auto;
+        border-radius: 50%;
+        position: relative;
+        z-index: 2;
+        background-color: #fff;
+    }
+    .progressbar li:after {
+        width: 100%;
+        height: 2px;
+        content: '';
+        position: absolute;
+        background-color: #7d7d7d;
+        top: 15px;
+        left: -50%;
+        z-index: 0;
+    }
+    .progressbar li:first-child:after {
+        content: none;
+    }
+
+    .progressbar li.active {
+        color: green;
+        font-weight: bold;
+    }
+    .progressbar li.active:before {
+        /*border-color: #55b776;*/
+        /*border-color: white;*/
+        border: 2px solid #fff;
+        background: green;
+        box-shadow: 0 0 0 2px #3cb371;
+        content: '\2714';
+        color: #fff3cd !important;
+    }
+    .progressbar li.active + li:after {
+        background-color: #55b776;
+    }
+
+    /*.progressbar li.active:before {*/
+    /*    background: #55b776  url(user.svg) no-repeat center center;*/
+    /*    background-size: 60%;*/
+    /*}*/
+    /*.progressbar li::before {*/
+    /*    background: #fff url(user.svg) no-repeat center center;*/
+    /*    background-size: 60%;*/
+    /*}*/
+    .progressbar {
+        counter-reset: step;
+    }
+    .progressbar li:before {
+        /*content: counter(step);*/
+        content: 'x';
+        counter-increment: step;
+    }
+
+    .fem{
+        /*width: 10%;*/
+    }
+
+    .obs{
+        width: 20%;
+    }
+    .pedido{
+        width: 5%;
+    }
+    .cliente{
+        width: 10%;
+    }
+
+
+
+
 
 </style>
