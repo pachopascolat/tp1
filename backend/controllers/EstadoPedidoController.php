@@ -30,10 +30,9 @@ class EstadoPedidoController extends Controller {
                 ->setMethod('GET')
                 ->setUrl("http://10.10.1.51:8000/itemdata/".$articulo->tela->codigo_tela."/".$articulo->codigo_color)
                 ->send();
-            fputcsv($fp, $response);
+            fputcsv($fp, $response->getData());
         }
         \Yii::$app->response->sendFile('fichero.csv');
-
     }
 
     public function actionGetPhoto($codigo,$variante){
