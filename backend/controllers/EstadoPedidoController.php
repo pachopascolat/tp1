@@ -28,12 +28,14 @@ class EstadoPedidoController extends Controller {
         fputcsv($fp, ['codigo_tela','codigo_variante','itemdata']);
 
         foreach ($articulos as $articulo){
-            $response = $client->createRequest()
-                ->setMethod('GET')
-                ->setUrl("http://10.10.1.51:8000/itemdata/".$articulo->tela->codigo_tela."/".$articulo->codigo_color)
-                ->send();
-            if($response->getData()) {
-                fputcsv($fp, $response->getData());
+            if($articulo->tela) {
+                $response = $client->createRequest()
+                    ->setMethod('GET')
+                    ->setUrl("http://10.10.1.51:8000/itemdata/" . $articulo->tela->codigo_tela . "/" . $articulo->codigo_color)
+                    ->send();
+                if ($response->getData()) {
+                    fputcsv($fp, $response->getData());
+                }
             }
         }
         \Yii::$app->response->sendFile('fichero.csv');
