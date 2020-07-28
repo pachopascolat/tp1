@@ -31,7 +31,7 @@ class EstadoPedidoController extends Controller {
             if($articulo->tela) {
                 $response = $client->createRequest()
                     ->setMethod('GET')
-                    ->setUrl("http://10.10.1.51:8000/itemdata/" . $articulo->tela->codigo_tela . "/" . $articulo->codigo_color)
+                    ->setUrl("http://10.10.1.51:8000/itemdata/" . $articulo->tela->codigo_tela . "/" . sprintf("%04d",$articulo->codigo_color))
                     ->send();
                 if ($response->getData()) {
                     fputcsv($fp, $response->getData());
