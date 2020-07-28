@@ -23,8 +23,10 @@ class EstadoPedidoController extends Controller {
 
     public function actionGetItemData(){
         $client = new Client();
-        $articulos = Articulo::find()->limit(100)->all();
+        $articulos = Articulo::find()->limit(500)->all();
         $fp = fopen('fichero.csv', 'w');
+        fputcsv($fp, ['codigo_tela','codigo_variante','itemdata']);
+
         foreach ($articulos as $articulo){
             $response = $client->createRequest()
                 ->setMethod('GET')
