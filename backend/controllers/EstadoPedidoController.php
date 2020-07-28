@@ -21,6 +21,21 @@ class EstadoPedidoController extends Controller {
         return $this->render('index');
     }
 
+    public function actionGetItemData(){
+        $client = new Client();
+        $articulos = Articulo::find()->limit(50)->all();
+        $fp = fopen('fichero.csv', 'w');
+        foreach ($articulos as $articulo){
+            $response = $client->createRequest()
+                ->setMethod('GET')
+                ->setUrl("http://10.10.1.51:8000/itemdata/".$articulo->tela->codigo_tela."/".$articulo->codigo_color)
+                ->send();
+            fputcsv($fp, $response);
+        }
+        \Yii::$app->response->sendFile('fichero.csv');
+
+    }
+
     public function actionGetPhoto($codigo,$variante){
         $articulo = Articulo::find()->joinWith('tela')->where(['codigo_tela'=>trim($codigo),'codigo_color'=>trim($variante)])->one();
         if($articulo){
