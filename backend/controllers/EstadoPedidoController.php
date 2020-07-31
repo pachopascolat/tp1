@@ -9,6 +9,8 @@ namespace backend\controllers;
 use common\models\Articulo;
 use common\models\ArticuloSearch;
 use linslin\yii2\curl\Curl;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\httpclient\Client;
@@ -17,6 +19,29 @@ use yii\web\Controller;
 
 class EstadoPedidoController extends Controller {
 
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+//                'only' => ['login', 'logout', 'signup'],
+                'rules' => [
+                    [
+                        'allow' => true,
+//                        'actions' => ['index-pedidos','index', 'create', 'view', 'update', 'index-por-categoria', 'delete'],
+                        'roles' => ['ventasManager'],
+                    ],
+                ],
+            ],
+        ];
+    }
 
     public function actionIndex()
     {
