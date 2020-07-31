@@ -11,6 +11,7 @@ use common\models\ArticuloSearch;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\httpclient\Client;
+use yii\httpclient\CurlTransport;
 use yii\web\Controller;
 
 class EstadoPedidoController extends Controller {
@@ -108,7 +109,7 @@ class EstadoPedidoController extends Controller {
             ->orFilterWhere(['like','codigo_tela',$search])
             ->orFilterWhere(['like','nombre_color',$search])
             ->orFilterWhere(['like','nombre_tela',$search])
-            ->limit(200)->all();
+            ->limit(50)->all();
         $options = [];
         foreach ($items as $item){
             $options[] = [
@@ -123,12 +124,17 @@ class EstadoPedidoController extends Controller {
     public function actionGuardarPedido($pedido){
         $data = \Yii::$app->request->post('pedido');
         $data = Json::decode($pedido);
-        $pedidoNom = Json::encode($this->normalizarPedido($data));
-        $client = new Client();
+        $pedidoNom = $this->normalizarPedido($data);
+        $client = new Client([
+            'transport' => CurlTransport::class // only cURL supports the options we need
+        ]);
         $response = $client->createRequest()
             ->setMethod('POST')
             ->setUrl("http://10.10.1.51:8090/remito")
-            ->setData($pedidoNom)
+            ->setData(Json::encode($pedidoNom))
+            ->setOptions([
+                CURLOPT_HTTPHEADER => ['Content-Type: application/json']
+            ])
             ->send();
         return Json::encode($response->getData());
     }
