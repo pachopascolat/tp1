@@ -128,7 +128,7 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
         </b-modal>
     </div>
     <h2>Estado Pedidos</h2>
-    <a name="" id="" class="btn btn-primary" href="estado-pedido/crear-pedido" role="button">Nuevo</a>
+    <a name="" id="" class="btn btn-primary" href="<?=\yii\helpers\Url::to(['estado-pedido/crear-pedido'])?>" role="button">Nuevo</a>
     <table id="estado-pedido-table"  v-if="pedidos" class="table table-striped table-inverse table-bordered">
         <thead class="thead-inverse">
         <tr>

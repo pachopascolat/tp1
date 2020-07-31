@@ -78,7 +78,9 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
             <tbody>
             <template v-for="(item,i) in pedido.items">
                 <tr>
-                    <td scope="row"></td>
+                    <td scope="row">
+                        <img :src="item.url">
+                    </td>
                     <td>{{item.tela.codigo_tela}}</td>
                     <td>{{item.tela.nombre_tela}}</td>
                     <td>{{item.codigo_color}}</td>
