@@ -85,7 +85,7 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
                     <td>{{item.tela.nombre_tela}}</td>
                     <td>{{item.codigo_color}}</td>
                     <td>{{item.nombre_color}}</td>
-                    <td><input v-model="items.piezas" class="form-control"></td>
+                    <td><input v-model="item.piezas" class="form-control"></td>
                     <td><input v-model="item.precio" class="form-control"></td>
                     <td>
                         <button @click="delItem(i)" type="button" class="btn btn-danger">borrar</button>
