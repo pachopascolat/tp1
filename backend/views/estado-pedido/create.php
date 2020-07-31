@@ -44,6 +44,7 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
                     // axios.get('http://10.10.1.51:8000/pedidosItems/'+id)
                     .then(function (response) {
                         self.options = response.data;
+                        loading(false);
                     })
                     .catch(function (error) {
                         // handle error
