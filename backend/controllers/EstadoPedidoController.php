@@ -146,7 +146,7 @@ class EstadoPedidoController extends Controller {
         $response = $curl->setRequestBody($pedidoNom)
             ->setHeaders([
                 'Content-Type' => 'application/json',
-                'Content-Length' => strlen(json_encode($pedidoNom))
+                'Content-Length' => strlen($pedidoNom)
             ])
             ->post('http://10.10.1.51:8090/remito');
 
