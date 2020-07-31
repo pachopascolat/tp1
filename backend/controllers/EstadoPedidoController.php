@@ -125,9 +125,7 @@ class EstadoPedidoController extends Controller {
         $data = \Yii::$app->request->post('pedido');
         $data = Json::decode($pedido);
         $pedidoNom = $this->normalizarPedido($data);
-        $client = new Client([
-//            'transport' => CurlTransport::class // only cURL supports the options we need
-        ]);
+        $client = new Client();
         $response = $client->createRequest()
             ->setMethod('POST')
             ->setFormat(Client::FORMAT_JSON)
