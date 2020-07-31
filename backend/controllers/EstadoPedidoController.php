@@ -137,8 +137,8 @@ class EstadoPedidoController extends Controller {
         $rempeds = [];
         foreach ($data['items'] as $item){
             $rempeds[] = [
-                'itemdata'=> '2345',
-//                'itemdata'=>$this->getItemData($item['tela']['codigo_tela'],$item['codigo_color']),
+//                'itemdata'=> '2345',
+                'itemdata'=>$this->getItemData($item['tela']['codigo_tela'],$item['codigo_color']),
                 'pza_ped' => $item['piezas'],
                 'precio' => $item['precio']
             ];
