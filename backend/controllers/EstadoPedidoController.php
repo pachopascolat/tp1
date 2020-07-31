@@ -8,6 +8,7 @@ namespace backend\controllers;
 
 use common\models\Articulo;
 use common\models\ArticuloSearch;
+use linslin\yii2\curl\Curl;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\httpclient\Client;
@@ -122,23 +123,14 @@ class EstadoPedidoController extends Controller {
     }
 
     public function actionGuardarPedido($pedido){
+        $curl = new Curl();
         $data = \Yii::$app->request->post('pedido');
         $data = Json::decode($pedido);
         $pedidoNom = $this->normalizarPedido($data);
-        $client = new Client();
-        $request = $client->createRequest();
-//        $client->getFormatter(Client::FORMAT_JSON)->contentType='application/json';
-        $response = $request
-//        $response = $client->createRequest()
-            ->setMethod('POST')
-            ->setUrl("http://10.10.1.51:8090/remito")
-//            ->setFormat(Client::FORMAT_JSON)
-            ->setData(Json::encode($pedidoNom))
-            ->setHeaders(['content-type'=>'application/json'])
-//            ->setOptions([
-//                CURLOPT_HTTPHEADER => ['Content-Type: application/json']
-//            ])
-            ->send();
+
+        $response = $curl->setRawPostData(Json::encode($pedidoNom))
+            ->post('http://10.10.1.51:8090/remito',true);
+
         return Json::encode([
             'response' => Json::encode($response),
             'json' => Json::encode($pedidoNom),
