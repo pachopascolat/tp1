@@ -21,7 +21,7 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
 <div id="app">
 
     <div>
-        <v-select @search="getClientes" v-model="textsearch" :options="options"></v-select>
+        <v-select @search="getClientes(search)" v-model="textsearch" :options="options"></v-select>
     </div>
 
 </div>
@@ -37,7 +37,7 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
             options:['hola','mundo'],
         },
         methods:{
-            getClientes(search,loading){
+            getClientes(search){
                 var self = this;
                 axios.get('/admin/estado-pedido/buscar-cliente',{params:{textsearch:search}})
                     // axios.get('http://10.10.1.51:8000/pedidosItems/'+id)
