@@ -143,8 +143,15 @@ class EstadoPedidoController extends Controller {
     ]
 }';
 
-        $response = $curl->setRawPostData(Json::encode($pedidoNom))
-            ->post('http://10.10.1.51:8090/remito',true);
+        $response = $curl->setRequestBody($pedidoNom)
+            ->setHeaders([
+                'Content-Type' => 'application/json',
+                'Content-Length' => strlen(json_encode($pedidoNom))
+            ])
+            ->post('http://10.10.1.51:8090/remito');
+
+//        $response = $curl->setRawPostData(Json::encode($pedidoNom))
+//            ->post('http://10.10.1.51:8090/remito',true);
 
         return Json::encode([
             'response' => Json::encode($response),
