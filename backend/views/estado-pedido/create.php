@@ -44,7 +44,8 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
                     // axios.get('http://10.10.1.51:8000/pedidosItems/'+id)
                     .then(function (response) {
                         console.log(response.data);
-                        self.options = response.data;
+                        self.normalizarClientes(response.data);
+                        // self.options = response.data;
                     })
                     .catch(function (error) {
                         // handle error
@@ -55,6 +56,16 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
                         loading(false);
                     });
             },
+            normalizarClientes(data){
+                var options = []
+                for (i in data){
+                    options.push({
+                        code:data[i].codfac,
+                        label: "codigo:"+data[i].codfac+"-cuit:"+data[i].cuit+"-"+data[i].nom
+                    })
+                }
+                this.options = options
+            }
         }
     });
 </script>
