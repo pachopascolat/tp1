@@ -82,4 +82,20 @@ class EstadoPedidoController extends Controller {
         return Json::encode($response->getData());
     }
 
+    public function actionCrearPedido(){
+        $this->layout = 'bootstrap4';
+        return $this->render('create');
+    }
+
+    public function actionBuscarCliente($textsearch,$page=1,$pagination=20){
+        $client = new Client();
+
+        $response = $client->createRequest()
+            ->setMethod('GET')
+            ->setUrl("http://10.10.1.51:8000/clientes/$textsearch/$page/$pagination")
+            ->send();
+        return Json::encode($response->getData());
+    }
+
+
 }
