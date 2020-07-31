@@ -31,7 +31,7 @@ class EstadoPedidoController extends Controller {
             if($articulo->tela) {
                 $response = $client->createRequest()
                     ->setMethod('GET')
-                    ->setUrl("http://10.10.1.51:8000/itemdata/" . $articulo->tela->codigo_tela . "/" . sprintf("%04d",$articulo->codigo_color))
+                    ->setUrl("http://10.10.1.51:8090/itemdata/" . $articulo->tela->codigo_tela . "/" . sprintf("%04d",$articulo->codigo_color))
                     ->send();
                 if ($response->getData()) {
                     fputcsv($fp, $response->getData());
@@ -71,7 +71,7 @@ class EstadoPedidoController extends Controller {
 
         $response = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl("http://10.10.1.51:8000/pedidosItems/$id")
+            ->setUrl("http://10.10.1.51:8090/pedidosItems/$id")
 //            ->setFormat(Client::FORMAT_JSON)
             //            ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
 //            ->setOptions([
@@ -92,7 +92,7 @@ class EstadoPedidoController extends Controller {
 
         $response = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl("http://10.10.1.51:8000/clientes/$textsearch/$page/$pagination")
+            ->setUrl("http://10.10.1.51:8090/clientes/$textsearch/$page/$pagination")
             ->send();
         return Json::encode($response->getData());
     }
