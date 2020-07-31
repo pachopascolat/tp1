@@ -126,10 +126,13 @@ class EstadoPedidoController extends Controller {
         $data = Json::decode($pedido);
         $pedidoNom = $this->normalizarPedido($data);
         $client = new Client();
-        $response = $client->createRequest()
+        $request = $client->createRequest();
+        $client->getFormatter(Client::FORMAT_JSON)->contentType='application/json';
+        $response = $request
+//        $response = $client->createRequest()
             ->setMethod('POST')
-            ->setFormat(Client::FORMAT_JSON)
             ->setUrl("http://10.10.1.51:8090/remito")
+            ->setFormat(Client::FORMAT_JSON)
             ->setData(Json::encode($pedidoNom))
 //            ->setOptions([
 //                CURLOPT_HTTPHEADER => ['Content-Type: application/json']
