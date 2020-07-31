@@ -43,8 +43,8 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
                 axios.get('/admin/estado-pedido/buscar-cliente?textsearch='+search)
                     // axios.get('http://10.10.1.51:8000/pedidosItems/'+id)
                     .then(function (response) {
+                        console.log(response.data);
                         self.options = response.data;
-                        loading(false);
                     })
                     .catch(function (error) {
                         // handle error
@@ -52,6 +52,7 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
                     })
                     .then(function () {
                         // always executed
+                        loading(false);
                     });
             },
         }
