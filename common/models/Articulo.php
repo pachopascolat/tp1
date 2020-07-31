@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use noam148\imagemanager\models\ImageManager;
+use yii\helpers\ArrayHelper;
 use yii\imagine\Image;
 
 
@@ -33,6 +34,8 @@ class Articulo extends \yii\db\ActiveRecord {
     public static function tableName() {
         return 'articulo';
     }
+
+
 
     /**
      * {@inheritdoc}
