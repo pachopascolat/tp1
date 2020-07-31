@@ -213,6 +213,8 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
                     // axios.get('http://10.10.1.51:8000/pedidosItems/'+id)
                     .then(function (response) {
                         console.log(response.data);
+                        self.pedido = {};
+
                         // self.options = response.data;
                     })
                     .catch(function (error) {
