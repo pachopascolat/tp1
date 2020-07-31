@@ -126,22 +126,23 @@ class EstadoPedidoController extends Controller {
         $curl = new Curl();
         $data = \Yii::$app->request->post('pedido');
         $data = Json::decode($pedido);
-        $pedidoNom = $this->normalizarPedido($data);
+//        $pedidoNom = $this->normalizarPedido($data);
+        $pedidoNom = Json::encode($this->normalizarPedido($data));
 
-        $pedidoNom ='{
-    "lugar": 1,
-    "idCliente":1584,
-    "fem": "2020-7-30",
-    "nombre":"cliente de prueba",
-    "direccion":"Su casa",
-    "localidad":"CABA",
-    "obs": "FV retira",
-    "rempeds":[
-            {"itemdata":311,
-            "pza_ped":5,
-            "precio":20}
-    ]
-}';
+//        $pedidoNom ='{
+//    "lugar": 1,
+//    "idCliente":1584,
+//    "fem": "2020-7-30",
+//    "nombre":"cliente de prueba",
+//    "direccion":"Su casa",
+//    "localidad":"CABA",
+//    "obs": "FV retira",
+//    "rempeds":[
+//            {"itemdata":311,
+//            "pza_ped":5,
+//            "precio":20}
+//    ]
+//}';
 
         $response = $curl->setRequestBody($pedidoNom)
             ->setHeaders([
