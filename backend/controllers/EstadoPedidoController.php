@@ -117,7 +117,7 @@ class EstadoPedidoController extends Controller {
         return $this->render('create');
     }
 
-    public function actionBuscarCliente($textsearch,$page=1,$pagination=20){
+    public function actionBuscarCliente($textsearch,$page=0,$pagination=20){
         if(empty($textsearch)) {
             $textsearch = " ";
         }
