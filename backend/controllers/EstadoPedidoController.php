@@ -139,11 +139,11 @@ class EstadoPedidoController extends Controller {
 //                CURLOPT_HTTPHEADER => ['Content-Type: application/json']
 //            ])
             ->send();
-        return [
-            'response' => Json::encode($response->getData()),
+        return Json::encode([
+            'response' => Json::encode($response),
             'json' => Json::encode($pedidoNom),
             'data' => $pedidoNom,
-        ];
+        ]);
     }
 
     private function normalizarPedido($data){
