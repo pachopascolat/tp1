@@ -32,7 +32,7 @@ class EstadoPedidoController extends Controller {
             ->setUrl("http://10.10.1.51:8090/itemdata/" . $codigo . "/" . sprintf("%04d",$variante))
             ->send();
         if($response->getData()){
-            return $response->getData();
+            return $response->getData()['itemdata'];
         }
     }
 
