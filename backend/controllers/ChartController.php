@@ -66,4 +66,15 @@ class ChartController extends Controller
 //        return Json::encode($response->getData());
     }
 
+    public function actionGetDeposito($deposito,$articulo,$variante){
+        $client = new Client();
+
+        $response = $client->createRequest()
+            ->setMethod('GET')
+            ->setUrl("http://10.10.1.51:8090/stockArtxVariantexDias/$deposito/$articulo/$variante/0/0/999")
+            ->send();
+
+        return Json::encode($response->getData());
+    }
+
 }

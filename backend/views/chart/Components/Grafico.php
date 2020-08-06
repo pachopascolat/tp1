@@ -16,6 +16,14 @@
         },
         data: function () {
             return {
+                depositos:{
+                    nro1:{piezas:0,mts:0},
+                    nro2:{piezas:0,mts:0},
+                    nro3:{piezas:0,mts:0},
+                    nro4:{piezas:0,mts:0},
+                    nro5:{piezas:0,mts:0},
+
+                },
                 loading: true,
                 // articulo:null,
                 // cantidades: []
@@ -24,10 +32,35 @@
         },
         mounted(){
             this.drawChart();
+            this.getDepositos();
             // this.getArticulo();
 
         },
         methods:{
+            getDepositos(){
+                for(var i = 1; i < 6 ; i++){
+                    this.getPorDeposito(i);
+                }
+            },
+            getPorDeposito(deposito){
+                var self = this;
+                // self.loading = true;
+                axios.get('/admin/chart/get-deposito?deposito='+deposito+'&articulo='+self.articulo.articulo+'&variante='+self.articulo.variante.variante)
+                    .then(function (response) {
+                        console.log('deposito '+deposito+': '+response.data);
+                        if(parseFloat(response.data.mts0) > 0) {
+                            self.depositos['nro' + deposito].mts = response.data.mts0;
+                            self.depositos['nro' + deposito].piezas = response.data.piezas;
+                        }
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+            },
             getCantidades: function(){
                 var cantidades = [];
                 for(var i in this.cargas.fechas){

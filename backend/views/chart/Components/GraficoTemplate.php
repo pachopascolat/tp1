@@ -13,30 +13,30 @@
             <h5 >{{ articulo.nom }} {{ articulo.variante.nom }}</h5>
         </div>
         <canvas id="myChart" ref="myChart" ></canvas>
-<!--        <div v-if="articulo" class="depositos">-->
-<!--            <div class="fila"></div>-->
-<!--            <div class="fila">-->
-<!--                <h5>Total Depositos:</h5><h5>{{existencia[5].cantidad}} {{existencia[5].u_medida}} </h5>-->
-<!--            </div>-->
-<!--            <div class="fila">-->
-<!--                <h5>Deposito 1:</h5><h5>{{existencia[0].cantidad}} {{existencia[0].u_medida}} </h5>-->
-<!--            </div>-->
-<!--            <div class="fila">-->
-<!--                <h5>Deposito 2:</h5><h5>{{existencia[1].cantidad}} {{existencia[1].u_medida}} </h5>-->
-<!--            </div>-->
-<!--            <div class="fila">-->
-<!--                <h5>Deposito 3:</h5><h5>{{existencia[2].cantidad}} {{existencia[2].u_medida}} </h5>-->
-<!--            </div>-->
-<!--            <div class="fila">-->
-<!--                <h5>Deposito 4:</h5><h5>{{existencia[3].cantidad}} {{existencia[3].u_medida}} </h5>-->
-<!--            </div>-->
-<!--            <div class="fila">-->
-<!--                <h5>Deposito 5:</h5><h5>{{existencia[4].cantidad}} {{existencia[4].u_medida}} </h5>-->
-<!--            </div>-->
-<!---->
-<!---->
-<!---->
-<!---->
+        <div v-if="depositos" class="depositos">
+            <div class="fila"></div>
+            <div class="fila">
+                <h5>Total Depositos:</h5><h5>{{articulo.variante.mts0}} {{}} </h5>
+            </div>
+            <div class="fila">
+                <h5>Deposito 1:</h5><h5>{{depositos.nro1.mts}} {{}} </h5>
+            </div>
+            <div class="fila">
+                <h5>Deposito 2:</h5><h5>{{depositos.nro2.mts}} {{}} </h5>
+            </div>
+            <div class="fila">
+                <h5>Deposito 3:</h5><h5>{{depositos.nro3.mts}} {{}} </h5>
+            </div>
+            <div class="fila">
+                <h5>Deposito 4:</h5><h5>{{depositos.nro4.mts}} {{}} </h5>
+            </div>
+            <div class="fila">
+                <h5>Deposito 5:</h5><h5>{{depositos.nro5.mts}} {{}} </h5>
+            </div>
+
+
+
+
 <!--        </div>-->
     </div>
 
