@@ -47,8 +47,8 @@
                 // self.loading = true;
                 axios.get('/admin/chart/get-deposito?deposito='+deposito+'&articulo='+self.articulo.articulo+'&variante='+self.articulo.variante.variante)
                     .then(function (response) {
-                        console.log('deposito '+deposito+': '+response.data);
-                        if(parseFloat(response.data.mts0) > 0) {
+                        console.log(response.data);
+                        if(response.data) {
                             self.depositos['nro' + deposito].mts = response.data.mts0;
                             self.depositos['nro' + deposito].piezas = response.data.piezas;
                         }
