@@ -16,10 +16,10 @@
         <div v-if="depositos" class="depositos">
             <div class="fila"></div>
             <div class="fila">
-                <h5>Total Depositos:</h5><h5>{{articulo.variante.mts0}} {{}} </h5>
+                <h5>Total Depositos:</h5><div><h5>{{articulo.variante.piezas}}</h5></h5><h5>{{articulo.variante.mts0}} {{}} </h5> </div>
             </div>
             <div class="fila">
-                <h5>Deposito 1:</h5><h5>{{depositos.nro1.mts}} {{}} </h5>
+                <h5>Deposito 1:</h5><div><h5>{{depositos.nro1.piezas}}</h5><h5>{{depositos.nro1.mts}} {{}} </h5></div>
             </div>
             <div class="fila">
                 <h5>Deposito 2:</h5><h5>{{depositos.nro2.mts}} {{}} </h5>
@@ -37,7 +37,7 @@
 
 
 
-<!--        </div>-->
+        </div>
     </div>
 
 </div>
