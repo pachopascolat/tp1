@@ -143,6 +143,9 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
                 this.pedido.idCliente = null;
                 this.pedido.nombre = null;
             },
+            clearItems(){
+                localStorage.removeItem('items');
+            },
             saveItems(){
                 const parsed = JSON.stringify(this.pedido.items);
                 localStorage.setItem('items', parsed);
@@ -214,6 +217,7 @@ $this->registerJsFile("https://unpkg.com/vue-select@latest",['position'=>$this::
                     .then(function (response) {
                         console.log(response.data);
                         self.pedido = {};
+                        self.clearItems();
 
                         // self.options = response.data;
                     })
