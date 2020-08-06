@@ -2,6 +2,8 @@
 
 
 namespace backend\controllers;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 use yii\httpclient\Client;
@@ -10,6 +12,31 @@ use yii\web\Controller;
 
 class ChartController extends Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+//                'only' => ['login', 'logout', 'signup'],
+                'rules' => [
+                    [
+                        'allow' => true,
+//                        'actions' => ['index-pedidos','index', 'create', 'view', 'update', 'index-por-categoria', 'delete'],
+                        'roles' => ['ventasManager'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+
     public function actionIndex(){
 //        $this->layout = 'bootstrap4';
         return $this->render('index');
