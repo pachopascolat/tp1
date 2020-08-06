@@ -235,5 +235,8 @@ $this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\
         display: none !important;
     }
 
+    .depositos .columna{
+        width: 33%;
+    }
 
 </style>
