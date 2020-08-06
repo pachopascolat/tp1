@@ -16,14 +16,13 @@
         },
         data: function () {
             return {
-                depositos:{
-                    nro1:{piezas:0,mts:0},
-                    nro2:{piezas:0,mts:0},
-                    nro3:{piezas:0,mts:0},
-                    nro4:{piezas:0,mts:0},
-                    nro5:{piezas:0,mts:0},
-
-                },
+                depositos:[
+                    {nro:1,piezas:0,mts:0},
+                    {nro:2,piezas:0,mts:0},
+                    {nro:3,piezas:0,mts:0},
+                    {nro:4,piezas:0,mts:0},
+                    {nro:5,piezas:0,mts:0},
+                ],
                 loading: true,
                 // articulo:null,
                 // cantidades: []
@@ -49,8 +48,10 @@
                     .then(function (response) {
                         console.log(response.data);
                         if(response.data) {
-                            self.depositos['nro' + deposito].mts = response.data.mts0;
-                            self.depositos['nro' + deposito].piezas = response.data.piezas;
+                            indice = deposito -1;
+                            self.depositos[indice].nro = deposito;
+                            self.depositos[indice].mts = response.data.mts0;
+                            self.depositos[indice].piezas = response.data.piezas;
                         }
                     })
                     .catch(function (error) {

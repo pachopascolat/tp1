@@ -15,24 +15,28 @@
         <canvas id="myChart" ref="myChart" ></canvas>
         <div v-if="depositos" class="depositos">
             <div class="fila"></div>
+
             <div class="fila">
-                <h5>Total Depositos:</h5><div class="d-flex"><h5>{{articulo.variante.piezas}}</h5></h5><h5>{{articulo.variante.mts0}} </h5> </div>
+                <h5>Total Depositos:</h5><h5><span>{{articulo.variante.piezas}}pz</span>  {{articulo.variante.mts0}} MTS </h5>
             </div>
-            <div class="fila">
-                <h5>Deposito 1:</h5><div class="d-flex"><h5>{{depositos.nro1.piezas}}</h5><h5>{{depositos.nro1.mts}} </h5></div>
-            </div>
-            <div class="fila">
-                <h5>Deposito 2:</h5><h5>{{depositos.nro2.mts}}  </h5>
-            </div>
-            <div class="fila">
-                <h5>Deposito 3:</h5><h5>{{depositos.nro3.mts}}  </h5>
-            </div>
-            <div class="fila">
-                <h5>Deposito 4:</h5><h5>{{depositos.nro4.mts}} </h5>
-            </div>
-            <div class="fila">
-                <h5>Deposito 5:</h5><h5>{{depositos.nro5.mts}} </h5>
-            </div>
+
+            <template v-for="dep,i in depositos">
+                <div class="fila">
+                    <h5>Deposito {{dep.nro}}:</h5><h5><span>{{dep.piezas}}pz</span>  {{dep.mts}} MTS </h5>
+                </div>
+            </template>
+<!--            <div class="fila">-->
+<!--                <h5>Deposito 2:</h5><h5><span>{{depositos.nro2.piezas}}pz</span>  {{depositos.nro2.mts}} MTS  </h5>-->
+<!--            </div>-->
+<!--            <div class="fila">-->
+<!--                <h5>Deposito 3:</h5><h5><span>{{depositos.nro3.piezas}}pz</span> {{depositos.nro3.mts}} MTS  </h5>-->
+<!--            </div>-->
+<!--            <div class="fila">-->
+<!--                <h5>Deposito 4:</h5><h5><span>{{depositos.nro4.piezas}}pz</span> {{depositos.nro4.mts}} MTS </h5>-->
+<!--            </div>-->
+<!--            <div class="fila">-->
+<!--                <h5>Deposito 5:</h5><h5><span>{{depositos.nro5.piezas}}pz</span> {{depositos.nro5.mts}} MTS</h5>-->
+<!--            </div>-->
 
 
 
