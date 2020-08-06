@@ -5,7 +5,7 @@
 
 //$this->registerJsFile("https://use.fontawesome.com/a35639f299.js",['position'=>\yii\web\View::POS_HEAD]);
 $this->registerJsFile("https://cdn.jsdelivr.net/npm/vue/dist/vue.js",['position'=>\yii\web\View::POS_HEAD]);
-$this->registerJsFile("https://unpkg.com/vue-router/dist/vue-router.js",['position'=>\yii\web\View::POS_HEAD]);
+//$this->registerJsFile("https://unpkg.com/vue-router/dist/vue-router.js",['position'=>\yii\web\View::POS_HEAD]);
 $this->registerJsFile("https://cdn.jsdelivr.net/npm/chart.js@2.8.0",['position'=>\yii\web\View::POS_BEGIN]);
 //$this->registerJsFile("https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js",['position'=>\yii\web\View::POS_HEAD]);
 $this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\yii\web\View::POS_HEAD]);
@@ -20,8 +20,9 @@ $this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\
     <!--    <router-link to="/stock">Stock</router-link>-->
     <!--    <router-link to="/chart">Chart</router-link>-->
 
+    <stock></stock>
 
-    <router-view></router-view>
+<!--    <router-view></router-view>-->
 </div>
 
 <?= $this->render('Components/Stock'); ?>
@@ -33,18 +34,18 @@ $this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\
 
 
 
-    const routes = [
-        // { path: '/stock', component: stock },
-        { path: '/', component: stock },
-        { path: '/grafico/:codArticulo/:codColor', name:'grafico' ,component: grafico, props:true }
-    ]
-
-    const router = new VueRouter({
-        routes // short for `routes: routes`
-    })
+    // const routes = [
+    //     // { path: '/stock', component: stock },
+    //     { path: '/', component: stock },
+    //     { path: '/grafico/:codArticulo/:codColor', name:'grafico' ,component: grafico, props:true }
+    // ]
+    //
+    // const router = new VueRouter({
+    //     routes // short for `routes: routes`
+    // })
 
     const app = new Vue({
-        router
+        // router
     }).$mount('#app')
 
 
