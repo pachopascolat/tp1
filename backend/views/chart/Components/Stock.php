@@ -29,7 +29,7 @@
         methods:{
             getEstadistica: function(variante){
                 var self = this;
-                axios.get('/admin/chart/get-estadisticas?articulo='+self.articulo.articulo+'&variante='+variante)
+                axios.get('/admin/chart/get-estadisticas?articulo='+self.articulo.articulo+'&variante='+variante.variante)
                     .then(function (response) {
                         self.articulo.variante=variante;
                         // console.log(response.data);
