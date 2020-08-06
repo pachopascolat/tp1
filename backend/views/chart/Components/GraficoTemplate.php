@@ -17,12 +17,12 @@
             <div class="fila"></div>
 
             <div class="fila">
-                <h5>Total Depositos:</h5><h5><span>{{articulo.variante.piezas}}pz</span>  {{articulo.variante.mts0}} MTS </h5>
+                <h5>Total Depositos:</h5><h5><span>piezas:{{articulo.variante.piezas}}</span> - {{articulo.variante.mts0}} MTS </h5>
             </div>
 
             <template v-for="dep,i in depositos">
                 <div class="fila">
-                    <h5>Deposito {{dep.nro}}:</h5><h5><span>{{dep.piezas}}pz</span>  {{dep.mts}} MTS </h5>
+                    <h5>Deposito {{dep.nro}}:</h5><h5><span>piezas:{{dep.piezas}}</span> - {{dep.mts}} MTS </h5>
                 </div>
             </template>
 <!--            <div class="fila">-->
