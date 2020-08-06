@@ -74,7 +74,8 @@ class ChartController extends Controller
             ->setUrl("http://10.10.1.51:8090/stockArtxVariantexDias/$deposito/$articulo/$variante/0/0/999")
             ->send();
 
-        return Json::encode($response->getData());
+        $data = $response->getData();
+        return Json::encode($data[0]??null);
     }
 
 }
