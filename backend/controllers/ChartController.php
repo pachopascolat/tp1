@@ -61,7 +61,7 @@ class ChartController extends Controller
             ->setMethod('GET')
             ->setUrl("http://10.10.1.51:8090/stockArtxVariantexDias/0/$articulo/$variante/$dias/0/999")
             ->send();
-        return Json::encode($response->getData());
+//        return Json::encode($response->getData());
         return $this->normalizarEstadistica(Json::encode($response->getData()));
 //        return Json::encode($response->getData());
     }
