@@ -21,9 +21,9 @@
                     <h5>Total Depositos:</h5>
                 </div>
                 <div class="columna">
-                    <h5>piezas:{{articulo.variante.piezas}}</h5>
+                    <h5>piezas: {{articulo.variante.piezas}}</h5>
                 </div>
-                <div class="columna">
+                <div class="columna text-right">
                     <h5>{{articulo.variante.mts0}} MTS </h5>
                 </div>
 
@@ -35,19 +35,18 @@
                         <h5>Deposito {{dep.nro}}:</h5>
                     </div>
                     <div class="columna">
-                        <h5>piezas:{{dep.piezas}}</h5>
+                        <h5>piezas: {{dep.piezas}}</h5>
                     </div>
-                    <div class="columna">
+                    <div class="columna text-right">
                         <h5>{{dep.mts}} MTS </h5>
                     </div>
                 </div>
+            </template>
+
+
+
+
         </div>
-        </template>
-
-
-
-
     </div>
-</div>
 
 </div>
