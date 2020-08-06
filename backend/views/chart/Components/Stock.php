@@ -32,7 +32,7 @@
                 axios.get('/admin/chart/get-estadisticas?articulo='+self.articulo.articulo+'&variante='+variante.variante)
                     .then(function (response) {
                         self.articulo.variante=variante;
-                        // console.log(response.data);
+                        console.log(response.data);
                         self.fechas = response.data.fechas;
                         self.cantidades = response.data.cantidades;
                         // self.articulo = self.cargas.articulo;
