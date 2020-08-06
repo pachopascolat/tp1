@@ -17,14 +17,14 @@
             <div class="fila"></div>
 
             <div class="fila d-table-row">
-                <div class="d-table-cell">
+                <div class="d-table-cell col">
                     <h5>Total Depositos:</h5>
                 </div>
 
-                <div class="d-table-cell">
+                <div class="d-table-cell col">
                     <h5>piezas:{{articulo.variante.piezas}}</h5>
                 </div>
-                <div class="d-table-cell">
+                <div class="d-table-cell col">
                     <h5>{{articulo.variante.mts0}} MTS </h5>
                 </div>
 
@@ -32,13 +32,13 @@
 
             <template v-for="dep,i in depositos">
                 <div class="fila d-table-row">
-                    <div class="d-table-cell">
+                    <div class="d-table-cell col">
                         <h5>Deposito {{dep.nro}}:</h5>
                     </div>
-                    <div class="d-table-cell">
+                    <div class="d-table-cell col">
                         <h5>piezas:{{dep.piezas}}</h5>
                     </div>
-                    <div class="d-table-cell">
+                    <div class="d-table-cell col">
                         <h5>{{dep.mts}} MTS </h5>
                     </div>
                 </div>
