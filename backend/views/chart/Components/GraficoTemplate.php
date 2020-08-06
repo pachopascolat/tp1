@@ -13,39 +13,42 @@
             <h5 >{{ articulo.nom }} {{ articulo.variante.nom }}</h5>
         </div>
         <canvas id="myChart" ref="myChart" ></canvas>
-        <div v-if="depositos" class="depositos">
+        <div v-if="depositos" class="depositos d-table">
             <div class="fila"></div>
 
-            <div class="fila">
-                <h5>Total Depositos:</h5>
-                <div class="d-flex">
-                    <div class="col">
-                        <h5>piezas:{{articulo.variante.piezas}}</h5>
-                    </div>
-                    <div class="col">
-                        <h5>{{articulo.variante.mts0}} MTS </h5>
-                    </div>
+            <div class="fila d-table-row">
+                <div class="d-table-cell">
+                    <h5>Total Depositos:</h5>
                 </div>
+
+                <div class="d-table-cell">
+                    <h5>piezas:{{articulo.variante.piezas}}</h5>
+                </div>
+                <div class="d-table-cell">
+                    <h5>{{articulo.variante.mts0}} MTS </h5>
+                </div>
+
             </div>
 
             <template v-for="dep,i in depositos">
-                <div class="fila">
-                    <h5>Deposito {{dep.nro}}:</h5>
-                    <div class="d-flex">
-                        <div class="col">
-                            <h5>piezas:{{dep.piezas}}</h5>
-                        </div>
-                        <div class="col">
-                            <h5>{{dep.mts}} MTS </h5>
-                        </div>
+                <div class="fila d-table-row">
+                    <div class="d-table-cell">
+                        <h5>Deposito {{dep.nro}}:</h5>
+                    </div>
+                    <div class="d-table-cell">
+                        <h5>piezas:{{dep.piezas}}</h5>
+                    </div>
+                    <div class="d-table-cell">
+                        <h5>{{dep.mts}} MTS </h5>
                     </div>
                 </div>
-            </template>
-
-
-
-
         </div>
+        </template>
+
+
+
+
     </div>
+</div>
 
 </div>
