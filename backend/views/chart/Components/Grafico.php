@@ -71,7 +71,7 @@
                 for(var i in this.cargas.fechas){
                     cantidades.push(this.cargas.fechas[i][5].cantidad)
                 }
-                cantidades.push(0);
+                // cantidades.push(0);
                 this.cantidades = cantidades;
                 return cantidades;
 
