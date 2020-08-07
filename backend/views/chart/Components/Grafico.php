@@ -43,8 +43,12 @@
             },
             getPorDeposito(deposito){
                 var self = this;
+                var url = '/admin/chart/get-deposito?deposito='+deposito+'&articulo='+self.articulo.articulo;
+                if(self.articulo.variante){
+                    url = '/admin/chart/get-deposito?deposito='+deposito+'&articulo='+self.articulo.articulo+'&variante='+self.articulo.variante.variante;
+                }
                 // self.loading = true;
-                axios.get('/admin/chart/get-deposito?deposito='+deposito+'&articulo='+self.articulo.articulo+'&variante='+self.articulo.variante.variante)
+                axios.get(url)
                     .then(function (response) {
                         console.log(response.data);
                         if(response.data) {

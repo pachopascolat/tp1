@@ -6,16 +6,14 @@
     <div v-else class="">
         <div v-for="(article,j) in articulos">
             <div  class="fila">
-                <div @click="getVariantes(article,j)">
-                <div class="columna articulos-solos">
+                <div @click="getVariantes(article,j)" class="columna articulos-solos">
                     {{article.articulo}} {{article.nom}}
                 </div>
-                <div class="columna unidades valores">
+                <div @click="getVariantes(article,j)" class="columna unidades valores">
                     {{article.piezas}}
                 </div>
-                <div class="columna cantidades-articulos valores">
+                <div @click="getVariantes(article,j)" class="columna cantidades-articulos valores">
                     {{parseFloat(article.mts).toFixed(2)}} {{article.u_medida}}
-                </div>
                 </div>
                 <div @click="getEstadisticaArticulo(article)" class="variaciones columna">
                     <div v-if="parseFloat(article.delta)>0"> <button class="btn btn-success btn-sm"> + {{parseFloat(article.delta).toFixed(2)}} %</button></div>
