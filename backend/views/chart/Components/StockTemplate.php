@@ -1,5 +1,5 @@
 <div class="stock-template">
-    <input v-on:change="getStock()" v-model="niddle" class="form-control mb-1" placeholder="ingrese articulo">
+    <input @keyup="filterArticulo(niddle)" v-model="niddle" class="form-control mb-1" placeholder="ingrese articulo">
     <div v-if="loading" class="loading">
         <img  src="<?=Yii::getAlias('@web/img/loading.gif')?>">
     </div>

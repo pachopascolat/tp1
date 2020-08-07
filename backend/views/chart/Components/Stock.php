@@ -3,6 +3,7 @@
     const stock = Vue.component('stock', {
         data: function () {
             return {
+                todosArticulos:[],
                 cargas:[],
                 variantes:[],
                 row:null,
@@ -27,12 +28,22 @@
             // this.loading = false;
         },
         methods:{
+            filterArticulo(search){
+                // console.log(search);
+                var articulos = [];
+                for(var i=0; i < this.todosArticulos.length ; i++){
+                    if(search=='' || this.todosArticulos[i].articulo.toLowerCase().indexOf(search.toLowerCase()) != -1  || this.todosArticulos[i].nom.toLowerCase().indexOf(search.toLowerCase()) != -1 ){
+                        articulos.push(this.todosArticulos[i]);
+                    }
+                }
+                this.articulos = articulos;
+            },
             getEstadistica: function(variante){
                 var self = this;
                 axios.get('/admin/chart/get-estadisticas?articulo='+self.articulo.articulo+'&variante='+variante.variante)
                     .then(function (response) {
                         self.articulo.variante=variante;
-                        console.log(response.data);
+                        // console.log(response.data);
                         self.fechas = response.data.fechas;
                         self.cantidades = response.data.cantidades;
                         // self.articulo = self.cargas.articulo;
@@ -87,9 +98,10 @@
                     .then(function (response) {
                         self.loading= false;
                         // handle success
-                        console.log(response.data);
+                        // console.log(response.data);
                         // self.datos = response.data;
                         self.articulos = response.data;
+                        self.todosArticulos = response.data;
                         // self.pagination = response.data.pagination;
                         // self.page = page<self.pageCount?page:1;
                         // self.pageCount = response.data.pageCount;
