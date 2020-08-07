@@ -79,7 +79,7 @@ $this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\
         justify-content: right;
         width: 50px;
         padding: 0.5em;
-        font-size: 1rem;
+        font-size: 1em;
     }
 
     .stock-rows{
@@ -97,17 +97,17 @@ $this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\
     }
 
     .valores{
-        font-size: 1.2rem;
+        font-size: 1em;
         text-align: right;
         /*width: 20%;*/
     }
     .articulos-solos{
         width: 65%;
-        font-size: 1.2rem;
+        font-size: 1em;
     }
 
     .articulos{
-        font-size: 1.2rem;
+        font-size: 1em;
         width: 50%;
         overflow: hidden;
         text-overflow: ellipsis;

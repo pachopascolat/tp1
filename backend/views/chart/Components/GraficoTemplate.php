@@ -24,7 +24,7 @@
                     <h5>piezas: {{articulo.variante.piezas}}</h5>
                 </div>
                 <div class="columna text-right">
-                    <h5>{{articulo.variante.mts0}} MTS </h5>
+                    <h5>{{articulo.variante.mts}} MTS </h5>
                 </div>
 
             </div>

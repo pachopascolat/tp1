@@ -13,7 +13,12 @@
                     {{article.piezas}}
                 </div>
                 <div class="columna cantidades-articulos valores">
-                    {{parseFloat(article.mts0).toFixed(2)}} {{article.u_medida}}
+                    {{parseFloat(article.mts).toFixed(2)}} {{article.u_medida}}
+                </div>
+                <div class="variaciones columna">
+                    <div v-if="parseFloat(article.delta)>0"> <button class="btn btn-success btn-sm"> + {{parseFloat(article.delta).toFixed(2)}} %</button></div>
+                    <div v-if="parseFloat(article.delta)<0"> <button class="btn btn-danger btn-sm"> {{parseFloat(article.delta).toFixed(2)}} %</button> </div>
+                    <div v-if="parseFloat(article.delta)==0"><button class="btn btn-default btn-sm"> - </button> </div>
                 </div>
             </div>
             <div v-if="collapse&&row==j" class="stock-rows">
@@ -39,7 +44,7 @@
                         <div class="columna valores cantidades">
                             <!--                    <div>Cantidad Total</div>-->
                             <div>
-                                {{art.mts0}} {{art.u_medida}}
+                                {{art.mts}} {{art.u_medida}}
                             </div>
                         </div>
                         <div class="variaciones columna">
