@@ -15,7 +15,7 @@
                 <div class="columna cantidades-articulos valores">
                     {{parseFloat(article.mts).toFixed(2)}} {{article.u_medida}}
                 </div>
-                <div class="variaciones columna">
+                <div @click="getEstadisticaArticulo(article)" class="variaciones columna">
                     <div v-if="parseFloat(article.delta)>0"> <button class="btn btn-success btn-sm"> + {{parseFloat(article.delta).toFixed(2)}} %</button></div>
                     <div v-if="parseFloat(article.delta)<0"> <button class="btn btn-danger btn-sm"> {{parseFloat(article.delta).toFixed(2)}} %</button> </div>
                     <div v-if="parseFloat(article.delta)==0"><button class="btn btn-default btn-sm"> - </button> </div>
@@ -24,7 +24,7 @@
             <div v-if="collapse&&row==j" class="stock-rows">
                 <div   v-for="(art,i) in variantes"  v-bind:key="i" >
                     <!--            <router-link :to="{name:'grafico',params:{codColor:String(art.last.cod_color),codArticulo:art.last.cod_articulo}}" >-->
-                    <div v-on:click="getEstadistica(art)" class="fila">
+                    <div v-on:click="getEstadisticaVariante(art)" class="fila">
                         <div class="columna articulos">
                             {{art.variante}} {{art.nom}}
                         </div>

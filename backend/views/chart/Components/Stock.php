@@ -38,9 +38,9 @@
                 }
                 this.articulos = articulos;
             },
-            getEstadistica: function(variante){
+            getEstadisticaVariante: function(variante){
                 var self = this;
-                axios.get('/admin/chart/get-estadisticas?articulo='+self.articulo.articulo+'&variante='+variante.variante)
+                axios.get('/admin/chart/get-estadisticas-variante?articulo='+self.articulo.articulo+'&variante='+variante.variante)
                     .then(function (response) {
                         self.articulo.variante=variante;
                         // console.log(response.data);
@@ -48,6 +48,23 @@
                         self.cantidades = response.data.cantidades;
                         // self.articulo = self.cargas.articulo;
                         // self.existencia = self.cargas.last;
+                        self.grafico = true;
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+            },
+            getEstadisticaArticulo: function(articulo){
+                var self = this;
+                self.articulo = articulo;
+                axios.get('/admin/chart/get-estadisticas-articulo?articulo='+self.articulo.articulo)
+                    .then(function (response) {
+                        self.fechas = response.data.fechas;
+                        self.cantidades = response.data.cantidades;
                         self.grafico = true;
                     })
                     .catch(function (error) {

@@ -78,7 +78,7 @@ class ChartController extends Controller
         return Json::encode(['fechas'=>$fechas,'cantidades'=>$cantidades]);
     }
 
-    public function actionGetEstadisticas($articulo,$variante){
+    public function actionGetEstadisticasVariante($articulo,$variante){
         $dias = 10;
 //        $datos = '[{"fecha":"2020-08-06","piezas":"204","mts":"6312.30","mts0":"6312.30","delta":"0.0000"},{"fecha":"2020-08-05","piezas":"204","mts":"6312.30","mts0":"6312.30","delta":"0.0000"},{"fecha":"2020-08-04","piezas":"204","mts":"6312.30","mts0":"6443.80","delta":"-0.0204"},{"fecha":"2020-08-03","piezas":"208","mts":"6443.80","mts0":"6443.80","delta":"0.0000"},{"fecha":"2020-07-31","piezas":"208","mts":"6443.80","mts0":"6571.20","delta":"-0.0194"},{"fecha":"2020-07-30","piezas":"212","mts":"6571.20","mts0":"6571.20","delta":"0.0000"},{"fecha":"2020-07-29","piezas":"212","mts":"6571.20","mts0":"6507.70","delta":"0.0098"},{"fecha":"2020-07-28","piezas":"210","mts":"6507.70","mts0":"6507.70","delta":"0.0000"},{"fecha":"2020-07-27","piezas":"210","mts":"6507.70","mts0":null,"delta":null}]';
 //        return $this->normalizarEstadistica($datos);
@@ -92,13 +92,34 @@ class ChartController extends Controller
         return $this->normalizarEstadistica(Json::encode($response->getData()));
 //        return Json::encode($response->getData());
     }
-
-    public function actionGetDeposito($deposito,$articulo,$variante){
+    public function actionGetEstadisticasArticulo($articulo,$variante){
+        $dias = 10;
+//        $datos =
+//            '[{"fecha":"2020-08-07","piezas":"299","mts":"9248.90","mts0":"9248.90","delta":"0.0000"},{"fecha":"2020-08-06","piezas":"299","mts":"9248.90","mts0":"9248.90","delta":"0.0000"},{"fecha":"2020-08-05","piezas":"299","mts":"9248.90","mts0":"9248.90","delta":"0.0000"},{"fecha":"2020-08-04","piezas":"299","mts":"9248.90","mts0":"9412.40","delta":"-0.0174"},{"fecha":"2020-08-03","piezas":"304","mts":"9412.40","mts0":"9412.40","delta":"0.0000"},{"fecha":"2020-07-31","piezas":"304","mts":"9412.40","mts0":"9539.80","delta":"-0.0134"},{"fecha":"2020-07-30","piezas":"308","mts":"9539.80","mts0":"9539.80","delta":"0.0000"},{"fecha":"2020-07-29","piezas":"308","mts":"9539.80","mts0":"9476.30","delta":"0.0067"},{"fecha":"2020-07-28","piezas":"306","mts":"9476.30","mts0":"9476.30","delta":"0.0000"}]'
+//        ;
+//        return $this->normalizarEstadistica($datos);
         $client = new Client();
 
         $response = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl("http://10.10.1.51:8090/stockArtxVariantexDias/$deposito/$articulo/$variante/0/0/999")
+            ->setUrl("http://10.10.1.51:8090/stockArtxDias/0/$articulo/$dias/0/999")
+            ->send();
+//        return Json::encode($response->getData());
+        return $this->normalizarEstadistica(Json::encode($response->getData()));
+//        return Json::encode($response->getData());
+    }
+
+    public function actionGetDeposito($deposito,$articulo,$variante=null){
+        if($variante) {
+            $url = "http://10.10.1.51:8090/stockArtxVariantexDias/$deposito/$articulo/$variante/0/0/999";
+        }else{
+            $url = "http://10.10.1.51:8090/stockArtxDias/$deposito/$articulo/0/0/999";
+        }
+        $client = new Client();
+
+        $response = $client->createRequest()
+            ->setMethod('GET')
+            ->setUrl($url)
             ->send();
 
         $data = $response->getData();
