@@ -5,7 +5,8 @@
     </div>
     <div v-else class="">
         <div v-for="(article,j) in articulos">
-            <div v-on:click="getVariantes(article,j)" class="fila">
+            <div  class="fila">
+                <div @click="getVariantes(article,j)">
                 <div class="columna articulos-solos">
                     {{article.articulo}} {{article.nom}}
                 </div>
@@ -14,6 +15,7 @@
                 </div>
                 <div class="columna cantidades-articulos valores">
                     {{parseFloat(article.mts).toFixed(2)}} {{article.u_medida}}
+                </div>
                 </div>
                 <div @click="getEstadisticaArticulo(article)" class="variaciones columna">
                     <div v-if="parseFloat(article.delta)>0"> <button class="btn btn-success btn-sm"> + {{parseFloat(article.delta).toFixed(2)}} %</button></div>
