@@ -89,7 +89,7 @@
             },
             drawChart: function(){
                 var cantidades = this.cantidades;
-                cantidades.push(0);
+                // cantidades.push(0);
                 var fechas = this.fechas;
                 // console.log(this.$refs['mychart']);
                 var ctx = this.$refs.myChart.getContext('2d');
