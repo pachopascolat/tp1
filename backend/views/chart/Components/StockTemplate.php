@@ -1,5 +1,12 @@
 <div class="stock-template">
-    <input @keypress="filterArticulo(niddle)" v-model="niddle" class="form-control mb-1" placeholder="ingrese articulo">
+    <div class="input-group">
+        <input  v-model="niddle" class="form-control mb-1" placeholder="ingrese articulo">
+        <span class="input-group-btn">
+            <button @click="filterArticulo(niddle)" class="btn btn-success" >
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
     <div v-if="loading" class="loading">
         <img  src="<?=Yii::getAlias('@web/img/loading.gif')?>">
     </div>

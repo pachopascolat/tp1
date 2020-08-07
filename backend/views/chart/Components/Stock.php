@@ -32,7 +32,7 @@
                 // console.log(search);
                 var articulos = [];
                 for(var i=0; i < this.todosArticulos.length ; i++){
-                    if(search=='' || this.todosArticulos[i].articulo.toLowerCase().indexOf(search.toLowerCase()) != -1  || this.todosArticulos[i].nom.toLowerCase().indexOf(search.toLowerCase()) != -1 ){
+                    if(!search || this.todosArticulos[i].articulo.toLowerCase().indexOf(search.toLowerCase()) != -1  || this.todosArticulos[i].nom.toLowerCase().indexOf(search.toLowerCase()) != -1 ){
                         articulos.push(this.todosArticulos[i]);
                     }
                 }
