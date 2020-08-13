@@ -34,7 +34,7 @@
             <template v-for="dep,i in depositos">
                 <div class="fila">
                     <div class="columna">
-                        <h5>Deposito {{dep.nro}}:</h5>
+                        <h5>Deposito {{dep.depo_nom}}:</h5>
                     </div>
                     <div class="columna">
                         <h5>piezas: {{dep.piezas}}</h5>
