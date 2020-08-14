@@ -105,7 +105,7 @@ class EstadoPedidoController extends Controller {
             ->setMethod('GET')
             ->setUrl('http://10.10.1.51:8090/pedidosEnCurso')
             ->send();
-        return Json::encode(array_reverse($response->getData()));
+        return Json::encode($response->getData());
     }
 
     public function actionPedidosItems($id){
