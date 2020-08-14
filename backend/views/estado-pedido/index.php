@@ -12,10 +12,10 @@
 <div id="app" class="pt-3">
 
 
-    <b-modal v-model="showRomaneo" size="lg" id="modal-1" :title="'Romaneo Pedido: '+pedido.id">
+    <b-modal v-model="showRomaneo" size="lg" id="modal-1" :title="'Items Pedido: '+pedido.id">
         <romaneo :items="items"></romaneo>
     </b-modal>
-    <b-modal v-model="showPedido" size="lg" id="modal-2" :title="'Romaneo Pedido: '+pedido.id">
+    <b-modal v-model="showPedido" size="lg" id="modal-2" :title="'Pedido: '+pedido.id">
         <pedido :pedido="pedido" :labels="modalLabels"></pedido>
     </b-modal>
 
@@ -44,22 +44,22 @@
                 <template class="progressbar-wrapper">
                     <td class="estado">
                         <div class="progressbar">
-                            <div v-on:click="getItems(i,pedido.id)" :class="pedido.est>5?'active':''"></div>
+                            <div v-on:click="getItems(i,pedido.id)" :class="pedido.est>=20?'active':''"></div>
                         </div>
                     </td>
                     <td class="estado">
                         <div class="progressbar">
-                            <div :class="pedido.est>10?'active':''"></div>
+                            <div :class="pedido.est>=30?'active':''"></div>
                         </div>
                     </td>
                     <td class="estado">
                         <div class="progressbar">
-                            <div :class="pedido.est>20?'active':''"></div>
+                            <div :class="pedido.est>=40?'active':''"></div>
                         </div>
                     </td>
                     <td class="estado">
                         <div class="progressbar">
-                            <div :class="pedido.est>30?'active':''"></div>
+                            <div :class="pedido.est>=50?'active':''"></div>
                         </div>
                     </td>
                 </template>
