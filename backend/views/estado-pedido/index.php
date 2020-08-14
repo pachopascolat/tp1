@@ -21,8 +21,9 @@
 
 
 
-    <h2>Estado Pedidos</h2>
-    <a name="" id="" class="btn btn-primary" href="<?=\yii\helpers\Url::to(['estado-pedido/crear-pedido'])?>" role="button">Nuevo</a>
+    <h3>Estado Pedidos</h3>
+    <a name="" id="" class="btn btn-primary btn-sm p-1" href="<?=\yii\helpers\Url::to(['estado-pedido/crear-pedido'])?>" role="button">Nuevo</a>
+    <a name="" id="" class="btn btn-danger btn-sm p-1" href="<?=\yii\helpers\Url::to(['estado-pedido/chart'])?>" role="button">Stock</a>
     <table id="estado-pedido-table"  v-if="pedidos" class="table table-striped table-inverse table-bordered">
         <thead class="thead-inverse">
         <tr>
@@ -49,7 +50,7 @@
                     </td>
                     <td class="estado">
                         <div class="progressbar">
-                            <div :class="pedido.est>=30?'active':''"></div>
+                            <div v-on:click="getItems(i,pedido.id)" :class="pedido.est>=30?'active':''"></div>
                         </div>
                     </td>
                     <td class="estado">
@@ -360,7 +361,7 @@
 
     #app td, #app th{
         font-size: 10px;
-        padding: 2px 1px;
+        padding: 2px 2px;
     }
 
     /* Small devices (landscape phones, 576px and up) */
@@ -406,6 +407,7 @@
     @media (max-width: 950px) {
 
     }
+
 
 
 </style>

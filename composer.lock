@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "becf799e5aa1332acd5fa5ea47d81789",
+    "content-hash": "8164028de2794a1a706e0908ee84ba80",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -32,7 +32,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinHerbots/Inputmask.git",
+                "url": "git@github.com:RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -53,7 +53,7 @@
             "version": "3.5.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
             },
             "dist": {
@@ -71,7 +71,7 @@
             "version": "1.12.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/components/jqueryui.git",
+                "url": "git@github.com:components/jqueryui.git",
                 "reference": "44ecf3794cc56b65954cc19737234a3119d036cc"
             },
             "dist": {
@@ -92,7 +92,7 @@
             "version": "v1.3.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bestiejs/punycode.js.git",
+                "url": "git@github.com:bestiejs/punycode.js.git",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "dist": {
@@ -545,12 +545,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "cfa3d44471c7f5bfb684ac2b0da7114283d78441"
+                "reference": "840d5603eb84cc81a6a0382adac3293e57c1c64c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/cfa3d44471c7f5bfb684ac2b0da7114283d78441",
-                "reference": "cfa3d44471c7f5bfb684ac2b0da7114283d78441",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/840d5603eb84cc81a6a0382adac3293e57c1c64c",
+                "reference": "840d5603eb84cc81a6a0382adac3293e57c1c64c",
                 "shasum": ""
             },
             "require": {
@@ -595,7 +595,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2020-06-16T20:11:17+00:00"
+            "time": "2020-08-08T21:28:19+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -648,242 +648,17 @@
             "time": "2020-06-29T00:56:53+00:00"
         },
         {
-            "name": "guzzlehttp/guzzle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "d713940b86d56edb04385e21dbfc4462e3c1655c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/d713940b86d56edb04385e21dbfc4462e3c1655c",
-                "reference": "d713940b86d56edb04385e21dbfc4462e3c1655c",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "guzzlehttp/promises": "^1.0",
-                "guzzlehttp/psr7": "^1.6.1",
-                "php": "^7.2.5",
-                "psr/http-client": "^1.0"
-            },
-            "provide": {
-                "psr/http-client-implementation": "1.0"
-            },
-            "require-dev": {
-                "ergebnis/composer-normalize": "^2.0",
-                "ext-curl": "*",
-                "php-http/client-integration-tests": "dev-phpunit8",
-                "phpunit/phpunit": "^8.5.5",
-                "psr/log": "^1.1"
-            },
-            "suggest": {
-                "ext-curl": "Required for CURL handler support",
-                "ext-intl": "Required for Internationalized Domain Name (IDN) support",
-                "psr/log": "Required for using the Log middleware"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "7.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                },
-                {
-                    "name": "Márk Sági-Kazár",
-                    "email": "mark.sagikazar@gmail.com",
-                    "homepage": "https://sagikazarmark.hu"
-                }
-            ],
-            "description": "Guzzle is a PHP HTTP client library",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "client",
-                "curl",
-                "framework",
-                "http",
-                "http client",
-                "psr-18",
-                "psr-7",
-                "rest",
-                "web service"
-            ],
-            "funding": [
-                {
-                    "url": "https://github.com/GrahamCampbell",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/Nyholm",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/alexeyshockov",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/gmponos",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/sagikazarmark",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-07-10T07:45:10+00:00"
-        },
-        {
-            "name": "guzzlehttp/promises",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/promises.git",
-                "reference": "bbf3b200bc83c1e9298580a9f99b9be248543467"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/bbf3b200bc83c1e9298580a9f99b9be248543467",
-                "reference": "bbf3b200bc83c1e9298580a9f99b9be248543467",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^7.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Promise\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Guzzle promises library",
-            "keywords": [
-                "promise"
-            ],
-            "time": "2020-06-21T23:10:57+00:00"
-        },
-        {
-            "name": "guzzlehttp/psr7",
-            "version": "1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/psr7.git",
-                "reference": "188cc82398f157483976ccf61bd04ee80afcf29c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/188cc82398f157483976ccf61bd04ee80afcf29c",
-                "reference": "188cc82398f157483976ccf61bd04ee80afcf29c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "psr/http-message": "~1.0",
-                "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
-            },
-            "provide": {
-                "psr/http-message-implementation": "1.0"
-            },
-            "require-dev": {
-                "ext-zlib": "*",
-                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
-            },
-            "suggest": {
-                "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.6-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Psr7\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                },
-                {
-                    "name": "Tobias Schultze",
-                    "homepage": "https://github.com/Tobion"
-                }
-            ],
-            "description": "PSR-7 message implementation that also provides common utility methods",
-            "keywords": [
-                "http",
-                "message",
-                "psr-7",
-                "request",
-                "response",
-                "stream",
-                "uri",
-                "url"
-            ],
-            "time": "2020-05-17T20:05:25+00:00"
-        },
-        {
             "name": "illuminate/contracts",
             "version": "6.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "147855644b77121fdc58643230d9c042ff182ff0"
+                "reference": "0a144c2ee0163f8debd62da1386036567b1ba6b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/147855644b77121fdc58643230d9c042ff182ff0",
-                "reference": "147855644b77121fdc58643230d9c042ff182ff0",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/0a144c2ee0163f8debd62da1386036567b1ba6b4",
+                "reference": "0a144c2ee0163f8debd62da1386036567b1ba6b4",
                 "shasum": ""
             },
             "require": {
@@ -914,7 +689,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2020-05-13T20:53:59+00:00"
+            "time": "2020-08-13T14:33:00+00:00"
         },
         {
             "name": "illuminate/support",
@@ -922,12 +697,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "afb295d15601e79cb0e478edfe54a57d81cf58a3"
+                "reference": "67986d4799d508889c1e25337892707c102b8920"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/afb295d15601e79cb0e478edfe54a57d81cf58a3",
-                "reference": "afb295d15601e79cb0e478edfe54a57d81cf58a3",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/67986d4799d508889c1e25337892707c102b8920",
+                "reference": "67986d4799d508889c1e25337892707c102b8920",
                 "shasum": ""
             },
             "require": {
@@ -975,7 +750,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2020-07-10T16:40:40+00:00"
+            "time": "2020-08-13T14:33:00+00:00"
         },
         {
             "name": "imagine/imagine",
@@ -1098,12 +873,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "043694a6656b658dee3ce7998b7a0bca36e503e0"
+                "reference": "59a7f65142dd51a37d5a1c55fe7d5a7dc35f19be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/043694a6656b658dee3ce7998b7a0bca36e503e0",
-                "reference": "043694a6656b658dee3ce7998b7a0bca36e503e0",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/59a7f65142dd51a37d5a1c55fe7d5a7dc35f19be",
+                "reference": "59a7f65142dd51a37d5a1c55fe7d5a7dc35f19be",
                 "shasum": ""
             },
             "type": "library",
@@ -1149,7 +924,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-07-15T11:39:27+00:00"
+            "time": "2020-08-03T10:20:31+00:00"
         },
         {
             "name": "kartik-v/bootstrap-popover-x",
@@ -1616,12 +1391,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-export.git",
-                "reference": "14f3a93a79e0fdbc2ab646710ddd17eb178ce9ce"
+                "reference": "29fc213889ad805f5e8f5574404c5341726343e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/14f3a93a79e0fdbc2ab646710ddd17eb178ce9ce",
-                "reference": "14f3a93a79e0fdbc2ab646710ddd17eb178ce9ce",
+                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/29fc213889ad805f5e8f5574404c5341726343e9",
+                "reference": "29fc213889ad805f5e8f5574404c5341726343e9",
                 "shasum": ""
             },
             "require": {
@@ -1674,7 +1449,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-06-09T08:23:41+00:00"
+            "time": "2020-07-27T18:06:31+00:00"
         },
         {
             "name": "kartik-v/yii2-grid",
@@ -2714,12 +2489,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-select2.git",
-                "reference": "d44105a4cbb5f69737a5c9a02d4456e1037b8ad3"
+                "reference": "78efbcd1ae87b87803f9beb5e692acf790106cfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/d44105a4cbb5f69737a5c9a02d4456e1037b8ad3",
-                "reference": "d44105a4cbb5f69737a5c9a02d4456e1037b8ad3",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/78efbcd1ae87b87803f9beb5e692acf790106cfb",
+                "reference": "78efbcd1ae87b87803f9beb5e692acf790106cfb",
                 "shasum": ""
             },
             "require": {
@@ -2766,7 +2541,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-05-23T11:50:39+00:00"
+            "time": "2020-07-22T10:40:59+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-sidenav",
@@ -3526,16 +3301,16 @@
         },
         {
             "name": "mikehaertl/php-tmpfile",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mikehaertl/php-tmpfile.git",
-                "reference": "001362513e500ca8006144974c5b8cfc0516015a"
+                "reference": "491476ffb63612ee4bbfa063d4ff02717fc6bf42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/php-tmpfile/zipball/001362513e500ca8006144974c5b8cfc0516015a",
-                "reference": "001362513e500ca8006144974c5b8cfc0516015a",
+                "url": "https://api.github.com/repos/mikehaertl/php-tmpfile/zipball/491476ffb63612ee4bbfa063d4ff02717fc6bf42",
+                "reference": "491476ffb63612ee4bbfa063d4ff02717fc6bf42",
                 "shasum": ""
             },
             "require-dev": {
@@ -3561,7 +3336,7 @@
             "keywords": [
                 "files"
             ],
-            "time": "2020-05-06T07:28:50+00:00"
+            "time": "2020-07-21T11:54:36+00:00"
         },
         {
             "name": "mikehaertl/phpwkhtmltopdf",
@@ -3676,12 +3451,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "69b585feff23e6a3811b17c83efa0af936450e2b"
+                "reference": "f9eee5cec93dfb313a38b6b288741e84e53f02d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/69b585feff23e6a3811b17c83efa0af936450e2b",
-                "reference": "69b585feff23e6a3811b17c83efa0af936450e2b",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/f9eee5cec93dfb313a38b6b288741e84e53f02d5",
+                "reference": "f9eee5cec93dfb313a38b6b288741e84e53f02d5",
                 "shasum": ""
             },
             "require": {
@@ -3759,7 +3534,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-09T08:32:21+00:00"
+            "time": "2020-07-23T08:41:23+00:00"
         },
         {
             "name": "moonlandsoft/yii2-phpexcel",
@@ -4453,12 +4228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "afc1817c6bc9c5c82b4a2b8282461e00af4721e4"
+                "reference": "f43ff0e4b5f658dc2dbb50dfe322437249d9bcbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/afc1817c6bc9c5c82b4a2b8282461e00af4721e4",
-                "reference": "afc1817c6bc9c5c82b4a2b8282461e00af4721e4",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/f43ff0e4b5f658dc2dbb50dfe322437249d9bcbc",
+                "reference": "f43ff0e4b5f658dc2dbb50dfe322437249d9bcbc",
                 "shasum": ""
             },
             "require": {
@@ -4473,7 +4248,7 @@
                 "kylekatarnls/multi-tester": "^2.0",
                 "phpmd/phpmd": "^2.8",
                 "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "^0.12.30",
+                "phpstan/phpstan": "^0.12.35",
                 "phpunit/phpunit": "^7.5 || ^8.0",
                 "squizlabs/php_codesniffer": "^3.4"
             },
@@ -4534,7 +4309,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T19:37:44+00:00"
+            "time": "2020-08-08T16:38:38+00:00"
         },
         {
             "name": "noam148/yii2-image-manager",
@@ -4651,7 +4426,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/axios/axios.git",
+                "url": "git@github.com:axios/axios.git",
                 "reference": "ffea03453f77a8176c51554d5f6c3c6829294649"
             },
             "dist": {
@@ -4670,10 +4445,10 @@
         },
         {
             "name": "npm-asset/bootstrap",
-            "version": "4.5.0",
+            "version": "4.5.2",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.5.0.tgz"
+                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.5.2.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -4682,10 +4457,10 @@
         },
         {
             "name": "npm-asset/bootstrap-vue",
-            "version": "2.15.0",
+            "version": "2.16.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/bootstrap-vue/-/bootstrap-vue-2.15.0.tgz"
+                "url": "https://registry.npmjs.org/bootstrap-vue/-/bootstrap-vue-2.16.0.tgz"
             },
             "require": {
                 "npm-asset/bootstrap": ">=4.5.0,<5.0.0",
@@ -4710,6 +4485,24 @@
                 "npm-asset/ansi-styles": ">=3.2.1,<4.0.0",
                 "npm-asset/escape-string-regexp": ">=1.0.5,<2.0.0",
                 "npm-asset/supports-color": ">=5.3.0,<6.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/chart.js",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:chartjs/Chart.js.git",
+                "reference": "f79d609548aebc6d70b16a51a80574827f051713"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chartjs/Chart.js/zipball/f79d609548aebc6d70b16a51a80574827f051713",
+                "reference": "f79d609548aebc6d70b16a51a80574827f051713"
             },
             "type": "npm-asset",
             "license": [
@@ -4745,10 +4538,10 @@
         },
         {
             "name": "npm-asset/consola",
-            "version": "2.14.0",
+            "version": "2.15.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/consola/-/consola-2.14.0.tgz"
+                "url": "https://registry.npmjs.org/consola/-/consola-2.15.0.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -4769,10 +4562,10 @@
         },
         {
             "name": "npm-asset/follow-redirects",
-            "version": "1.12.1",
+            "version": "1.13.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.12.1.tgz"
+                "url": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.0.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -4832,12 +4625,12 @@
             "version": "1.x-dev",
             "source": {
                 "type": "git",
-                "url": "git@github.com:FezVrasta/popper.js.git",
+                "url": "https://github.com/popperjs/popper-core.git",
                 "reference": "0a2329323252fd287f263c28951883b35095082a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FezVrasta/popper.js/zipball/0a2329323252fd287f263c28951883b35095082a",
+                "url": "https://api.github.com/repos/popperjs/popper-core/zipball/0a2329323252fd287f263c28951883b35095082a",
                 "reference": "0a2329323252fd287f263c28951883b35095082a"
             },
             "type": "npm-asset",
@@ -4875,22 +4668,15 @@
         },
         {
             "name": "npm-asset/vue",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:vuejs/vue.git",
-                "reference": "0948d999f2fddf9f90991956493f976273c5da1f"
-            },
+            "version": "2.6.11",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vuejs/vue/zipball/0948d999f2fddf9f90991956493f976273c5da1f",
-                "reference": "0948d999f2fddf9f90991956493f976273c5da1f"
+                "type": "tar",
+                "url": "https://registry.npmjs.org/vue/-/vue-2.6.11.tgz"
             },
             "type": "npm-asset",
             "license": [
                 "MIT"
-            ],
-            "time": "2017-10-13T03:07:14+00:00"
+            ]
         },
         {
             "name": "npm-asset/vue-functional-data-merge",
@@ -4906,22 +4692,22 @@
         },
         {
             "name": "npm-asset/vue-router",
-            "version": "2.8.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "git@github.com:vuejs/vue-router.git",
-                "reference": "ce955d9322d54c9e1f05ea5f8566aaa408587b71"
+                "reference": "47e14fef20cbbb856d3627005cfeb861005cbc96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vuejs/vue-router/zipball/ce955d9322d54c9e1f05ea5f8566aaa408587b71",
-                "reference": "ce955d9322d54c9e1f05ea5f8566aaa408587b71"
+                "url": "https://api.github.com/repos/vuejs/vue-router/zipball/47e14fef20cbbb856d3627005cfeb861005cbc96",
+                "reference": "47e14fef20cbbb856d3627005cfeb861005cbc96"
             },
             "type": "npm-asset",
             "license": [
                 "MIT"
             ],
-            "time": "2017-10-13T16:14:28+00:00"
+            "time": "2016-07-01T19:10:19+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -4974,12 +4760,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "165034ad7074006ad0942f99751c48067e304fca"
+                "reference": "9683e5be189080a9c75298e00efb72be3f5c866a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/165034ad7074006ad0942f99751c48067e304fca",
-                "reference": "165034ad7074006ad0942f99751c48067e304fca",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/9683e5be189080a9c75298e00efb72be3f5c866a",
+                "reference": "9683e5be189080a9c75298e00efb72be3f5c866a",
                 "shasum": ""
             },
             "require": {
@@ -4996,11 +4782,12 @@
                 "ext-xmlwriter": "*",
                 "ext-zip": "*",
                 "ext-zlib": "*",
-                "guzzlehttp/guzzle": "^7.0",
                 "maennchen/zipstream-php": "^2.1",
                 "markbaker/complex": "^1.4",
                 "markbaker/matrix": "^1.2",
                 "php": "^7.2",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.0",
                 "psr/simple-cache": "^1.0"
             },
             "require-dev": {
@@ -5061,7 +4848,7 @@
                 "xls",
                 "xlsx"
             ],
-            "time": "2020-07-15T11:23:00+00:00"
+            "time": "2020-07-29T21:56:37+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -5212,6 +4999,58 @@
             "time": "2020-06-29T06:28:15+00:00"
         },
         {
+            "name": "psr/http-factory",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-factory.git",
+                "reference": "1a2099a23a7bca67f13c0634723137a364a3ebf8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/1a2099a23a7bca67f13c0634723137a364a3ebf8",
+                "reference": "1a2099a23a7bca67f13c0634723137a364a3ebf8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "psr/http-message": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for PSR-7 HTTP message factories",
+            "keywords": [
+                "factory",
+                "http",
+                "message",
+                "psr",
+                "psr-17",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2019-12-29T01:52:41+00:00"
+        },
+        {
             "name": "psr/http-message",
             "version": "dev-master",
             "source": {
@@ -5355,46 +5194,6 @@
                 "simple-cache"
             ],
             "time": "2020-04-21T06:43:17+00:00"
-        },
-        {
-            "name": "ralouphie/getallheaders",
-            "version": "3.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ralouphie/getallheaders.git",
-                "reference": "120b605dfeb996808c31b6477290a714d356e822"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
-                "reference": "120b605dfeb996808c31b6477290a714d356e822",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "^2.1",
-                "phpunit/phpunit": "^5 || ^6.5"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/getallheaders.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ralph Khattar",
-                    "email": "ralph.khattar@gmail.com"
-                }
-            ],
-            "description": "A polyfill for getallheaders.",
-            "time": "2019-03-08T08:55:37+00:00"
         },
         {
             "name": "select2/select2",
@@ -5574,12 +5373,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "cdfcbf4d531bd74bce600ae8028138bf8e89ea97"
+                "reference": "82398ebeaab3335f39be2eeb48b1bc99155207dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/cdfcbf4d531bd74bce600ae8028138bf8e89ea97",
-                "reference": "cdfcbf4d531bd74bce600ae8028138bf8e89ea97",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/82398ebeaab3335f39be2eeb48b1bc99155207dd",
+                "reference": "82398ebeaab3335f39be2eeb48b1bc99155207dd",
                 "shasum": ""
             },
             "require": {
@@ -5629,18 +5428,6 @@
             ],
             "funding": [
                 {
-                    "url": "https://certification.symfony.com/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://live.symfony.com/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://symfony.com/cloud/",
-                    "type": "custom"
-                },
-                {
                     "url": "https://github.com/fabpot",
                     "type": "github"
                 },
@@ -5649,7 +5436,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-21T09:31:45+00:00"
+            "time": "2020-08-10T16:57:29+00:00"
         },
         {
             "name": "symfony/polyfill-iconv",
@@ -5734,12 +5521,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "bc6549d068d0160e0f10f7a5a23c7d1406b95ebe"
+                "reference": "045643b91eaa34c4c37150ac477765c13552af33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/bc6549d068d0160e0f10f7a5a23c7d1406b95ebe",
-                "reference": "bc6549d068d0160e0f10f7a5a23c7d1406b95ebe",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/045643b91eaa34c4c37150ac477765c13552af33",
+                "reference": "045643b91eaa34c4c37150ac477765c13552af33",
                 "shasum": ""
             },
             "require": {
@@ -5811,7 +5598,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T12:35:20+00:00"
+            "time": "2020-08-04T21:02:56+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
@@ -6207,12 +5994,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "a0485e88a72439c04c86e21e19e3f8540cc5898c"
+                "reference": "be8ae33efebc017cd0790d8a80096ae50b1b0b84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/a0485e88a72439c04c86e21e19e3f8540cc5898c",
-                "reference": "a0485e88a72439c04c86e21e19e3f8540cc5898c",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/be8ae33efebc017cd0790d8a80096ae50b1b0b84",
+                "reference": "be8ae33efebc017cd0790d8a80096ae50b1b0b84",
                 "shasum": ""
             },
             "require": {
@@ -6291,7 +6078,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-30T17:42:41+00:00"
+            "time": "2020-08-10T08:10:48+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -6567,12 +6354,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "5c110a03379f51a9e0df5a4a4fb3c4f9e3957b12"
+                "reference": "d8c3a0ff5efb657a298f22d669e0befe088033da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5c110a03379f51a9e0df5a4a4fb3c4f9e3957b12",
-                "reference": "5c110a03379f51a9e0df5a4a4fb3c4f9e3957b12",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/d8c3a0ff5efb657a298f22d669e0befe088033da",
+                "reference": "d8c3a0ff5efb657a298f22d669e0befe088033da",
                 "shasum": ""
             },
             "require": {
@@ -6673,7 +6460,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-15T19:25:24+00:00"
+            "time": "2020-08-07T20:12:20+00:00"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -6805,12 +6592,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap4.git",
-                "reference": "2d6c4f620a1b7bb31e07a0d7710dda26ab579c67"
+                "reference": "2230aa4aaec80e2edb35652b069cfb4ad03eac66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap4/zipball/2d6c4f620a1b7bb31e07a0d7710dda26ab579c67",
-                "reference": "2d6c4f620a1b7bb31e07a0d7710dda26ab579c67",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap4/zipball/2230aa4aaec80e2edb35652b069cfb4ad03eac66",
+                "reference": "2230aa4aaec80e2edb35652b069cfb4ad03eac66",
                 "shasum": ""
             },
             "require": {
@@ -6880,7 +6667,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-10T11:54:32+00:00"
+            "time": "2020-08-03T21:38:28+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -7626,17 +7413,88 @@
             "time": "2020-05-11T08:39:57+00:00"
         },
         {
+            "name": "guzzlehttp/psr7",
+            "version": "1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/psr7.git",
+                "reference": "188cc82398f157483976ccf61bd04ee80afcf29c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/188cc82398f157483976ccf61bd04ee80afcf29c",
+                "reference": "188cc82398f157483976ccf61bd04ee80afcf29c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "psr/http-message": "~1.0",
+                "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
+            },
+            "provide": {
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "ext-zlib": "*",
+                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+            },
+            "suggest": {
+                "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Tobias Schultze",
+                    "homepage": "https://github.com/Tobion"
+                }
+            ],
+            "description": "PSR-7 message implementation that also provides common utility methods",
+            "keywords": [
+                "http",
+                "message",
+                "psr-7",
+                "request",
+                "response",
+                "stream",
+                "uri",
+                "url"
+            ],
+            "time": "2020-05-17T20:05:25+00:00"
+        },
+        {
             "name": "opis/closure",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/closure.git",
-                "reference": "dec9fc5ecfca93f45cd6121f8e6f14457dff372c"
+                "reference": "e8d34df855b0a0549a300cb8cb4db472556e8aa9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/closure/zipball/dec9fc5ecfca93f45cd6121f8e6f14457dff372c",
-                "reference": "dec9fc5ecfca93f45cd6121f8e6f14457dff372c",
+                "url": "https://api.github.com/repos/opis/closure/zipball/e8d34df855b0a0549a300cb8cb4db472556e8aa9",
+                "reference": "e8d34df855b0a0549a300cb8cb4db472556e8aa9",
                 "shasum": ""
             },
             "require": {
@@ -7684,7 +7542,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2020-06-17T14:59:55+00:00"
+            "time": "2020-08-11T08:46:50+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -7843,12 +7701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "eb3320ef010709f339f118dde1645e197c4961ec"
+                "reference": "584a54ca0dadeee4e07c959e24fe61ffa4df22a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/eb3320ef010709f339f118dde1645e197c4961ec",
-                "reference": "eb3320ef010709f339f118dde1645e197c4961ec",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/584a54ca0dadeee4e07c959e24fe61ffa4df22a2",
+                "reference": "584a54ca0dadeee4e07c959e24fe61ffa4df22a2",
                 "shasum": ""
             },
             "require": {
@@ -7887,7 +7745,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2020-07-09T12:42:26+00:00"
+            "time": "2020-08-12T17:52:10+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -8474,6 +8332,46 @@
                 "psr-14"
             ],
             "time": "2020-05-26T00:50:43+00:00"
+        },
+        {
+            "name": "ralouphie/getallheaders",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ralouphie/getallheaders.git",
+                "reference": "120b605dfeb996808c31b6477290a714d356e822"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+                "reference": "120b605dfeb996808c31b6477290a714d356e822",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5 || ^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/getallheaders.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralph Khattar",
+                    "email": "ralph.khattar@gmail.com"
+                }
+            ],
+            "description": "A polyfill for getallheaders.",
+            "time": "2019-03-08T08:55:37+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -9097,12 +8995,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "55d07021da933dd0d633ffdab6f45d5b230c7e02"
+                "reference": "8b40d655a8648ef1d1737d039e0373be32a00f38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/55d07021da933dd0d633ffdab6f45d5b230c7e02",
-                "reference": "55d07021da933dd0d633ffdab6f45d5b230c7e02",
+                "url": "https://api.github.com/repos/symfony/console/zipball/8b40d655a8648ef1d1737d039e0373be32a00f38",
+                "reference": "8b40d655a8648ef1d1737d039e0373be32a00f38",
                 "shasum": ""
             },
             "require": {
@@ -9180,7 +9078,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-06T13:18:39+00:00"
+            "time": "2020-08-11T17:02:45+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -9255,12 +9153,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "c18354d5a0bb84c945f6257c51b971d52f10c614"
+                "reference": "6dd1e7adef4b7efeeb9691fd619279027d4dcf85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/c18354d5a0bb84c945f6257c51b971d52f10c614",
-                "reference": "c18354d5a0bb84c945f6257c51b971d52f10c614",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/6dd1e7adef4b7efeeb9691fd619279027d4dcf85",
+                "reference": "6dd1e7adef4b7efeeb9691fd619279027d4dcf85",
                 "shasum": ""
             },
             "require": {
@@ -9322,7 +9220,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-23T00:03:06+00:00"
+            "time": "2020-08-12T06:20:35+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -9330,12 +9228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "6140fc7047dafc5abbe84ba16a34a86c0b0229b8"
+                "reference": "3e8ea5ccddd00556b86d69d42f99f1061a704030"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/6140fc7047dafc5abbe84ba16a34a86c0b0229b8",
-                "reference": "6140fc7047dafc5abbe84ba16a34a86c0b0229b8",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/3e8ea5ccddd00556b86d69d42f99f1061a704030",
+                "reference": "3e8ea5ccddd00556b86d69d42f99f1061a704030",
                 "shasum": ""
             },
             "require": {
@@ -9406,7 +9304,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-18T17:59:13+00:00"
+            "time": "2020-08-13T14:18:44+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -9473,12 +9371,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "2727aa35fddfada1dd37599948528e9b152eb742"
+                "reference": "e5fe0730123430fa5202c8ce1b03e4efdd1c0277"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/2727aa35fddfada1dd37599948528e9b152eb742",
-                "reference": "2727aa35fddfada1dd37599948528e9b152eb742",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/e5fe0730123430fa5202c8ce1b03e4efdd1c0277",
+                "reference": "e5fe0730123430fa5202c8ce1b03e4efdd1c0277",
                 "shasum": ""
             },
             "require": {
@@ -9528,7 +9426,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-05T09:39:30+00:00"
+            "time": "2020-07-31T06:51:32+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -9764,12 +9662,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "c2d2cc66e892322cfcc03f8f12f8340dbd7a3f8a"
+                "reference": "c3a7761b26af26198ec077aa1563c7c799ee00fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/c2d2cc66e892322cfcc03f8f12f8340dbd7a3f8a",
-                "reference": "c2d2cc66e892322cfcc03f8f12f8340dbd7a3f8a",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/c3a7761b26af26198ec077aa1563c7c799ee00fd",
+                "reference": "c3a7761b26af26198ec077aa1563c7c799ee00fd",
                 "shasum": ""
             },
             "require": {
@@ -9829,7 +9727,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-20T08:37:50+00:00"
+            "time": "2020-08-13T06:22:32+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -10102,12 +10000,15 @@
         "kartik-v/yii2-tree-manager": 20,
         "kartik-v/yii2-widget-select2": 20,
         "codeonyii/yii2-at-least-validator": 20,
-        "milon/barcode": 20
+        "milon/barcode": 20,
+        "npm-asset/axios": 20,
+        "npm-asset/vue-router": 20,
+        "npm-asset/chart.js": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=7.0"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"

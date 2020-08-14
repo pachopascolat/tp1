@@ -21,6 +21,19 @@ use yii\widgets\Breadcrumbs;
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+        body{
+            display:flex;
+            flex-direction:column;
+        }
+        footer{
+            margin-top:auto;
+        }
+    </style>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -82,7 +95,7 @@ use yii\widgets\Breadcrumbs;
     <div class="container">
         <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+<!--        <p class="pull-right">--><?//= Yii::powered() ?><!--</p>-->
     </div>
 </footer>
 
