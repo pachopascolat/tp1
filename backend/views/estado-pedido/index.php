@@ -196,7 +196,7 @@
                     // axios.get('http://10.10.1.51:8000/pedidosEnCurso')
                     .then(function (response) {
                         console.log(response);
-                        self.pedidos = response.data;
+                        self.pedidos = response.data.reverse();
                     })
                     .catch(function (error) {
                         // handle error
