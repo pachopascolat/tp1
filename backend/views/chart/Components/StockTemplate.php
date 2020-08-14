@@ -25,7 +25,7 @@
                 <div @click="getEstadisticaArticulo(article)" class="variaciones columna">
                     <div v-if="parseFloat(article.delta)>0"> <button class="btn btn-success btn-sm"> + {{parseFloat(article.delta).toFixed(2)}} %</button></div>
                     <div v-if="parseFloat(article.delta)<0"> <button class="btn btn-danger btn-sm"> {{parseFloat(article.delta).toFixed(2)}} %</button> </div>
-                    <div v-if="parseFloat(article.delta)==0"><button class="btn btn-default btn-sm"> - </button> </div>
+                    <div v-if="parseFloat(article.delta)==0"><button class="btn btn-light btn-sm"> - </button> </div>
                 </div>
             </div>
             <div v-if="collapse&&row==j" class="stock-rows">

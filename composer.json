@@ -38,10 +38,11 @@
         "kartik-v/yii2-widget-select2": "@dev",
         "codeonyii/yii2-at-least-validator": "dev-master",
         "milon/barcode": "dev-master",
-        "npm-asset/vue": ">=2.6.11",
-        "npm-asset/bootstrap-vue": "*",
-        "npm-asset/axios": "*",
-        "npm-asset/vue-router":"~2.0"
+        "npm-asset/vue": "2.6.11",
+        "npm-asset/bootstrap-vue": "2.16.0",
+        "npm-asset/axios": "@dev",
+        "npm-asset/vue-router":"@dev",
+        "npm-asset/chart.js":"@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

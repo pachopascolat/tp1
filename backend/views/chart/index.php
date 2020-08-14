@@ -1,14 +1,12 @@
 <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
 
 <?php
+\backend\assets\BackendAsset::register($this);
 
 
-//$this->registerJsFile("https://use.fontawesome.com/a35639f299.js",['position'=>\yii\web\View::POS_HEAD]);
-$this->registerJsFile("https://cdn.jsdelivr.net/npm/vue/dist/vue.js",['position'=>\yii\web\View::POS_HEAD]);
-//$this->registerJsFile("https://unpkg.com/vue-router/dist/vue-router.js",['position'=>\yii\web\View::POS_HEAD]);
 $this->registerJsFile("https://cdn.jsdelivr.net/npm/chart.js@2.8.0",['position'=>\yii\web\View::POS_BEGIN]);
-//$this->registerJsFile("https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js",['position'=>\yii\web\View::POS_HEAD]);
-$this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\yii\web\View::POS_HEAD]);
+
+
 ?>
 <?php
 
@@ -16,7 +14,7 @@ $this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\
 
 ?>
 
-<div id="app">
+<div id="app" class="pt-3">
     <!--    <router-link to="/stock">Stock</router-link>-->
     <!--    <router-link to="/chart">Chart</router-link>-->
 
@@ -68,8 +66,8 @@ $this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\
     .columna{
         /*flex: 1;*/
         margin: 0.5em;
-        /*font-size: 0.8em;*/
-        s
+        font-size: 0.9em;
+
     }
     .mb-1{
         margin-bottom: 1em;
@@ -79,7 +77,6 @@ $this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\
         justify-content: right;
         width: 50px;
         padding: 0.5em;
-        font-size: 1em;
     }
 
     .stock-rows{
@@ -97,17 +94,16 @@ $this->registerJsFile("https://unpkg.com/axios/dist/axios.min.js",['position'=>\
     }
 
     .valores{
-        font-size: 1em;
         text-align: right;
         /*width: 20%;*/
     }
     .articulos-solos{
         width: 65%;
-        font-size: 1em;
+        font-size: 0.9em;
     }
 
     .articulos{
-        font-size: 1em;
+        font-size: 0.9em;
         width: 50%;
         overflow: hidden;
         text-overflow: ellipsis;

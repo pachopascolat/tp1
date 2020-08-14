@@ -1,193 +1,68 @@
 
 <?php
-//    \backend\assets\BootstrapVueAsset::register($this);
-//\backend\assets\VueAsset::register($this);
-\backend\assets\AxiosAsset::register($this);
+\backend\assets\BackendAsset::register($this);
 
-$this->registerCssFile("//unpkg.com/bootstrap/dist/css/bootstrap.min.css",['position'=>$this::POS_HEAD]);
-$this->registerCssFile("//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css",['position'=>$this::POS_HEAD]);
-//$this->registerCssFile("//polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver",['position'=>$this::POS_HEAD]);
-//
-$this->registerJsFile("https://cdn.jsdelivr.net/npm/vue/dist/vue.js",['position'=>$this::POS_HEAD]);
-$this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js",['position'=>$this::POS_HEAD]);
-////$this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js",['position'=>$this::POS_HEAD]);
-//$this->registerJsFile("https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js",['position'=>$this::POS_HEAD]);
 
 
 
 ?>
-
+<?=  $this->render('Components/Romaneo');?>
+<?=  $this->render('Components/Pedido');?>
 
 <div id="app" class="pt-3">
 
 
-    <div v-if="pedido" class="items">
+    <b-modal v-model="showRomaneo" size="lg" id="modal-1" :title="'Romaneo Pedido: '+pedido.id">
+        <romaneo :items="items"></romaneo>
+    </b-modal>
+    <b-modal v-model="showPedido" size="lg" id="modal-2" :title="'Romaneo Pedido: '+pedido.id">
+        <pedido :pedido="pedido" :labels="modalLabels"></pedido>
+    </b-modal>
 
-        <b-modal size="lg" v-model="modalShow" id="modal-1" :title="'Pedido '+ pedido.id ">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div >
-                        <label>Estado: {{pedido.estado}}</label>
-                    </div>
-                    <div >
-                        <label>Deposito: {{pedido.lugar}}</label>
-                    </div>
-                    <div >
-                        <label>Origen: {{pedido.ori}}</label>
-                    </div>
-                    <div>
-                        <label>Destino: {{pedido.des}}</label>
-                    </div>
-                    <div>
-                        <label>Fecha Emisión: {{pedido.fem}}</label>
-                    </div>
-                    <div>
-                        <label>Cliente: {{pedido.nombre}}</label>
-                    </div>
 
-                </div>
-                <div class="col-lg-6">
 
-                    <div>
-                        <label>Numero: {{pedido.nro}}</label>
-                    </div>
-                    <div>
-                        <label>Fecha Facturación: {{pedido.ffactura}}</label>
-                    </div>
-                    <div>
-                        <label>Fecha Despacho: {{pedido.fdespacho}}</label>
-                    </div>
-                    <div>
-                        <label>Fecha Cierre: {{pedido.fcierre}}</label>
-                    </div>
-                    <div>
-                        <label>Observaciones: {{pedido.obs}}</label>
-                    </div>
-                </div>
-            </div>
-            <table class="table table-striped table-inverse table-bordered items-table">
-                <thead class="thead-inverse">
-                <tr>
-                    <th class="d-none d-lg-table-cell">Item Data</th>
-                    <th class="d-none d-lg-table-cell">Codigo Articulo</th>
-                    <th>Descripción Tela</th>
-                    <th class="d-none d-lg-table-cell">Código Variante</th>
-                    <th>Nombre Variante</th>
-                    <th>Piezas pedidas</th>
-                    <th>Precio</th>
-                    <th>Imagen</th>
-                    <!--                    <template v-for="value,label in items[0]">-->
-                    <!--                        <th>{{label}}</th>-->
-                    <!--                    </template>-->
-                </tr>
-                </thead>
-                <tbody>
-                <template v-for="item,j in items">
-                    <tr>
-                        <td class="d-none d-lg-table-cell">
-                            {{item.itemdata}}
-                        </td>
-                        <td class="d-none d-lg-table-cell">
-                            {{item.articulo}}
-                        </td>
-                        <td>
-                            {{item.art_desc}}
-                        </td>
-                        <td class="d-none d-lg-table-cell">
-                            {{item.variante}}
-                        </td>
-                        <td class="">
-                            {{item.var_desc}}
-                        </td>
-                        <td>
-                            {{item.pza_ped}}
-                        </td>
-                        <td>
-                            {{item.precio}}
-                        </td>
-                        <td>
-                            <div>
-<!--                                <img class="d-none d-md-block" ref="imagen">-->
-                                <img  class="item-image" ref="imagen">
-                            </div>
-                        </td>
-
-                        <!--                        <template v-for="value,label in item">-->
-                        <!--                            <td>-->
-                        <!--                                <div v-html="value"></div>-->
-                        <!---->
-                        <!--                            </td>-->
-                        <!--                        </template>-->
-                    </tr>
-                </template>
-                </tbody>
-            </table>
-            <template>
-
-            </template>
-        </b-modal>
-    </div>
     <h2>Estado Pedidos</h2>
     <a name="" id="" class="btn btn-primary" href="<?=\yii\helpers\Url::to(['estado-pedido/crear-pedido'])?>" role="button">Nuevo</a>
     <table id="estado-pedido-table"  v-if="pedidos" class="table table-striped table-inverse table-bordered">
         <thead class="thead-inverse">
         <tr>
-            <!--            <th>#</th>-->
-            <!--            <th>-->
-            <!--                Estados-->
-            <!--            </th>-->
-            <!--            <th>Nro Estado</th>-->
-
-            <!--            <th>Deposito</th>-->
-            <!--            <th>Cliente</th>-->
-            <th class="fem">Fecha Emisión</th>
-            <th class="pedido d-none d-lg-table-cell">Pedido</th>
-            <th class="cliente d-none d-lg-table-cell">Cliente</th>
-            <th class="estado">Estado</th>
-            <!---->
-            <!--            <th>Nro</th>-->
-            <!--            <th>Id</th>-->
-            <!--            <th>Origen</th>-->
-            <!--            <th>Destino</th>-->
-            <!--            <th>Fecha Cierre</th>-->
-            <!--            <th>Fecha Factura</th>-->
-            <!--            <th>Fecha Despacho</th>-->
-            <th class="obs d-none d-lg-table-cell">Observaciones</th>
-            <!--            <template v-for="(header,i) in pedidos[0]">-->
-            <!--            <th>{{i}}</th>-->
-            <!--            </template>-->
+            <template v-for="item in tableLabels">
+                <th :class="!item.movil?'d-none d-md-table-cell':''" v-if="item.visible">{{item.label}}</th>
+            </template>
+            <th class="estado">Preparacion</th>
+            <th class="estado">Facturacion</th>
+            <th class="estado">Autorizacion-Pago</th>
+            <th class="estado">Entrega</th>
         </tr>
         </thead>
         <tbody>
         <template v-for="(pedido,i) in pedidos">
-            <tr v-on:click="getItems(i,pedido.id)" >
-                <td class="fem ">
-                    {{pedido.fem}}
-                </td>
-                <td class="pedido d-none d-lg-table-cell">
-                    {{pedido.id}}
-                </td>
-                <td class="cliente d-none d-lg-table-cell">
-                    {{pedido.nombre}}
-                </td>
-                <td class="progressbar-wrapper estado">
-                    <!--                    <div class="progressbar-wrapper">-->
-                    <ul class="progressbar pl-1">
-                        <li :class="pedido.est>=5?'active':''">Preparación</li>
-                        <li :class="pedido.est>=6?'active':''" >Facturación</li>
-                        <li :class="pedido.est>=7?'active':''">Autorización/Pago</li>
-                        <li :class="pedido.est>=8?'active':''">Entrega</li>
-                    </ul>
-                    <!--                    </div>-->
-                </td>
-                <td class="obs d-none d-lg-table-cell">
-                    {{pedido.obs}}
-                </td>
-                <!--                <template v-for="(data,i) in pedido">-->
-                <!--                    <td>-->
-                <!--                        {{data}}-->
-                <!--                    </td>-->
-                <!--                </template>-->
+            <tr  >
+                <template v-for="item,i in tableLabels">
+                    <td :class="!item.movil?'d-none d-md-table-cell':''" v-if="item.visible" v-on:click="showPedidoData(pedido)">{{pedido[item.field]}}</td>
+                </template>
+                <template class="progressbar-wrapper">
+                    <td class="estado">
+                        <div class="progressbar">
+                            <div v-on:click="getItems(i,pedido.id)" :class="pedido.est>5?'active':''"></div>
+                        </div>
+                    </td>
+                    <td class="estado">
+                        <div class="progressbar">
+                            <div :class="pedido.est>10?'active':''"></div>
+                        </div>
+                    </td>
+                    <td class="estado">
+                        <div class="progressbar">
+                            <div :class="pedido.est>20?'active':''"></div>
+                        </div>
+                    </td>
+                    <td class="estado">
+                        <div class="progressbar">
+                            <div :class="pedido.est>30?'active':''"></div>
+                        </div>
+                    </td>
+                </template>
             </tr>
 
         </template>
@@ -203,10 +78,51 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
 <script>
 
 
+
     var app = new Vue({
         el:'#app',
+        components:{
+            romaneo: Romaneo,
+            pedido: Pedido,
+            // 'b-model':BModal,
+        },
         data:{
-            modalShow:false,
+            tableLabels:[
+                {field:'id',label:'Id Pedido',visible:true,movil:true},
+                {field:'user',label:'Usuario',visible:true,movil:false},
+                {field:'fem',label:'Fecha Emision',visible:true,movil:false},
+                {field:'depo_nom',label:'Deposito',visible:true,movil:false},
+                {field:'nombre',label:'Cliente',visible:true,movil:false},
+                {field:'est',label:'Nro Estado',visible:false,movil:false},
+                {field:'estado',label:'Descripcion Estado',visible:true,movil:false},
+                {field:'des',label:'Destino?',visible:false,movil:false},
+                {field:'fcierre',label:'Fecha Cierre',visible:false,movil:false},
+                {field:'fdespacho',label:'Fecha Despacho',visible:false,movil:false},
+                {field:'ffactura',label:'Fecha Factura',visible:false,movil:false},
+                {field:'lugar',label:'Lugar',visible:false,movil:false},
+                {field:'nro',label:'Numero',visible:false,movil:false},
+                {field:'obs',label:'Observaciones',visible:false,movil:false},
+                {field:'ori',label:'Origen',visible:false,movil:false},
+            ],
+            modalLabels:[
+                {field:'id',label:'Id Pedido',visible:true},
+                {field:'user',label:'Usuario',visible:true},
+                {field:'fem',label:'Fecha Emision',visible:true},
+                {field:'depo_nom',label:'Deposito',visible:true},
+                {field:'nombre',label:'Cliente',visible:true},
+                {field:'est',label:'Nro Estado',visible:true},
+                {field:'estado',label:'Descripcion Estado',visible:true},
+                {field:'des',label:'Destino?',visible:true},
+                {field:'fcierre',label:'Fecha Cierre',visible:true},
+                {field:'fdespacho',label:'Fecha Despacho',visible:true},
+                {field:'ffactura',label:'Fecha Factura',visible:true},
+                {field:'lugar',label:'Lugar',visible:true},
+                {field:'nro',label:'Numero',visible:true},
+                {field:'obs',label:'Observaciones',visible:true},
+                {field:'ori',label:'Origen',visible:true},
+            ],
+            showRomaneo:false,
+            showPedido:false,
             pedido:{},
             photos:[],
             items:
@@ -215,12 +131,17 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
             ,
             pedidos:
             null
-            //     [{"est":5,"estado":"05-Pidiendo","lugar":4,"nombre":"TEXSIM","fem":"2020-06-12","nro":0,"id":78357,"ori":4,"des":1,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"TEXSIM","fem":"2020-06-19","nro":0,"id":78644,"ori":3,"des":1,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"TEXSIM","fem":"2020-06-22","nro":0,"id":78712,"ori":3,"des":5,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":5,"nombre":"TEXSIM","fem":"2020-06-23","nro":0,"id":78757,"ori":5,"des":3,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":4,"nombre":"TEXSIM","fem":"2020-06-29","nro":0,"id":78966,"ori":4,"des":3,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":4,"nombre":"TEXSIM","fem":"2020-06-29","nro":0,"id":78983,"ori":4,"des":3,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":4,"nombre":"TEXSIM","fem":"2020-06-30","nro":0,"id":79068,"ori":4,"des":3,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"FV $700 SEDESPACHA"},{"est":5,"estado":"05-Pidiendo","lugar":4,"nombre":"ESTELA GARCIA","fem":"2020-07-06","nro":0,"id":79125,"ori":4,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":5,"nombre":"TEXSIM","fem":"2020-07-13","nro":0,"id":79311,"ori":5,"des":1,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":1,"nombre":"ZOBERMAN JOSÉ ANGEL","fem":"2020-07-14","nro":0,"id":79374,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"tme $140\r\ntmr $140\r\nrepxdocena $600\r\nhcro $180\r\npbe $750\r\ngOB $600\r\nmfl $150\r\ncorpr $420\r\nfinal. se despacha. \r\nte mando cosas de lavalle."},{"est":5,"estado":"05-Pidiendo","lugar":1,"nombre":"MEMLITEX SA","fem":"2020-07-15","nro":0,"id":79409,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$630 final. transferencia previa. te mando 5 piezas de lavalle."},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"TEXSIM","fem":"2020-07-15","nro":0,"id":79410,"ori":3,"des":1,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"JAMIS S.R.L.","fem":"2020-07-15","nro":0,"id":79411,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"btl $160 fv. paga y retira x local\r\ntoal $380"},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"DOTTA DIEGO ALBERTO","fem":"2020-07-15","nro":0,"id":79416,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$650 fv. se entrega en junin 459 el MARTES 21/07\r\n DE 9 A 13 HS."},{"est":5,"estado":"05-Pidiendo","lugar":1,"nombre":"TEXTIL MM S.A.","fem":"2020-07-15","nro":0,"id":79422,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"PBE $700 \r\nHCRO $180\r\nFINAL. SE DESPACHA A CORDOBA. \r\nTE MANDO PIEZAS DE LAVALLE"},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"BAC TEXTIL S.R.L","fem":"2020-07-15","nro":0,"id":79425,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$750 FV. SE ENTREGA EN LAVALLE."},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"FISCHOFF GONZALO JAVIER","fem":"2020-07-15","nro":0,"id":79432,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$700 fv. se despacha a bahia blanca."},{"est":5,"estado":"05-Pidiendo","lugar":1,"nombre":"AGNETTI ANIBAL JORGE","fem":"2020-07-15","nro":0,"id":79439,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$750 fv."},{"est":5,"estado":"05-Pidiendo","lugar":1,"nombre":"DALESANDRO MIGUEL ANGEL","fem":"2020-07-15","nro":0,"id":79441,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$750 fv."},{"est":5,"estado":"05-Pidiendo","lugar":1,"nombre":"TELAS X METRO S.R.L.","fem":"2020-07-15","nro":0,"id":79443,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$110 final."},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"VERNACI EMILIANO SERGIO","fem":"2020-07-15","nro":0,"id":79444,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$700 fv."},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"JAIME SALEM","fem":"2020-07-15","nro":0,"id":79450,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"FV - \r\nENVIAR MAÑANA"},{"est":5,"estado":"05-Pidiendo","lugar":1,"nombre":"DITEXSA S.A.C.IF.I","fem":"2020-07-15","nro":0,"id":79451,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$140 mitad fv mitad final."},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"BUBAS PATRICIA MARCELA","fem":"2020-07-15","nro":0,"id":79452,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"se agrega 2 silver de Aruba\r\n5 bultos al deposito"},{"est":5,"estado":"05-Pidiendo","lugar":1,"nombre":"TEXSIM","fem":"2020-07-16","nro":0,"id":79456,"ori":1,"des":3,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"MANET SOCIEDAD DE RESPONSABILIDAD LIMITADA","fem":"2020-07-16","nro":0,"id":79459,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"frzb 900\r\npll 600\r\nmfl2.4  150\r\nfv tranfiere y se embala al deposito"},{"est":5,"estado":"05-Pidiendo","lugar":1,"nombre":"TEXTIL TRIUNVIRATO SH","fem":"2020-07-16","nro":0,"id":79479,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$185 final."},{"est":5,"estado":"05-Pidiendo","lugar":1,"nombre":"LORENZO HNOS SRL","fem":"2020-07-16","nro":0,"id":79482,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$145 final. se entrega."},{"est":5,"estado":"05-Pidiendo","lugar":3,"nombre":"MASKOTA S.R.L","fem":"2020-07-16","nro":0,"id":79487,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$700 final."},{"est":10,"estado":"10-Cargando","lugar":5,"nombre":"CONSUMIDOR FINAL","fem":"2020-06-24","nro":0,"id":78810,"ori":5,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":10,"estado":"10-Cargando","lugar":3,"nombre":"J.A. UNIFORMES S.A.S.","fem":"2020-07-08","nro":0,"id":79229,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":10,"estado":"10-Cargando","lugar":3,"nombre":"TRPTS S.A.S.","fem":"2020-07-13","nro":0,"id":79268,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":10,"estado":"10-Cargando","lugar":1,"nombre":"DALESANDRO MIGUEL ANGEL","fem":"2020-07-13","nro":0,"id":79302,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$750 frz.\r\n$800 frzm\r\nfv. se despacha a amr del plata"},{"est":10,"estado":"10-Cargando","lugar":1,"nombre":"FEV TELAS SRL","fem":"2020-07-13","nro":0,"id":79310,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$700 final. se despacha a rosario. te mando la francia de lavalle."},{"est":10,"estado":"10-Cargando","lugar":3,"nombre":"CORNEJO RODRIGO MAURO","fem":"2020-07-13","nro":0,"id":79316,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$180 fv."},{"est":10,"estado":"10-Cargando","lugar":1,"nombre":"SCHUSTER JONATHAN GABRIEL","fem":"2020-07-14","nro":0,"id":79360,"ori":1,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$140 final. te mando 6 piezas de lavalle."},{"est":10,"estado":"10-Cargando","lugar":4,"nombre":"CONSUMIDOR FINAL","fem":"2020-07-15","nro":0,"id":79436,"ori":4,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":10,"estado":"10-Cargando","lugar":3,"nombre":"MARTI ABEL AURELIO","fem":"2020-07-15","nro":0,"id":79438,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"FV 140\r\nTRANSFIERE VA AL DEPOSITO\r\nEXPRESO SOLMAR"},{"est":10,"estado":"10-Cargando","lugar":3,"nombre":"SUSSI ALEJANDRO JOSE","fem":"2020-07-15","nro":0,"id":79445,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":10,"estado":"10-Cargando","lugar":3,"nombre":"MARCOS MALDONADO","fem":"2020-07-16","nro":0,"id":79478,"ori":3,"des":0,"fcierre":null,"ffactura":null,"fdespacho":null,"obs":"FV 650"},{"est":20,"estado":"20-Cerrado","lugar":3,"nombre":"STANCATI JUAN PABLO","fem":"2020-06-22","nro":0,"id":78671,"ori":0,"des":3,"fcierre":"2020-06-22T14:24:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":3,"nombre":"AGUILAR CHOQUE VIRGINIA","fem":"2020-07-08","nro":0,"id":79218,"ori":0,"des":3,"fcierre":"2020-07-08T15:13:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":3,"nombre":"AGUILAR CHOQUE VIRGINIA","fem":"2020-07-08","nro":0,"id":79219,"ori":3,"des":0,"fcierre":"2020-07-08T15:14:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"BLANCO SAN FRANCISCO","fem":"2020-07-14","nro":0,"id":79340,"ori":1,"des":0,"fcierre":"2020-07-14T18:29:00.000Z","ffactura":null,"fdespacho":null,"obs":"cambio por pieza fallada."},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"TEXSIM","fem":"2020-07-14","nro":0,"id":79349,"ori":3,"des":1,"fcierre":"2020-07-16T16:44:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"TEXSIM","fem":"2020-07-14","nro":0,"id":79361,"ori":3,"des":1,"fcierre":"2020-07-16T14:00:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"TEXSIM","fem":"2020-07-14","nro":0,"id":79376,"ori":3,"des":1,"fcierre":"2020-07-16T15:13:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"ROLESSE GROUP S.A.","fem":"2020-07-14","nro":0,"id":79383,"ori":1,"des":0,"fcierre":"2020-07-16T12:01:00.000Z","ffactura":null,"fdespacho":null,"obs":"$270 fv. te mando un mat gris de lavalle. retira el clinete por el deposito."},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"TEXSIM","fem":"2020-07-14","nro":0,"id":79384,"ori":3,"des":1,"fcierre":"2020-07-16T14:18:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":4,"nombre":"WILSON BALDERRAMA","fem":"2020-07-15","nro":0,"id":79392,"ori":4,"des":0,"fcierre":"2020-07-15T13:53:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":4,"nombre":"TEXSIM","fem":"2020-07-15","nro":0,"id":79405,"ori":3,"des":4,"fcierre":"2020-07-15T15:40:00.000Z","ffactura":null,"fdespacho":null,"obs":"ROLLOS PARA MARIANA  ( WILSON VALDERRAMA)"},{"est":20,"estado":"20-Cerrado","lugar":3,"nombre":"TEXSIM","fem":"2020-07-15","nro":0,"id":79413,"ori":1,"des":3,"fcierre":"2020-07-15T19:12:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"TEXSIM","fem":"2020-07-15","nro":0,"id":79423,"ori":3,"des":1,"fcierre":"2020-07-16T16:42:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":3,"nombre":"AGUILAR CHOQUE VIRGINIA","fem":"2020-07-15","nro":0,"id":79424,"ori":0,"des":3,"fcierre":"2020-07-15T17:13:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"BARBARESI RAUL","fem":"2020-07-15","nro":0,"id":79437,"ori":0,"des":1,"fcierre":"2020-07-15T18:58:00.000Z","ffactura":null,"fdespacho":null,"obs":"ANULADO, SE REINGRESAN PARA N/C FACTURA 0005467 (23 DE JUNIO)"},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"ACCESORIOS UTILES S.R.L.","fem":"2020-07-15","nro":0,"id":79442,"ori":1,"des":0,"fcierre":"2020-07-16T16:30:00.000Z","ffactura":null,"fdespacho":null,"obs":"$700 final"},{"est":20,"estado":"20-Cerrado","lugar":3,"nombre":"TEXSIM","fem":"2020-07-16","nro":0,"id":79453,"ori":4,"des":3,"fcierre":"2020-07-16T12:31:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":3,"nombre":"ZOBERMAN JOSÉ ANGEL","fem":"2020-07-16","nro":0,"id":79457,"ori":0,"des":3,"fcierre":"2020-07-16T12:49:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":3,"nombre":"Textil H.H. S.A.","fem":"2020-07-16","nro":0,"id":79461,"ori":0,"des":3,"fcierre":"2020-07-16T13:48:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":3,"nombre":"ZOBERMAN JOSÉ ANGEL","fem":"2020-07-16","nro":0,"id":79466,"ori":0,"des":3,"fcierre":"2020-07-16T14:48:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"SASSON ELIAS GABRIEL","fem":"2020-07-16","nro":0,"id":79467,"ori":1,"des":0,"fcierre":"2020-07-16T14:46:00.000Z","ffactura":null,"fdespacho":null,"obs":"$135 final.retira por local."},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"MATERIALES MARTELLI","fem":"2020-07-16","nro":0,"id":79469,"ori":1,"des":0,"fcierre":"2020-07-16T16:28:00.000Z","ffactura":null,"fdespacho":null,"obs":"$150 fv. retira por deposito junto a las cuerinas."},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"DELTOM SA","fem":"2020-07-16","nro":0,"id":79471,"ori":0,"des":1,"fcierre":"2020-07-16T14:41:00.000Z","ffactura":null,"fdespacho":null,"obs":"PEDIDO ANULADO SE REINGRESA PARA n/c"},{"est":20,"estado":"20-Cerrado","lugar":1,"nombre":"DELTOM SA","fem":"2020-07-16","nro":0,"id":79473,"ori":1,"des":0,"fcierre":"2020-07-16T15:54:00.000Z","ffactura":null,"fdespacho":null,"obs":""}],
-        },
+
+                // [{"est":10,"estado":"10-Cargando","lugar":4,"depo_nom":"CELINA","nombre":"TEXSIM","fem":"2020-06-12","nro":0,"id":78357,"ori":4,"des":1,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":10,"estado":"10-Cargando","lugar":5,"depo_nom":"AZCUENGA 580","nombre":"TEXSIM","fem":"2020-06-23","nro":0,"id":78757,"ori":5,"des":3,"user":"Mostrador","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":4,"depo_nom":"CELINA","nombre":"TEXSIM","fem":"2020-06-29","nro":0,"id":78966,"ori":4,"des":3,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":4,"depo_nom":"CELINA","nombre":"TEXSIM","fem":"2020-06-29","nro":0,"id":78983,"ori":4,"des":3,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":4,"depo_nom":"CELINA","nombre":"TEXSIM","fem":"2020-06-30","nro":0,"id":79068,"ori":4,"des":3,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"FV $700 SEDESPACHA"},{"est":5,"estado":"05-Pidiendo","lugar":4,"depo_nom":"CELINA","nombre":"ESTELA GARCIA","fem":"2020-07-06","nro":0,"id":79125,"ori":4,"des":0,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":5,"depo_nom":"AZCUENGA 580","nombre":"TEXSIM","fem":"2020-07-13","nro":0,"id":79311,"ori":5,"des":1,"user":"Mostrador","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":4,"depo_nom":"CELINA","nombre":"WILSON BALDERRAMA","fem":"2020-07-15","nro":0,"id":79392,"ori":4,"des":0,"user":"Hernan","fcierre":"2020-07-15T13:53:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":4,"depo_nom":"CELINA","nombre":"TEXSIM","fem":"2020-07-15","nro":0,"id":79405,"ori":3,"des":4,"user":"Hernan","fcierre":"2020-07-15T15:40:00.000Z","ffactura":null,"fdespacho":null,"obs":"ROLLOS PARA MARIANA  ( WILSON VALDERRAMA)"},{"est":20,"estado":"20-Cerrado","lugar":4,"depo_nom":"CELINA","nombre":"CONSUMIDOR FINAL","fem":"2020-07-17","nro":0,"id":79556,"ori":4,"des":0,"user":"Hernan","fcierre":"2020-07-17T18:12:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":10,"estado":"10-Cargando","lugar":3,"depo_nom":"LAVALLE","nombre":"THE VOX S.R.L.","fem":"2020-07-17","nro":0,"id":79589,"ori":0,"des":3,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"TEXSIM","fem":"2020-07-22","nro":0,"id":79766,"ori":3,"des":1,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":4,"depo_nom":"CELINA","nombre":"","fem":"2020-07-23","nro":0,"id":79830,"ori":4,"des":0,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":4,"depo_nom":"CELINA","nombre":"QUISPE LAURA SALTA ASUNTA","fem":"2020-07-27","nro":0,"id":79912,"ori":0,"des":4,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"TEXSIM","fem":"2020-07-27","nro":0,"id":79919,"ori":3,"des":1,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":4,"depo_nom":"CELINA","nombre":"TEXSIM","fem":"2020-07-29","nro":0,"id":80074,"ori":4,"des":3,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":10,"estado":"10-Cargando","lugar":4,"depo_nom":"CELINA","nombre":"HERNAN TITO","fem":"2020-07-30","nro":0,"id":80117,"ori":4,"des":0,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":4,"depo_nom":"CELINA","nombre":"TEXSIM","fem":"2020-07-31","nro":0,"id":80208,"ori":4,"des":3,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"MISHAGUI BLANCO S.R.L.","fem":"2020-08-04","nro":0,"id":80321,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"FINAL $150 TRANSFIERE Y RETIRA.\r\n\r\nENTREGA 3"},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"MISHAGUI BLANCO S.R.L.","fem":"2020-08-04","nro":0,"id":80322,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"FINAL $150 TRANSFIERE Y RETIRA POR LAVALLE\r\n\r\nENTREGA 4"},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"MISHAGUI BLANCO S.R.L.","fem":"2020-08-04","nro":0,"id":80323,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"FINAL $150 TRANSFIERE Y RETIRA.\r\n\r\nENTREGA 5"},{"est":5,"estado":"05-Pidiendo","lugar":4,"depo_nom":"CELINA","nombre":"ESTELA CHOQUE","fem":"2020-08-05","nro":0,"id":80365,"ori":4,"des":0,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"","fem":"2020-08-06","nro":0,"id":80403,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":3,"depo_nom":"LAVALLE","nombre":"CONSUMIDOR FINAL","fem":"2020-08-06","nro":0,"id":80446,"ori":3,"des":0,"user":"Gabriela","fcierre":"2020-08-06T18:10:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":3,"depo_nom":"LAVALLE","nombre":"TEXSIM","fem":"2020-08-07","nro":0,"id":80507,"ori":1,"des":3,"user":"Gabriela","fcierre":"2020-08-07T16:20:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"SCHEEL KEVIN GEORGE","fem":"2020-08-07","nro":0,"id":80525,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"FV $600  PAGA Y RETIRA POR LAVALLE,LUNES."},{"est":20,"estado":"20-Cerrado","lugar":3,"depo_nom":"LAVALLE","nombre":"TEXSIM","fem":"2020-08-07","nro":0,"id":80544,"ori":5,"des":3,"user":"Gabriela","fcierre":"2020-08-07T19:02:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":10,"estado":"10-Cargando","lugar":3,"depo_nom":"LAVALLE","nombre":"TRPTS S.A.S.","fem":"2020-08-10","nro":0,"id":80576,"ori":0,"des":3,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"MISHAGUI BLANCO S.R.L.","fem":"2020-08-10","nro":0,"id":80584,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"150 final tranfiere\r\n\r\nPedido n 2"},{"est":10,"estado":"10-Cargando","lugar":3,"depo_nom":"LAVALLE","nombre":"SCHEEL KEVIN GEORGE","fem":"2020-08-10","nro":0,"id":80592,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":1,"depo_nom":"DEPOSITO","nombre":"BUBAS PATRICIA MARCELA","fem":"2020-08-10","nro":0,"id":80600,"ori":1,"des":0,"user":"Admin","fcierre":"2020-08-10T19:31:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"MYRIAM ESPINOLA","fem":"2020-08-11","nro":0,"id":80646,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"HULE CON FRISELINA 130  CRISTAL ESTAMPADO 90   CRISTAL DE 10  80  CRISTAL DE 20  120   fv retira x lavalle mañana y paga en efectivo"},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"GERBER LORENA VALERIA","fem":"2020-08-11","nro":0,"id":80647,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"crt0010  80   crt0015   100    crt0020    120  final transfiere y se despacha\r\ncre 90"},{"est":20,"estado":"20-Cerrado","lugar":4,"depo_nom":"CELINA","nombre":"ANTONIO PACO","fem":"2020-08-12","nro":0,"id":80682,"ori":4,"des":0,"user":"Hernan","fcierre":"2020-08-13T18:26:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"SOUSSE´S S.R.L.","fem":"2020-08-12","nro":0,"id":80683,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"HARARI EZEQUIEL ANDRES Y HARARI REGINA INES","fem":"2020-08-12","nro":0,"id":80702,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$700 final. se despacha a rosario.,"},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"BLANCO CLAUDIO´S SA","fem":"2020-08-12","nro":0,"id":80706,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"525 docenas x $650 final. \r\nSe entrega en Directorio 7146."},{"est":20,"estado":"20-Cerrado","lugar":3,"depo_nom":"LAVALLE","nombre":"LOPEZ VANESA","fem":"2020-08-12","nro":0,"id":80714,"ori":0,"des":3,"user":"Gabriela","fcierre":"2020-08-12T20:51:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"JUGUETECH SA","fem":"2020-08-12","nro":0,"id":80716,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$45 final. retira por local."},{"est":20,"estado":"20-Cerrado","lugar":3,"depo_nom":"LAVALLE","nombre":"GREGO ROSA MARTA","fem":"2020-08-13","nro":0,"id":80725,"ori":3,"des":0,"user":"Gabriela","fcierre":"2020-08-13T15:45:00.000Z","ffactura":null,"fdespacho":null,"obs":"$135 FV. RETIRA POR LOCAL."},{"est":20,"estado":"20-Cerrado","lugar":1,"depo_nom":"DEPOSITO","nombre":"EL ASSIR ELIAS RUBEN","fem":"2020-08-13","nro":0,"id":80747,"ori":1,"des":0,"user":"Admin","fcierre":"2020-08-13T20:48:00.000Z","ffactura":null,"fdespacho":null,"obs":"$450 final. retira por deposito."},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"EL ASSIR ELIAS RUBEN","fem":"2020-08-13","nro":0,"id":80748,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$450 final."},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"DITEXSA S.A.C.IF.I","fem":"2020-08-13","nro":0,"id":80751,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$580 final."},{"est":5,"estado":"05-Pidiendo","lugar":4,"depo_nom":"CELINA","nombre":"","fem":"2020-08-13","nro":0,"id":80757,"ori":4,"des":0,"user":"Hernan","fcierre":null,"ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":1,"depo_nom":"DEPOSITO","nombre":"BLANCO SAN FRANCISCO","fem":"2020-08-13","nro":0,"id":80760,"ori":1,"des":0,"user":"Admin","fcierre":"2020-08-13T21:27:00.000Z","ffactura":null,"fdespacho":null,"obs":"$140 final. se entrega en scalabrini ortiz."},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"TEXTIL UNION","fem":"2020-08-13","nro":0,"id":80761,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$45 final. se entrega en lavalle 2496."},{"est":20,"estado":"20-Cerrado","lugar":4,"depo_nom":"CELINA","nombre":"RICHARD FLORES","fem":"2020-08-13","nro":0,"id":80764,"ori":4,"des":0,"user":"Hernan","fcierre":"2020-08-13T18:44:00.000Z","ffactura":null,"fdespacho":null,"obs":""},{"est":20,"estado":"20-Cerrado","lugar":1,"depo_nom":"DEPOSITO","nombre":"HAAG ESTELLA MARIS","fem":"2020-08-13","nro":0,"id":80765,"ori":1,"des":0,"user":"Admin","fcierre":"2020-08-13T21:23:00.000Z","ffactura":null,"fdespacho":null,"obs":"FINAL MICRO 2.40 $ 150 CRISTAL 0.20 $ 120 TRANSFIERE Y SE DESPACHA."},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"OSORIO VICTOR DAVID","fem":"2020-08-13","nro":0,"id":80772,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$450 final"},{"est":5,"estado":"05-Pidiendo","lugar":3,"depo_nom":"LAVALLE","nombre":"GREGO ROSA MARTA","fem":"2020-08-13","nro":0,"id":80773,"ori":3,"des":0,"user":"Gabriela","fcierre":null,"ffactura":null,"fdespacho":null,"obs":"$135 fv. retira por local."}]        }
+        ,
         mounted(){
             this.getPedidos();
         },
         methods:{
+            showPedidoData(pedido){
+                this.pedido = pedido;
+                this.showPedido = true;
+            },
             getPhoto(item,key){
                 var self = this;
                 axios.get('/admin/estado-pedido/get-photo',{params:{codigo:item.articulo,variante:item.variante}})
@@ -241,7 +162,7 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
             getItems(key,id){
                 var self = this;
                 this.pedido = Object.create(this.pedidos[key]);
-
+                // return ;
                 // for(var i = 0 ; i < self.items.length; i++){
                 //     self.getPhoto(self.items[i],i)
                 // }
@@ -259,7 +180,7 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
                             self.getPhoto(self.items[i],i)
                         }
                         self.pedido['items'] = self.items;
-                        self.modalShow = true;
+                        self.showRomaneo = true;
                     })
                     .catch(function (error) {
                         // handle error
@@ -289,24 +210,38 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
 
         }
     });
+
+
+
 </script>
 
 <style>
 
+
+    .estado {
+        width: 80px;
+        /*overflow: hidden;*/
+        /*text-overflow: ellipsis;*/
+        word-break:break-word ;
+
+    }
+
+
+
     #app td{
-        font-size: 3vmin;
-        padding-left: 2px;
-        padding-right: 4px;
+        font-size: 14px;
+        padding: 2px 2px;
         vertical-align: middle;
     }
     #app th{
-        font-size: 3vmin;
+        /*text-align: center;*/
+        font-size: 12px;
         padding-left: 2px;
         padding-right: 4px;
     }
 
     .items-table td, .items-table th{
-        font-size: 2.5vmin !important;
+        font-size: 12px !important;
         padding-left: 2px;
         padding-right: 4px;
         vertical-align:middle;
@@ -321,20 +256,25 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
     }
 
 
+    ul.progressbar{
+        padding-left: 0;
+        d-flex;
+        justify-content: center;
+    }
 
-    .progressbar li {
+    .progressbar div {
         overflow-wrap: break-word;
         list-style-type: none;
-        width: 25%;
+        width: 100%;
         float: left;
-        font-size: 2vmin;
+        font-size: 10px;
         position: relative;
         text-align: center;
         text-transform: uppercase;
         color: #7d7d7d;
     }
 
-    .progressbar li:before {
+    .progressbar div:before {
         width: 30px;
         height: 30px;
         /*content: '';*/
@@ -342,13 +282,13 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
         border: 2px solid #7d7d7d;
         display: block;
         text-align: center;
-        margin: 0 auto 3px auto;
+        margin: 0 auto  ;
         border-radius: 50%;
         position: relative;
         z-index: 2;
         background-color: #fff;
     }
-    .progressbar li:after {
+    .progressbar div:after {
         width: 100%;
         height: 2px;
         content: '';
@@ -358,15 +298,15 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
         left: -50%;
         z-index: 0;
     }
-    .progressbar li:first-child:after {
+    .progressbar div:first-child:after {
         content: none;
     }
 
-    .progressbar li.active {
+    .progressbar div.active {
         color: green;
         font-weight: bold;
     }
-    .progressbar li.active:before {
+    .progressbar div.active:before {
         /*border-color: #55b776;*/
         /*border-color: white;*/
         border: 2px solid #fff;
@@ -374,8 +314,9 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
         box-shadow: 0 0 0 2px #3cb371;
         content: '\2714';
         color: #fff3cd !important;
+        line-height: 28px;
     }
-    .progressbar li.active + li:after {
+    .progressbar div.active + div:after {
         background-color: #55b776;
     }
 
@@ -390,18 +331,19 @@ $this->registerJsFile("https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue
     .progressbar {
         counter-reset: step;
     }
-    .progressbar li:before {
+    .progressbar div:before {
         /*content: counter(step);*/
         content: 'x';
         counter-increment: step;
+        line-height: 28px;
     }
 
     .fem{
-        /*width: 10%;*/
+        width: 10%;
     }
 
     .obs{
-        width: 20%;
+        /*width: 20%;*/
     }
     .pedido{
         width: 5%;

@@ -10,19 +10,22 @@ use yii\web\AssetBundle;
 
 class BootstrapVueAsset extends AssetBundle
 {
-    public $sourcePath = '@npm/bootstrap-vue';
+    public $sourcePath = '@npm';
 
     public $css = [
-        'dist/bootstrap-vue.min.css',
+//        'bootstrap/dist/css/bootstrap.min.css',
+        'bootstrap-vue/dist/bootstrap-vue.css',
+
     ];
 
     public $js = [
-        'dist/bootstrap-vue.min.js',
+//        'vue/dist/vue.js',
+        'bootstrap-vue/dist/bootstrap-vue.js',
     ];
     public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
     public $depends = [
-        BootstrapAsset::class,
+//        BootstrapAsset::class,
 //        BootstrapPluginAsset::class,
-        VueAsset::class,
+//        VueAsset::class,
     ];
 }
