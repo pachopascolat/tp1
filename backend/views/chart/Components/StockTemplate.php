@@ -1,5 +1,9 @@
 <div class="stock-template">
-    <div class="input-group">
+    <div class="p-1 d-flex">
+    <a name="" id="" class="btn btn-primary btn-sm p-1" href="<?=\yii\helpers\Url::to(['estado-pedido/crear-pedido'])?>" role="button">Nuevo</a>
+    <a name="" id="" class="btn btn-danger btn-sm p-1" href="<?=\yii\helpers\Url::to(['/chart/index'])?>" role="button">Stock</a>
+    </div>
+        <div class="input-group">
         <input  v-model="niddle" class="form-control mb-1" placeholder="ingrese articulo">
         <span class="input-group-btn">
             <button @click="filterArticulo(niddle)" class="btn btn-success" >
