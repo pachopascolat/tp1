@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8164028de2794a1a706e0908ee84ba80",
+    "content-hash": "f7a42b32c089495a0cfe07fb7785b3d8",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -4708,6 +4708,18 @@
                 "MIT"
             ],
             "time": "2016-07-01T19:10:19+00:00"
+        },
+        {
+            "name": "npm-asset/vue-select",
+            "version": "3.10.7",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/vue-select/-/vue-select-3.10.7.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "paragonie/random_compat",
@@ -10002,8 +10014,7 @@
         "codeonyii/yii2-at-least-validator": 20,
         "milon/barcode": 20,
         "npm-asset/axios": 20,
-        "npm-asset/vue-router": 20,
-        "npm-asset/chart.js": 20
+        "npm-asset/vue-router": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
