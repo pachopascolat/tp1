@@ -17,11 +17,11 @@
         data: function () {
             return {
                 depositos:[
-                    {nro:1,piezas:0,mts:0},
-                    {nro:2,piezas:0,mts:0},
-                    {nro:3,piezas:0,mts:0},
-                    {nro:4,piezas:0,mts:0},
-                    {nro:5,piezas:0,mts:0},
+                    {nro:1,piezas:0,mts:0,nombre:'Deposito'},
+                    {nro:2,piezas:0,mts:0,nombre:'Deposito 2'},
+                    {nro:3,piezas:0,mts:0,nombre:'Lavalle'},
+                    {nro:4,piezas:0,mts:0,nombre:'Celina'},
+                    {nro:5,piezas:0,mts:0,nombre:'Azcuenaga'},
                 ],
                 loading: true,
                 // articulo:null,

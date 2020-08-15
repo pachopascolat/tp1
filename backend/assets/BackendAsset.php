@@ -30,6 +30,7 @@ class BackendAsset extends AssetBundle
         BootstrapAsset::class,
         VueAsset::class,
         BootstrapVueAsset::class,
+        VueSelectAsset::class,
         AxiosAsset::class,
 //        AxiosAsset::class
     ];

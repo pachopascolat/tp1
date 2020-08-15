@@ -34,13 +34,13 @@
             <template v-for="dep,i in depositos">
                 <div class="fila">
                     <div class="columna">
-                        <h5>Deposito {{dep.depo_nom}}:</h5>
+                        {{dep.nombre}}:
                     </div>
                     <div class="columna">
-                        <h5>piezas: {{dep.piezas}}</h5>
+                        piezas: {{dep.piezas}}
                     </div>
                     <div class="columna text-right">
-                        <h5>{{dep.mts}} MTS </h5>
+                        {{dep.mts}} MTS
                     </div>
                 </div>
             </template>

@@ -3,6 +3,7 @@
     const stock = Vue.component('stock', {
         data: function () {
             return {
+
                 todosArticulos:[],
                 cargas:[],
                 variantes:[],

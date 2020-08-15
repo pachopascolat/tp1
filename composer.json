@@ -42,7 +42,9 @@
         "npm-asset/bootstrap-vue": "2.16.0",
         "npm-asset/axios": "@dev",
         "npm-asset/vue-router":"@dev",
-        "npm-asset/chart.js":"@dev"
+        "npm-asset/chart.js":">=3.0.0",
+        "npm-asset/vue-select":"3.10.7"
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

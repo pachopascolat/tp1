@@ -89,7 +89,9 @@ class EstadoPedidoController extends Controller {
     }
 
     public function actionGetPhoto($codigo,$variante){
-        $articulo = Articulo::find()->joinWith('tela')->where(['codigo_tela'=>trim($codigo),'codigo_color'=>trim($variante)])->one();
+        $codigo = trim($codigo);
+        $variante = trim($variante);
+        $articulo = Articulo::find()->joinWith('tela')->where(['codigo_tela'=>$codigo,'codigo_color'=>$variante])->one();
         if($articulo){
             $url = $articulo->getUrl();
             return $url;
