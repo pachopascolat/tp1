@@ -118,7 +118,7 @@ class ChartController extends Controller
     public function actionGetDepositos($articulo,$variante=null){
         $depositos = [];
         for ($i=1 ; $i <= 5 ;$i++){
-            $depositos[$i] = Json::decode($this->actionGetDeposito($i,$articulo,$variante));
+            $depositos[$i] = $this->actionGetDeposito($i,$articulo,$variante);
         }
         return Json::encode($depositos);
     }
@@ -141,6 +141,7 @@ class ChartController extends Controller
             ->send();
 
         $data = $response->getData();
+        return $data[0]??null;
 
         return Json::encode($data[0]??null);
     }
