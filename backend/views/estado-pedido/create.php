@@ -151,13 +151,13 @@
         },
         mounted(){
             this.getStock();
-            if (localStorage.getItem('items')) {
-                try {
-                    this.pedido.items = JSON.parse(localStorage.getItem('items'));
-                } catch(e) {
-                    localStorage.removeItem('items');
-                }
-            }
+            // if (localStorage.getItem('items')) {
+            //     try {
+            //         this.pedido.items = JSON.parse(localStorage.getItem('items'));
+            //     } catch(e) {
+            //         localStorage.removeItem('items');
+            //     }
+            // }
         },
         methods:{
             // getDepositos(){

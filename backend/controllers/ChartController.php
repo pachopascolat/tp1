@@ -141,7 +141,6 @@ class ChartController extends Controller
             ->send();
 
         $data = $response->getData();
-        return $data[0]??null;
 
         return Json::encode($data[0]??null);
     }
