@@ -75,7 +75,7 @@ $this->registerJsFile("https://cdn.jsdelivr.net/npm/chart.js@2.8.0",['position'=
 
     .variaciones button{
         justify-content: right;
-        width: 50px;
+        width: 70px;
         padding: 0.5em;
     }
 

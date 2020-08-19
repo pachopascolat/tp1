@@ -1,5 +1,5 @@
 <?php
-    \backend\assets\BackendAsset::register($this);
+\backend\assets\BackendAsset::register($this);
 //\backend\assets\VueAsset::register($this);
 //\backend\assets\AxiosAsset::register($this);
 
@@ -20,7 +20,6 @@
 ?>
 
 <div id="app" class="container">
-
     <div class="p-3">
         <b-button v-b-toggle.collapse-1 variant="primary">Cliente</b-button>
         <h5 v-if="cliente">{{cliente.nombre}}</h5>
@@ -81,6 +80,7 @@
                 <th>Nombre</th>
                 <th>Codigo Variante</th>
                 <th>Nombre Variante</th>
+                <th>Deposito</th>
                 <th>Piezas</th>
                 <th>Precio</th>
                 <th>Borrar</th>
@@ -97,8 +97,18 @@
                     <td>{{item.nom}}</td>
                     <td>{{item.variante.variante}}</td>
                     <td>{{item.variante.nom}}</td>
-                    <td><input v-model="item.piezas" class="form-control"></td>
-                    <td><input v-model="item.precio" class="form-control"></td>
+                    <td>
+                        <select v-model="pedido.deposito" class="form-control form-control-sm">
+                            <option v-for="dep,i in depositos">
+                                {{dep.nombre}}: {{item.depositos[dep.nro].piezas}}piezas - {{item.depositos[dep.nro].mts}}MTS
+                            </option>
+                        </select>
+<!--                        <div v-for="dep,i in depositos"  class="text-nowrap">-->
+<!--                            {{dep.nombre}} {{item.depositos[dep.nro].mts}}MTS-->
+<!--                        </div>-->
+                    </td>
+                    <td><input v-model="item.piezas" class="form-control items-input form-control-sm"></td>
+                    <td><input v-model="item.precio" class="form-control items-input form-control-sm"></td>
                     <td>
                         <button @click="delItem(i)" type="button" class="btn btn-danger">borrar</button>
                     </td>
@@ -124,15 +134,18 @@
             'v-select':VueSelect.VueSelect,
         },
         data:{
+            depositos:[
+                {nro:1,piezas:0,mts:0,nombre:'Deposito'},
+                {nro:2,piezas:0,mts:0,nombre:'Deposito 2'},
+                {nro:3,piezas:0,mts:0,nombre:'Lavalle'},
+                {nro:4,piezas:0,mts:0,nombre:'Celina'},
+                {nro:5,piezas:0,mts:0,nombre:'Azcuenaga'},
+            ],
             variantes:null,
             variante:{},
             articulo:null,
             articulos:null,
-            pedido:{items:[],rempeds:[]},
-            items:[],
-            item:null,
-            itemForm:null,
-            itemOptions:[],
+            pedido:{items:[]},
             cliente:null,
             options:[],
         },
@@ -147,31 +160,40 @@
             }
         },
         methods:{
-            getDepositos(){
-                for(var i = 1; i < 6 ; i++){
-                    this.getPorDeposito(i);
-                }
-            },
-            getPorDeposito(deposito){
+            // getDepositos(){
+            //     for(var i = 1; i < 6 ; i++){
+            //        this.getPorDeposito(i);
+            //     }
+            //     console.log('termine el for de getDeposito');
+            //     // this.articulo.depositos = this.depositos;
+            //     // this.saveItems();
+            //     // this.articulo={};
+            // },
+            getDepositos(deposito){
                 var self = this;
-                var url = '/admin/chart/get-deposito?deposito='+deposito+'&articulo='+self.articulo.articulo;
+                var url = '/admin/chart/get-depositos?deposito='+deposito+'&articulo='+self.articulo.articulo;
                 if(self.articulo.variante){
-                    url = '/admin/chart/get-deposito?deposito='+deposito+'&articulo='+self.articulo.articulo+'&variante='+self.articulo.variante.variante;
+                    url = '/admin/chart/get-depositos?deposito='+deposito+'&articulo='+self.articulo.articulo+'&variante='+self.articulo.variante.variante;
                 }
                 // self.loading = true;
                 axios.get(url)
                     .then(function (response) {
                         console.log(response.data);
                         if(response.data) {
-                            indice = deposito -1;
-                            self.articulo.depositos[indice].nro = deposito;
-                            self.articulo.depositos[indice].mts = response.data.mts0;
-                            self.articulo.depositos[indice].piezas = response.data.piezas;
+                            self.articulo.depositos = response.data;
                         }
+                        self.articulo['piezas']=0;
+                        self.articulo['precio']=0;
+                        self.pedido.items.push(self.articulo);
+                        self.saveItems();
+                        self.articulo = {};
+                        self.variantes = null;
+
                     })
                     .catch(function (error) {
                         // handle error
                         console.log(error);
+                        location.reload();
                     })
                     .then(function () {
                         // always executed
@@ -191,11 +213,13 @@
                 var self = this;
                 axios.get('/admin/estado-pedido/get-photo?codigo='+self.articulo.articulo+'&variante='+parseInt(self.articulo.variante.variante))
                     .then(function (response) {
+                        console.log('entre en getPhoto');
                         self.articulo.url = response.data;
                     })
                     .catch(function (error) {
                         // handle error
                         console.log(error);
+                        location.reload();
                     })
                     .then(function () {
                         // always executed
@@ -212,6 +236,7 @@
                     .catch(function (error) {
                         // handle error
                         console.log(error);
+                        location.reload();
                     })
                     .then(function () {
                         // always executed
@@ -228,6 +253,7 @@
                     .catch(function (error) {
                         // handle error
                         console.log(error);
+                        location.reload();
                     })
                     .then(function () {
                         // always executed
@@ -262,12 +288,7 @@
             },
             addItem(){
                 this.getPhoto();
-                this.articulo['piezas']=0;
-                this.articulo['precio']=0;
-                this.pedido.items.push(this.articulo);
-                this.articulo = {};
-                this.variantes = null;
-                this.saveItems();
+                this.getDepositos();
             },
             getTelas(search,loading){
                 loading(true);
@@ -282,6 +303,7 @@
                     .catch(function (error) {
                         // handle error
                         console.log(error);
+                        location.reload();
                     })
                     .then(function () {
                         // always executed
@@ -301,6 +323,7 @@
                     .catch(function (error) {
                         // handle error
                         console.log(error);
+                        location.reload();
                     })
                     .then(function () {
                         // always executed
@@ -332,6 +355,7 @@
                     .catch(function (error) {
                         // handle error
                         console.log(error);
+                        location.reload();
                     })
                     .then(function () {
                         // always executed
@@ -340,3 +364,11 @@
         }
     });
 </script>
+<style>
+    table{
+        font-size: 10px;
+    }
+    .items-input{
+        width:50px;
+    }
+</style>
