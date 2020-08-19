@@ -124,7 +124,7 @@ class ChartController extends Controller
             $deposito = Json::decode($this->actionGetDeposito($i,$articulo,$variante));
             if($deposito) {
                 $deposito['nombre'] = $names[$i];
-                $depositos[$i] = $deposito;
+                $depositos[] = $deposito;
             }
         }
         return Json::encode($depositos);
