@@ -81,6 +81,7 @@
                 <th>Codigo Variante</th>
                 <th>Nombre Variante</th>
                 <th>Deposito</th>
+                <th>Deposito</th>
                 <th>Piezas</th>
                 <th>Precio</th>
                 <th>Borrar</th>
@@ -97,15 +98,20 @@
                     <td>{{item.nom}}</td>
                     <td>{{item.variante.variante}}</td>
                     <td>{{item.variante.nom}}</td>
+                    <td v-for="dep in item.depositos"  class="text-nowrap">
+                        {{dep.nombre}}: {{dep.piezas}}piezas - {{dep.mts}}MTS
+                    </td>
                     <td>
                         <select v-if="item.depositos" v-model="pedido.deposito" class="form-control form-control-sm">
                             <option v-for="dep in item.depositos">
                             <span>
                                 {{dep.nombre}}: {{dep.piezas}}piezas - {{dep.mts}}MTS
                             </span>
-                                </option>
+                            </option>
                         </select>
+
                     </td>
+
                     <td><input v-model="item.piezas" class="form-control items-input form-control-sm"></td>
                     <td><input v-model="item.precio" class="form-control items-input form-control-sm"></td>
                     <td>
