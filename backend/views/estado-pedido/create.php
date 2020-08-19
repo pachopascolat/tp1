@@ -98,7 +98,7 @@
                     <td>{{item.variante.variante}}</td>
                     <td>{{item.variante.nom}}</td>
                     <td>
-                        <select v-model="pedido.deposito" class="form-control form-control-sm">
+                        <select v-if="item.depositos" v-model="pedido.deposito" class="form-control form-control-sm">
                             <optionv-for="dep,i in item.depositos">
                             <span>
                                 {{dep.nombre}}: {{dep.piezas}}piezas - {{dep.mts}}MTS
