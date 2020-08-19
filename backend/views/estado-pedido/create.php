@@ -91,7 +91,7 @@
             <template v-for="(item,i) in pedido.items">
                 <tr>
                     <td scope="row">
-                        <img :src="item.url">
+                        <img class="img-item" :src="item.url">
                     </td>
                     <td>{{item.articulo}}</td>
                     <td>{{item.nom}}</td>
@@ -369,6 +369,9 @@
         font-size: 10px;
     }
     .items-input{
+        width:50px;
+    }
+    .img-item{
         width:50px;
     }
 </style>
