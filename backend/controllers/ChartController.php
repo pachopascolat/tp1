@@ -99,7 +99,7 @@ class ChartController extends Controller
 //        return Json::encode($response->getData());
     }
     public function actionGetEstadisticasArticulo($articulo){
-//        $dias = 10;
+        $dias = 10;
 //        $datos =
 //            '[{"fecha":"2020-08-07","piezas":"299","mts":"9248.90","mts0":"9248.90","delta":"0.0000"},{"fecha":"2020-08-06","piezas":"299","mts":"9248.90","mts0":"9248.90","delta":"0.0000"},{"fecha":"2020-08-05","piezas":"299","mts":"9248.90","mts0":"9248.90","delta":"0.0000"},{"fecha":"2020-08-04","piezas":"299","mts":"9248.90","mts0":"9412.40","delta":"-0.0174"},{"fecha":"2020-08-03","piezas":"304","mts":"9412.40","mts0":"9412.40","delta":"0.0000"},{"fecha":"2020-07-31","piezas":"304","mts":"9412.40","mts0":"9539.80","delta":"-0.0134"},{"fecha":"2020-07-30","piezas":"308","mts":"9539.80","mts0":"9539.80","delta":"0.0000"},{"fecha":"2020-07-29","piezas":"308","mts":"9539.80","mts0":"9476.30","delta":"0.0067"},{"fecha":"2020-07-28","piezas":"306","mts":"9476.30","mts0":"9476.30","delta":"0.0000"}]'
 //        ;
