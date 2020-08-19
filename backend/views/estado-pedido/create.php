@@ -99,9 +99,9 @@
                     <td>{{item.variante.nom}}</td>
                     <td>
                         <select v-model="pedido.deposito" class="form-control form-control-sm">
-                            <optionv-for="dep,i in depositos">
-                            <span v-if="item.depositos[dep.nro]">
-                                {{dep.nombre}}: {{item.depositos[dep.nro].piezas}}piezas - {{item.depositos[dep.nro].mts}}MTS
+                            <optionv-for="dep,i in item.depositos">
+                            <span>
+                                {{dep.nombre}}: {{dep.piezas}}piezas - {{dep.mts}}MTS
                             </span>
                                 </option>
                         </select>

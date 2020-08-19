@@ -13,6 +13,8 @@ use yii\web\Controller;
 class ChartController extends Controller
 {
 
+
+
     public function behaviors()
     {
         return [
@@ -117,8 +119,13 @@ class ChartController extends Controller
 
     public function actionGetDepositos($articulo,$variante=null){
         $depositos = [];
+        $names = ['1'=>'Deposito','2'=>'Deposito 2','3'=>'Lavalle','4'=>'Celina','5'=>'Azcuenaga'];
         for ($i=1 ; $i <= 5 ;$i++){
-            $depositos[$i] = Json::decode($this->actionGetDeposito($i,$articulo,$variante));
+            $deposito = Json::decode($this->actionGetDeposito($i,$articulo,$variante));
+            if($deposito) {
+                $deposito['nombre'] = $names[$i];
+                $depositos[$i] = $deposito;
+            }
         }
         return Json::encode($depositos);
     }
