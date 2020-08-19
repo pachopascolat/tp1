@@ -98,8 +98,8 @@
                     <td>{{item.nom}}</td>
                     <td>{{item.variante.variante}}</td>
                     <td>{{item.variante.nom}}</td>
-                    <td v-for="dep in item.depositos"  class="text-nowrap">
-                        <div>
+                    <td class="text-nowrap">
+                        <div v-for="dep in item.depositos">
                         {{dep.nombre}}: {{dep.piezas}}piezas - {{dep.mts}}MTS
                         </div>
                     </td>
