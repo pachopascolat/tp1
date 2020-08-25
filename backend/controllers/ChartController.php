@@ -59,7 +59,7 @@ class ChartController extends Controller
 
         $response = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('http://10.10.1.51:8090/stockGralxArt/0/999')
+            ->setUrl('http://10.10.1.51:8000/stockGralxArt/0/999')
             ->send();
         return Json::encode($response->getData());
     }
@@ -73,7 +73,7 @@ class ChartController extends Controller
 
         $response = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl('http://10.10.1.51:8090/stockGralxArtxVariante/'.$articulo.'/0/999')
+            ->setUrl('http://10.10.1.51:8000/stockGralxArtxVariante/'.$articulo.'/0/999')
             ->send();
         return Json::encode($response->getData());
     }
@@ -94,7 +94,7 @@ class ChartController extends Controller
 
         $response = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl("http://10.10.1.51:8090/stockArtxVariantexDias/0/$articulo/$variante/$dias/0/999")
+            ->setUrl("http://10.10.1.51:8000/stockArtxVariantexDias/0/$articulo/$variante/$dias/0/999")
             ->send();
 //        return Json::encode($response->getData());
         return $this->normalizarEstadistica(Json::encode($response->getData()));
@@ -110,7 +110,7 @@ class ChartController extends Controller
 
         $response = $client->createRequest()
             ->setMethod('GET')
-            ->setUrl("http://10.10.1.51:8090/stockArtxDias/0/$articulo/$dias/0/999")
+            ->setUrl("http://10.10.1.51:8000/stockArtxDias/0/$articulo/$dias/0/999")
             ->send();
 //        return Json::encode($response->getData());
         return $this->normalizarEstadistica(Json::encode($response->getData()));
@@ -136,9 +136,9 @@ class ChartController extends Controller
 //        return Json::decode($response);
 
         if($variante) {
-            $url = "http://10.10.1.51:8090/stockArtxVariantexDias/$deposito/$articulo/$variante/0/0/999";
+            $url = "http://10.10.1.51:8000/stockArtxVariantexDias/$deposito/$articulo/$variante/0/0/999";
         }else{
-            $url = "http://10.10.1.51:8090/stockArtxDias/$deposito/$articulo/0/0/999";
+            $url = "http://10.10.1.51:8000/stockArtxDias/$deposito/$articulo/0/0/999";
         }
         $client = new Client();
 
