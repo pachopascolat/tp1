@@ -51,7 +51,7 @@ use yii\widgets\Breadcrumbs;
 
     $menuItems = [
 
-        ['label' => 'Nuevo', 'url' => ['/estado-pedido/crear-pedido']],
+//        ['label' => 'Nuevo', 'url' => ['/estado-pedido/crear-pedido']],
         ['label' => 'Pedidos', 'url' => ['/estado-pedido/index']],
         ['label' => 'Stock', 'url' => ['/chart/index']],
 //        ['label' => 'frontend', 'url' => Yii::$app->urlManagerFrontEnd->baseUrl, 'linkOptions' => ['target' => '_blank'],
