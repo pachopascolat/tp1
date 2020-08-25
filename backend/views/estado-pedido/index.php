@@ -23,7 +23,7 @@
 
     <h3>Estado Pedidos</h3>
     <div class="p-1 d-flex">
-        <a name="" id="" class="btn btn-primary btn-sm p-1" href="<?=\yii\helpers\Url::to(['estado-pedido/crear-pedido'])?>" role="button">Nuevo</a>
+<!--        <a name="" id="" class="btn btn-primary btn-sm p-1" href="--><?//=\yii\helpers\Url::to(['estado-pedido/crear-pedido'])?><!--" role="button">Nuevo</a>-->
         <a name="" id="" class="btn btn-danger btn-sm p-1" href="<?=\yii\helpers\Url::to(['/chart/index'])?>" role="button">Stock</a>
     </div>
     <table id="estado-pedido-table"  v-if="pedidos" class="table table-striped table-inverse table-bordered">

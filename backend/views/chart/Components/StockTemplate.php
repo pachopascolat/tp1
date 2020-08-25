@@ -1,6 +1,6 @@
 <div class="stock-template">
     <div class="p-1 d-flex">
-    <a name="" id="" class="btn btn-primary btn-sm p-1" href="<?=\yii\helpers\Url::to(['/estado-pedido/crear-pedido'])?>" role="button">Nuevo</a>
+<!--    <a name="" id="" class="btn btn-primary btn-sm p-1" href="--><?//=\yii\helpers\Url::to(['/estado-pedido/crear-pedido'])?><!--" role="button">Nuevo</a>-->
     <a name="" id="" class="btn btn-danger btn-sm p-1" href="<?=\yii\helpers\Url::to(['/estado-pedido/index'])?>" role="button">Pedidos</a>
     </div>
         <div class="input-group">
