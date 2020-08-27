@@ -15,6 +15,6 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->redirect('/estado-pedido/index');
+        return $this->redirect(['estado-pedido/index']);
     }
 }
