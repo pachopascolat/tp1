@@ -1,7 +1,7 @@
 <?php
 
 
-namespace backend\controllers;
+namespace backend\modules\test\controllers;
 
 
 
