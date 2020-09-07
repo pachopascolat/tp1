@@ -8,8 +8,8 @@
     <!--        <button class="btn btn-success">Volver a Stock</button>-->
     <!--    </router-link>-->
     <div v-else="articulo">
-        <div class="d-flex align-items-center justify-content-around">
-            <div>
+        <div class="d-flex align-items-center justify-content-start">
+            <div v-if="articulo.variante.imagen">
                 <img ref="imagen" :src="articulo.variante.imagen">
             </div>
             <div>
