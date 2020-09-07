@@ -9,7 +9,7 @@
     <!--    </router-link>-->
     <div v-else="articulo">
         <div class="d-flex align-items-center justify-content-start">
-            <div v-if="articulo.variante.imagen">
+            <div v-if="articulo.variante">
                 <img ref="imagen" :src="articulo.variante.imagen">
             </div>
             <div>
