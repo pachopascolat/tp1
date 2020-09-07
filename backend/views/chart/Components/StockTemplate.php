@@ -18,7 +18,7 @@
         <div v-for="(article,j) in articulos">
             <div  class="fila">
                 <div @click="getVariantes(article,j)" class="columna articulos-solos">
-                    {{article.articulo+'    '+article.nom}}
+                    <span class="mr-2">{{article.articulo}}</span>    <span>{{article.nom}}</span>
                 </div>
                 <div @click="getVariantes(article,j)" class="columna unidades valores">
                     {{article.piezas}}
@@ -37,7 +37,7 @@
                     <!--            <router-link :to="{name:'grafico',params:{codColor:String(art.last.cod_color),codArticulo:art.last.cod_articulo}}" >-->
                     <div v-on:click="getEstadisticaVariante(art)" class="fila">
                         <div class="columna articulos">
-                            {{art.variante+'    '+art.nom}}
+                            <span class="mr-2">{{art.variante}}</span>  <span>{{art.nom}}</span>
                         </div>
                         <div class="columna valores unidades">
                             <!--                    <div class="">Unidades Total</div>-->
