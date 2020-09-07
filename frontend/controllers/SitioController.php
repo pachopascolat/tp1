@@ -26,6 +26,11 @@ class SitioController extends \yii\web\Controller {
 //                        'actions' => ['index-pedidos','index', 'create', 'view', 'update', 'index-por-categoria', 'delete'],
                         'roles' => ['ventasManager'],
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['?'],
+                    ],
                 ],
             ],
         ];
@@ -33,6 +38,10 @@ class SitioController extends \yii\web\Controller {
 
 
     public function actionIndex() {
+        if(Yii::$app->user->isGuest){
+            $this->redirect("http://construccion.texsim.com.ar");
+        }
+
         $searchModel = new \common\models\VidrieraSearch(['categoria_id' => 22]);
         $dataProvider = $searchModel->search(null);
         $dataProvider->getPagination()->setPageSize(7);
