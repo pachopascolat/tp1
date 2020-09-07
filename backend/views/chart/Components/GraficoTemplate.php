@@ -9,8 +9,8 @@
     <!--    </router-link>-->
     <div v-else="articulo">
         <div class="d-flex align-items-center justify-content-start">
-            <div v-if="articulo.variante">
-                <img ref="imagen" :src="articulo.variante.imagen">
+            <div v-if="articulo.variante" class="bg-light">
+                <img class="p-3 shadow-variante" ref="imagen" :src="articulo.variante.imagen">
             </div>
             <div>
                 <h3 >{{ articulo.articulo }} {{articulo.nom  }} </h3>
@@ -57,3 +57,10 @@
     </div>
 
 </div>
+<style>
+    .shadow-variante{
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    }
+</style>
