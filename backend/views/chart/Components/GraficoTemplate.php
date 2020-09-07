@@ -59,10 +59,4 @@
     </div>
 
 </div>
-<style>
-    .shadow-variante{
-        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    }
-</style>
+
