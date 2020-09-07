@@ -1,9 +1,9 @@
 <div class="stock-template">
     <div class="p-1 d-flex">
-<!--    <a name="" id="" class="btn btn-primary btn-sm p-1" href="--><?//=\yii\helpers\Url::to(['/estado-pedido/crear-pedido'])?><!--" role="button">Nuevo</a>-->
-    <a name="" id="" class="btn btn-danger btn-sm p-1" href="<?=\yii\helpers\Url::to(['/estado-pedido/index'])?>" role="button">Pedidos</a>
+        <!--    <a name="" id="" class="btn btn-primary btn-sm p-1" href="--><?//=\yii\helpers\Url::to(['/estado-pedido/crear-pedido'])?><!--" role="button">Nuevo</a>-->
+        <a name="" id="" class="btn btn-danger btn-sm p-1" href="<?=\yii\helpers\Url::to(['/estado-pedido/index'])?>" role="button">Pedidos</a>
     </div>
-        <div class="input-group">
+    <div class="input-group">
         <input  v-model="niddle" class="form-control mb-1" placeholder="ingrese articulo">
         <span class="input-group-btn">
             <button @click="filterArticulo(niddle)" class="btn btn-success" >
@@ -39,11 +39,13 @@
                 <div   v-for="(art,i) in variantes"  v-bind:key="i" >
                     <!--            <router-link :to="{name:'grafico',params:{codColor:String(art.last.cod_color),codArticulo:art.last.cod_articulo}}" >-->
                     <div v-on:click="getEstadisticaVariante(art)" class="fila">
-                        <div class="columna ">
-                            <span class="mr-2">{{art.variante}}</span>
-                        </div>
-                        <div class="columna ">
-                             <span>{{art.nom}}</span>
+                        <div class="columna articulos fila">
+                            <div class="columna ">
+                                <span class="mr-2">{{art.variante}}</span>
+                            </div>
+                            <div class="columna ">
+                                <span>{{art.nom}}</span>
+                            </div>
                         </div>
                         <div class="columna valores unidades">
                             <!--                    <div class="">Unidades Total</div>-->
