@@ -92,9 +92,9 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <?php if ($module->enableConfirmation): ?>
-            <p class="text-center">
-                <?= Html::a(Yii::t('user', 'Didn\'t receive confirmation message?'), ['/user/registration/resend']) ?>
-            </p>
+<!--            <p class="text-center">-->
+<!--                --><?//= Html::a(Yii::t('user', 'Didn\'t receive confirmation message?'), ['/user/registration/resend']) ?>
+<!--            </p>-->
         <?php endif ?>
         <?php if ($module->enableRegistration): ?>
             <p class="text-center">
