@@ -9,8 +9,8 @@
     <!--    </router-link>-->
     <div v-else="articulo">
         <div class="d-flex align-items-center justify-content-start">
-            <div v-if="articulo.variante" class="bg-light">
-                <div class="m-2 shadow-variante">
+            <div v-if="articulo.variante" class="bg-light mr-3">
+                <div class="m-3 shadow-variante">
                     <img  ref="imagen" :src="articulo.variante.imagen">
                 </div>
             </div>
