@@ -79,7 +79,7 @@ class ChartController extends Controller
         return Json::encode($response->getData());
     }
 
-    private function normalizarEstadistica($datos,$imagen){
+    private function normalizarEstadistica($datos,$imagen=''){
         $datosSorted = Json::decode($datos);
         ArrayHelper::multisort($datosSorted,'fecha',SORT_ASC);
         $fechas = ArrayHelper::getColumn($datosSorted,'fecha');
