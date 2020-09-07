@@ -39,7 +39,7 @@
                 <div   v-for="(art,i) in variantes"  v-bind:key="i" >
                     <!--            <router-link :to="{name:'grafico',params:{codColor:String(art.last.cod_color),codArticulo:art.last.cod_articulo}}" >-->
                     <div v-on:click="getEstadisticaVariante(art)" class="fila">
-                        <div class="columna articulos fila">
+                        <div class="columna articulos d-flex">
                             <div class="columna ">
                                 <span class="mr-2">{{art.variante}}</span>
                             </div>

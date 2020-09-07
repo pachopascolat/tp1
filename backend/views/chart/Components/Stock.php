@@ -274,7 +274,7 @@
 
     .d-flex{
         display: flex;
-        justify-content: center;
+        /*justify-content: center;*/
     }
 
 
