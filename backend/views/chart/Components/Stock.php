@@ -29,6 +29,25 @@
             // this.loading = false;
         },
         methods:{
+            getPhoto(){
+                var self = this;
+                self.loading = true;
+                axios.get('/admin/articulo/get-photo?codigo='+articulo.articulo+'&variante='+articulo.variante.variante)
+                    .then(function (response) {
+                        // self.loading= false;
+                        // handle success
+                        // console.log(response.data);
+                        self.grafico = response.data;
+                        // self.drawChart();
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+            },
             filterArticulo(search){
                 // console.log(search);
                 var articulos = [];
@@ -43,6 +62,7 @@
                 var self = this;
                 axios.get('/admin/chart/get-estadisticas-variante?articulo='+self.articulo.articulo+'&variante='+variante.variante)
                     .then(function (response) {
+                        variante.imagen = response.data.imagen;
                         self.articulo.variante=variante;
                         // console.log(response.data);
                         self.fechas = response.data.fechas;

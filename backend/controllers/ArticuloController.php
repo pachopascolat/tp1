@@ -222,4 +222,16 @@ class ArticuloController extends Controller {
         return $this->redirect(['index']);
     }
 
+    public function actionGetPhoto($codigo,$variante){
+        $codigo = trim($codigo);
+        $variante = trim($variante);
+        $articulo = Articulo::find()->joinWith('tela')->where(['codigo_tela'=>$codigo,'codigo_color'=>$variante])->one();
+        if($articulo){
+            $url = $articulo->getUrl();
+            return $url;
+//            return Html::img($url);
+        }
+        return null;
+    }
+
 }

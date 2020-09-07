@@ -2,6 +2,7 @@
 
 
 namespace backend\controllers;
+use backend\models\Articulo;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -78,34 +79,49 @@ class ChartController extends Controller
         return Json::encode($response->getData());
     }
 
-    private function normalizarEstadistica($datos){
+    private function normalizarEstadistica($datos,$imagen){
         $datosSorted = Json::decode($datos);
         ArrayHelper::multisort($datosSorted,'fecha',SORT_ASC);
         $fechas = ArrayHelper::getColumn($datosSorted,'fecha');
         $cantidades = ArrayHelper::getColumn($datosSorted,'mts0');
-        return Json::encode(['fechas'=>$fechas,'cantidades'=>$cantidades]);
+        return Json::encode(['fechas'=>$fechas,'cantidades'=>$cantidades,'imagen'=>$imagen]);
+    }
+
+    private function getPhoto($articulo,$variante){
+        $articulo = trim($articulo);
+        $variante = (int) trim($variante);
+        $model = Articulo::find()->joinWith('tela')->where(['codigo_tela'=>$articulo,'codigo_color'=>$variante])->one();
+        return $model->url??'';
     }
 
     public function actionGetEstadisticasVariante($articulo,$variante){
-        $dias = 10;
+        $imagen = $this->getPhoto($articulo,$variante);
+
 //        $datos = '[{"fecha":"2020-08-06","piezas":"204","mts":"6312.30","mts0":"6312.30","delta":"0.0000"},{"fecha":"2020-08-05","piezas":"204","mts":"6312.30","mts0":"6312.30","delta":"0.0000"},{"fecha":"2020-08-04","piezas":"204","mts":"6312.30","mts0":"6443.80","delta":"-0.0204"},{"fecha":"2020-08-03","piezas":"208","mts":"6443.80","mts0":"6443.80","delta":"0.0000"},{"fecha":"2020-07-31","piezas":"208","mts":"6443.80","mts0":"6571.20","delta":"-0.0194"},{"fecha":"2020-07-30","piezas":"212","mts":"6571.20","mts0":"6571.20","delta":"0.0000"},{"fecha":"2020-07-29","piezas":"212","mts":"6571.20","mts0":"6507.70","delta":"0.0098"},{"fecha":"2020-07-28","piezas":"210","mts":"6507.70","mts0":"6507.70","delta":"0.0000"},{"fecha":"2020-07-27","piezas":"210","mts":"6507.70","mts0":null,"delta":null}]';
-//        return $this->normalizarEstadistica($datos);
+//        return  $this->normalizarEstadistica($datos,$imagen);
+
         $client = new Client();
+        $dias = 10;
 
         $response = $client->createRequest()
             ->setMethod('GET')
             ->setUrl("http://10.10.1.51:8000/stockArtxVariantexDias/0/$articulo/$variante/$dias/0/999")
             ->send();
 //        return Json::encode($response->getData());
-        return $this->normalizarEstadistica(Json::encode($response->getData()));
+        return $this->normalizarEstadistica(Json::encode($response->getData()),$imagen);
 //        return Json::encode($response->getData());
     }
     public function actionGetEstadisticasArticulo($articulo){
         $dias = 10;
+
+
 //        $datos =
 //            '[{"fecha":"2020-08-07","piezas":"299","mts":"9248.90","mts0":"9248.90","delta":"0.0000"},{"fecha":"2020-08-06","piezas":"299","mts":"9248.90","mts0":"9248.90","delta":"0.0000"},{"fecha":"2020-08-05","piezas":"299","mts":"9248.90","mts0":"9248.90","delta":"0.0000"},{"fecha":"2020-08-04","piezas":"299","mts":"9248.90","mts0":"9412.40","delta":"-0.0174"},{"fecha":"2020-08-03","piezas":"304","mts":"9412.40","mts0":"9412.40","delta":"0.0000"},{"fecha":"2020-07-31","piezas":"304","mts":"9412.40","mts0":"9539.80","delta":"-0.0134"},{"fecha":"2020-07-30","piezas":"308","mts":"9539.80","mts0":"9539.80","delta":"0.0000"},{"fecha":"2020-07-29","piezas":"308","mts":"9539.80","mts0":"9476.30","delta":"0.0067"},{"fecha":"2020-07-28","piezas":"306","mts":"9476.30","mts0":"9476.30","delta":"0.0000"}]'
 //        ;
 //        return $this->normalizarEstadistica($datos);
+//
+
+
         $client = new Client();
 
         $response = $client->createRequest()
@@ -133,7 +149,7 @@ class ChartController extends Controller
     public function actionGetDeposito($deposito,$articulo,$variante=null){
 
 //        $response= '{"fecha":"2020-08-14","piezas":"57","mts":"5657.00","mts0":"5657.00","delta":"0.0000"}';
-//        return Json::decode($response);
+//        return Json::encode($response);
 
         if($variante) {
             $url = "http://10.10.1.51:8000/stockArtxVariantexDias/$deposito/$articulo/$variante/0/0/999";

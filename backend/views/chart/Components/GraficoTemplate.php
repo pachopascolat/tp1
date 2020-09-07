@@ -8,9 +8,14 @@
     <!--        <button class="btn btn-success">Volver a Stock</button>-->
     <!--    </router-link>-->
     <div v-else="articulo">
-        <div>
-            <h3 >{{ articulo.articulo }} {{articulo.nom  }} </h3>
-            <h5 v-if="articulo.variante" >{{ articulo.variante.variante }} {{ articulo.variante.nom }}</h5>
+        <div class="d-flex align-items-center justify-content-around">
+            <div>
+                <img ref="imagen" :src="articulo.variante.imagen">
+            </div>
+            <div>
+                <h3 >{{ articulo.articulo }} {{articulo.nom  }} </h3>
+                <h5 v-if="articulo.variante" >{{ articulo.variante.variante }} {{ articulo.variante.nom }}</h5>
+            </div>
         </div>
         <canvas id="myChart" ref="myChart" ></canvas>
         <div v-if="depositos" class="depositos">
