@@ -200,7 +200,7 @@
     }
 
     .stock-rows{
-        background-color: #155724;
+        background-color: #0c5460;
     }
 
     .unidades{

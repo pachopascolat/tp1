@@ -6,7 +6,7 @@
     <div class="input-group">
         <input  v-model="niddle" class="form-control mb-1" placeholder="ingrese articulo">
         <span class="input-group-btn">
-            <button @click="filterArticulo(niddle)" class="btn btn-success" >
+            <button @click="filterArticulo(niddle)" class="btn btn-info" >
                 <i class="fa fa-search"></i>
             </button>
         </span>
