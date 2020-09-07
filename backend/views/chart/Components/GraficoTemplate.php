@@ -10,7 +10,9 @@
     <div v-else="articulo">
         <div class="d-flex align-items-center justify-content-start">
             <div v-if="articulo.variante" class="bg-light">
-                <img class="p-3 shadow-variante" ref="imagen" :src="articulo.variante.imagen">
+                <div class="m-2 shadow-variante">
+                    <img  ref="imagen" :src="articulo.variante.imagen">
+                </div>
             </div>
             <div>
                 <h3 >{{ articulo.articulo }} {{articulo.nom  }} </h3>
