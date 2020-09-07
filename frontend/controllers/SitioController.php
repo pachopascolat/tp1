@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use yii\httpclient\Client;
 use mikehaertl\wkhtmlto\Pdf as Pdf2;
 use mikehaertl\tmp\File;
@@ -13,6 +14,22 @@ class SitioController extends \yii\web\Controller {
 
 
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+//                'only' => ['login', 'logout', 'signup'],
+                'rules' => [
+                    [
+                        'allow' => true,
+//                        'actions' => ['index-pedidos','index', 'create', 'view', 'update', 'index-por-categoria', 'delete'],
+                        'roles' => ['ventasManager'],
+                    ],
+                ],
+            ],
+        ];
+    }
 
 
     public function actionIndex() {
@@ -296,10 +313,10 @@ class SitioController extends \yii\web\Controller {
         $busqueda = \Yii::$app->request->get('busqueda');
         if ($busqueda != "") {
             $vidrieras = \common\models\Vidriera::find()->joinWith('categoria')
-                    ->where(['like', 'nombre', '%' . $busqueda . '%', false])
-                    ->orWhere(['like', 'nombre_categoria', '%' . $busqueda . '%', false])
-                    ->andWhere(['<>', 'categoria_id', \common\models\Categoria::PDF])
-                    ->all();
+                ->where(['like', 'nombre', '%' . $busqueda . '%', false])
+                ->orWhere(['like', 'nombre_categoria', '%' . $busqueda . '%', false])
+                ->andWhere(['<>', 'categoria_id', \common\models\Categoria::PDF])
+                ->all();
         }
 //        $model = new \common\models\CategoriaSearch(['nombre_categoria'=>$busqueda]);
 //        $dataprovider = $model->search(null);
