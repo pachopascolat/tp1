@@ -8,10 +8,27 @@ use mikehaertl\wkhtmlto\Pdf as Pdf2;
 use mikehaertl\tmp\File;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
+use yii\filters\AccessControl;
 
 class SitioController extends \yii\web\Controller {
 
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+//                'only' => ['login', 'logout', 'signup'],
+                'rules' => [
+                    [
+                        'allow' => true,
+//                        'actions' => ['index-pedidos','index', 'create', 'view', 'update', 'index-por-categoria', 'delete'],
+                        'roles' => ['ventasManager'],
+                    ],
+                ],
+            ],
+        ];
+    }
 
 
 

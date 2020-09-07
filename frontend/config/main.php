@@ -15,15 +15,22 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'user' => [
-            'controllerMap' => [
-                'security' => 'frontend\controllers\SecurityController',
+//            'controllerMap' => [
+//                'security' => 'frontend\controllers\SecurityController',
 //                'user' => 'frontend\controllers\SecurityController',
-            ],
-            // following line will restrict access to admin controller from frontend application
-            'as frontend' => 'dektrium\user\filters\FrontendFilter',
+//            ],
+//             following line will restrict access to admin controller from frontend application
+//            'as frontend' => 'dektrium\user\filters\FrontendFilter',
         ],
     ],
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@frontend/views/user'
+                ],
+            ],
+        ],
 //        'assetsAutoCompress' => [
 //            'class' => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
 //            'enabled' => true,
