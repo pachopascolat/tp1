@@ -15,8 +15,8 @@
                 </div>
             </div>
             <div>
-                <h3 >{{ articulo.articulo }} {{articulo.nom  }} </h3>
-                <h5 v-if="articulo.variante" >{{ articulo.variante.variante }} {{ articulo.variante.nom }}</h5>
+                <h3 >{{ articulo.articulo }}  {{articulo.nom  }} </h3>
+                <h5 v-if="articulo.variante" >{{ articulo.variante.variante }}  {{ articulo.variante.nom }}</h5>
             </div>
         </div>
         <canvas id="myChart" ref="myChart" ></canvas>

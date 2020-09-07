@@ -17,10 +17,10 @@
     <div v-else class="">
         <div v-for="(article,j) in articulos">
             <div  class="fila">
-                <div @click="getVariantes(article,j)" class="columna articulos-solos">
+                <div @click="getVariantes(article,j)" class="columna articulos-cod">
                     <span>{{article.articulo}}</span>
                 </div>
-                <div @click="getVariantes(article,j)" class="columna articulos-solos">
+                <div @click="getVariantes(article,j)" class="columna articulos-nom">
                     <span>{{article.nom}}</span>
                 </div>
                 <div @click="getVariantes(article,j)" class="columna cantidades-articulos valores">
