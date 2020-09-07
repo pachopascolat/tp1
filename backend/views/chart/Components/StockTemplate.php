@@ -18,10 +18,10 @@
         <div v-for="(article,j) in articulos">
             <div  class="fila">
                 <div @click="getVariantes(article,j)" class="columna articulos-solos">
-                    <span class="mr-2">{{article.articulo}}</span>    <span>{{article.nom}}</span>
+                    <span>{{article.articulo}}</span>
                 </div>
-                <div @click="getVariantes(article,j)" class="columna unidades valores">
-                    {{article.piezas}}
+                <div @click="getVariantes(article,j)" class="columna articulos-solos">
+                    <span>{{article.nom}}</span>
                 </div>
                 <div @click="getVariantes(article,j)" class="columna cantidades-articulos valores">
                     {{parseFloat(article.mts).toFixed(0)}} {{article.u_medida}}
