@@ -18,13 +18,13 @@
         <div v-for="(article,j) in articulos">
             <div  class="fila">
                 <div @click="getVariantes(article,j)" class="columna articulos-solos">
-                    {{article.articulo}} {{article.nom}}
+                    {{article.articulo}}    {{article.nom}}
                 </div>
                 <div @click="getVariantes(article,j)" class="columna unidades valores">
                     {{article.piezas}}
                 </div>
                 <div @click="getVariantes(article,j)" class="columna cantidades-articulos valores">
-                    {{parseFloat(article.mts).toFixed(2)}} {{article.u_medida}}
+                    {{parseFloat(article.mts).toFixed(0)}} {{article.u_medida}}
                 </div>
                 <div @click="getEstadisticaArticulo(article)" class="variaciones columna">
                     <div v-if="parseFloat(article.delta)>0"> <button class="btn btn-success btn-sm text-nowrap"> + {{parseFloat(article.delta).toFixed(2)}} %</button></div>
@@ -37,25 +37,16 @@
                     <!--            <router-link :to="{name:'grafico',params:{codColor:String(art.last.cod_color),codArticulo:art.last.cod_articulo}}" >-->
                     <div v-on:click="getEstadisticaVariante(art)" class="fila">
                         <div class="columna articulos">
-                            {{art.variante}} {{art.nom}}
-                        </div>
-                        <div class="columna hidden">
-                            <div>Variación</div>
-                            <div>{{art.delta}}</div>
+                            {{art.variante}}    {{art.nom}}
                         </div>
                         <div class="columna valores unidades">
                             <!--                    <div class="">Unidades Total</div>-->
                             <div>{{art.piezas}}</div>
-                            <div class="variaciones hidden">
-                                <div v-if="art.delta>0"> <button class="btn btn-success btn-sm"> + {{art.delta}} %</button></div>
-                                <div v-if="art.delta<0"> <button class="btn btn-danger btn-sm"> {{art.delta}} %</button> </div>
-                                <div v-if="art.delta==0"><button class="btn btn-default btn-sm"> - </button> </div>
-                            </div>
                         </div>
                         <div class="columna valores cantidades">
                             <!--                    <div>Cantidad Total</div>-->
                             <div>
-                                {{art.mts}} {{art.u_medida}}
+                                {{parseFloat(art.mts).toFixed(0)}} {{art.u_medida}}
                             </div>
                         </div>
                         <div class="variaciones columna">
