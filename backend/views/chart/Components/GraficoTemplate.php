@@ -9,12 +9,12 @@
     <!--    </router-link>-->
     <div v-else="articulo">
         <div class="d-flex align-items-center justify-content-start">
-            <div v-if="articulo.variante" class="bg-light mr-3">
-                <div class="m-3 shadow-variante">
-                    <img  ref="imagen" :src="articulo.variante.imagen">
+            <div v-if="articulo.variante" class="bg-light w-25">
+                <div class="">
+                    <img class="w-100"  ref="imagen" :src="articulo.variante.imagen">
                 </div>
             </div>
-            <div>
+            <div class="w-75 pl-3">
                 <h3 >{{ articulo.articulo }}  {{articulo.nom  }} </h3>
                 <h5 v-if="articulo.variante" >{{ articulo.variante.variante }}  {{ articulo.variante.nom }}</h5>
             </div>
