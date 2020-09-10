@@ -1,5 +1,6 @@
 <?php
-$carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+$session = $_SESSION['carrito']??'';
+$carrito = \common\models\Carrito::findOne($session);
 ?>
 <nav class="nav1 navbar sticky-top d-none d-lg-block">
     <div class="container">
@@ -16,7 +17,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                 ?>
             <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                              ?>" class="navbar-link flex-fill d-flex ">-->
                 <input value="<?= $_GET['busqueda'] ?? '' ?>" id="busqueda" name="busqueda" class="texsim-search-input w-100" type="" placeholder="" aria-label="Search">
-                <a href="" onclick="$('#busqueda-form').submit()"> 
+                <a href="" onclick="$('#busqueda-form').submit()">
                     <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
                 </a>
                 </form>
@@ -30,7 +31,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                         <div class="nav-item d-none d-sm-block">
                             <div class="navbar-icon-link2 carrito-link">
                                 <a  data-pjax=0
-                                    href="<?= yii\helpers\Url::to(['crear-consulta']) ?>" 
+                                    href="<?= yii\helpers\Url::to(['crear-consulta']) ?>"
                                     class="navbar-icon-link ">
 
                                     <img class="header-icon" src="<?= \yii\helpers\Url::base(true) . "/img/txsim-header-consulta-01.svg" ?>" alt="listado">
@@ -58,7 +59,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
 
                 </div>
             </div>
-        </div> 
+        </div>
         <div id="sucursales-dir" class="collapse  text-light w-100">
             <div class="d-flex w-100 justify-content-end">
                 <span class="">
@@ -66,8 +67,8 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                 </span>
             </div>
         </div>
-    </div>   
-</nav> 
+    </div>
+</nav>
 
 <!--<div class="d-lg-none">-->
 <nav class="navbar-movil navbar navbar-texsim navbar-dark nav1 sticky-top d-lg-none">
@@ -94,7 +95,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
                 <div class="navbar-icon-link2 carrito-link  ">
                     <div class="d-flex carrito-icon-div">
                         <a  data-pjax=0
-                            href="<?= yii\helpers\Url::to(['crear-consulta']) ?>" 
+                            href="<?= yii\helpers\Url::to(['crear-consulta']) ?>"
                             class="">
                             <!--<i class=" text-light fal fa-clipboard fa-2x"></i>-->
                             <i class="text-light fal fa-clipboard-check"></i>
@@ -126,7 +127,7 @@ $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
         <div class="d-flex justify-content-center w-100 align-items-center">
         <!--<form id="busqueda-form" method="POST" action="<?php // echo \yii\helpers\Url::to(['/sitio/buscar'])                              ?>" class="navbar-link flex-fill d-flex ">-->
             <input value="<?= $_GET['busqueda'] ?? '' ?>" id="busqueda-movil" name="busqueda" class="texsim-search-input" type="" placeholder="" aria-label="Search">
-            <a class="lupa-link" href="" onclick=""> 
+            <a class="lupa-link" href="" onclick="">
                 <img src="<?= \yii\helpers\Url::base(true) ?>/img2020/lupa-01.svg" class="lupa-icon">
             </a>
         </div>
