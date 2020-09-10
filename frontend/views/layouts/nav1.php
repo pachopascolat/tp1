@@ -89,7 +89,7 @@ $carrito = \common\models\Carrito::findOne($session);
         <div class="d-flex align-items-center justify-content-between">
             <!-- Cart Dropdown-->
             <?php
-            $carrito = \common\models\Carrito::findOne($_SESSION['carrito']);
+//            $carrito = \common\models\Carrito::findOne($session);
             ?>
             <div class="pl-3 pr-3 carrito-count-div  <?= $carrito && $carrito->itemCarritos ? '' : 'd-none' ?>">
                 <div class="navbar-icon-link2 carrito-link  ">
